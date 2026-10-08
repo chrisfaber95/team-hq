@@ -18,8 +18,9 @@ Nothing unticked in `NEEDS-YOU.md`.
 
 ## Decisions
 
-None added to `decisions/` this sprint. Change made by the setup session: the engineer skill no longer delegates to
-code-reviewer or documentation-engineer (b992eec).
+- [0001](../decisions/0001-reviewer-verdict-via-idle-notice.md): the reviewer sends no message; the lead reads the
+  verdict from the ticket on an idle notice. Target stays at 3 messages per ticket.
+- Setup session: the engineer skill no longer delegates to code-reviewer or documentation-engineer (b992eec).
 
 ## Metrics
 
@@ -34,8 +35,7 @@ Baseline: $1.73-2.02 per PR (same pricing method) on PRs 2.4-4x smaller. Phase-1
 ## Notes for next sprint
 
 - The Team section of T-004 has not been checked in a browser (layout and skins); look at it when the dashboard is next open.
-- The message target of 3 per ticket can't be met: every phase-1 ticket uses 4 routed messages.
-  Either raise the target to 4 or replace the reviewer's verdict message with an idle notice (user decision).
+- Restart the `reviewer` session before the next review so it picks up decision 0001 (no SendMessage tool).
 - CI was still running when the reviewer approved; the lead waited for green before `merge.sh`.
 
 ## Next sprint

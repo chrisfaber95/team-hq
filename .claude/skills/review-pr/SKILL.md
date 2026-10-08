@@ -5,7 +5,8 @@ description: Review one ticket's pull request against its acceptance criteria an
 
 # Review a ticket's PR
 
-You are read-only on code. You never edit the repo and never message the engineer.
+You are read-only on code. You never edit the repo and send no messages: the ticket is your report.
+The lead is notified when you go idle and reads your verdict from the ticket.
 
 1. Read the ticket in `team-hq/board/review/<id>-*.md`: Goal, Acceptance, Hand-off, earlier
    `Review` lines, and `review_rounds`.
@@ -22,10 +23,8 @@ You are read-only on code. You never edit the repo and never message the enginee
    - Post it on the PR with `gh pr review <pr> --comment -b "Team review round N: approve. <summary>"`
      (or `... changes: <numbered list>`). All sessions share one GitHub account, which can't approve
      its own PRs, so the ticket's `## Review` line is the verdict that counts; `scripts/merge.sh` reads it.
-5. Move the ticket and report:
-   - **Approve**: leave it in `review/`. Message lead: `T-042 approved, PR #88` (the lead runs
-     `scripts/merge.sh`).
-   - **Changes, round 1-2**: leave it in `review/`. Message lead: `T-042 changes requested, PR #88`.
+5. Move the ticket:
+   - **Approve** or **changes, round 1-2**: leave it in `review/` (the lead runs `scripts/merge.sh`
+     or sends the engineer back).
    - **Changes, round 3 or later**: `mv` it to `board/blocked/` and add a NEEDS-YOU line.
-     Message lead: `T-042 blocked after 2 review rounds`.
-6. Stop. One message, no acknowledgements.
+6. Stop. Don't message anyone; going idle is the signal.

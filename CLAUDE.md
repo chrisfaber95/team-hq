@@ -36,10 +36,10 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
 - Engineer: `bash scripts/dispatch.sh <id> <repo>`. Run it with `run_in_background` so you are
   notified when it exits. At most `maxParallel` engineers at once; the script refuses more.
 - Reviewer: when a ticket reaches `review/`, run `bash scripts/review.sh <id> <pr#>` the same way.
-- Merge: when the reviewer reports "approved", run `bash scripts/merge.sh <id> <pr#>`. The script checks
+- Merge: when the ticket's last `## Review` line is `round N: approve`, run `bash scripts/merge.sh <id> <pr#>`. The script checks
   the gates itself, has the repo's `git-workflow-manager` agent merge, then moves the ticket to `done/`
   and removes the worktree. You never run `gh pr merge` yourself.
-- On reviewer "changes requested": run `bash scripts/dispatch.sh <id> <repo> --rework`
+- On `round N: changes`: run `bash scripts/dispatch.sh <id> <repo> --rework`
   (reuses the ticket's worktree and branch; the engineer addresses the `## Review` lines).
 - A non-zero exit means a cap was hit or the run failed: the script already moved the ticket to
   `blocked/` and wrote `NEEDS-YOU.md`. Split or rewrite the ticket; don't just re-run it.
@@ -47,7 +47,10 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
 ## Message rules (all sessions)
 
 1. **Pointer, not payload.** "T-042 moved to review, PR #88" is a complete message. Details go in the ticket.
-2. **Fixed routes.** Engineer → lead, reviewer → lead, lead → anyone. No engineer-to-engineer messages.
+2. **Fixed routes.** Engineer → lead, lead → anyone. No engineer-to-engineer messages. The reviewer sends no messages:
+   it writes its verdict in the ticket and stops. The lead sends the review request with `notify_when_idle: true` and,
+   on the idle notice, reads the ticket's last `## Review` line (or finds it in `blocked/` after the round cap). In
+   phase 2, `review.sh` exiting is the same signal. An idle notice with no new verdict line means: check the reviewer.
 3. **Batch.** The lead sends one message per engineer per dispatch, not one per thought.
 4. **No acknowledgements.** "Got it" and "thanks" are banned; silence means received.
 5. **Blocked = file, then one message.** Move the ticket to `blocked/` with the question inside, then send one line to the lead.
