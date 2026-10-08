@@ -22,7 +22,12 @@ branch `team/<id>`), and you report only to the session named `lead`.
 - Don't commit as you go; the git-workflow-manager agent commits at hand-off (repo convention:
   `type(scope): subject`).
 - Run typecheck and tests through the `test-runner` subagent so long output stays out of your
-  context. All acceptance criteria must hold before you hand off; the Stop hook refuses to end the
+  context.
+- Keep delegation lean; every subagent is extra cost. Write ordinary tests yourself, and use
+  `test-automator` only for a substantial new test suite. Don't run `code-reviewer`, because the
+  team reviewer reviews every PR. Skip `documentation-engineer` unless the ticket is mostly docs.
+  The repo's other specialists (`typescript-pro`, `frontend-developer`, `security-auditor`) are
+  still used where its CLAUDE.md requires them. All acceptance criteria must hold before you hand off; the Stop hook refuses to end the
   run while tests fail.
 
 ## 3. Hand off
