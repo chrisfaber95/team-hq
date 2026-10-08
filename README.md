@@ -29,8 +29,10 @@ One terminal (PowerShell) each. The `--name` matters: sessions message each othe
 # lead: you talk to this one
 cd N:\team-hq; claude --name lead --model opus
 
-# engineer: works in the repo, sees the board through --add-dir, runs with the engineer guardrails
-cd N:\Projects\Claude-dashboard; claude --name eng-claude-dashboard --model sonnet --add-dir N:\team-hq --permission-mode auto --settings N:\team-hq\.claude\engineer.settings.json
+# engineer: works in a per-ticket worktree (never your own checkout), sees the board through --add-dir,
+# runs with the engineer guardrails; merge.sh removes the worktree after the merge
+git -C N:\Projects\Claude-dashboard fetch origin; git -C N:\Projects\Claude-dashboard worktree add -b team/T-012 N:\worktrees\claude-dashboard-T-012 origin/main
+cd N:\worktrees\claude-dashboard-T-012; npm ci; claude --name eng-claude-dashboard --model sonnet --add-dir N:\team-hq --permission-mode auto --settings N:\team-hq\.claude\engineer.settings.json
 
 # reviewer: read-only on code, writes its verdict in the ticket
 cd N:\team-hq; claude --name reviewer --agent reviewer --add-dir N:\Projects\Claude-dashboard

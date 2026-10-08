@@ -66,8 +66,24 @@ echo "== $(date -Is) merge exit=$rc PR state=$state" >> "$log"
 [ "$state" = MERGED ] || escalate "exit $rc, PR state $state"
 
 mv "$ticket" "$board/done/"
-# The engineer's worktree and local branch are no longer needed.
+# The engineer's worktree is no longer needed.
 ewt=/n/worktrees/$repo-$id
 [ -d "$ewt" ] && git -C "$repo_dir" worktree remove --force "$ewt" || true
-git -C "$repo_dir" branch -D "team/$id" >/dev/null 2>&1 || true
+
+# Bring the user's checkout up to date: off the merged branch onto main, main fast-forwarded.
+# A branch that is checked out can't be deleted, so this has to happen before the cleanup below.
+head=$(gh pr view "$pr" --repo "$(git -C "$repo_dir" remote get-url origin)" --json headRefName -q .headRefName)
+git -C "$repo_dir" fetch -q --prune origin
+cur=$(git -C "$repo_dir" branch --show-current)
+if [ "$cur" = "$head" ] || [ "$cur" = main ]; then
+  if [ -z "$(git -C "$repo_dir" status --porcelain)" ]; then
+    git -C "$repo_dir" switch -q main && git -C "$repo_dir" merge -q --ff-only origin/main \
+      || echo "warning: could not fast-forward main in $repo_dir" >&2
+  else
+    echo "warning: $repo_dir has uncommitted changes; left it on $cur" >&2
+  fi
+else
+  git -C "$repo_dir" fetch -q origin main:main 2>/dev/null || echo "warning: local main in $repo_dir not fast-forwarded" >&2
+fi
+for b in "$head" "team/$id"; do git -C "$repo_dir" branch -D "$b" >/dev/null 2>&1 || true; done
 echo "$id: PR #$pr merged, ticket moved to done/"
