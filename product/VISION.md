@@ -8,16 +8,16 @@ activity on this PC: projects, live sessions and transcripts, messages between s
 usage and limits, and control of background sessions.
 
 ## Who it's for
-_Who uses it, when, and on what device? Just you, or others on the LAN?_
+Myself, its going to be on LAN too
 
 ## The problem it solves
-_What would you be doing without it? What's annoying about that today?_
+Managing my claude sessions, and being a overall AI manager (Like Jarvis, Ironman. or KITT from knightrider)
 
 ## What it should become
-_In 3-6 months: what can you do with it that you can't today? What would make it indispensable?_
+being a overall AI manager (Like Jarvis, Ironman. or KITT from knightrider)
 
 ## Principles
-_What must stay true? E.g. local-only, no cost estimates (tokens only), security first because it can run commands._
+Protected network access, eventually outside network access, security is important because of command running, tokens only
 
 ## Not the goal
-_What should it never turn into?_
+Publicly available

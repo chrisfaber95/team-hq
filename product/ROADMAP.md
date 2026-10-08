@@ -5,7 +5,7 @@ the user approves a brief; the lead marks it handed off once its tickets exist.
 
 ## Planned
 
-_None yet. The first design session adds the first brief here._
+- [F-001](briefs/F-001-needs-attention-alerts.md) Needs-attention alerts (must). Handed off: T-005, T-006, T-007
 
 ## Shipped (before the designer existed)
 
