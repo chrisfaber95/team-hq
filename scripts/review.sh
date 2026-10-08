@@ -12,7 +12,7 @@ cfg() { node -e "const c=require(process.argv[1]); console.log(eval('c.'+process
 log=$hq/logs/$id.log
 mkdir -p "$hq/logs"
 
-ticket=$(ls "$board/review/$id"-*.md 2>/dev/null | head -1)
+ticket=$(find "$board/review" -maxdepth 1 -name "$id-*.md" | head -1)
 [ -n "$ticket" ] || { echo "no $id in board/review/" >&2; exit 66; }
 repo=$(sed -n 's/^repo: *//p' "$ticket" | head -1 | tr -d '\r ')
 repo_dir=$(cfg "repos['$repo']")

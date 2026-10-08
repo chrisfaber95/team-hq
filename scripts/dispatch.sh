@@ -20,7 +20,7 @@ wt=/n/worktrees/$repo-$id
 log=$hq/logs/$id.log
 mkdir -p "$hq/logs" /n/worktrees
 
-find_ticket() { ls "$board/$1/$id"-*.md 2>/dev/null | head -1; }
+find_ticket() { find "$board/$1" -maxdepth 1 -name "$id-*.md" | head -1; }
 escalate() {
   local why=$1 t
   t=$(find_ticket in-progress)
@@ -30,7 +30,7 @@ escalate() {
 }
 
 # --- preconditions -----------------------------------------------------------
-running=$(ls "$board/in-progress/"*.md 2>/dev/null | wc -l)
+running=$(find "$board/in-progress" -maxdepth 1 -name "*.md" | wc -l)
 max=$(cfg maxParallel)
 if [ "$running" -ge "$max" ]; then
   echo "refusing: $running tickets already in progress (maxParallel=$max)" >&2; exit 75
@@ -67,7 +67,7 @@ claude -p "$prompt" \
   --model "$(cfg engineer.model)" \
   --add-dir "$hq" \
   --permission-mode auto \
-  --max-turns "$(cfg engineer.maxTurns)" \
+  --max-turns "${ENG_MAX_TURNS:-$(cfg engineer.maxTurns)}" \
   --max-budget-usd "$(cfg engineer.maxBudgetUsd)" \
   --settings "$hq/.claude/engineer.settings.json" \
   --output-format json > "$hq/logs/$id.json" 2>> "$log"
