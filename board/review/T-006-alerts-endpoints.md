@@ -9,7 +9,7 @@ labels: []
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 20
 ---
 ## Goal
 The browser can dismiss an alert and change the usage threshold through two small POST endpoints that go through
@@ -28,5 +28,7 @@ mention its result in the hand-off. Follow the `/api/commands` handler in `src/s
 checks; don't loosen any rule in the repo's CLAUDE.md "Request checks" list.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added POST /api/alerts/dismiss {id} (must be an alert open now; 400 invalid id, 404 unknown) and POST /api/settings/alerts {threshold} (integer 1-100, else 400) in src/server/server.ts, using readJson (64 KiB cap), fixed error strings, response only {ok:true}. Both sit after the existing Host/cross-site/Origin/X-Dashboard/login checks. PR: https://github.com/chrisfaber95/claude-dashboard/pull/20. typecheck ok, npm test 196 pass; CI was pending at hand-off.
+security-auditor: no Critical/High; Medium was a wrong test assertion (fixed). Lows accepted: dismiss runs a full buildState; save() failures are silent; alert text must be escaped by the client (T-007). Reviewer: note the login/401 tests are in tests/lan.test.ts, since server.test.ts has no auth. PR title is T-006 form, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
