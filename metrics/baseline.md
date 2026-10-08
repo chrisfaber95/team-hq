@@ -23,3 +23,25 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | Ticket | PR | Engineer turns | Engineer cost | Review rounds | Messages | Merged without user edits? |
 | --- | --- | --- | --- | --- | --- | --- |
 | T-001 | #15 | (set up by hand) | - | 1 (15 turns, $0.23) | 0 | yes; merge.sh run 32 s |
+| T-004 | #18 (c5bedb6), +448/-2 in 10 files | 66 requests (sonnet + haiku test-runner), 8 subagents | $1.26 | 1 ($0.16) | 4 (target 3) | yes; ~10 min kickoff to merge; lead $0.46, merge $0.10 |
+
+# Same-method comparison (transcript pricing)
+
+All sessions priced from their transcripts, main session plus subagents, at list rates: input, cache write at 1.25x input,
+cache read as listed, output. This reads ~20-25% below Claude Code's own estimate (transcripts appear to undercount thinking
+output), so compare rows with each other, not with the table above. The token column in the table above counts only the
+main model; use these rows for tokens.
+
+| Ticket | Mode | PR size | Work sessions | Review + merge | Coordination | Total |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-002 | baseline (opus, 1 session) | +184/-7, 3 files | $1.53 (2.76M in, 90% cache, 17k out) | ~$0.20 | - | ~$1.73 |
+| T-003 | baseline (opus, 1 session) | +104/-15, 5 files | $1.82 (3.36M in, 93% cache, 25k out) | ~$0.20 | - | ~$2.02 |
+| T-004 | team phase 1 (sonnet engineer) | +448/-2, 10 files | $1.26 (3.33M in, 89% cache, 9k out) | $0.26 | lead $0.46 (opus) | $1.98 |
+
+Reading (one team ticket, so not yet a trend):
+- Per PR, the team ($1.98) is level with the baseline ($1.73-2.02), on a PR 2.4-4x larger.
+- The engineer on sonnet was the cheapest work session despite the biggest change; the cheaper model is part of that.
+- Lead overhead is 23% of the ticket ($0.46 on opus). It should shrink per ticket once the lead runs several tickets per sprint.
+- Messages: 4 against a target of 3 (lead->eng, eng->lead, lead->reviewer, reviewer->lead). Every route is in the design, so
+  the target of 3 per ticket was too tight; either raise it to 4 or have the lead use an idle notice instead of the reviewer's message.
+- From T-005 the engineer skill skips code-reviewer and documentation-engineer (b992eec), which should cut engineer cost further.
