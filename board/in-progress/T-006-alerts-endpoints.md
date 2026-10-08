@@ -7,7 +7,7 @@ depends_on: [T-005]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 20
 ---
@@ -32,3 +32,4 @@ Added POST /api/alerts/dismiss {id} (must be an alert open now; 400 invalid id, 
 security-auditor: no Critical/High; Medium was a wrong test assertion (fixed). Lows accepted: dismiss runs a full buildState; save() failures are silent; alert text must be escaped by the client (T-007). Reviewer: note the login/401 tests are in tests/lan.test.ts, since server.test.ts has no auth. PR title is T-006 form, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - tests/server.test.ts does not isolate TEAM_HQ_DIR (defaults to the real N:\team-hq in config.ts), so 'POST /api/alerts/dismiss' fails locally whenever a ticket sits in board/review (got ['session:wait-1','ticket:T-006']); set process.env.TEAM_HQ_DIR to a missing/temp dir before importing, as tests/team.test.ts does, and re-run npm test. Endpoint code, checks order, caps and fixed errors are fine.
