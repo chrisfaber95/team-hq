@@ -4,7 +4,7 @@ repo: claude-dashboard
 owner: eng-claude-dashboard
 depends_on: []
 contracts: []
-labels: []
+labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
