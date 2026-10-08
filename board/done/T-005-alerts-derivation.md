@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 19
 ---
@@ -36,3 +36,4 @@ Added src/server/alerts.ts: pure deriveAlerts() plus a store (dismissed ids + th
 Reviewer: check dismissal pruning (usage ids kept while limits.source===none), no-duplicate ids, sinceMs (session updatedAtMs, otherwise first-seen in memory, resets on restart). Open question (waiting on permission prompt?): not checked, noted in docs/architecture.md. PR title is T-005 form, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
