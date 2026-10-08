@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# Merge a reviewed ticket's PR through the repo's git-workflow-manager agent.
+# The gates are checked here, deterministically, before any agent runs:
+#   - the ticket is in review/ and its last ## Review line is "round N: approve"
+#   - the PR is open and every CI check passed
+# usage: bash scripts/merge.sh T-042 88
+set -euo pipefail
+
+id=${1:?usage: merge.sh <ticket-id> <pr-number>}
+pr=${2:?usage: merge.sh <ticket-id> <pr-number>}
+
+hq=$(cd "$(dirname "$0")/.." && pwd)
+board=$hq/board
+cfg() { node -e "const c=require(process.argv[1]); console.log(eval('c.'+process.argv[2]) ?? '')" "$hq/budgets.json" "$1"; }
+log=$hq/logs/$id.log
+mkdir -p "$hq/logs" /n/worktrees
+escalate() { echo "- [ ] $(date +%F) $id: merge of PR #$pr stopped ($1). Log: logs/$id.log" >> "$board/NEEDS-YOU.md"; echo "$id merge refused: $1" >&2; exit 1; }
+
+ticket=$(find "$board/review" -maxdepth 1 -name "$id-*.md" | head -1)
+[ -n "$ticket" ] || { echo "no $id in board/review/" >&2; exit 66; }
+repo=$(sed -n 's/^repo: *//p' "$ticket" | head -1 | tr -d '\r ')
+repo_dir=$(cfg "repos['$repo']")
+[ -n "$repo_dir" ] || { echo "ticket $id has unknown repo '$repo'" >&2; exit 64; }
+
+# --- gates ----------------------------------------------------------------------
+verdict=$(sed -n '/^## Review/,/^## /p' "$ticket" | grep -E '^round [0-9]+:' | tail -1 | tr -d '\r')
+[[ "$verdict" =~ ^round\ [0-9]+:\ approve ]] || escalate "last review verdict is '${verdict:-none}', not approve"
+
+labels=$(sed -n 's/^labels: *//p' "$ticket" | head -1 | sed 's/#.*//' | tr -d '\r')
+if printf "%s" "$labels" | grep -qE "auth|deps|contract|migration" && ! grep -qE "^user_ok: *true" "$ticket"; then
+  escalate "high-risk labels $labels: set user_ok: true in the ticket to allow the merge"
+fi
+
+state=$(gh pr view "$pr" --repo "$(git -C "$repo_dir" remote get-url origin)" --json state -q .state)
+[ "$state" = OPEN ] || escalate "PR state is $state"
+checks=$(gh pr view "$pr" --repo "$(git -C "$repo_dir" remote get-url origin)" --json statusCheckRollup \
+  -q '[.statusCheckRollup[] | (.conclusion // .state)] | map(select(. != "SUCCESS" and . != "NEUTRAL" and . != "SKIPPED")) | length')
+total=$(gh pr view "$pr" --repo "$(git -C "$repo_dir" remote get-url origin)" --json statusCheckRollup -q '.statusCheckRollup | length')
+[ "$total" -gt 0 ] && [ "$checks" = 0 ] || escalate "CI not green ($checks of $total checks not passing)"
+
+# --- the merge, in a throwaway worktree so the user's checkout is never touched -------
+wt=/n/worktrees/$repo-$id-merge
+[ -e "$wt" ] || { git -C "$repo_dir" fetch -q origin && git -C "$repo_dir" worktree add -q --detach "$wt" origin/main; }
+
+echo "== $(date -Is) merge $id PR #$pr ($verdict)" >> "$log"
+cd "$wt"
+set +e
+claude -p "Merge PR #$pr (ticket $id). The team reviewer approved it ('$verdict') and every CI check is green; \
+both gates were verified before this run. Authorized: merge it using the repo's merge convention and delete its \
+remote branch. Do nothing else: no new commits, no release. Report the merge commit." \
+  --agent git-workflow-manager \
+  --name "merge-$id" \
+  --model sonnet \
+  --permission-mode auto \
+  --max-turns 20 \
+  --max-budget-usd 1 \
+  --settings "$hq/.claude/merger.settings.json" \
+  --output-format json > "$hq/logs/$id.merge.json" 2>> "$log"
+rc=$?
+set -e
+cd "$hq"
+git -C "$repo_dir" worktree remove --force "$wt" || true
+
+state=$(gh pr view "$pr" --repo "$(git -C "$repo_dir" remote get-url origin)" --json state -q .state)
+echo "== $(date -Is) merge exit=$rc PR state=$state" >> "$log"
+[ "$state" = MERGED ] || escalate "exit $rc, PR state $state"
+
+mv "$ticket" "$board/done/"
+# The engineer's worktree and local branch are no longer needed.
+ewt=/n/worktrees/$repo-$id
+[ -d "$ewt" ] && git -C "$repo_dir" worktree remove --force "$ewt" || true
+git -C "$repo_dir" branch -D "team/$id" >/dev/null 2>&1 || true
+echo "$id: PR #$pr merged, ticket moved to done/"

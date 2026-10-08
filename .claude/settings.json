@@ -6,6 +6,7 @@
     "allow": [
       "Bash(bash scripts/dispatch.sh *)",
       "Bash(bash scripts/review.sh *)",
+      "Bash(bash scripts/merge.sh *)",
       "Bash(gh pr view *)",
       "Bash(gh pr diff *)",
       "Bash(gh pr checks *)",

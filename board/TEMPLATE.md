@@ -7,6 +7,7 @@ contracts: []
 labels: []                # low-risk | migration | contract | auth | deps
 budget_usd: 3
 review_rounds: 0          # reviewer increments; max 2
+user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
 pr:                       # engineer fills in, e.g. 88
 ---
 ## Goal

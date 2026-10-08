@@ -36,6 +36,9 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
 - Engineer: `bash scripts/dispatch.sh <id> <repo>`. Run it with `run_in_background` so you are
   notified when it exits. At most `maxParallel` engineers at once; the script refuses more.
 - Reviewer: when a ticket reaches `review/`, run `bash scripts/review.sh <id> <pr#>` the same way.
+- Merge: when the reviewer reports "approved", run `bash scripts/merge.sh <id> <pr#>`. The script checks
+  the gates itself, has the repo's `git-workflow-manager` agent merge, then moves the ticket to `done/`
+  and removes the worktree. You never run `gh pr merge` yourself.
 - On reviewer "changes requested": run `bash scripts/dispatch.sh <id> <repo> --rework`
   (reuses the ticket's worktree and branch; the engineer addresses the `## Review` lines).
 - A non-zero exit means a cap was hit or the run failed: the script already moved the ticket to
@@ -56,7 +59,11 @@ Target: 3 messages or fewer per ticket.
 
 - Every change lands through a PR; CI (typecheck + tests) must be green.
 - The reviewer approves or requests changes; after 2 rounds the ticket goes to `blocked/` for you.
-- **Phase 2: the user merges every PR.** Nobody runs `gh pr merge`.
+- Git work in a repo goes through that repo's `git-workflow-manager` agent (its CLAUDE.md Git
+  section): engineers delegate commit, push and opening the PR with the restriction "don't merge".
+- **Merge = reviewer approved + CI green**, enforced by `scripts/merge.sh`, which then delegates the
+  merge to `git-workflow-manager`. Tickets labelled `auth`, `deps`, `contract` or `migration` also
+  need `user_ok: true`, set by the user (merge.sh escalates to `NEEDS-YOU.md` otherwise).
 - Label `low-risk` (no migrations, contract changes, auth, payments, secrets) is recorded in the
   ticket now and used for auto-merge from phase 4 only.
 
@@ -67,7 +74,7 @@ Append one line per item to `board/NEEDS-YOU.md` (`- [ ] <date> <id>: <what you 
   auth, payments or secrets (the pilot dashboard counts its login, LAN mode and `claude-cli.ts` here);
 - a ticket blocked twice, or a run that hit its turn or budget cap;
 - a reviewer/engineer disagreement that survives two rounds;
-- every PR ready to merge (phase 2).
+- a high-risk ticket (see Merge gates) that is approved and waits for `user_ok`.
 
 ## Sprint end
 

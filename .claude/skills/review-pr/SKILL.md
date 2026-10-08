@@ -19,12 +19,12 @@ You are read-only on code. You never edit the repo and never message the enginee
 4. Record the verdict:
    - Increment `review_rounds` in the front matter.
    - Append one line under `## Review`: `round N: approve` or `round N: changes - <the 1-3 things to fix>`.
-   - Post it on the PR: `gh pr review <pr> --approve -b "<summary>"` or
-     `gh pr review <pr> --request-changes -b "<numbered list>"`. (If GitHub refuses approval of
-     your own PR, use `--comment` and say "approve" in the body.)
+   - Post it on the PR with `gh pr review <pr> --comment -b "Team review round N: approve. <summary>"`
+     (or `... changes: <numbered list>`). All sessions share one GitHub account, which can't approve
+     its own PRs, so the ticket's `## Review` line is the verdict that counts; `scripts/merge.sh` reads it.
 5. Move the ticket and report:
-   - **Approve**: leave it in `review/`, append `- [ ] <date> <id>: PR #<pr> approved, ready to merge`
-     to `board/NEEDS-YOU.md`. Message lead: `T-042 approved, PR #88`.
+   - **Approve**: leave it in `review/`. Message lead: `T-042 approved, PR #88` (the lead runs
+     `scripts/merge.sh`).
    - **Changes, round 1-2**: leave it in `review/`. Message lead: `T-042 changes requested, PR #88`.
    - **Changes, round 3 or later**: `mv` it to `board/blocked/` and add a NEEDS-YOU line.
      Message lead: `T-042 blocked after 2 review rounds`.

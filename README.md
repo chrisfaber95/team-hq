@@ -53,12 +53,13 @@ requests to the reviewer. Check `/list-agents` in the lead to see who is reachab
 
 ## Phase 2: headless engineers
 
-The lead dispatches; you only merge:
+The lead dispatches, reviews and merges through the scripts; you handle `NEEDS-YOU.md`:
 
 ```bash
 bash scripts/dispatch.sh T-012 claude-dashboard           # engineer run in N:\worktrees\claude-dashboard-T-012
 bash scripts/review.sh   T-012 42                         # fresh reviewer for PR #42
 bash scripts/dispatch.sh T-012 claude-dashboard --rework  # after "changes requested"
+bash scripts/merge.sh    T-012 42                         # after "approved": gates, then git-workflow-manager merges
 ```
 
 - Caps from `budgets.json` (60 turns / $3 engineer, 2 parallel). On a subscription the dollar cap is a
@@ -68,8 +69,11 @@ bash scripts/dispatch.sh T-012 claude-dashboard --rework  # after "changes reque
   force-pushes, `gh pr merge` and edits to team-hq config; a Stop hook
   (`scripts/hooks/stop-tests.sh`) refuses to end a run while typecheck/tests fail. These apply
   only to team engineers, not to your own sessions in the repo. CI runs on every PR.
-- You merge every PR (`NEEDS-YOU.md` lists the approved ones). After merging, remove the worktree:
-  `git -C N:\Projects\Claude-dashboard worktree remove N:\worktrees\claude-dashboard-T-012`.
+- Git work goes through the repo's `git-workflow-manager` agent: engineers have it commit, push and
+  open the PR ("don't merge"); `merge.sh` has it merge once the ticket's last review line is
+  `approve` and CI is green, then moves the ticket to `done/` and removes the worktree.
+- Tickets labelled `auth`, `deps`, `contract` or `migration` need your `user_ok: true` in the ticket
+  before `merge.sh` will merge; it escalates to `NEEDS-YOU.md` instead.
 
 **Gate:** every run that hits a cap escalates instead of failing silently.
 
@@ -77,5 +81,5 @@ bash scripts/dispatch.sh T-012 claude-dashboard --rework  # after "changes reque
 
 1. Read `board/NEEDS-YOU.md`.
 2. Talk to `lead` about goals.
-3. Merge approved PRs.
+3. Set `user_ok: true` on approved high-risk tickets you accept.
 4. End of sprint: lead runs `sprint-summary`, you `/clear` the lead.
