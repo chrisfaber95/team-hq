@@ -15,9 +15,7 @@
     ],
     "deny": [
       "Edit(//n/Projects/**)",
-      "Write(//n/Projects/**)",
       "Edit(//n/worktrees/**)",
-      "Write(//n/worktrees/**)",
       "Bash(gh pr merge *)",
       "Bash(git push --force *)",
       "Bash(git push -f *)"

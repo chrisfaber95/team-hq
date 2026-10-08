@@ -1,0 +1,41 @@
+{
+  "crossSessionInbound": "accept",
+  "isolatePeerMachines": true,
+  "claudeMdExcludes": [
+    "**/team-hq/CLAUDE.md"
+  ],
+  "permissions": {
+    "allow": [
+      "Edit(//n/team-hq/product/**)",
+      "WebSearch",
+      "WebFetch"
+    ],
+    "deny": [
+      "Edit(//n/team-hq/board/**)",
+      "Edit(//n/team-hq/contracts/**)",
+      "Edit(//n/team-hq/decisions/**)",
+      "Edit(//n/team-hq/scripts/**)",
+      "Edit(//n/team-hq/.claude/**)",
+      "Edit(//n/team-hq/product/.claude/**)",
+      "Edit(//n/team-hq/CLAUDE.md)",
+      "Edit(//n/team-hq/product/CLAUDE.md)",
+      "Edit(//n/team-hq/budgets.json)",
+      "Edit(//n/Projects/**)",
+      "Edit(//n/worktrees/**)",
+      "Bash(git push *)",
+      "Bash(gh pr *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash N:/team-hq/product/.claude/hooks/pending-briefs.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

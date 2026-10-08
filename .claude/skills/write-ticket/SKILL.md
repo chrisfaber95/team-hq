@@ -8,6 +8,8 @@ description: Turn a goal into one or more board tickets in team-hq (backlog or r
 1. Pick the next id: the highest `T-NNN` across all `board/*/` folders, plus one.
 2. Copy `board/TEMPLATE.md` to `board/<folder>/<id>-<short-slug>.md` and fill in:
    - `repo` (a name from the repos list in `CLAUDE.md`), `owner: eng-<repo>`.
+   - `brief: F-NNN` when the ticket comes from an approved product brief; take Goal and Acceptance
+     from the brief's outcome and acceptance criteria, split across tickets as needed.
    - `depends_on` for tickets that must be `done` first.
    - `labels`: `low-risk` only if it has no migration, contract change, auth, payment, secret or
      new dependency. Add `auth`, `deps`, `contract`, `migration` where they apply.

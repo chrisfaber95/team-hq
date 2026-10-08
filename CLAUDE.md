@@ -14,6 +14,7 @@ Current phase: see `README.md`.
 | Lead | `lead` | `N:\team-hq` | opus | interactive; `/clear` after each sprint |
 | Engineer | `eng-<repo>-<ticket>` (phase 1: `eng-<repo>`) | worktree `N:\worktrees\<repo>-<ticket>` | sonnet | one run per ticket |
 | Reviewer | `reviewer-<ticket>` (phase 1: `reviewer`) | `N:\team-hq` + repo read-only | sonnet | fresh per PR |
+| Designer | `designer` | `N:\team-hq\product` | sonnet | only during the user's design sessions |
 
 Repos (name → path):
 - `claude-dashboard` → `N:\Projects\Claude-dashboard` (pilot)
@@ -44,10 +45,23 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
 - A non-zero exit means a cap was hit or the run failed: the script already moved the ticket to
   `blocked/` and wrote `NEEDS-YOU.md`. Split or rewrite the ticket; don't just re-run it.
 
+## Product briefs (from the designer)
+
+The designer writes feature briefs in `product/briefs/F-NNN-*.md` with the user; only `status: approved`
+briefs are yours. It sends you one line per approved brief, but it is usually offline, so also check
+`product/briefs/` for `status: approved` at the start of every sprint.
+
+- An approved brief becomes tickets; each ticket names its brief (`brief: F-007`) in the front matter.
+- Don't redesign a feature. A product question goes under `## Questions from lead` in the brief, with
+  `status: needs-design`, and waits for the designer. Only a technical choice is yours to make.
+- When all tickets for a brief exist, set the brief to `status: handed-off` and mark it in `product/ROADMAP.md`.
+- A brief whose questions block work for more than a sprint goes into `NEEDS-YOU.md`.
+- In a brief you edit only `status` and `## Questions from lead`; the rest is the designer's.
+
 ## Message rules (all sessions)
 
 1. **Pointer, not payload.** "T-042 moved to review, PR #88" is a complete message. Details go in the ticket.
-2. **Fixed routes.** Engineer → lead, lead → anyone. No engineer-to-engineer messages. The reviewer sends no messages:
+2. **Fixed routes.** Engineer → lead, designer → lead (approved briefs only), lead → anyone. No engineer-to-engineer messages. The reviewer sends no messages:
    it writes its verdict in the ticket and stops. The lead sends the review request with `notify_when_idle: true` and,
    on the idle notice, reads the ticket's last `## Review` line (or finds it in `blocked/` after the round cap). In
    phase 2, `review.sh` exiting is the same signal. An idle notice with no new verdict line means: check the reviewer.

@@ -38,6 +38,20 @@ cd N:\team-hq; claude --name reviewer --agent reviewer --add-dir N:\Projects\Cla
 
 Run `/list-agents` in any of them to check that the other three are reachable.
 
+**Product designer (add-on, only when you sit down to design):** a fourth terminal.
+
+```powershell
+cd N:\team-hq\product; claude --name designer --model sonnet --add-dir ..\contracts --add-dir N:\Projects\Claude-dashboard
+```
+
+Say "let's design a feature: ..." (or just "what should we build next?"). It interviews you in
+short multiple-choice rounds, writes a brief in `product/briefs/`, and on your approval tells the
+lead. Briefs the lead has questions about (`status: needs-design`) are listed when it starts.
+`/clear` after each brief and close it when you're done; nothing depends on it running. Avoid
+design sessions while headless engineers run, since they share the same usage window. Fill in
+`product/VISION.md` before the first session. Spec: "Add-on: Product Designer Role" doc
+(claude.ai/artifact/LhGkfRJrgroo5M9WenPE2E).
+
 ### What to type in each
 
 Normally you only talk to the **lead**: "next goals: ...", "write tickets for X", "run T-005".

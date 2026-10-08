@@ -2,6 +2,7 @@
 id: T-000
 repo: claude-dashboard
 owner: eng-claude-dashboard
+brief:                    # F-NNN when the ticket comes from a product brief
 depends_on: []
 contracts: []
 labels: []                # low-risk | migration | contract | auth | deps
