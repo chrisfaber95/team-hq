@@ -7,7 +7,7 @@ depends_on: [T-005]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: false
 pr: 20
 ---
@@ -35,3 +35,4 @@ Rework round 1: tests/server.test.ts and tests/lan.test.ts now set TEAM_HQ_DIR t
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - tests/server.test.ts does not isolate TEAM_HQ_DIR (defaults to the real N:\team-hq in config.ts), so 'POST /api/alerts/dismiss' fails locally whenever a ticket sits in board/review (got ['session:wait-1','ticket:T-006']); set process.env.TEAM_HQ_DIR to a missing/temp dir before importing, as tests/team.test.ts does, and re-run npm test. Endpoint code, checks order, caps and fixed errors are fine.
+round 2: approve
