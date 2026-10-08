@@ -1,0 +1,24 @@
+{
+  "crossSessionInbound": "accept",
+  "isolatePeerMachines": true,
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "Bash(bash scripts/dispatch.sh *)",
+      "Bash(bash scripts/review.sh *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr list *)"
+    ],
+    "deny": [
+      "Edit(//n/Projects/**)",
+      "Write(//n/Projects/**)",
+      "Edit(//n/worktrees/**)",
+      "Write(//n/worktrees/**)",
+      "Bash(gh pr merge *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)"
+    ]
+  }
+}

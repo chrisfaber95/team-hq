@@ -1,0 +1,31 @@
+{
+  "crossSessionInbound": "accept",
+  "isolatePeerMachines": true,
+  "permissions": {
+    "deny": [
+      "Bash(gh pr merge *)",
+      "Bash(git push origin main*)",
+      "Bash(git push origin HEAD:main*)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git branch -D *)",
+      "Bash(git checkout main*)",
+      "Read(**/.env*)",
+      "Read(**/.dashboard/**)",
+      "Edit(//n/team-hq/CLAUDE.md)",
+      "Edit(//n/team-hq/contracts/**)",
+      "Edit(//n/team-hq/scripts/**)",
+      "Edit(//n/team-hq/.claude/**)",
+      "Edit(//n/team-hq/budgets.json)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash N:/team-hq/scripts/hooks/stop-tests.sh", "timeout": 600 }
+        ]
+      }
+    ]
+  }
+}
