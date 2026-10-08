@@ -5,7 +5,7 @@ Control repo for a small team of Claude Code sessions: one **lead**, one **engin
 and one-line cross-session messages. Design: "Multi-Session Agent Team Setup" doc
 (claude.ai/artifact/NWjLVADvftSEyHRzPoDJju).
 
-**Current phase: 0 (baseline).** Pilot repo: `claude-dashboard` (`N:\Projects\Claude-dashboard`).
+**Current phase: 1 (pilot team).** Phase 0 baseline done: ~$2.16 and 32 turns per merged PR (`metrics/baseline.md`). Pilot repo: `claude-dashboard` (`N:\Projects\Claude-dashboard`).
 
 | Path | What |
 | --- | --- |
