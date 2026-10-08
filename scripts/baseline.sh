@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Phase 0 baseline: one ordinary Claude Code session per ticket (no team rules, the repo's normal
-# workflow including its own git-workflow-manager merge), measured from the headless JSON result.
+# workflow via git-workflow-manager, but it stops at an open PR: merging goes through the team
+# reviewer + scripts/merge.sh gates), measured from the headless JSON result.
 # usage: bash scripts/baseline.sh <repo> T-002 [T-003 ...]
 set -uo pipefail
 
@@ -25,14 +26,14 @@ for id in "$@"; do
   start=$(date +%s)
   echo "== $(date -Is) baseline $id in $wt" >> "$hq/logs/$id.log"
   (cd "$wt" && claude -p "Work the ticket in $(cygpath -m "$ticket") the way you normally work in this repo, \
-following this repo's CLAUDE.md, including its Git section: delegate commit, push, opening the PR and merging \
-to git-workflow-manager. Put the ticket id in the PR title ('$id: ...'). When the PR is merged, write a short \
-'## Hand-off' in the ticket file (what changed, PR link). If you can't finish, write '## Blocked' in the ticket with why." \
+following this repo's CLAUDE.md, including its Git section: delegate commit, push and opening the PR to \
+git-workflow-manager, with the restriction \"don't merge\". Put the ticket id in the PR title ('$id: ...'). When the \
+PR is open, set pr: in the ticket front matter and write a short '## Hand-off' in the ticket file (what changed, PR link). If you can't finish, write '## Blocked' in the ticket with why." \
     --name "baseline-$id" \
     --add-dir "$hq" \
     --permission-mode auto \
     --max-turns 150 \
-    --max-budget-usd 10 \
+    --max-budget-usd 5 \
     --output-format json > "$hq/logs/$id.baseline.json" 2>> "$hq/logs/$id.log")
   rc=$?
   secs=$(( $(date +%s) - start ))
@@ -56,7 +57,7 @@ to git-workflow-manager. Put the ticket id in the PR title ('$id: ...'). When th
     if(i>=0){L[i]=process.argv[3];fs.writeFileSync(f,L.join('\n'));}
   " "$hq/metrics/baseline.md" "$id" "$row"
 
-  if [[ "$pr" == *MERGED ]]; then mv "$ticket" "$board/done/"; else mv "$ticket" "$board/blocked/"
-    echo "- [ ] $(date +%F) $id: baseline run ended without a merged PR (exit $rc, PR ${pr:-none}). Log: logs/$id.log" >> "$board/NEEDS-YOU.md"; fi
+  if [[ "$pr" == *OPEN || "$pr" == *MERGED ]]; then mv "$ticket" "$board/review/"; else mv "$ticket" "$board/blocked/"
+    echo "- [ ] $(date +%F) $id: baseline run ended without a PR (exit $rc, PR ${pr:-none}). Log: logs/$id.log" >> "$board/NEEDS-YOU.md"; fi
   git -C "$repo_dir" worktree remove --force "$wt" 2>/dev/null || true
 done
