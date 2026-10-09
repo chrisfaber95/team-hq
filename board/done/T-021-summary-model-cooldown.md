@@ -7,7 +7,7 @@ depends_on: [T-019]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 35
 ---
@@ -33,3 +33,4 @@ Checks: typecheck clean, 340 tests pass, build ok. CI not checked by me.
 Look at: cooldown/staleness choice (changed transcript inside the cooldown still shows the older cached answer); the client note was not checked in a browser. Commit trailer uses plain "Claude" per the user's memory rule.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all 4 criteria met, claude-cli.ts untouched, typecheck + 340 tests pass on PR head (CI `check` was still pending at review time; merge.sh must see it green). Non-blocking: two concurrent requests can both pass the cooldown check before the cache is written; after a failed call on a changed transcript the old text is stored under the new size/mtime so it is served as current.
