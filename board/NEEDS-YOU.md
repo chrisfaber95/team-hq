@@ -10,3 +10,5 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-09 T-018: engineer run stopped (exit 1, success turns=1 cost=$0.78 error). Log: logs/T-018.log (lead: session limit; re-run after reset)
 - [x] 2026-10-09 T-023: LAN startup output names the localhost URL for this PC (your dev:lan report); `auth` label (LAN mode), output text only, no sign-in rule change. Set `user_ok: true` to let it merge after review. (user set user_ok 2026-10-09)
 - [x] 2026-10-09 T-024: QR sign-in fix (your report: QR opens the login page): confirm page + POST instead of a GET that spends the code; `auth`. Set `user_ok: true` to let it merge after review. (user set user_ok 2026-10-09)
+- [ ] 2026-10-09 T-031: continue ended terminal/editor sessions from the dashboard (F-005), `auth` (session control). Set `user_ok: true` to let it merge after review.
+- [ ] 2026-10-09 F-005: approving prompts from the dashboard lets any signed-in device (incl. phones on the LAN) allow tool runs, and likely needs a `PermissionRequest` hook in your Claude settings. Spike T-030 first; the design comes to you as decision 0005 before any of it is built.

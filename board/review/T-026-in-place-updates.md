@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/39
 ---
@@ -39,3 +39,4 @@ PR #39 (https://github.com/chrisfaber95/claude-dashboard/pull/39). New keyed DOM
 Reviewer: not checked in a real browser (focus, scroll at 390 px, selection, gauge animation, drawer) - please verify. `frontend-developer` was not used. CI `check` was still pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - patcher logic correct, all 7 sections converted, tests cover kept-node/changed-text; typecheck + 353 tests pass locally. CI `check` still pending at review time (merge.sh must wait for green); browser behaviour (focus, 390 px scroll, gauge animation, drawer) not verified by reviewer.
