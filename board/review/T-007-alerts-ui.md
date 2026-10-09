@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 21
 ---
 ## Goal
 The user sees what needs them without watching terminals: a header badge, a "Needs attention" list with dismiss
@@ -29,5 +29,7 @@ via `textContent`); include that section in the `frontend-developer` delegation.
 notifications, actions from an alert.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added the alerts UI: header badge (#alert-badge, hidden at zero), Needs attention panel (src/client/alerts.ts; one row per id, delegated dismiss click -> POST /api/alerts/dismiss, rebuilt only when changed), threshold form (1-100 -> POST /api/settings/alerts, not overwritten while focused) and toasts (.alert-toast, textContent, max 4). Pure logic in src/client/alerts-logic.ts: first state after load is a baseline, so reloads never re-toast; tests in tests/alerts-logic.test.ts. until() moved to util.ts. PR: https://github.com/chrisfaber95/claude-dashboard/pull/21. typecheck ok, npm test 201 pass, build ok.
+Reviewer: NOT checked in a browser (no visual check of the 3 skins, toast/panel layout). Check esc() on all interpolations, no inline styles, and the always-visible panel with its empty state. frontend-developer wrote the UI; alerts-logic.ts was written directly, not via typescript-pro. PR title is T-007 form, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
