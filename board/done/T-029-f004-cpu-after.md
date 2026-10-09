@@ -7,9 +7,9 @@ depends_on: [T-025, T-028, T-037]
 contracts: []
 labels: [low-risk]
 budget_usd: 2
-review_rounds: 0
+review_rounds: 1
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/49
 ---
 ## Goal
 Show that the F-004 dashboard uses less CPU than before, and close the brief's remaining checks.
@@ -26,8 +26,9 @@ Brief F-004 acceptance "CPU use ... measured before and after, and is lower afte
 phone/tablet/desktop, no flicker, drawer/selection survive) go to the user via `NEEDS-YOU.md` when this merges.
 
 ## Hand-off (engineer writes, max 300 tokens)
-
+Rework after T-037 (Review section empty; followed the lead note: main already contains T-037, so no merge needed). Re-measured on 230235b with the T-025 method (3 x 120 s, 15 s warm-up, real data, port 4790, commands off): 1920x1080 median 0.16 % (baseline 0.63 %), 390x844 median 0.10 % (baseline 0.62 %); both lower. Added the "After F-004" section to docs/perf.md and an in-place update/popup paragraph to docs/architecture.md. Docs only: typecheck/tests skipped per project-params. PR: https://github.com/chrisfaber95/claude-dashboard/pull/49 (commit ac2cca1). Reviewer: check the numbers are plausible (large drop vs baseline; data differs from baseline day, noted in perf.md) and that architecture.md matches patch.ts/drawPopup.
 ## Review (reviewer writes, one line per round)
+round 1: approve
 
 ## Blocked
 Measured on main a5190ca (after T-028), same method as baseline (3 x 120 s, 15 s warm-up, real data, port 4790, commands off):
