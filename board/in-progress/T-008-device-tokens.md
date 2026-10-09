@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 22
 ---
@@ -37,3 +37,4 @@ Added src/server/devices.ts (store in DATA_DIR/devices.json: sha256 only, timing
 security-auditor: no Critical/High. Fixed M1 (partly: proxy headers, documented), L2 (device in audit log), L7 (names). Not done: L1, L3 (failed save can undo a revoke on restart), L4 (logout/expiry keep an open stream), L5, L6. Reviewer: check the exemption in auth.ts isLoopbackRequest, that no endpoint exists yet (T-009/T-010), the startup token removal in server.ts (untested), and that user_ok is needed before merge. Not run in a real LAN session. CLAUDE.md: only the .dashboard/ secrets line changed. PR title is T-008 form.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - fix auditor L3 only: devices.ts save() swallows every error, so a revoke whose write fails (Windows EPERM/AV lock on renameSync, disk full) is live in memory but devices.json still holds the device and the lost device's token works again after a restart, with nobody told; make save() report success and have revoke()/revokeDevice() surface a failed persist (still end sessions and close streams first) so the T-009 revoke endpoint can return an error instead of "ok", and add a test with an unwritable DATA_DIR. Everything else meets the criteria: typecheck, 218 tests and CI green on 5b5d1cb; loopback exemption (socket AND Host, proxy headers withdraw it), hash-only store, timing-safe verify, sliding sessions, stream close on revoke all verified. Needs user_ok at merge (label auth; already true in front matter).
