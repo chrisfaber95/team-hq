@@ -56,7 +56,7 @@ Decision 0001 worked: one-round tickets hit exactly 3 messages. A rework round a
 ## Next sprint
 
 F-002 Per-device LAN access arrived after this summary and is already split ([decision 0003](../decisions/0003-device-tokens.md)):
-T-008 (`ready/`) -> T-009 -> T-010 -> T-011, and T-012 (after T-009) -> T-013. All but T-013 need the user's `user_ok`
+T-008 (`ready/`) -> T-009 -> T-010 -> T-014 -> T-011, and T-012 (after T-009) -> T-013. All but T-013 need the user's `user_ok`
 (NEEDS-YOU). Dispatch one at a time, starting with T-008. Smaller candidates for later:
 1. Hide the Needs attention panel when empty (only if the user wants it after the visual check).
 2. Verify `waiting` on permission prompts against a real session and record it (small, docs-only if it holds).

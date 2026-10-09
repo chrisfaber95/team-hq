@@ -20,6 +20,7 @@ token, so a lost device can be cut off without touching the others.
 - [ ] LAN login accepts a device token (timing-safe hash compare, existing rate limit kept) and binds the session to the device id; the old `DATA_DIR/token` is no longer read and is removed at startup
 - [ ] In LAN mode, a request with loopback `remoteAddress` and a loopback `Host` needs no token and acts as device `pc`; any other request without a valid session gets 401 (API) / redirect (page) / no live-event stream, as today
 - [ ] `revoke(id)` ends that device's sessions and closes its open `/api/events` streams at once
+- [ ] Device tokens have no expiry; a device session slides: each authed request extends it to 7 days from now (cookie re-issued at most once a day), so only revocation (or 7 days unused) signs a device out
 - [ ] `node:test` coverage for the store, login, revocation (session and live stream), loopback exemption incl. a non-loopback `Host` on a loopback socket being refused; `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)
@@ -29,6 +30,7 @@ T-010); the store API is enough, and LAN devices can't sign in until T-009/T-010
 Never trust `X-Forwarded-For` or similar headers. Keep every rule in the repo CLAUDE.md "Network" and "Request checks"
 lists. Isolate `DASHBOARD_DATA_DIR` and `TEAM_HQ_DIR` in tests (see T-006 round 1). Run `security-auditor` before the
 PR and put its result in the hand-off. Update `docs/architecture.md` (`auth.ts`, `.dashboard/` contents).
+Expose a failed-sign-in hook (e.g. an `onFailedLogin(ip, tMs)` option of `createAuth`) for T-014; no alert in this ticket.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
