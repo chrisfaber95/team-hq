@@ -15,3 +15,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [ ] 2026-10-09 T-030: spike blocked: the auto-mode classifier refused to let the engineer answer a held `--bg` permission prompt (allow/deny step). Choose: you run that step yourself (lead gives commands), allow it for that engineer run in `engineer.settings.json`, or skip the test and rely on documented hook behaviour. Lead will not run it in the engineer's place.
 - [x] 2026-10-09 T-025: engineer run stopped (exit 1, success turns=2 cost=$0.47 error). Log: logs/T-025.log (lead: session limit; resumed with --rework after reset)
 - [x] 2026-10-09 T-027: engineer run stopped (exit 1, success turns=1 cost=$0.56 error). Log: logs/T-027.log (lead: session limit; resumed with --rework after reset)
+- [x] 2026-10-09 T-025: merge of PR #40 stopped (CI not green (1 of 2 checks not passing)). Log: logs/T-025.log (lead: CI was still pending, not failing; re-merged after green)

@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 42
 ---
 ## Goal
 A session started in a terminal or editor can be continued from the dashboard once it has ended, and while it is still

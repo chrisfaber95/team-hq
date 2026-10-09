@@ -7,7 +7,7 @@ depends_on: [T-026]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/41
 ---
@@ -45,3 +45,4 @@ Reviewer: check by hand in a browser (not done by me, no e2e): Esc order with bu
 return, hidden buttons for team/devices/run, all three skins. PR title is not strict Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met by code reading (z-index 3 < building 4 < drawer 5; Esc order correct; hidden-section buttons; devices/audit markup moved unchanged; logic unit-tested). Not verified in a browser; CI `check` was still pending at review time, merge.sh must confirm green.

@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/40
 ---
@@ -42,3 +42,4 @@ Reviewer: the PR title is not in Conventional Commits form (`T-025: ...`, per th
 numbers come from the earlier run and this run did not re-measure them. No `src/client` or `claude-cli.ts` changes.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all 4 criteria met by reading the diff; no new dependency, no src/ changes; baseline medians check out arithmetically (not re-measured). CI `check` was still pending at review time, so merge.sh must wait for green.
