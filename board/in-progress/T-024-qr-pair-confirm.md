@@ -27,6 +27,7 @@ Likely causes, both fixed by the confirm step (engineer: confirm which one in th
    previews often fetch the URL before the browser opens it, so the browser's own GET fails -> `/login?e=pair`.
 2. The 303 to `/` with `Set-Cookie: ...SameSite=Strict` ends a navigation started from the camera app (cross-site);
    browsers don't send a Strict cookie on that request -> plain `/login`.
+User follow-up: the phone lands on the plain login page ("paste the token...", no QR error), so it is cause 2.
 T-020's end-to-end test passed because a test client neither prefetches nor applies SameSite. Design:
 `team-hq/decisions/0003-device-tokens.md` (QR = single-use pairing code in a URL; unchanged). Keep the page under the
 existing CSP (external script, like `login.js`). Don't touch `claude-cli.ts`.
