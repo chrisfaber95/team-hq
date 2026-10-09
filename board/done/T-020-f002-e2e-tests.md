@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 32
 ---
@@ -33,3 +33,4 @@ and the real-phone check (cert warning, camera QR scan) stay with the user.
 Added tests/f002-flow.test.ts (tests only, no product code): one sequential test on a real LAN-mode server walks F-002 - unauthenticated page/API/event stream and the old shared token refused; loopback creates a device, token shown once, listed; sign-in by token and QR (QR fails 2nd time); device views state, starts a command, messages and stops a session via fake-claude; /api/audit shows each action under the device name with filter; revoke ends the stream, 401s the next call and the token; failed sign-in alert with address and time. typecheck clean, npm test 324/324, new test ~0.3 s, cleans up. No bugs found. PR: https://github.com/chrisfaber95/claude-dashboard/pull/32 . Reviewer: check the audit assertions and that the stream-end check is not flaky (2 s wait).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
