@@ -6,6 +6,7 @@ the user approves a brief; the lead marks it handed off once its tickets exist.
 ## Planned
 
 - [F-001](briefs/F-001-needs-attention-alerts.md) Needs-attention alerts (must). Handed off: T-005, T-006, T-007
+- [F-002](briefs/F-002-per-device-lan-access.md) Per-device LAN access (must). Handed off: T-008..T-013
 
 ## Shipped (before the designer existed)
 
