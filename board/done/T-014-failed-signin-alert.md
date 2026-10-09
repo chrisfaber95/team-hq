@@ -7,7 +7,7 @@ depends_on: [T-008]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 25
 ---
@@ -33,3 +33,4 @@ Added alert kind `signin` (id `signin:<address>`): alerts.ts `recordFailedSignin
 security-auditor: no Critical/High. Follow-ups, not done: M1/M2 bucket IPv6 by /64 for the alert key and the existing per-address rate limit (rotating addresses evicts older entries / bypasses the per-address limit); evicted-count overflow; dismiss loses history (snooze would not re-toast); time is server-local without date. T-011 should call the same hook for bad pairing codes. Reviewer: check the hook wiring in server.ts and the end-to-end test in lan.test.ts. Not run in a browser. PR title is T-014 form; no `auth` label in the repo.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
