@@ -53,3 +53,6 @@ Review: findings left for T-035 (shared hook/answer secret, audit by device, ses
 
 ## Review (reviewer writes, one line per round)
 round 1: approve - all criteria met in diff (settings only on start/resume, loopback+secret 403s, hash-compared secret, expiry/abandon, helper, tests); CI `check` was still running at review time, merge.sh must confirm green; label `auth` needs user_ok after the user's allow/deny proof.
+
+## Lead (rework, 2026-10-09)
+Not a review finding: T-038 merged the folder-map guard (`tests/code-structure.test.ts`). Merge main into the branch and move `src/server/permissions.ts` to `src/server/features/permissions/permissions.ts` (test under the mirrored `tests/` path), imports only, no behaviour change; the guard and all tests must pass. Don't extend the allowlist. Keep the user proof steps in the hand-off valid (update paths if they change).
