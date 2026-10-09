@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 48
 ---
 ## Goal
 An always-open dashboard spends less CPU than before F-004: a push only walks the DOM of sections whose content
@@ -34,5 +34,12 @@ including hidden popup sections, is re-walked on each 2 s push. Files: `src/clie
 `src/client/popups.ts`. Server stays unchanged (brief). T-034 runs in parallel on the server only.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #48 https://github.com/chrisfaber95/claude-dashboard/pull/48 (client only, server unchanged).
+- patch.ts: patchHtml remembers the last markup per element and skips the DOM walk when equal (patchIfChanged, forgetHtml; team clears it when it empties its element).
+- Popup sections (projects, comms, team, usage) render only while their popup is open; opening renders from the latest state first (initPopups(onOpen), drawsSection). renderTeam(s, draw) still sets section visibility when closed.
+- Tick/focus/drawer code untouched.
+- Tests: patchIfChanged skip, drawsSection; typecheck + 380 tests pass.
+- CPU (measure-cpu, 3x120 s, localhost, real data): 1920x1080 0.29/0.32/0.32 % (median 0.32, baseline 0.63); 390x844 0.14/0.15/0.16 % (median 0.15, baseline 0.62).
+- Reviewer: no browser e2e for open-popup content/focus; check by hand. Branch is 1 commit behind main (no conflict). Commit trailer used plain Claude per repo memory.
 
 ## Review (reviewer writes, one line per round)

@@ -18,5 +18,5 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-09 T-025: merge of PR #40 stopped (CI not green (1 of 2 checks not passing)). Log: logs/T-025.log (lead: CI was still pending, not failing; re-merged after green)
 - [x] 2026-10-09 F-005: approve decision 0005 (`decisions/0005-answer-permission-prompts.md`): a hook only in dashboard-started sessions, any signed-in device may approve/deny, everything logged. Then T-034..T-036 (`auth`) go to ready; each still needs `user_ok` to merge. (user approved 0005, 2026-10-09)
 - [ ] 2026-10-09 T-030: remove the leftover worktree `N:\worktrees\claude-dashboard-T-030` when convenient (spike scratch, nothing to keep).
-- [ ] 2026-10-09 T-034: when it reaches review, run the proof steps in its hand-off on the PR branch (answer allow / deny once each), then set `user_ok: true` if both worked.
+- [x] 2026-10-09 T-034: when it reaches review, run the proof steps in its hand-off on the PR branch (answer allow / deny once each), then set `user_ok: true` if both worked. (user set user_ok without the proof for now, 2026-10-09; proof moved to T-045 in backlog)
 - [ ] 2026-10-09 T-039, T-040, T-042: code cleanup (decision 0006) moves and rewrites auth, login and `claude-cli.ts` code without changing behaviour; set `user_ok: true` on each after review if you are fine with it merging.
