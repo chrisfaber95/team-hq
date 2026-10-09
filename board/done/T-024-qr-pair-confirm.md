@@ -41,3 +41,5 @@ Reviewer: the POST /pair Origin path, the unrate-limited GET peek (deliberate), 
 
 ## Review (reviewer writes, one line per round)
 round 1: approve (all 4 criteria met; Origin check, escaping, single use and rate limit/alert verified in diff and tests; CI `check` was still running at review time, merge.sh must wait for green; flow untested on a real phone)
+
+lead: user confirmed QR sign-in works on a real phone (2026-10-09), after restarting dev:lan.
