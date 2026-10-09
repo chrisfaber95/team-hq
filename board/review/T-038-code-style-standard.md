@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 47
 ---
 ## Goal
 The dashboard repo states how its code is organised and named, and CI catches new code that lands outside the
@@ -32,6 +32,7 @@ folder map or grows too large.
   is T-039..T-044.
 - Runs next to T-037 (`patch.ts`, popups) and T-034: only touch `docs/`, `CLAUDE.md` and the new test.
 
-## Hand-off (engineer writes, max 300 tokens)
+## Hand-off
+Added `docs/code-style.md` (decision 0006: folder map, names, size, comments, examples), a "Code style" entry and delegation rules in `CLAUDE.md`, and `tests/code-structure.test.ts` (folder-map and 300-line guards, shrink-only allowlists, stale-entry check). PR: https://github.com/chrisfaber95/claude-dashboard/pull/47. typecheck and tests pass locally (381). Look at: allowlist contents (all current loose files, incl. client boot/login/pair), server entry points main/server/config, and PR title (not conventional, per team format). CI not checked.
 
 ## Review (reviewer writes, one line per round)
