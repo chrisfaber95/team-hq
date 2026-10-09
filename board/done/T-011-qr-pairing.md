@@ -7,7 +7,7 @@ depends_on: [T-010, T-014]
 contracts: []
 labels: [auth, deps]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true
 pr: 26
 ---
@@ -35,3 +35,4 @@ Rework round 1: .claude/project-params.md (params:dependencies) packages and pol
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - update .claude/project-params.md (params:dependencies, policy and packages lines) to list qrcode-generator 2.0.4 as the one approved bundled client devDependency (user-approved, decision 0003, esbuild-bundled into app.js, no server runtime dependency, no install scripts); the policy now says only esbuild, sass, typescript and @types/node may be added, so the dependency-manager agent would treat the new package as out of policy. Everything else meets the criteria: devDependency only (npm ls ok, npm audit 0 vulnerabilities, lockfile has integrity hash and no install script), /pair is GET-only, code single-use and spent even if expired, shared rate limit plus onFailedLogin, host from lanAddresses not Host header, revoke drops codes, QR holds the pairing link never the device token; typecheck, 261 tests, build and CI green on 598b53c.
+round 2: approve
