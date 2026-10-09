@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/46
 ---
 ## Goal
 Sessions the dashboard starts or continues hand their permission prompts to the dashboard, which holds them as
@@ -38,5 +38,17 @@ status, `--strict-mcp-config` needed in scratch folders) are in `team-hq/board/d
 If the user's proof fails, T-035/T-036 stop and F-005 goes back to the user (decision 0005, Consequences).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #46 (https://github.com/chrisfaber95/claude-dashboard/pull/46). Hook script `scripts/permission-hook.mjs`, store `src/server/permissions.ts`, `--settings` on start/resume only, `/hook/permission[/answer]` (loopback + secret, else 403), `permissions` in pushed state, helper `scripts/answer-permission.mjs`. typecheck + 387 tests pass; security-auditor: no critical/high.
+Reached the held prompt on a real session (state `waiting`, request listed); I did NOT answer it. Scratch removed.
+
+**User proof** (in the PR branch checkout, port 4777 free):
+1. `mkdir N:\Projects\scratch-proof` ; add `.claude\settings.json` with `{"disabledMcpjsonServers":["playwright"]}` if a parent `.mcp.json` shows an MCP dialog.
+2. `npm start` (leave running).
+3. Launch: `curl -s -X POST http://127.0.0.1:4777/api/commands -H "Origin: http://127.0.0.1:4777" -H "X-Dashboard: 1" -H "Content-Type: application/json" -d "{\"project\":\"scratch-proof\",\"prompt\":\"Run exactly this shell command and nothing else: touch proof-file.txt\",\"permissionMode\":\"default\"}"`
+4. After ~30 s: `node scripts/answer-permission.mjs` lists the id and `touch proof-file.txt`; session shows `waiting`.
+5. Allow: `node scripts/answer-permission.mjs <id> allow` -> expect `proof-file.txt` created, session continues. Repeat step 3, then `... <id> deny` -> expect no file, Claude says it was denied.
+6. Expiry: leave one unanswered 9 min -> normal prompt (`claude attach`), request "expired" in `/api/state`.
+
+Review: findings left for T-035 (shared hook/answer secret, audit by device, session editing the hook in the dashboard's own repo). Commit trailer uses plain "Claude" per user memory.
 
 ## Review (reviewer writes, one line per round)

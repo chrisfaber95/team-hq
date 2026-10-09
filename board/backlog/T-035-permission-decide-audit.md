@@ -21,7 +21,13 @@ A signed-in device can approve or deny a pending permission request, and every a
       -> refused, the request stays pending
 - [ ] Every allow, deny and expiry is audited: time, device, session, tool, request text (up to 500 chars), outcome;
       `GET /api/approvals` returns the latest 50, newest first, same access as `/api/audit`
-- [ ] Tests for each answer path, refusals, double answer and the audit/list; `npm run typecheck` and `npm test` pass
+- [ ] No self-approval: the hook secret can only submit requests, never answer them; the local answer helper from
+      T-034 is removed or needs a separate secret no session can read (not in a project folder, not in the hook's
+      settings); a session can't answer its own request with a file it can read
+- [ ] The hook script and its settings file run from a copy under `DATA_DIR` written at server start, so a session
+      working in the dashboard's own repo can't change the hook that guards it
+- [ ] Tests for each answer path, refusals, double answer, the self-approval cases and the audit/list;
+      `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)
 Design: `team-hq/decisions/0005-answer-permission-prompts.md`. Pattern: `GET /api/launches` from T-032
