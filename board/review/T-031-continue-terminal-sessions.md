@@ -34,5 +34,9 @@ already work: check what the drawer form (`src/client/controls.ts`, `drawer-form
 sessions and fill the gaps. `claude-cli.ts` is in scope only if `continueSession` needs a change; say so in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Server already did the work: ended terminal/editor sessions resume via `--bg --resume`, and a live non-`bg` session gets 409 with no CLI call (server.ts:345). The gap was the client, which showed the send form for live terminal sessions. Now `syncDrawerForm()` (controls.ts) hides the form and shows "Open in a terminal or editor; send it there, or continue here after it ends." when the open session is live with kind != 'bg'. It re-evaluates on every state push, so the form returns after the session ends. No claude-cli.ts, server or shared-type changes.
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/42
+Tests: new commands.test.ts case (live terminal -> 409, no CLI call; after ending -> `--bg --resume`); commands-off 404 and LAN 401 were already covered. typecheck, 354/354 tests and build pass.
+Reviewer: not checked in a browser; CI not checked; branch is one commit behind main (25dd9bc, T-025), conflicts not checked. Commit trailer is plain "Claude" (repo memory rule), not the model name.
 
 ## Review (reviewer writes, one line per round)
