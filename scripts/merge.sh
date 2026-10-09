@@ -27,8 +27,10 @@ verdict=$(sed -n '/^## Review/,/^## /p' "$ticket" | grep -E '^round [0-9]+:' | t
 [[ "$verdict" =~ ^round\ [0-9]+:\ approve ]] || escalate "last review verdict is '${verdict:-none}', not approve"
 
 labels=$(sed -n 's/^labels: *//p' "$ticket" | head -1 | sed 's/#.*//' | tr -d '\r')
-if printf "%s" "$labels" | grep -qE "auth|deps|contract|migration" && ! grep -qE "^user_ok: *true" "$ticket"; then
-  escalate "high-risk labels $labels: set user_ok: true in the ticket to allow the merge"
+userok=""
+if printf "%s" "$labels" | grep -qE "auth|deps|contract|migration"; then
+  grep -qE "^user_ok: *true" "$ticket" || escalate "high-risk labels $labels: set user_ok: true in the ticket to allow the merge"
+  userok=" The user explicitly approved this merge by setting user_ok: true in the ticket (labels: $labels)."
 fi
 
 state=$(gh pr view "$pr" --repo "$(git -C "$repo_dir" remote get-url origin)" --json state -q .state)
@@ -46,7 +48,7 @@ echo "== $(date -Is) merge $id PR #$pr ($verdict)" >> "$log"
 cd "$wt"
 set +e
 claude -p "Merge PR #$pr (ticket $id). The team reviewer approved it ('$verdict') and every CI check is green; \
-both gates were verified before this run. Authorized: merge it using the repo's merge convention and delete its \
+both gates were verified before this run.$userok Authorized: merge it using the repo's merge convention and delete its \
 remote branch. Do nothing else: no new commits, no release. Report the merge commit." \
   --agent git-workflow-manager \
   --name "merge-$id" \

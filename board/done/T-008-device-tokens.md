@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true
 pr: 22
 ---
@@ -40,3 +40,4 @@ Rework round 1 (auditor L3): devices.ts save() now returns success; revoke(id) a
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - fix auditor L3 only: devices.ts save() swallows every error, so a revoke whose write fails (Windows EPERM/AV lock on renameSync, disk full) is live in memory but devices.json still holds the device and the lost device's token works again after a restart, with nobody told; make save() report success and have revoke()/revokeDevice() surface a failed persist (still end sessions and close streams first) so the T-009 revoke endpoint can return an error instead of "ok", and add a test with an unwritable DATA_DIR. Everything else meets the criteria: typecheck, 218 tests and CI green on 5b5d1cb; loopback exemption (socket AND Host, proxy headers withdraw it), hash-only store, timing-safe verify, sliding sessions, stream close on revoke all verified. Needs user_ok at merge (label auth; already true in front matter).
+round 2: approve
