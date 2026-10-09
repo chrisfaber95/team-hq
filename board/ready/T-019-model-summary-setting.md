@@ -1,7 +1,7 @@
 ---
 id: T-019
 repo: claude-dashboard
-owner: eng-claude-dashboard
+owner: eng-claude-dashboard-T-019
 brief: F-003
 depends_on: [T-018]
 contracts: []
@@ -27,6 +27,8 @@ read the repo CLAUDE.md "Commands" rules and `docs/architecture.md` "Claude CLI 
 verify the no-tools flag against the real CLI (`claude --help`), recording it in that section. Never add
 `bypassPermissions`/`dontAsk`. The transcript text is untrusted: keep it out of the argument list (stdin or a temp
 file the CLI reads as data) so it can't become a flag. Run `security-auditor` before the PR.
+T-018 (PR #33) left the seam: `summarize(path, mode)` in `src/server/session-summary.ts`; plug model mode in there and
+reuse its `redact()` and tail read for the excerpt.
 
 ## Hand-off (engineer writes, max 300 tokens)
 

@@ -7,7 +7,7 @@ depends_on: [T-017]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/33
 ---
@@ -37,3 +37,4 @@ PR #33 (https://github.com/chrisfaber95/claude-dashboard/pull/33). Run 2 had no 
 Look at: `redact()` regexes, "Last reply" may quote secrets the model printed (same as the viewer).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met; typecheck + 330 tests pass locally in the worktree. CI was still pending at review time, so merge.sh must wait for green.
