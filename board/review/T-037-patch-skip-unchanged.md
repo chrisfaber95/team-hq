@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: false
 pr: 48
 ---
@@ -38,9 +38,11 @@ PR #48 https://github.com/chrisfaber95/claude-dashboard/pull/48 (client only, se
 - patch.ts: patchHtml remembers the last markup per element and skips the DOM walk when equal (patchIfChanged, forgetHtml; team clears it when it empties its element).
 - Popup sections (projects, comms, team, usage) render only while their popup is open; opening renders from the latest state first (initPopups(onOpen), drawsSection). renderTeam(s, draw) still sets section visibility when closed.
 - Tick/focus/drawer code untouched.
-- Tests: patchIfChanged skip, drawsSection; typecheck + 380 tests pass.
+- Rework round 1 (commit 43fe4b7): open() now calls onOpen via openPopup(id, show, onOpen) so a popup renders on open; team.ts calls forgetHtml(el) after clearing; new test openPopup reveal-then-render.
+- Tests: patchIfChanged skip, drawsSection, openPopup; typecheck + 381 tests pass; CI `check` green on PR #48.
 - CPU (measure-cpu, 3x120 s, localhost, real data): 1920x1080 0.29/0.32/0.32 % (median 0.32, baseline 0.63); 390x844 0.14/0.15/0.16 % (median 0.15, baseline 0.62).
 - Reviewer: no browser e2e for open-popup content/focus; check by hand. Branch is 1 commit behind main (no conflict). Commit trailer used plain Claude per repo memory.
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - (1) popups.ts stores `onOpen` but never calls it in `open()`, so a popup opens empty until the next push (breaks the "renders at once on open" criterion, and the drawPopup path is dead); call `onOpen(id)` when a popup opens. (2) team.ts imports `forgetHtml` but never calls it: after `el.innerHTML = ''` (no board) the same markup later is skipped and the team section stays blank; call `forgetHtml(el)` there (the hand-off says it does). (3) Add a test or check covering open -> render callback; CI `check` was still pending at review time.
+round 2: approve - all 3 round-1 points fixed (openPopup calls onOpen after reveal; team.ts calls forgetHtml; openPopup test added); CI check green; no other code rewrites patched elements outside patchHtml; CPU medians below baseline. Note: no e2e for popup focus/typed input, unit-level only.

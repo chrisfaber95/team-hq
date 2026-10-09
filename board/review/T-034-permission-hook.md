@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/46
 ---
@@ -49,10 +49,13 @@ Reached the held prompt on a real session (state `waiting`, request listed); I d
 5. Allow: `node scripts/answer-permission.mjs <id> allow` -> expect `proof-file.txt` created, session continues. Repeat step 3, then `... <id> deny` -> expect no file, Claude says it was denied.
 6. Expiry: leave one unanswered 9 min -> normal prompt (`claude attach`), request "expired" in `/api/state`.
 
+Rework (lead note): merged main (T-038) and moved `permissions.ts` to `src/server/features/permissions/permissions.ts` (test mirrored under `tests/server/features/permissions/`), imports only, allowlist untouched. Pushed ad5edf5; typecheck pass, 390 tests pass (incl. folder-map guard), CI `check` green. Scripts and proof steps above unchanged.
+
 Review: findings left for T-035 (shared hook/answer secret, audit by device, session editing the hook in the dashboard's own repo). Commit trailer uses plain "Claude" per user memory.
 
 ## Review (reviewer writes, one line per round)
 round 1: approve - all criteria met in diff (settings only on start/resume, loopback+secret 403s, hash-compared secret, expiry/abandon, helper, tests); CI `check` was still running at review time, merge.sh must confirm green; label `auth` needs user_ok after the user's allow/deny proof.
+round 2: approve - re-checked after rework (move to `features/permissions/`, imports only, no behaviour change); CI `check` and GitGuardian green; `auth` label still needs the user's allow/deny proof before merge.
 
 ## Lead (rework, 2026-10-09)
 Not a review finding: T-038 merged the folder-map guard (`tests/code-structure.test.ts`). Merge main into the branch and move `src/server/permissions.ts` to `src/server/features/permissions/permissions.ts` (test under the mirrored `tests/` path), imports only, no behaviour change; the guard and all tests must pass. Don't extend the allowlist. Keep the user proof steps in the hand-off valid (update paths if they change).
