@@ -7,7 +7,7 @@ depends_on: [T-008]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 23
 ---
@@ -33,3 +33,4 @@ Added GET /api/devices, POST /api/devices {name} (token returned once) and POST 
 security-auditor: no Critical/High. Fixed L-2 (tmp file), L-3 (stored id 'pc' ignored); documented M-1 (any local process on the PC can mint a device, per decision 0003). Not done: L-1 commands.log rotation, L-4 two JSON payloads per tick, L-5 streams outlive logout. Reviewer: check the order of checks before the /api/devices block, token appears only in the create response (tests assert this), and the 403 path. The PR has no `auth` label (repo has none). PR title is T-009 form.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
