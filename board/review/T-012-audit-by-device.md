@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 27
 ---
 ## Goal
 Every command and session action in the audit log names the device that made it, and the log can be read through the
@@ -28,5 +28,7 @@ allowlisted fields, never the raw file or anything else from that folder. Run `s
 Can run in parallel with T-009/T-010 only if it doesn't touch the same lines of `server.ts`; the lead dispatches it after T-009.
 
 ## Hand-off (engineer writes, max 300 tokens)
+All audit() calls in server.ts now spread one `actor` {device: name, deviceId} ('This PC'/'pc' for the loopback exemption and localhost mode). This changes the T-008/T-009 entries that held the id in `device`; the reader maps id-looking `device` values on old lines to deviceId. New src/server/audit-log.ts + GET /api/audit[?device=<id>]: any signed-in device, last 1 MB of commands.log at most, newest first, max 200 after the filter, malformed lines skipped, allowlisted fields only (ts, action, device, deviceId, project, session, mode, ok, prompt<=200), filter regex [A-Za-z0-9_-]{1,64} else 400, unreadable log -> fixed 500. PR: https://github.com/chrisfaber95/claude-dashboard/pull/27. typecheck ok, npm test 271 pass; build not run (no client change).
+security-auditor: no Critical/High/Medium. Low, not changed: L1 each request reads/parses up to 1 MB (a signed-in device could spam; short cache would fix), L2 first line always dropped on a mid-file start, L3 filter matches deviceId only. Any signed-in device can read all prompts (as specified). Reviewer: check the allowlist in toAuditEntry and the route placement after the login gate. Named-device entry is tested end to end with a fake CLI in lan.test.ts. No auth label in the repo; PR title is T-012 form.
 
 ## Review (reviewer writes, one line per round)
