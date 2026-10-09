@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/40
 ---
 ## Goal
 A repeatable way to measure the CPU use of an always-open dashboard tab, plus the "before" numbers for F-004, so the
@@ -33,5 +33,12 @@ Run the dashboard without `--lan` (localhost, no login). Don't touch `src/client
 `claude-cli.ts`. If no browser can run headless on this PC, move the ticket to `blocked/` with what you tried.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Rework run, but the Review section was empty (the earlier run only stopped on a session limit), so there were no
+review points to address. Added `scripts/measure-cpu.mjs` (headless Chrome/Edge over CDP with Node's built-in
+WebSocket, no dependency; `--browser`, `--warmup`; pure `cpuPercent`), `tests/measure-cpu.test.ts` (no browser) and
+`docs/perf.md` (method plus baseline on 20fcd90: median 0.63 % at 1920x1080, 0.62 % at 390x844, 3x120 s each).
+typecheck pass, `npm test` 358/358. PR: https://github.com/chrisfaber95/claude-dashboard/pull/40 (commit 394976b).
+Reviewer: the PR title is not in Conventional Commits form (`T-025: ...`, per the engineer skill); the baseline
+numbers come from the earlier run and this run did not re-measure them. No `src/client` or `claude-cli.ts` changes.
 
 ## Review (reviewer writes, one line per round)
