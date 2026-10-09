@@ -7,7 +7,7 @@ depends_on: [T-008]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 27
 ---
@@ -32,3 +32,4 @@ All audit() calls in server.ts now spread one `actor` {device: name, deviceId} (
 security-auditor: no Critical/High/Medium. Low, not changed: L1 each request reads/parses up to 1 MB (a signed-in device could spam; short cache would fix), L2 first line always dropped on a mid-file start, L3 filter matches deviceId only. Any signed-in device can read all prompts (as specified). Reviewer: check the allowlist in toAuditEntry and the route placement after the login gate. Named-device entry is tested end to end with a fake CLI in lan.test.ts. No auth label in the repo; PR title is T-012 form.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
