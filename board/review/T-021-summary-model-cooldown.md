@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 35
 ---
 ## Goal
 Repeated "summarize session X" in `model` mode doesn't bill a new haiku call each time, and the dashboard is honest
@@ -27,5 +27,9 @@ Known gaps from T-019's hand-off (PR #34). Put the cache and cooldown in `src/se
 `blocked/` with why instead. Design: `team-hq/decisions/0004-chat-without-a-model.md`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/35 (not merged).
+Changed: `session-summary.ts` now caches model summaries in memory per session (answer text only, max 50, oldest dropped). Reused while transcript size/mtime is unchanged. A new model call for the same session waits 60 s; inside it, the cached answer or the recap with a fixed note (failed calls start the cooldown too). `claude-cli.ts` untouched. Client shows "Commands are off, so summaries use the recap." next to the setting when commands are disabled and `model` is selected. Server already returned `recap` without spawning when commands are off; now tested. `docs/architecture.md` updated.
+Checks: typecheck clean, 340 tests pass, build ok. CI not checked by me.
+Look at: cooldown/staleness choice (changed transcript inside the cooldown still shows the older cached answer); the client note was not checked in a browser. Commit trailer uses plain "Claude" per the user's memory rule.
 
 ## Review (reviewer writes, one line per round)
