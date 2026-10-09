@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 43
 ---
@@ -45,3 +45,4 @@ PR: https://github.com/chrisfaber95/claude-dashboard/pull/43 (not merged). typec
 Reviewer: look at `launch.ts`, the `/api/commands` block in `server.ts`, and the action filter in `audit-log.ts`. Old log lines with `prompt` and no `goal` still appear in launches.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
