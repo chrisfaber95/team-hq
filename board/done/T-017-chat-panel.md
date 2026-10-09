@@ -7,7 +7,7 @@ depends_on: [T-016]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 31
 ---
@@ -32,3 +32,5 @@ sessions, though only through the existing endpoint.
 Chat panel (`chat.ts`, pure `chat-state.ts`, section in index.html, SCSS with tokens only, no inline styles) answering via T-016 `answer()`. Message intents need Confirm; only Confirm posts to `/api/sessions/:id/message` (mode auto/default/plan from the server list; aborts if the session is gone); `ack` posts `/api/alerts/dismiss`; `open` opens the drawer; `summary` says coming soon. `tests/chat.test.ts` scans chat.ts for forbidden endpoints. security-auditor: no critical/high/medium, two lows fixed. Typecheck, 323 tests, build pass. PR: https://github.com/chrisfaber95/claude-dashboard/pull/31. Reviewer: NOT checked in a browser (375 px layout, Classic/Co-pilot/Root skins, Confirm flow); CI `check` was pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
+Notes: only Confirm posts (confirm() clears once; Cancel/new input clear; gone session aborts). All text via textContent, so `esc()` is correctly absent. No inline styles; tokens exist. Endpoint test allowlists every `/api/` literal and bans /api/commands, /stop, /start, but scans chat.ts only: a path built with no `/api/` literal would dodge it (non-blocking). NOT browser-checked (375 px, 3 skins) - open item for the user. CI `check` was pending at review time: lead confirm green before merge.
+round 1: approve
