@@ -7,7 +7,7 @@ depends_on: [T-021]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 36
 ---
@@ -32,3 +32,4 @@ PR #36: https://github.com/chrisfaber95/claude-dashboard/pull/36 (only `session-
 Reviewer: within the cooldown after a failure the older cached answer is still served (existing behaviour, kept). A waiter on a failed call shares the first caller's recap. CI had not started when the PR opened.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve (CI `check` still running at review time; merge.sh must confirm green)
