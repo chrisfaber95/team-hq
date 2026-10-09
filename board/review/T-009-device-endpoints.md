@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 23
 ---
 ## Goal
 The PC can create, list and revoke devices through API endpoints that only a loopback request can reach.
@@ -29,5 +29,7 @@ token that won't survive a restart. Audit device create and revoke via `audit()`
 never the token). Run `security-auditor` before the PR.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added GET /api/devices, POST /api/devices {name} (token returned once) and POST /api/devices/revoke {id} in server.ts; only the loopback-exempt `pc` may call them (signed-in device 403, no login 401, no-login mode 404), after all existing checks, body cap kept. features.manageDevices is true only for pc, in /api/state and per SSE client. create() now throws and keeps nothing when the save fails (500 'could not save the device'); revoke with persisted=false answers 500. Create/revoke audited (device, id, name, never the token). PR: https://github.com/chrisfaber95/claude-dashboard/pull/23. typecheck ok, npm test 231 pass; build not run.
+security-auditor: no Critical/High. Fixed L-2 (tmp file), L-3 (stored id 'pc' ignored); documented M-1 (any local process on the PC can mint a device, per decision 0003). Not done: L-1 commands.log rotation, L-4 two JSON payloads per tick, L-5 streams outlive logout. Reviewer: check the order of checks before the /api/devices block, token appears only in the create response (tests assert this), and the 403 path. The PR has no `auth` label (repo has none). PR title is T-009 form.
 
 ## Review (reviewer writes, one line per round)
