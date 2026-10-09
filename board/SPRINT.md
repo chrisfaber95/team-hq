@@ -1,55 +1,74 @@
-# Sprint summary: sprint 4 (2026-10-09, phase 1)
+# Sprint summary: sprint 5 (2026-10-09, phase 2)
 
-F-003 Ask-the-dashboard chat, first half: the intent module and the chat panel. Run interactively: lead (opus),
-`eng-claude-dashboard` (sonnet) in the main checkout, `reviewer`. The user paused the sprint after T-017.
+First phase-2 sprint: every engineer and reviewer ran headless per ticket (`dispatch.sh` / `review.sh` / `merge.sh`),
+up to 2 engineers in parallel. Finished F-003 (chat recap + model summary), the F-002 end-to-end test, and two bugs
+the user found on a real phone.
 
 ## Shipped
 
 | Ticket | Title | PR | Review rounds |
 | --- | --- | --- | --- |
-| T-016 | Chat intents (`chat-logic.ts`, pure) | #30 (b558edc) | 2 (round 1: ack/open/summary verbs swallowed "view usage", "go to alerts" etc.; unguarded `usage.totals`) |
-| T-017 | Chat panel with Confirm step | #31 (1d9bdf6) | 1 |
+| T-020 | F-002 end-to-end test (tests only) | #32 (6b8a519) | 1 |
+| T-018 | Session recap for chat `summary` (+ T-017 endpoint-test hardening) | #33 (6422eea) | 1 |
+| T-019 | Model summary setting (`auth`, `user_ok`) | #34 (cdc7c1b) | 1 |
+| T-021 | Model summary cache + cooldown; honest setting when commands are off | #35 (a005b0f) | 1 |
+| T-022 | Summary cache: one in-flight call, no stale answer after a failure | #36 (26eaf9d) | 1 |
+| T-023 | LAN startup prints the localhost URL for this PC (`auth`, user report) | #37 (3d7b7cc) | 1 |
+| T-024 | QR pairing confirm page + POST (`auth`, user report; verified on a phone) | #38 (20fcd90) | 1 |
 
 ## Open
 
-| Ticket | Status | Next step |
-| --- | --- | --- |
-| T-018 | backlog (deps done) | Session recap for `summary`; move to `ready/` and dispatch |
-| T-019 | backlog, `auth`, `user_ok: true` | Model summary setting; after T-018 |
-| T-020 | backlog, `low-risk` | F-002 end-to-end test (LAN server: token, QR, actions, audit, revoke, alert); no product code |
+Board is empty (no backlog, ready, in-progress, review or blocked tickets).
 
 ## Waiting on the user
 
-Nothing unticked in `NEEDS-YOU.md` (user set `user_ok` on T-019 this sprint). Checks only the user can do:
-- Chat panel in a browser: 375 px and desktop, all three skins, Confirm/Cancel on a real session, `open` drawer.
-- Still open from sprint 3: F-002 end to end on a phone (token, QR, revoke lock-out, Activity names the phone) and
-  the visual check of Devices/QR/Activity/alerts/Team in three skins; does `status` become `waiting` on a permission prompt?
+Nothing unticked in `NEEDS-YOU.md`. Open questions from the lead:
+- **Persist LAN sessions** in `DATA_DIR` so a server restart (every merge touching `src/server` restarts `dev:lan`)
+  doesn't sign phones out? Changes decision 0003, `auth`. Lead recommends yes.
+- **This PC by its LAN IP** without login? Currently by design not exempt (decision 0003); T-023 only prints localhost.
+- Browser checks: chat recap/model summary and the "Commands are off" note, three skins, 375 px.
+- Remove the empty folder `N:\worktrees\claude-dashboard-T-019` (lead's `rmdir` was denied).
 
 ## Decisions
 
-- [0004](../decisions/0004-chat-without-a-model.md): chat answers from dashboard state with fixed intents, no model;
-  messages need Confirm; the chat never starts/stops sessions; an optional cheap-model summary only in T-019.
+- No new decisions. [0003](../decisions/0003-device-tokens.md) and [0004](../decisions/0004-chat-without-a-model.md)
+  still apply; 0003 gets an amendment if the user approves persisted sessions.
 
 ## Metrics
 
-Engineer cost unknown (interactive, no `dispatch.sh` JSON). Merge runs from `logs/<id>.merge.json`.
+Engineer runs are headless now, so cost is logged. Messages: 1 per ticket (engineer -> lead), target 3.
 
-| Ticket | PR size | Rounds | Messages (target 3) | Merge run |
-| --- | --- | --- | --- | --- |
-| T-016 | +420/-1 | 2 | 6 | $0.14, 5 turns |
-| T-017 | +396/-1 | 1 | 3 | $0.14, 7 turns |
+| Ticket | PR size | Rounds | Engineer | Review | Merge |
+| --- | --- | --- | --- | --- | --- |
+| T-020 | +164/-0 | 1 | $0.54 | $0.14 (+$0.08 failed run) | $0.16 |
+| T-018 | +291/-10 | 1 | $1.45 (2 runs) | $0.16 | $0.13 |
+| T-019 | +338/-14 | 1 | $1.88 | $0.22 | $0.15 |
+| T-021 | +121/-4 | 1 | $0.52 | $0.16 | $0.14 |
+| T-022 | +69/-13 | 1 | $0.39 | $0.15 | $0.12 |
+| T-023 | +32/-3 | 1 | $0.31 | $0.13 | $0.13 |
+| T-024 | +178/-40 | 1 | $1.03 | $0.18 | $0.15 |
+
+Total ~$9.2 for 7 tickets. Rows added to `metrics/baseline.md` "Team runs".
 
 ## Notes for next sprint
 
-- The engineer and reviewer sessions were not `/clear`ed between tickets (both ~12h old); clear them before T-018.
-- T-017 hardening candidate (reviewer, non-blocking): the forbidden-endpoint test scans `chat.ts` only for `/api/`
-  literals; a path built without one would pass. Fold into T-018 or a small follow-up.
-- Pointing the reviewer at the engineer's own "check this" list worked: T-016 round 1 found exactly that issue.
-- `merge.sh` still leaves the repo checkout on a detached HEAD; engineers branch from `origin/main` explicitly.
+- **Account session limit** stopped T-018's engineer and T-020's reviewer mid-run (12:05, reset 14:00). The scripts
+  escalated correctly; `--rework` resumed T-018 from its uncommitted worktree. A limit-hit run should not count as
+  "blocked twice".
+- **Hung engineer:** T-019's `claude -p` finished at 14:14 but its process lived until 14:32 (Playwright MCP from the
+  repo's MCP config as child; killing that didn't help). Its worktree folder could not be removed. If it repeats,
+  keep the Playwright MCP out of headless engineer runs (`engineer.settings.json`; needs the user's OK).
+- `num_turns` in the JSON is often 1-6 while the work clearly took more (subagents not counted); use cost, not turns.
+- `merge.sh` updates `N:\Projects\Claude-dashboard`, where the user runs `dev:lan`: server merges restart it and drop
+  in-memory sessions; a change to `scripts/dev.mjs` needs a full `dev:lan` restart (T-024's new page wasn't built).
+- T-020's end-to-end test passed while QR sign-in was broken on a real phone (prefetch/SameSite are browser-only).
+  Real-phone checks stay with the user.
+- Reviewers often approve with CI still pending; `merge.sh` checks CI itself, the lead waited for green before merging.
 
 ## Next sprint
 
-1. T-018 session recap (F-003), then T-019 model summary (`user_ok` set).
-2. T-020 F-002 end-to-end tests; no overlap with chat, can run beside T-018 once phase 2 parallelism is used.
-3. Smaller candidates: IPv6 /64 bucketing for rate limit and sign-in alerts (T-014 M1/M2); LRU session eviction with
-   an alert (T-015 M1); `merge.sh` ends on an updated `main`; harden T-017's endpoint test.
+1. Persist LAN sessions across restarts (`auth`, needs the user's yes + decision 0003 amendment).
+2. IPv6 /64 bucketing for rate limit and sign-in alerts (T-014 M1/M2).
+3. LRU session eviction with an alert (T-015 M1).
+4. `merge.sh` warns (NEEDS-YOU or output) when a merge changes `scripts/dev.mjs` or `src/server` while `dev:lan`
+   runs. The checkout now ends on an updated `main` (20fcd90), so the old detached-HEAD note is resolved.

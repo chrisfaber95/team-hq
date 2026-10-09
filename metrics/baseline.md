@@ -37,6 +37,13 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-015 | #29 (3f78b71), +272/-26 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
 | T-016 | #30 (b558edc), +420/-1 | (interactive, not logged) | - | 2 (round 1: verbs swallowed other questions) | 6 | yes; merge $0.14 |
 | T-017 | #31 (1d9bdf6), +396/-1 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.14; not checked in a browser |
+| T-020 | #32 (6b8a519), +164/-0 | 4 (headless) | $0.54 | 1 ($0.14; 1st run hit session limit, $0.08) | 1 | yes; merge $0.16; phase 2 headless |
+| T-018 | #33 (6422eea), +291/-10 | 1 + 4 (2 runs; 1st hit session limit) | $0.78 + $0.67 | 1 ($0.16) | 1 | yes; merge $0.13 |
+| T-019 | #34 (cdc7c1b), +338/-14 | 1 (headless; process hung ~18 min after finishing) | $1.88 | 1 ($0.22) | 1 | yes; merge $0.15; auth, user_ok |
+| T-021 | #35 (a005b0f), +121/-4 | 4 (headless) | $0.52 | 1 ($0.16) | 1 | yes; merge $0.14 |
+| T-022 | #36 (26eaf9d), +69/-13 | 20 (headless) | $0.39 | 1 ($0.15) | 1 | yes; merge $0.12 |
+| T-023 | #37 (3d7b7cc), +32/-3 | 6 (headless) | $0.31 | 1 ($0.13) | 1 | yes; merge $0.13; auth, user_ok |
+| T-024 | #38 (20fcd90), +178/-40 | 4 (headless) | $1.03 | 1 ($0.18) | 1 | yes; merge $0.15; auth, user_ok; user verified on a phone |
 
 # Same-method comparison (transcript pricing)
 
