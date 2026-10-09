@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/39
 ---
 ## Goal
 Live updates change only the values that changed: a push leaves unchanged sections and nodes untouched, so nothing
@@ -35,5 +35,7 @@ updates, your call. Layout is out of scope (T-027/T-028 follow). Server and tran
 (brief). Don't touch `claude-cli.ts`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #39 (https://github.com/chrisfaber95/claude-dashboard/pull/39). New keyed DOM patcher `src/client/patch.ts`: section markup is built in a template and diffed against the live DOM, so equal nodes are untouched and only changed text/attrs are written. Rows have `data-key`; `<details>` open state is never overwritten. Applied to limits, projects, sessions (+recent), messages, usage, team, alerts. Relative times use `timeSpan()` plus a 10 s `tickTimes()`. Tests: `tests/patch.test.ts` (fake DOM); typecheck clean, 353 tests pass, build ok.
+Reviewer: not checked in a real browser (focus, scroll at 390 px, selection, gauge animation, drawer) - please verify. `frontend-developer` was not used. CI `check` was still pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
