@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 25
 ---
 ## Goal
 A failed LAN sign-in shows up as a needs-attention alert with its time and source address, so the owner notices
@@ -29,5 +29,7 @@ failed-sign-in callback; derive the alert in `src/server/alerts.ts` like the oth
 `security-auditor` before the PR.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added alert kind `signin` (id `signin:<address>`): alerts.ts `recordFailedSignin(address, tMs)` is the createAuth `onFailedLogin` hook (wired in server.ts's LAN branch); one in-memory record per socket remoteAddress (count + last time only, never the token or a header; max 50, longest-ago dropped). Detail: '<address> · N failed attempts · last at HH:MM:SS'. Stays until dismissed; dismissing deletes the record so a new failure reopens it; never written to alerts.json. No client change. PR: https://github.com/chrisfaber95/claude-dashboard/pull/25. typecheck ok, npm test 241 pass.
+security-auditor: no Critical/High. Follow-ups, not done: M1/M2 bucket IPv6 by /64 for the alert key and the existing per-address rate limit (rotating addresses evicts older entries / bypasses the per-address limit); evicted-count overflow; dismiss loses history (snooze would not re-toast); time is server-local without date. T-011 should call the same hook for bad pairing codes. Reviewer: check the hook wiring in server.ts and the end-to-end test in lan.test.ts. Not run in a browser. PR title is T-014 form; no `auth` label in the repo.
 
 ## Review (reviewer writes, one line per round)
