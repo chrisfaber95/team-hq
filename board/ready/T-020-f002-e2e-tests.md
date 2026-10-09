@@ -1,7 +1,7 @@
 ---
 id: T-020
 repo: claude-dashboard
-owner: eng-claude-dashboard
+owner: eng-claude-dashboard-T-020
 brief: F-002
 depends_on: []
 contracts: []
