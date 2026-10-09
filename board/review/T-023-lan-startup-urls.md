@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 37
 ---
@@ -37,3 +37,4 @@ token)". Localhost output unchanged. `isLoopbackRequest()` and sign-in rules unt
 Reviewer: check the line wording, and that the pairing URLs need no split. PR title lacks a conventional `type(scope):` prefix.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met; output-text only, auth untouched; typecheck + 345 tests pass locally (CI `check` still in progress at review time, merge.sh must see it green); pairing URLs are for the phone so no split needed; labelled `auth`, so needs user_ok before merge.
