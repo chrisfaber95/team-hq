@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 38
 ---
@@ -40,3 +40,4 @@ PR: https://github.com/chrisfaber95/claude-dashboard/pull/38 (CI was not green y
 Reviewer: the POST /pair Origin path, the unrate-limited GET peek (deliberate), and the bad-code page briefly showing "Sign in as" until `pair.js` removes it. The commit trailer says plain "Claude" (memory rule).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve (all 4 criteria met; Origin check, escaping, single use and rate limit/alert verified in diff and tests; CI `check` was still running at review time, merge.sh must wait for green; flow untested on a real phone)
