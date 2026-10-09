@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 47
 ---
@@ -36,3 +36,4 @@ folder map or grows too large.
 Added `docs/code-style.md` (decision 0006: folder map, names, size, comments, examples), a "Code style" entry and delegation rules in `CLAUDE.md`, and `tests/code-structure.test.ts` (folder-map and 300-line guards, shrink-only allowlists, stale-entry check). PR: https://github.com/chrisfaber95/claude-dashboard/pull/47. typecheck and tests pass locally (381). Look at: allowlist contents (all current loose files, incl. client boot/login/pair), server entry points main/server/config, and PR title (not conventional, per team format). CI not checked.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
