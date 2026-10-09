@@ -22,7 +22,7 @@ The client shell (`app/`), `shared/` and the largest features (`building`, `cont
       `formatTokenCount`, `tip` -> `tooltip`)
 - [ ] Behaviour unchanged: same markup and classes, `esc()` on every interpolated value, tooltips still via
       `textContent`; existing tests pass with only import and name updates; the dashboard renders in every skin
-- [ ] Their entries are gone from the `tests/code-structure.test.ts` allowlist
+- [ ] Their entries are gone from the `tests/code-structure.test.ts` allowlist and from `LEGACY_FILES` in `eslint.config.js`; `npm run lint` passes
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)

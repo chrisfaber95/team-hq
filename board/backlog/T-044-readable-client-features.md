@@ -18,7 +18,7 @@ The remaining client features and skins read like senior code, and the structure
 - [ ] Names, ternaries, constants and doc comments per decision 0006 in chat, devices, audit, alerts, popups,
       core/mood, team, launch, settings, login, pairing and `skins/`
 - [ ] Behaviour unchanged: same markup, classes and endpoints; existing tests pass with only import and name updates
-- [ ] `tests/code-structure.test.ts` allowlist is empty and the test still passes
+- [ ] `tests/code-structure.test.ts` allowlist is empty and the test still passes; `LEGACY_FILES` in `eslint.config.js` is empty and `npm run lint` passes
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)

@@ -20,3 +20,5 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [ ] 2026-10-09 T-030: remove the leftover worktree `N:\worktrees\claude-dashboard-T-030` when convenient (spike scratch, nothing to keep).
 - [x] 2026-10-09 T-034: when it reaches review, run the proof steps in its hand-off on the PR branch (answer allow / deny once each), then set `user_ok: true` if both worked. (user set user_ok without the proof for now, 2026-10-09; proof moved to T-045 in backlog)
 - [ ] 2026-10-09 T-039, T-040, T-042: code cleanup (decision 0006) moves and rewrites auth, login and `claude-cli.ts` code without changing behaviour; set `user_ok: true` on each after review if you are fine with it merging.
+- [x] 2026-10-09 T-034: engineer run stopped (exit 1, success turns=5 cost=$0.24 error). Log: logs/T-034.log (lead: session limit; resumed with --rework)
+- [ ] 2026-10-10 T-046: ESLint (your request) adds devDependencies `eslint`, `@eslint/js`, `typescript-eslint` (`deps`); set `user_ok: true` after review to let it merge.

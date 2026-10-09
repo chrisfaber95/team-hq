@@ -25,7 +25,7 @@ one feature (view, logic, styles) is in one folder.
       html, fonts and root files (esbuild `name=path` entries or `--outbase`); `copy-assets.mjs`, `copy-html.mjs`,
       `dev.mjs` and the Layout doc follow the new paths; `npm run build` and `npm start` work and every skin and
       popup renders (state it in the PR)
-- [ ] `tests/code-structure.test.ts` allowlist loses every client entry that is now in place
+- [ ] `tests/code-structure.test.ts` allowlist loses every client entry that is now in place; `LEGACY_FILES` in `eslint.config.js` follows the new paths
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)

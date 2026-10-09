@@ -20,7 +20,7 @@ like senior code: full-word names, small functions, no file over 300 lines.
       exported functions have a one-line doc comment; `transcripts.ts` is split (scanner, aggregates, subagent index)
 - [ ] Behaviour unchanged: JSON field names, routes and file formats untouched; existing tests pass with only
       import and name updates
-- [ ] Their entries are gone from the `tests/code-structure.test.ts` allowlist
+- [ ] Their entries are gone from the `tests/code-structure.test.ts` allowlist and from `LEGACY_FILES` in `eslint.config.js`; `npm run lint` passes
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)

@@ -59,7 +59,9 @@ command runner, `esc()`). Cleanups are behaviour-preserving.
   with an allowlist for today's code that only shrinks.
 - Every ticket carries "New and changed code follows `docs/code-style.md`"; the reviewer treats a breach in new or
   changed code as a `changes` reason, and never asks to fix untouched old code.
-- No ESLint for now: it is a new dependency and needs the user's approval. Names are enforced in review.
+- ESLint (user asked for it, 2026-10-10; T-046): `npm run lint` in CI checks name length, forbidden abbreviations,
+  naming convention, nested ternaries and size caps, with a `LEGACY_FILES` list that only shrinks. What a linter
+  can't judge (a name that is long but vague, module boundaries) stays with review.
 
 ## Consequences
 

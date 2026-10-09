@@ -3,7 +3,7 @@ id: T-039
 repo: claude-dashboard
 owner: eng-claude-dashboard-T-039
 brief:                    # none: decision 0006
-depends_on: [T-038, T-034, T-037]
+depends_on: [T-038, T-034, T-037, T-046]
 contracts: []
 labels: [auth]            # moves auth.ts, devices.ts, claude-cli.ts, server.ts
 budget_usd: 3
@@ -22,7 +22,7 @@ Server and shared code sit in the feature folders of decision 0006, so a reader 
       files as renames; JSON field names and routes are unchanged
 - [ ] `scripts/dev.mjs` watch paths, `npm start` / `start:lan` and the "Layout" section of `docs/architecture.md`
       match the new paths; `npm run build` and `npm start` work and the dashboard loads (state it in the PR)
-- [ ] `tests/code-structure.test.ts` allowlist loses every server/shared entry that is now in place
+- [ ] `tests/code-structure.test.ts` allowlist loses every server/shared entry that is now in place; `LEGACY_FILES` in `eslint.config.js` follows the new paths
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)

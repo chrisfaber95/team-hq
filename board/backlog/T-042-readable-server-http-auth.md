@@ -22,7 +22,7 @@ guards and per-feature routes, with every security rule intact.
 - [ ] Behaviour unchanged: every request check in repo `CLAUDE.md` "Rules" still applies to the same requests;
       existing server, auth, lan and commands tests pass with only import and name updates; the `security-auditor`
       agent ran on the diff and its result is in the hand-off
-- [ ] Their entries are gone from the `tests/code-structure.test.ts` allowlist
+- [ ] Their entries are gone from the `tests/code-structure.test.ts` allowlist and from `LEGACY_FILES` in `eslint.config.js`; `npm run lint` passes
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)
