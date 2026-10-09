@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 22
 ---
 ## Goal
 LAN sign-in uses named, revocable per-device tokens instead of the one shared token, and the PC on loopback needs no
@@ -33,5 +33,7 @@ PR and put its result in the hand-off. Update `docs/architecture.md` (`auth.ts`,
 Expose a failed-sign-in hook (e.g. an `onFailedLogin(ip, tMs)` option of `createAuth`) for T-014; no alert in this ticket.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added src/server/devices.ts (store in DATA_DIR/devices.json: sha256 only, timing-safe verify, revoke, lastSeen written at most once a minute) and rewrote auth.ts: device-token sign-in (rate limit kept, onFailedLogin hook), device-bound sliding 7-day sessions, identify() with the loopback exemption (loopback socket AND loopback Host => `pc`; proxy headers withdraw it), revokeDevice() ends sessions and server.ts closes that device's /api/events streams; old DATA_DIR/token deleted at startup. PR: https://github.com/chrisfaber95/claude-dashboard/pull/22. typecheck ok, npm test 218 pass.
+security-auditor: no Critical/High. Fixed M1 (partly: proxy headers, documented), L2 (device in audit log), L7 (names). Not done: L1, L3 (failed save can undo a revoke on restart), L4 (logout/expiry keep an open stream), L5, L6. Reviewer: check the exemption in auth.ts isLoopbackRequest, that no endpoint exists yet (T-009/T-010), the startup token removal in server.ts (untested), and that user_ok is needed before merge. Not run in a real LAN session. CLAUDE.md: only the .dashboard/ secrets line changed. PR title is T-008 form.
 
 ## Review (reviewer writes, one line per round)
