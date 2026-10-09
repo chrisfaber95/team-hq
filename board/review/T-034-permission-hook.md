@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/46
 ---
@@ -52,3 +52,4 @@ Reached the held prompt on a real session (state `waiting`, request listed); I d
 Review: findings left for T-035 (shared hook/answer secret, audit by device, session editing the hook in the dashboard's own repo). Commit trailer uses plain "Claude" per user memory.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met in diff (settings only on start/resume, loopback+secret 403s, hash-compared secret, expiry/abandon, helper, tests); CI `check` was still running at review time, merge.sh must confirm green; label `auth` needs user_ok after the user's allow/deny proof.
