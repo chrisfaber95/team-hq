@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 30
 ---
@@ -31,3 +31,4 @@ later. No UI in this ticket.
 Added pure `src/client/chat-logic.ts` (`parseIntent`, `answer`, matching by name/project/id prefix, ambiguity lists candidates, message intents `needsConfirm`, tokens only, no DOM/network) plus 20 tests in `tests/chat-logic.test.ts` and architecture.md entries. Typecheck and 309 tests pass. PR: https://github.com/chrisfaber95/claude-dashboard/pull/30. Reviewer: check the phrasing regexes (e.g. attention vs status precedence) and that `ack`/`open` verbs do not swallow other questions.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - (1) ack/open/summary verbs swallow other questions: "view usage", "view sessions", "go to alerts", "clear alerts", "summary of my usage" hit OPEN_RE/ACK_RE/SUMMARY_RE and reply "No session/alert matches ..." instead of usage/status/attention; when the match is `none` and the text also matches the attention/usage/status regexes, fall through to those intents. (2) Add tests for those phrasings (they are untested; the 20 tests only cover the happy path of each verb). (3) `usageReply` reads `state.usage.totals` unguarded while `days` is guarded with `?.`; guard both. Rest is fine: precedence attention>usage>status is sensible, ambiguity lists candidates, tokens only, no DOM/network, message needsConfirm. CI `check` was still IN_PROGRESS at review time; lead confirm it is green before merge.
