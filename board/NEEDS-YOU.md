@@ -16,5 +16,6 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-09 T-025: engineer run stopped (exit 1, success turns=2 cost=$0.47 error). Log: logs/T-025.log (lead: session limit; resumed with --rework after reset)
 - [x] 2026-10-09 T-027: engineer run stopped (exit 1, success turns=1 cost=$0.56 error). Log: logs/T-027.log (lead: session limit; resumed with --rework after reset)
 - [x] 2026-10-09 T-025: merge of PR #40 stopped (CI not green (1 of 2 checks not passing)). Log: logs/T-025.log (lead: CI was still pending, not failing; re-merged after green)
-- [ ] 2026-10-09 F-005: approve decision 0005 (`decisions/0005-answer-permission-prompts.md`): a hook only in dashboard-started sessions, any signed-in device may approve/deny, everything logged. Then T-034..T-036 (`auth`) go to ready; each still needs `user_ok` to merge.
+- [x] 2026-10-09 F-005: approve decision 0005 (`decisions/0005-answer-permission-prompts.md`): a hook only in dashboard-started sessions, any signed-in device may approve/deny, everything logged. Then T-034..T-036 (`auth`) go to ready; each still needs `user_ok` to merge. (user approved 0005, 2026-10-09)
 - [ ] 2026-10-09 T-030: remove the leftover worktree `N:\worktrees\claude-dashboard-T-030` when convenient (spike scratch, nothing to keep).
+- [ ] 2026-10-09 T-034: when it reaches review, run the proof steps in its hand-off on the PR branch (answer allow / deny once each), then set `user_ok: true` if both worked.

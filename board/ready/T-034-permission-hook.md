@@ -23,17 +23,19 @@ pending requests, and an allow or deny returned through the hook really lets the
 - [ ] Pending requests (id, session, tool, request text, time) are in the pushed state; the hook waits for an answer
       and prints the documented allow / deny decision; on timeout, a dashboard that is down, or a bad secret it exits
       with no decision (normal prompt) and the request shows as expired
-- [ ] Proof on this PC, written in the hand-off with the commands used: a dashboard-started session asking for
-      `touch` continues and runs it after allow, and continues without running it after deny. Answer through a test
-      helper or the endpoint from T-035 (not by hand-editing files), on a harmless command in a scratch project
+- [ ] Proof steps for the user in the hand-off: exact commands to start the PR branch's dashboard, launch a session
+      in a scratch project that asks for `touch`, and answer it allow / deny through a small answer helper you ship
+      (e.g. `node scripts/answer-permission.mjs <id> allow|deny`), with what to expect each time. You may run the
+      steps up to the held prompt; don't answer a held prompt yourself (the classifier refused that in T-030; the
+      user runs the answer step before setting `user_ok`)
 - [ ] Unit tests for the hook script (decision output, timeout, no dashboard) and the store; `npm run typecheck`
       and `npm test` pass
 
 ## Notes (lead)
 Design: `team-hq/decisions/0005-answer-permission-prompts.md`. Findings from spike T-030 (hook stdin fields, `waiting`
 status, `--strict-mcp-config` needed in scratch folders) are in `team-hq/board/done/T-030-*.md`. Touches
-`claude-cli.ts` (auth). If the allow/deny proof fails, stop and move the ticket to `blocked/` with what you saw.
-The answer endpoint for devices is T-035; a minimal internal answer path for the proof is fine.
+`claude-cli.ts` (auth). The answer endpoint for devices is T-035; the helper only needs a local path (hook secret).
+If the user's proof fails, T-035/T-036 stop and F-005 goes back to the user (decision 0005, Consequences).
 
 ## Hand-off (engineer writes, max 300 tokens)
 

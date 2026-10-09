@@ -1,6 +1,6 @@
 # 0005: Answer permission prompts from the dashboard through a session-scoped hook
 
-Date: 2026-10-09. Status: **proposed** (needs the user's OK before T-034..T-036 go to `ready/`).
+Date: 2026-10-09. Status: **accepted** by the user 2026-10-09.
 Decided by: the user (log-only safety, skip the allow/deny test: option 3), the lead (structure), for brief F-005.
 
 ## Context
