@@ -25,6 +25,7 @@ pr:
 Design: `team-hq/decisions/0004-chat-without-a-model.md`. Build on `src/server/transcript-view.ts`. Tool inputs can
 hold secrets or long text: show only the tool name and a short, cut target (file path, first 60 chars of a command).
 Leave a seam for T-019's model mode (e.g. a `summarize(id, mode)` function).
+Run 1 (2026-10-09) stopped on the account session limit, not on the ticket: its uncommitted work is in the worktree (`session-summary.ts`, its test, edits to chat/server/types). Continue from it; there are no review points yet.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
