@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/33
 ---
 ## Goal
 "Summarize session X" in the chat gives a quick recap of what the session did, without a model.
@@ -28,5 +28,12 @@ Leave a seam for T-019's model mode (e.g. a `summarize(id, mode)` function).
 Run 1 (2026-10-09) stopped on the account session limit, not on the ticket: its uncommitted work is in the worktree (`session-summary.ts`, its test, edits to chat/server/types). Continue from it; there are no review points yet.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #33 (https://github.com/chrisfaber95/claude-dashboard/pull/33). Run 2 had no review points; continued run 1's work.
+- `GET /api/sessions/:id/summary` -> `{mode:'recap',text}` via new `src/server/session-summary.ts` (`summarize(path, mode)` seam for T-019); UUID 400 / unknown 404 fixed strings; reads the viewer's tail cap.
+- Chat `summary` intent now calls it (was a "coming soon" stub).
+- Chat endpoint test now checks the first argument of every `api()` call and bans fetch/XHR/EventSource, so paths built without an `/api/` literal are caught.
+- security-auditor ran: no high findings; medium (secrets echoed in Bash/URL targets) fixed by masking.
+- typecheck clean, 330 tests pass, build ok. Not browser-tested.
+Look at: `redact()` regexes, "Last reply" may quote secrets the model printed (same as the viewer).
 
 ## Review (reviewer writes, one line per round)
