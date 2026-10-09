@@ -7,7 +7,7 @@ depends_on: [T-005, T-006]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 21
 ---
@@ -33,3 +33,4 @@ Added the alerts UI: header badge (#alert-badge, hidden at zero), Needs attentio
 Reviewer: NOT checked in a browser (no visual check of the 3 skins, toast/panel layout). Check esc() on all interpolations, no inline styles, and the always-visible panel with its empty state. frontend-developer wrote the UI; alerts-logic.ts was written directly, not via typescript-pro. PR title is T-007 form, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

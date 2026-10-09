@@ -24,6 +24,9 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | --- | --- | --- | --- | --- | --- | --- |
 | T-001 | #15 | (set up by hand) | - | 1 (15 turns, $0.23) | 0 | yes; merge.sh run 32 s |
 | T-004 | #18 (c5bedb6), +448/-2 in 10 files | 66 requests (sonnet + haiku test-runner), 8 subagents | $1.26 | 1 ($0.16) | 4 (target 3) | yes; ~10 min kickoff to merge; lead $0.46, merge $0.10 |
+| T-005 | #19 (7b45491), +309/-3 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
+| T-006 | #20 (f312270), +85/-1 | (interactive, not logged) | - | 2 (round 1: tests read real TEAM_HQ_DIR) | 6 | yes; merge $0.13 |
+| T-007 | #21 (968c43f), +254/-12 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.16; not checked in a browser |
 
 # Same-method comparison (transcript pricing)
 
