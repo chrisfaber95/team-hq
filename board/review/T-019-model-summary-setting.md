@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 34
 ---
 ## Goal
 A dashboard setting switches session summaries from the recap to one cheap-model call through the Claude CLI, for
@@ -31,5 +31,10 @@ T-018 (PR #33) left the seam: `summarize(path, mode)` in `src/server/session-sum
 reuse its `redact()` and tail read for the excerpt.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added the `summary: recap|model` setting (settings.ts, GET/POST /api/settings/summary, select under the chat) and model mode in the summary endpoint. PR: https://github.com/chrisfaber95/claude-dashboard/pull/34
+
+Model call is `summarizeWithModel()` in claude-cli.ts: `claude -p` with haiku, `--tools ""` (verified in `claude --help`, recorded in docs/architecture.md), no --bg/resume, `--setting-sources user`; excerpt (<=20 KB, masked) on stdin only. Failure falls back to the recap plus a fixed note. Typecheck, 338 tests and build pass; security-auditor ran, no high findings, medium ones fixed.
+
+Reviewer: check the argv in claude-cli.ts and tests/summary-model.test.ts, redactForModel() in session-summary.ts, and that the client renders text only. Not checked in a browser. Known gaps: no per-session cache or cooldown on model calls (only the 4-process cap); the setting can read 'model' while commands are disabled.
 
 ## Review (reviewer writes, one line per round)
