@@ -9,7 +9,7 @@ labels: [auth, deps]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 26
 ---
 ## Goal
 A phone signs in by scanning a QR code shown on the PC; each QR works only once.
@@ -28,5 +28,7 @@ be added to the paths reachable without a session (`PUBLIC_PATHS` in `server.ts`
 side effects. Check the CSP still holds (no inline scripts or styles). Run `security-auditor` before the PR.
 
 ## Hand-off (engineer writes, max 300 tokens)
+POST /api/devices/pair {id} (PC only) returns {path:'/pair?c=<code>', urls, expiresMs}; code = 32 random bytes, 10 min, in memory, single use (spent even if expired), newest per device only, dropped on revoke. GET /pair?c= (PUBLIC_PATHS, LAN mode, GET only): good code -> 303 '/' + device cookie; else 303 /login?e=pair via the shared 5/min rate limit and onFailedLogin (raises the T-014 alert). Link host from lanAddresses()+localPort, never Host. 'Show QR' per device (qr.ts + devices.ts): SVG via createElementNS, link only in a module variable, cleared on close/expiry/revoke/hide. New devDependency qrcode-generator 2.0.4 (MIT, no deps, no install scripts, installed --ignore-scripts; npm audit 0 vulnerabilities; lock integrity matches the registry). PR: https://github.com/chrisfaber95/claude-dashboard/pull/26. typecheck ok, npm test 261 pass, build ok.
+security-auditor: no Critical/High/Medium. Low, unchanged: L1 GET /pair has a side effect (a link-preview bot could spend a code; QR scans fine), L2 login-CSRF theoretical, L3 spent code in history, L4 PAIR_MAX dead code. Reviewer: auth.ts pair()/createPairing(), the /pair handler before the identify gate, the PUBLIC_PATHS change. NOT tried with a phone or browser (QR rendering/scanning, 3 skins); phone shows the self-signed cert warning. .claude/project-params.md dependency policy still lists dev tools only: qrcode-generator is not added there. PR title is T-011 form; no auth/deps labels in the repo.
 
 ## Review (reviewer writes, one line per round)
