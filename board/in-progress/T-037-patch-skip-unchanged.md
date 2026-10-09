@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 48
 ---
@@ -43,3 +43,4 @@ PR #48 https://github.com/chrisfaber95/claude-dashboard/pull/48 (client only, se
 - Reviewer: no browser e2e for open-popup content/focus; check by hand. Branch is 1 commit behind main (no conflict). Commit trailer used plain Claude per repo memory.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - (1) popups.ts stores `onOpen` but never calls it in `open()`, so a popup opens empty until the next push (breaks the "renders at once on open" criterion, and the drawPopup path is dead); call `onOpen(id)` when a popup opens. (2) team.ts imports `forgetHtml` but never calls it: after `el.innerHTML = ''` (no board) the same markup later is skipped and the team section stays blank; call `forgetHtml(el)` there (the hand-off says it does). (3) Add a test or check covering open -> render callback; CI `check` was still pending at review time.
