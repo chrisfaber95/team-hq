@@ -27,6 +27,14 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-005 | #19 (7b45491), +309/-3 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
 | T-006 | #20 (f312270), +85/-1 | (interactive, not logged) | - | 2 (round 1: tests read real TEAM_HQ_DIR) | 6 | yes; merge $0.13 |
 | T-007 | #21 (968c43f), +254/-12 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.16; not checked in a browser |
+| T-008 | #22 (a9c9296), +614/-97 | (interactive, not logged) | - | 2 (round 1: auditor L3, revoke not persisted) | 6 | yes; merge $0.15 (2nd run; 1st refused, merge.sh fixed) |
+| T-009 | #23 (69709e2), +286/-19 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.15 |
+| T-010 | #24 (01eed20), +338/-8 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.14; not checked in a browser |
+| T-014 | #25 (023c934), +187/-8 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.14 |
+| T-011 | #26 (6a24066), +605/-28 | (interactive, not logged) | - | 2 (round 1: dependency policy file) | 6 | yes; merge $0.15; not tried on a phone |
+| T-012 | #27 (440ce2f), +341/-13 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
+| T-013 | #28 (9429891), +339/-16 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.14; not checked in a browser |
+| T-015 | #29 (3f78b71), +272/-26 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
 
 # Same-method comparison (transcript pricing)
 

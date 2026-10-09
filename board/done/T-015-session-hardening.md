@@ -7,7 +7,7 @@ depends_on: [T-008]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 29
 ---
@@ -30,3 +30,4 @@ auth.ts: all session endings (logout, expiry on use/sweep, cap, revoke) go throu
 security-auditor: no Critical/High. Fixed L1, L2. Not changed: M1 the cap evicts oldest-by-sign-in, so a stolen token can sign in 10 times to evict the owner's sessions (nuisance; spec says oldest first; LRU eviction and an alert on cap eviction are options; also successful logins reset the per-IP failure counter, pre-existing), L3 cookie Max-Age stays 7 d near the 90 d limit, L4 no listener unregister. Reviewer: check endSession paths, the cap arithmetic in startSession and the tick in server.ts. The expiry test moves a clock 8 days (lan.test.ts) and waits one tick. Not run in a real LAN session. PR title is T-015 form; no auth label.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
