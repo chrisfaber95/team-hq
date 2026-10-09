@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 42
 ---
@@ -40,3 +40,4 @@ Tests: new commands.test.ts case (live terminal -> 409, no CLI call; after endin
 Reviewer: not checked in a browser; CI not checked; branch is one commit behind main (25dd9bc, T-025), conflicts not checked. Commit trailer is plain "Claude" (repo memory rule), not the model name.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - criteria met (client-only change matches server.ts:345 `kind !== 'bg'`; claude-dashboard auth/claude-cli.ts untouched; new 409 + resume test). CI `check` was still pending at review time: merge.sh must confirm green. Label `auth` needs user_ok before merge.
