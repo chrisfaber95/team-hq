@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 45
 ---
 ## Goal
 The owner launches new work from the dashboard with a project, a goal and background notes, sees it start, and sees
@@ -32,5 +32,6 @@ T-027 moves the run panel into a popup; build on that. Updates go through the in
 (`src/client/patch.ts`). No model/effort pickers, presets or scheduling (out of scope).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #45: https://github.com/chrisfaber95/claude-dashboard/pull/45. Run popup is now a launch form (project, goal, notes, mode; posts goal/notes/permissionMode). `required` attrs removed so server messages show in #run-status; goal/notes kept on failure, cleared on success. localStorage recents removed (key cleared at init); Recent launches come from GET /api/launches, patched in place, with running/not live/failed and View. Pure logic in src/client/launch-logic.ts + tests. typecheck clean, 378 tests pass, build ok. Reviewer: check esc() use in the launch list and that a failed launch (no View) is acceptable. Not browser-tested.
 
 ## Review (reviewer writes, one line per round)
