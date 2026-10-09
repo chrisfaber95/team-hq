@@ -5,7 +5,12 @@ Control repo for a small team of Claude Code sessions: one **lead**, one **engin
 and one-line cross-session messages. Design: "Multi-Session Agent Team Setup" doc
 (claude.ai/artifact/NWjLVADvftSEyHRzPoDJju).
 
-**Current phase: 1 (pilot team).** Phase 0 baseline done: ~$2.16 and 32 turns per merged PR (`metrics/baseline.md`). Pilot repo: `claude-dashboard` (`N:\Projects\Claude-dashboard`).
+**Current phase: 2 (headless engineers), since 2026-10-09.** Phase 0 baseline done: ~$2.16 and 32 turns per merged PR (`metrics/baseline.md`). Phase 1 passed its gate with 16 tickets merged (T-001..T-016). Pilot repo: `claude-dashboard` (`N:\Projects\Claude-dashboard`).
+
+In phase 2 only the **lead** (and, when you design, the **designer**) runs in a terminal. Engineers and reviewers are
+headless runs started by `scripts/dispatch.sh` and `scripts/review.sh`: one fresh session per ticket or PR that exits
+when it's done, so there is nothing to `/clear`. The interactive engineer and reviewer commands below are for phase 1 or
+for driving a ticket by hand.
 
 | Path | What |
 | --- | --- |
@@ -102,7 +107,7 @@ back to `ready/` and remove its worktree:
 Two tickets (T-002, T-003) worked by ordinary sessions with `scripts/baseline.sh`; results and the
 same-method comparison with the team are in `metrics/baseline.md`.
 
-## Phase 1: pilot team, all interactive
+## Phase 1: pilot team, all interactive (done)
 
 The three interactive sessions above. The lead writes tickets (`write-ticket`), messages the
 engineer one ticket at a time, sends review requests with an idle notice, and merges with
@@ -110,7 +115,7 @@ engineer one ticket at a time, sends review requests with an idle notice, and me
 
 **Gate:** ten tickets merged at a cost per PR near the baseline.
 
-## Phase 2: headless engineers
+## Phase 2: headless engineers (current)
 
 The lead dispatches, reviews and merges through the scripts; you handle `NEEDS-YOU.md`:
 
