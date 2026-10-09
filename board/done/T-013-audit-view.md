@@ -7,7 +7,7 @@ depends_on: [T-012]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 28
 ---
@@ -30,3 +30,4 @@ Added the Activity section (`<details id="audit">`, src/client/audit.ts + audit-
 security-auditor: no XSS/CSP findings. Fixed L1 (unfilterable ids offered) and L4 (stale rows beside an error). Not changed: M1 any signed-in device reads every device's prompts (as specified in T-012; could restrict `prompt` to the PC), L2 no bidi/control stripping on device/project text, L3 prompts stay in the DOM after closing. NOT checked in a browser (3 skins, light/dark). Reviewer: esc() on every interpolation in rowHtml/syncOptions, no polling. frontend-developer wrote the UI; audit-logic.ts directly. PR title is T-013 form.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
