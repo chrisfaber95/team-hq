@@ -62,7 +62,9 @@ Engineer cost unknown (interactive runs, no `dispatch.sh` JSON). Merge runs $0.1
 
 ## Next sprint
 
-Backlog is empty. Start from `product/briefs/` (any `status: approved`) and the user's next goals. Candidates:
+F-003 Ask-the-dashboard chat arrived after this summary and is already split ([decision 0004](../decisions/0004-chat-without-a-model.md)):
+T-016 (`ready/`) -> T-017 -> T-018 -> T-019. T-019 is `auth` and needs the user's `user_ok` (NEEDS-YOU). Dispatch
+one at a time, starting with T-016. Smaller candidates for later:
 1. Hardening from audits: IPv6 /64 bucketing for rate limit and sign-in alerts (T-014 M1/M2); short cache on
    `/api/audit` (T-012 L1); evict least-recently-used session and alert on cap eviction (T-015 M1).
 2. Only if the user wants it: restrict prompt text in `/api/audit` to the PC (T-013 M1).
