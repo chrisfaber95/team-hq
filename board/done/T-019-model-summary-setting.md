@@ -7,7 +7,7 @@ depends_on: [T-018]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 34
 ---
@@ -38,3 +38,4 @@ Model call is `summarizeWithModel()` in claude-cli.ts: `claude -p` with haiku, `
 Reviewer: check the argv in claude-cli.ts and tests/summary-model.test.ts, redactForModel() in session-summary.ts, and that the client renders text only. Not checked in a browser. Known gaps: no per-session cache or cooldown on model calls (only the 4-process cap); the setting can read 'model' while commands are disabled.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
