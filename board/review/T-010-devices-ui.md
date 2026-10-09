@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 24
 ---
 ## Goal
 On the PC, a Devices section lets the owner add a named device (token shown once), see every device with created and
@@ -27,5 +27,7 @@ Follow "UI conventions" in `docs/architecture.md` (all skins, no inline styles, 
 secret: render it with `textContent`, keep it out of the DOM after dismissal and out of logs. QR comes in T-011.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added the Devices section (src/client/devices.ts, devices-logic.ts, index.html, style.scss, app.ts): shown only when features.manageDevices is true; add form -> POST /api/devices, token shown once via textContent with Copy/Dismiss, cleared on dismiss/next add/hide and never stored; list from GET /api/devices (on show, after create/revoke, at most every 30 s) with Added/Last seen and a confirmed Revoke. DeviceInfo moved to shared types. PR: https://github.com/chrisfaber95/claude-dashboard/pull/24. typecheck ok, npm test 235 pass, build ok.
+security-auditor on the client: no Critical/High; fixed M1 (token box ignored `hidden`), M2 (late create response could write the token into a hidden panel), L3 (stale refresh). Not done: L1 token stays on the clipboard after Copy, L2 no timeout clearing, L4 duplicated 'at most 100 devices' string. NOT checked in a browser: no visual check in the 3 skins, no real copy/revoke click-through. Reviewer: look at token handling in devices.ts and the [hidden] rule. frontend-developer wrote the UI; devices-logic.ts directly. PR title is T-010 form.
 
 ## Review (reviewer writes, one line per round)
