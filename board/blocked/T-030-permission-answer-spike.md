@@ -40,3 +40,15 @@ ticket to `blocked/` with what you tried.
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+
+## Blocked
+Question: may the run answer a held permission prompt (write allow/deny to the hook's decision file)? The auto-mode classifier denied it twice ("Create Unsafe Agents"), so acceptance items 1(allow/deny), 2 and the after-answer half of 3 can't be observed.
+
+Findings so far (CLI 2.1.295, scratch `temp/spike` in the worktree, project-level `.claude/settings.json` only, `--bg --strict-mcp-config --model haiku --permission-mode default`):
+- `--bg` starts fine in the worktree scratch folder; the parent `.mcp.json` otherwise blocks it on an MCP-approval dialog, so `--strict-mcp-config` is needed.
+- `echo` is auto-allowed (no prompt, no hook). `touch spike-file.txt` prompts.
+- A project `PermissionRequest` hook fires for the `--bg` prompt. stdin JSON: `session_id`, `transcript_path`, `cwd`, `permission_mode`, `hook_event_name`, `tool_name: "Bash"`, `tool_input.command` (full command) + `description`, `permission_suggestions`.
+- A `Notification` hook also fires (`notification_type: permission_prompt`, message only).
+- While the hook was held (>2 min, no timeout hit), `claude agents --json` showed `status: waiting`, `waitingFor: "permission prompt"`, `state: blocked`.
+- Not observed: allow/deny effect, max hold time, session state afterwards.
+Needs: permission to run the allow/deny step (or the lead does it), then I finish the document. Session stopped and removed; scratch left in `temp/spike` (untracked). No `src/` change, nothing in user config.
