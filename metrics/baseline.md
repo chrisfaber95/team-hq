@@ -35,6 +35,8 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-012 | #27 (440ce2f), +341/-13 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
 | T-013 | #28 (9429891), +339/-16 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.14; not checked in a browser |
 | T-015 | #29 (3f78b71), +272/-26 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.13 |
+| T-016 | #30 (b558edc), +420/-1 | (interactive, not logged) | - | 2 (round 1: verbs swallowed other questions) | 6 | yes; merge $0.14 |
+| T-017 | #31 (1d9bdf6), +396/-1 | (interactive, not logged) | - | 1 | 3 | yes; merge $0.14; not checked in a browser |
 
 # Same-method comparison (transcript pricing)
 
