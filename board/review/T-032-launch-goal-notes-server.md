@@ -9,7 +9,7 @@ labels: []
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 43
 ---
 ## Goal
 The server can start a session from a project, a goal and optional background notes, refuses bad launches with a
@@ -36,5 +36,12 @@ stays unchanged; don't touch it. Keep accepting the old `prompt` field until T-0
 goal). Server only: the form is T-033. Don't run alongside T-031 (also edits `server.ts`).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/43 (not merged). typecheck pass, npm test 371/371.
+- New `src/server/launch.ts`: `composeLaunch` builds one prompt (`## Goal`, then `## Background notes` only if notes non-empty); old `prompt` field = goal; fixed 400 messages, no CLI call on refusal; 20000 total limit.
+- `POST /api/commands` response adds `started` (false on failed start = no session left).
+- Audit start entry: `goal` (500), `notesLength`, `session`; `prompt` no longer written (existing tests updated).
+- `GET /api/launches`: latest 50 starts, newest first, same access as `/api/audit`.
+- `claude-cli.ts` untouched. `types.ts` got small additions (done directly, not via typescript-pro).
+Reviewer: look at `launch.ts`, the `/api/commands` block in `server.ts`, and the action filter in `audit-log.ts`. Old log lines with `prompt` and no `goal` still appear in launches.
 
 ## Review (reviewer writes, one line per round)
