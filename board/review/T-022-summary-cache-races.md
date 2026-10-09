@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 36
 ---
 ## Goal
 The model-summary cache never serves an old answer as current, and two requests at once start at most one model call.
@@ -25,5 +25,10 @@ promise per session; key the cache entry by the size/mtime the answer was made f
 if you must, move the ticket to `blocked/` with why.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #36: https://github.com/chrisfaber95/claude-dashboard/pull/36 (only `session-summary.ts` and `tests/summary-model.test.ts`; `claude-cli.ts` untouched).
+- Concurrent model-mode requests for one session share an in-flight promise, so only one process starts.
+- After a failed call, the previous answer keeps the size/mtime it was made from (only the cooldown clock restarts), so the next request after the cooldown makes a fresh call.
+- Two new fake-CLI tests cover both. `npm run typecheck` passes; `npm test` 342/0.
+Reviewer: within the cooldown after a failure the older cached answer is still served (existing behaviour, kept). A waiter on a failed call shares the first caller's recap. CI had not started when the PR opened.
 
 ## Review (reviewer writes, one line per round)
