@@ -15,8 +15,10 @@ The lead is notified when you go idle and reads your verdict from the ticket.
    only if CI hasn't reported.
 3. Judge, in this order: does it meet every acceptance criterion; correctness bugs; security (this
    dashboard can run commands on the PC: treat auth, `server.ts` request checks and `claude-cli.ts`
-   as high risk); tests cover the new behavior; it stays inside the ticket's scope.
-   Ignore style nits that CI or the conventions don't require.
+   as high risk); tests cover the new behavior; it stays inside the ticket's scope; new and changed code
+   follows the repo's `docs/code-style.md` (team-hq decision 0006 until it exists): file in the right
+   folder, full-word names, no oversized files or functions. A clear breach in new or changed code is a
+   `changes` reason; never ask to fix old code the PR doesn't touch. Ignore other style nits.
 4. Record the verdict:
    - Increment `review_rounds` in the front matter.
    - Append one line under `## Review`: `round N: approve` or `round N: changes - <the 1-3 things to fix>`.

@@ -15,8 +15,10 @@ description: Turn a goal into one or more board tickets in team-hq (backlog or r
      new dependency. Add `auth`, `deps`, `contract`, `migration` where they apply.
    - **Goal**: the outcome in one or two sentences.
    - **Acceptance**: 2-5 checkboxes, each observable and testable. Always include
-     "`npm run typecheck` and `npm test` pass; new behavior has a test" (or the repo's equivalent).
-   - **Notes**: pointers to files or decisions, not a design essay.
+     "`npm run typecheck` and `npm test` pass; new behavior has a test" (or the repo's equivalent)
+     and "New and changed code follows `docs/code-style.md`" (decision 0006).
+   - **Notes**: pointers to files or decisions, not a design essay. For a new file, name the folder
+     it belongs in (decision 0006 folder map).
 3. Size check: if it would plausibly take more than ~60 engineer turns or touches more than one
    module, split it into several tickets linked by `depends_on`.
 4. Put it in `ready/` only if it is fully specified and its dependencies are done; otherwise `backlog/`.

@@ -14,7 +14,9 @@ branch `team/<id>`), and you report only to the session named `lead`.
 - Find the ticket: `team-hq/board/in-progress/<id>-*.md`. Read Goal, Acceptance, Notes, and any
   `Review` lines (a rework run must address them first).
 - Read the files in `contracts:` if any. Never edit `contracts/`.
-- Read this repo's `CLAUDE.md` for commands and conventions.
+- Read this repo's `CLAUDE.md` for commands and conventions, and its `docs/code-style.md` if it exists
+  (team-hq decision 0006 until then). All new and changed code follows it: files in their feature folder,
+  full-word names, small modules. Name it in every `frontend-developer` / `typescript-pro` delegation.
 
 ## 2. Build
 

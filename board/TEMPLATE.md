@@ -17,6 +17,7 @@ One or two sentences: the outcome, not the implementation.
 ## Acceptance
 - [ ] Observable, testable criterion
 - [ ] `npm run typecheck` and `npm test` pass; new behavior has a test
+- [ ] New and changed code follows `docs/code-style.md` (decision 0006)
 
 ## Notes (lead)
 Pointers to files, contracts or decisions. Keep it short.

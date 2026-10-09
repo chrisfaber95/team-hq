@@ -3,7 +3,7 @@ id: T-036
 repo: claude-dashboard
 owner: eng-claude-dashboard-T-036
 brief: F-005
-depends_on: [T-035, T-033]
+depends_on: [T-035, T-033, T-044]
 contracts: []
 labels: [auth]
 budget_usd: 3
