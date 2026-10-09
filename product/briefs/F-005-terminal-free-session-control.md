@@ -1,7 +1,7 @@
 ---
 id: F-005
 title: Terminal-free session control
-status: approved         # draft | approved | needs-design | parked | handed-off
+status: handed-off       # draft | approved | needs-design | parked | handed-off
 priority: should         # must | should | could (the user decides)
 repos: [claude-dashboard]
 ---
@@ -60,3 +60,4 @@ continue it.
 ## Questions from lead
 - 2026-10-09 (lead) Q1 (answer a prompt from outside): `claude --help` (2.1.295) has no command for it; `claude attach` is an interactive terminal and `--permission-prompts` is `--print` only. Spike T-030 tests a `PermissionRequest` hook that hands the prompt to the dashboard. The approve/deny and approval-log tickets follow from its result (decision 0005, with the user). Brief stays `approved` until they exist.
 - 2026-10-09 (lead) Q2 (live terminal sessions): no take-over. `--bg --resume` on a running session starts a copy (a fork), so the dashboard refuses and says why; an ended terminal session continues normally (T-031). Technical choice; tell me if the owner wants "continue as a copy" instead.
+- 2026-10-09 (lead) The user chose to skip the allow/deny test (spike T-030 option 3). Design: decision 0005 (hook only in dashboard-started/continued sessions via `--settings`, fail-safe to the normal prompt, no "always allow"). Tickets T-034 (hook, proves allow/deny), T-035 (answer + log), T-036 (UI); they wait for the user's OK on 0005.

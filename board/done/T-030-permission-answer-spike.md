@@ -52,3 +52,6 @@ Findings so far (CLI 2.1.295, scratch `temp/spike` in the worktree, project-leve
 - While the hook was held (>2 min, no timeout hit), `claude agents --json` showed `status: waiting`, `waitingFor: "permission prompt"`, `state: blocked`.
 - Not observed: allow/deny effect, max hold time, session state afterwards.
 Needs: permission to run the allow/deny step (or the lead does it), then I finish the document. Session stopped and removed; scratch left in `temp/spike` (untracked). No `src/` change, nothing in user config.
+
+## Closed (lead)
+2026-10-09: closed without a PR at the user's choice (option 3: skip the allow/deny test, rely on documented hook behaviour). The findings above feed decision 0005; T-034 proves allow/deny on a real session. Scratch left in the worktree `N:\worktrees\claude-dashboard-T-030` (`temp/spike`, untracked).
