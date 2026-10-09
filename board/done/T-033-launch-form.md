@@ -7,7 +7,7 @@ depends_on: [T-032, T-027]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 45
 ---
@@ -35,3 +35,4 @@ T-027 moves the run panel into a popup; build on that. Updates go through the in
 PR #45: https://github.com/chrisfaber95/claude-dashboard/pull/45. Run popup is now a launch form (project, goal, notes, mode; posts goal/notes/permissionMode). `required` attrs removed so server messages show in #run-status; goal/notes kept on failure, cleared on success. localStorage recents removed (key cleared at init); Recent launches come from GET /api/launches, patched in place, with running/not live/failed and View. Pure logic in src/client/launch-logic.ts + tests. typecheck clean, 378 tests pass, build ok. Reviewer: check esc() use in the launch list and that a failed launch (no View) is acceptable. Not browser-tested.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met by diff reading; body uses `permissionMode`, which matches server.ts (ticket text says `mode`); esc() used on all interpolated values; failed launch without View is fine. Not browser-tested; CI `check` was still pending at review time, merge.sh must wait for green.
