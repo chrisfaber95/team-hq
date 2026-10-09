@@ -7,7 +7,7 @@ depends_on: [T-009]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 24
 ---
@@ -31,3 +31,4 @@ Added the Devices section (src/client/devices.ts, devices-logic.ts, index.html, 
 security-auditor on the client: no Critical/High; fixed M1 (token box ignored `hidden`), M2 (late create response could write the token into a hidden panel), L3 (stale refresh). Not done: L1 token stays on the clipboard after Copy, L2 no timeout clearing, L4 duplicated 'at most 100 devices' string. NOT checked in a browser: no visual check in the 3 skins, no real copy/revoke click-through. Reviewer: look at token handling in devices.ts and the [hidden] rule. frontend-developer wrote the UI; devices-logic.ts directly. PR title is T-010 form.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
