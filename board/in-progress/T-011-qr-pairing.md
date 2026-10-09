@@ -7,7 +7,7 @@ depends_on: [T-010, T-014]
 contracts: []
 labels: [auth, deps]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 26
 ---
@@ -32,3 +32,4 @@ POST /api/devices/pair {id} (PC only) returns {path:'/pair?c=<code>', urls, expi
 security-auditor: no Critical/High/Medium. Low, unchanged: L1 GET /pair has a side effect (a link-preview bot could spend a code; QR scans fine), L2 login-CSRF theoretical, L3 spent code in history, L4 PAIR_MAX dead code. Reviewer: auth.ts pair()/createPairing(), the /pair handler before the identify gate, the PUBLIC_PATHS change. NOT tried with a phone or browser (QR rendering/scanning, 3 skins); phone shows the self-signed cert warning. .claude/project-params.md dependency policy still lists dev tools only: qrcode-generator is not added there. PR title is T-011 form; no auth/deps labels in the repo.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - update .claude/project-params.md (params:dependencies, policy and packages lines) to list qrcode-generator 2.0.4 as the one approved bundled client devDependency (user-approved, decision 0003, esbuild-bundled into app.js, no server runtime dependency, no install scripts); the policy now says only esbuild, sass, typescript and @types/node may be added, so the dependency-manager agent would treat the new package as out of policy. Everything else meets the criteria: devDependency only (npm ls ok, npm audit 0 vulnerabilities, lockfile has integrity hash and no install script), /pair is GET-only, code single-use and spent even if expired, shared rate limit plus onFailedLogin, host from lanAddresses not Host header, revoke drops codes, QR holds the pairing link never the device token; typecheck, 261 tests, build and CI green on 598b53c.
