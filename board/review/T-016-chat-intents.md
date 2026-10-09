@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 30
 ---
 ## Goal
 A pure client module understands the chat's fixed questions and commands and answers them from the current
@@ -28,5 +28,6 @@ Design: `team-hq/decisions/0004-chat-without-a-model.md`. New `src/client/chat-l
 later. No UI in this ticket.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added pure `src/client/chat-logic.ts` (`parseIntent`, `answer`, matching by name/project/id prefix, ambiguity lists candidates, message intents `needsConfirm`, tokens only, no DOM/network) plus 20 tests in `tests/chat-logic.test.ts` and architecture.md entries. Typecheck and 309 tests pass. PR: https://github.com/chrisfaber95/claude-dashboard/pull/30. Reviewer: check the phrasing regexes (e.g. attention vs status precedence) and that `ack`/`open` verbs do not swallow other questions.
 
 ## Review (reviewer writes, one line per round)
