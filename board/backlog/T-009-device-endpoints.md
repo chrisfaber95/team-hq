@@ -23,7 +23,9 @@ The PC can create, list and revoke devices through API endpoints that only a loo
 
 ## Notes (lead)
 Design: `team-hq/decisions/0003-device-tokens.md`. Follow the T-006 endpoints in `src/server/server.ts`. `features` is
-built per request, so the flag depends on the caller. Audit device create and revoke via `audit()` (name and id,
+built per request, so the flag depends on the caller. Revoke returns `{ found, persisted }` (T-008 round 1): answer an
+error when `persisted` is false. `create()` doesn't report a failed save yet; make it, and answer an error instead of a
+token that won't survive a restart. Audit device create and revoke via `audit()` (name and id,
 never the token). Run `security-auditor` before the PR.
 
 ## Hand-off (engineer writes, max 300 tokens)
