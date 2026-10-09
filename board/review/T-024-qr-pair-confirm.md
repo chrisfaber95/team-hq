@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: 38
 ---
 ## Goal
 Scanning a device's QR code on a real phone signs that phone in. Today it lands on the login page with nothing filled
@@ -33,5 +33,10 @@ T-020's end-to-end test passed because a test client neither prefetches nor appl
 existing CSP (external script, like `login.js`). Don't touch `claude-cli.ts`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Changed: `GET /pair?c=` no longer spends the code. It serves `pair.html` ("Sign in as <device>?", name escaped server-side via new `auth.peekPairing()`, or the fixed expired/used text) plus external `pair.js`. The button does a same-origin `POST /pair` (form body `c=`): good code spent, 200 + cookie, then `pair.js` does `location.replace('/')`; bad 401, limited 429; rate limit and signin alert kept. TTL, single use, cookie attributes and QR content unchanged. Docs, build and dev scripts updated.
+Cause: both are fixed, and I can't tell which one hit the phone (not tried on a real phone or browser; `pair.ts` is only built, not run).
+Checks: typecheck, 344 tests and build pass. security-auditor: no critical, high or medium findings.
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/38 (CI was not green yet when it opened).
+Reviewer: the POST /pair Origin path, the unrate-limited GET peek (deliberate), and the bad-code page briefly showing "Sign in as" until `pair.js` removes it. The commit trailer says plain "Claude" (memory rule).
 
 ## Review (reviewer writes, one line per round)
