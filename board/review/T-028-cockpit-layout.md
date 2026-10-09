@@ -7,9 +7,9 @@ depends_on: [T-027]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/44
 ---
 ## Goal
 The dashboard reads as a dense, status-first cockpit that fills any screen, from a phone to an ultrawide monitor,
@@ -30,6 +30,11 @@ Brief F-004. Today: `main { max-width: 1200px }` in `src/client/style.scss:101` 
 stacked in `index.html`. Skin partials `_skin-copilot.scss` / `_skin-root.scss` may need layout-only fixes; don't
 change their tokens or artwork. Wall mode (big-type status-only display) is out of scope.
 
-## Hand-off (engineer writes, max 300 tokens)
-
 ## Review (reviewer writes, one line per round)
+round 1: approve
+
+## Hand-off
+Full-width cockpit grid: max-width removed, compact header, alerts/limits first. Needs-you count and highest limit % in large type; alerts tile highlighted (`has-alerts`) only when non-empty. Skin SCSS untouched. PR: https://github.com/chrisfaber95/claude-dashboard/pull/44
+Breakpoints (min-width): <1000px one column (alerts, limits, sessions, core, popup-bar); >=1000px two columns 340-400px | 1fr (left alerts, limits, core, popup-bar; sessions right); >=2200px three columns (alerts/core/bar | sessions | limits). Gauges auto-fit min 150px.
+Checks: typecheck, 365 tests, build pass. Playwright at 390x844, 820x1180, 1180x820, 1280x720, 1920x1080, 3440x1440 in all 3 skins: no horizontal scroll, alerts and limits tops in view.
+Reviewer look at: at 1280x720 limits bottom is 721px (Co-pilot) and 748px (Root), so last gauge px are below the fold; Classic dark and phone sessions-table scroll not inspected. Branch is 1 commit behind main.
