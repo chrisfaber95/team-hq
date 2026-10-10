@@ -18,7 +18,7 @@ The remaining client features and skins read like senior code, and the structure
 - [ ] Names, ternaries, constants and doc comments per decision 0006 in chat, devices, audit, alerts, popups,
       core/mood, team, launch, settings, login, pairing and `skins/`
 - [ ] Behaviour unchanged: same markup, classes and endpoints; existing tests pass with only import and name updates
-- [ ] `tests/code-structure.test.ts` allowlist is empty and the test still passes; `LEGACY_FILES` in `eslint.config.js` is empty and `npm run lint` passes
+- [ ] No `src/client` entries are left in the `tests/code-structure.test.ts` allowlists or in `LEGACY_FILES` (server and tests entries stay: T-042, T-047, T-048); `npm run lint` passes
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)
@@ -28,3 +28,9 @@ The remaining client features and skins read like senior code, and the structure
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+
+## Blocked
+Acceptance 3 needs `LEGACY_FILES` empty and the structure allowlist empty, but those cover far more than this ticket's client list: with `LEGACY_FILES` emptied, `eslint src tests` reports 1038 errors in 71 files (client 161, server 362, tests 515), and `server/server.ts` and `server/transcripts/transcripts.ts` are still over 300 lines (OVERSIZED_ALLOWLIST). The ticket names only client areas, and the $3 budget cannot cover this. Question: split into client, server and tests tickets (and server.ts/transcripts.ts splits), or raise the scope and budget? Nothing was changed in the worktree.
+
+## Lead (2026-10-10)
+Split, not raised: acceptance 3 is now client-only. Server entries go with T-041/T-042, `tests/` with T-047/T-048; T-048 empties both lists. Re-run with `--rework`.
