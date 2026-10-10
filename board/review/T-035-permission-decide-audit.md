@@ -7,7 +7,7 @@ depends_on: [T-034, T-042]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: false            # reset 2026-10-10: user held the merge; set again after round 2
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/58
 ---
@@ -49,3 +49,4 @@ Reviewer: look at `ServerOptions.isLocalPeer` (test seam, constructor only, neve
 
 ## Review (reviewer writes, one line per round)
 round 1: approve - all 6 criteria met by the diff (answer route 404/409/400, guards, audit + /api/approvals, hook secret submit-only, hook copy in DATA_DIR, tests). CI `check` was still pending at review time (merge.sh must wait for green). Residual risk for the lead/user, not a blocker: a session can still POST /api/permissions/:id over loopback (forged Origin/X-Dashboard) as the engineer noted; needs a follow-up design decision.
+round 2: approve - new criterion met: POST /api/permissions/:id returns 403 (request stays pending) without a device session, for the PC device, or when the socket peer is this PC (isLocalPeer covers 127/8, ::1, mapped, own interface addresses, zone stripped; Host ignored); /api/approvals unchanged; isLocalPeer seam is constructor-only; tests cover forged loopback, minted device + forged Host, isLocalPeer. CI check + GitGuardian green. Still needs user_ok (label auth, currently false) before merge.sh.
