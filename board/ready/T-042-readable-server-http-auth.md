@@ -28,6 +28,8 @@ guards and per-feature routes, with every security rule intact.
 ## Notes (lead)
 - High risk: auth, LAN mode and `claude-cli.ts`. No logic change; if a check can't move cleanly, leave it and say so.
 - Needs `user_ok` to merge (NEEDS-YOU line).
+- Runs in parallel with T-047 (client tests), which also edits `LEGACY_FILES`: before handing off, merge
+  `origin/main` and resolve any `eslint.config.js` conflict (keep both sides' removals).
 
 ## Hand-off (engineer writes, max 300 tokens)
 

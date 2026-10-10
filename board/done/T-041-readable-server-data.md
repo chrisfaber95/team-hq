@@ -7,7 +7,7 @@ depends_on: [T-040]
 contracts: []
 labels: [auth]            # touched features/permissions (decision 0005 hook store) beyond the ticket scope
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/53
 ---
@@ -32,5 +32,8 @@ like senior code: full-word names, small functions, no file over 300 lines.
 ## Hand-off (engineer writes, max 300 tokens)
 PR #53: https://github.com/chrisfaber95/claude-dashboard/pull/53. `src/server/transcripts/*` and `src/server/features/*` renamed to full words, named constants, doc comments, no nested ternaries, functions under 50 lines. `transcripts.ts` split into `transcript-scanner.ts` (git mv), `transcript-aggregates.ts`, `subagent-index.ts`; `transcripts.ts` stays as a thin facade so imports are unchanged. `createPermissionStore` split into helpers. Entries removed from LEGACY_FILES and OVERSIZED_ALLOWLIST. Local: typecheck, lint (0 errors), 395 tests, build all pass. CI `check` was pending at hand-off. Reviewer: check behaviour is unchanged in `limits.ts` (token only read in `pollLive`) and `permissions.ts`; facade re-export is deliberate. Note: `features/permissions` was not named in the ticket but is in the folder and was in LEGACY_FILES, so it is included.
 
+Rework: merged `origin/main` (T-043/T-044) into `team/T-041` (merge commit e954488, pushed to PR #53, not merged). One conflict: `OVERSIZED_ALLOWLIST` in `tests/code-structure.test.ts`, resolved as the union of removals (main's three client entries and this branch's `transcripts.ts`; only `server/server.ts` remains). `eslint.config.js` auto-merged; all remaining LEGACY_FILES exist. Main touched nothing under `src/server`. Local on merged tree: typecheck, lint, 407/407 tests pass. CI `check` green at e954488. No other changes.
+
 ## Review (reviewer writes, one line per round)
 round 1: approve
+round 2: approve
