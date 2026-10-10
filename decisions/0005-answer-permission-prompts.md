@@ -38,3 +38,17 @@ behaviour and prove it in the first build ticket.
   user; T-031 (continue ended terminal sessions) already shipped on its own.
 - The request text is untrusted (it comes from the session); it is shown as text (`esc()`), never as HTML.
 - Revisit "any signed-in device may approve" if the dashboard is ever reachable from outside the LAN (brief).
+
+## Amendment 2026-10-10 (the user, during T-035)
+
+T-035 (PR #58) closed answering with the hook secret, but the engineer found that a session on this PC could still
+answer its own request: it reads pending ids from `/api/state`, and loopback counts as "this PC" once the browser
+headers (Origin, `X-Dashboard`) are faked. The user chose:
+
+- **Only paired devices may answer.** `POST /api/permissions/:id` refuses a request from loopback (this PC) even when
+  the headers look right; it needs a paired device's token. You answer from a phone or tablet; at the PC itself the
+  terminal (`claude attach`) is the way. This replaces "any signed-in device" above for answering; reading
+  `/api/approvals` keeps the old access.
+- **Accepted risk:** a session running as the same Windows user can still change the hook copy in `DATA_DIR` (or
+  anything else the user owns). Closing that would mean running the dashboard as a separate Windows user, which is
+  not planned. No hash check.
