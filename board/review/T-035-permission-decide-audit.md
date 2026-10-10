@@ -36,5 +36,7 @@ is T-036. The approve/deny store is `features/permissions/permissions.ts`; route
 guards in `http/guards.ts` since T-042. Follow `docs/code-style.md`: no new `LEGACY_FILES` or allowlist entries.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #58 (https://github.com/chrisfaber95/claude-dashboard/pull/58). Added POST /api/permissions/:id (allow|deny, 404/409, same guards as the other controls), GET /api/approvals (latest 50) and audit action `approval` for allow/deny/expired. Removed the hook-secret answer/list endpoints and scripts/answer-permission.mjs; the hook script is copied to DATA_DIR at start and the settings point at the copy. typecheck, lint, 411 tests pass; security-auditor pass done.
+Reviewer: a session can still POST /api/permissions/:id over loopback (loopback = this PC, forged Origin/X-Dashboard) after reading ids from /api/state; closing that needs a design decision (non-PC devices only, or a browser-only secret). DATA_DIR files are writable by a same-user session. Commit trailer uses plain "Claude" per user preference.
 
 ## Review (reviewer writes, one line per round)
