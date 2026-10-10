@@ -7,7 +7,7 @@ depends_on: [T-040]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: 54
 ---
@@ -34,3 +34,4 @@ PR #54 https://github.com/chrisfaber95/claude-dashboard/pull/54 (commit fa15e12)
 Reviewer: check markup/classes/ids unchanged and esc()/textContent tooltips intact; not checked in a browser per skin; no new tests for the new logic files.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - behaviour preserved (markup, classes, ids, esc(), textContent tooltips); typecheck, lint, 395 tests pass locally on fa15e12, CI still running at review time (merge.sh checks it); not browser-checked per skin; new *.logic.ts files have no own unit tests (follow-up, not blocking)

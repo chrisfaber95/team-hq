@@ -5,7 +5,7 @@ owner: eng-claude-dashboard-T-044
 brief:                    # none: decision 0006
 depends_on: [T-043]
 contracts: []
-labels: [low-risk]
+labels: [auth]            # renames login, pairing and devices client code
 budget_usd: 3
 review_rounds: 0
 user_ok: false
@@ -22,6 +22,7 @@ The remaining client features and skins read like senior code, and the structure
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)
+- From T-043 review: the new `*.logic.ts` files from T-043 (projects, sessions, usage, limits, messages, tooltip) have no own unit tests; add them here alongside this ticket's features.
 - Last cleanup ticket; F-005's UI (T-036) builds on this layout afterwards.
 
 ## Hand-off (engineer writes, max 300 tokens)
