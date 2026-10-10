@@ -7,7 +7,7 @@ depends_on: [T-035, T-033, T-044]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/59
 ---
@@ -46,3 +46,4 @@ DOM/SCSS untested; buttons stay busy until a state push drops the request. `orig
 LEGACY_FILES removals are not merged yet; CI not checked.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
