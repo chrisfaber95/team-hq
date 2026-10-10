@@ -62,3 +62,4 @@ Not a review finding: T-038 merged the folder-map guard (`tests/code-structure.t
 
 ## Lead (2026-10-10)
 The user deferred the allow/deny proof to T-045 (backlog) on 2026-10-09 and explicitly told the lead to merge PR #46 through the merge agent on 2026-10-10. user_ok: true was set at the user's instruction.
+Proof: the user reports the allow/deny proof run is done (2026-10-10), with the T-034 hand-off steps on the PR branch. T-045 stays in backlog for the end-to-end check through the dashboard buttons (T-036).
