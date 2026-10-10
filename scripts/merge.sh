@@ -46,14 +46,16 @@ wt=/n/worktrees/$repo-$id-merge
 
 echo "== $(date -Is) merge $id PR #$pr ($verdict)" >> "$log"
 cd "$wt"
+# No MCP servers (the repo's Playwright server can keep claude -p from exiting) and a time cap.
 set +e
-claude -p "Merge PR #$pr (ticket $id). The team reviewer approved it ('$verdict') and every CI check is green; \
+timeout --kill-after=60 15m claude -p "Merge PR #$pr (ticket $id). The team reviewer approved it ('$verdict') and every CI check is green; \
 both gates were verified before this run.$userok Authorized: merge it using the repo's merge convention and delete its \
 remote branch. Do nothing else: no new commits, no release. Report the merge commit." \
   --agent git-workflow-manager \
   --name "merge-$id" \
   --model sonnet \
   --permission-mode auto \
+  --strict-mcp-config \
   --max-turns 20 \
   --max-budget-usd 1 \
   --settings "$hq/.claude/merger.settings.json" \

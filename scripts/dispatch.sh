@@ -61,12 +61,16 @@ When done: open or update the PR, fill the hand-off, move the ticket to review, 
 
 echo "== $(date -Is) dispatch $id ($repo${mode:+ $mode}) in $wt" >> "$log"
 cd "$wt"
+# No MCP servers: the repo's .mcp.json (Playwright) kept a finished run from exiting (T-036).
+# The time cap ends any other hang as a failure instead of an open process.
+minutes=$(cfg engineer.maxMinutes)
 set +e
-claude -p "$prompt" \
+timeout --kill-after=60 "${minutes}m" claude -p "$prompt" \
   --name "eng-$repo-$id" \
   --model "$(cfg engineer.model)" \
   --add-dir "$hq" \
   --permission-mode auto \
+  --strict-mcp-config \
   --max-turns "${ENG_MAX_TURNS:-$(cfg engineer.maxTurns)}" \
   --max-budget-usd "$(cfg engineer.maxBudgetUsd)" \
   --settings "$hq/.claude/engineer.settings.json" \
@@ -76,6 +80,7 @@ set -e
 
 # One summary line per run: turns, cost, outcome (subtype is "success" or an error_* reason).
 summary=$(node -e "try{const r=require(process.argv[1]);console.log(r.subtype+' turns='+r.num_turns+' cost=\$'+(r.total_cost_usd??0).toFixed(2)+(r.is_error?' error':''))}catch{console.log('no-json-result')}" "$hq/logs/$id.json")
+case $rc in 124|137) summary="timed out after ${minutes}m, $summary" ;; esac
 echo "== $(date -Is) exit=$rc $summary" >> "$log"
 echo "$id: exit=$rc $summary"
 

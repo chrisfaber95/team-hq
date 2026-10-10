@@ -20,13 +20,16 @@ repo_dir=$(cfg "repos['$repo']")
 
 echo "== $(date -Is) review $id PR #$pr" >> "$log"
 cd "$hq"
+# No MCP servers and a time cap, as in dispatch.sh.
+minutes=$(cfg reviewer.maxMinutes)
 set +e
-claude -p "Review ticket $id, PR #$pr in repo $repo. Use the review-pr skill (N:/team-hq/.claude/skills/review-pr/SKILL.md)." \
+timeout --kill-after=60 "${minutes}m" claude -p "Review ticket $id, PR #$pr in repo $repo. Use the review-pr skill (N:/team-hq/.claude/skills/review-pr/SKILL.md)." \
   --agent reviewer \
   --name "reviewer-$id" \
   --model "$(cfg reviewer.model)" \
   --add-dir "$repo_dir" \
   --permission-mode auto \
+  --strict-mcp-config \
   --max-turns "$(cfg reviewer.maxTurns)" \
   --max-budget-usd "$(cfg reviewer.maxBudgetUsd)" \
   --settings '{"crossSessionInbound":"accept"}' \
@@ -35,6 +38,7 @@ rc=$?
 set -e
 
 summary=$(node -e "try{const r=require(process.argv[1]);console.log(r.subtype+' turns='+r.num_turns+' cost=\$'+(r.total_cost_usd??0).toFixed(2)+(r.is_error?' error':''))}catch{console.log('no-json-result')}" "$hq/logs/$id.review.json")
+case $rc in 124|137) summary="timed out after ${minutes}m, $summary" ;; esac
 echo "== $(date -Is) review exit=$rc $summary" >> "$log"
 echo "$id review: exit=$rc $summary"
 

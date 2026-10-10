@@ -2,8 +2,8 @@
   "_note": "Starting guesses from the design doc. Replace with numbers from metrics/baseline.md after phase 0.",
   "maxParallel": 2,
   "messagesPerTicket": 3,
-  "engineer": { "model": "sonnet", "maxTurns": 60, "maxBudgetUsd": 3 },
-  "reviewer": { "model": "sonnet", "maxTurns": 25, "maxBudgetUsd": 1, "maxRounds": 2 },
+  "engineer": { "model": "sonnet", "maxTurns": 60, "maxBudgetUsd": 3, "maxMinutes": 45 },
+  "reviewer": { "model": "sonnet", "maxTurns": 25, "maxBudgetUsd": 1, "maxRounds": 2, "maxMinutes": 15 },
   "repos": {
     "claude-dashboard": "/n/Projects/Claude-dashboard"
   }
