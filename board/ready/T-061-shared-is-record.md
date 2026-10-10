@@ -22,6 +22,7 @@ There is one `isRecord` type guard for parsed JSON, shared by server and client,
 
 ## Notes (lead)
 - Three copies landed in one round: T-058 (`devices-file.ts:14`, narrows to `object`), T-055 and T-057. Check that callers of the `object` version still type-check with the `Record` version.
+- T-056 may have added a fourth copy or import; `git grep isRecord` finds them all.
 - `src/shared/` today holds only `types/`; put the guard in its own file next to it (e.g. `src/shared/guards.ts`) and say in `docs/code-style.md` that JSON guards live there. T-051 (client store) uses it too.
 
 ## Hand-off (engineer writes, max 300 tokens)
