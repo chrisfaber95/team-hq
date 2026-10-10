@@ -19,8 +19,11 @@ description: Turn a goal into one or more board tickets in team-hq (backlog or r
      and "New and changed code follows `docs/code-style.md`" (decision 0006).
    - **Notes**: pointers to files or decisions, not a design essay. For a new file, name the folder
      it belongs in (decision 0006 folder map).
-3. Size check: if it would plausibly take more than ~60 engineer turns or touches more than one
-   module, split it into several tickets linked by `depends_on`.
+3. Size check: one ticket is one module (one feature folder, e.g. `src/server/http/` or
+   `src/client/features/chat/`) and one kind of change (a split, a cleanup, a feature). If the Goal
+   names two folders or joins two changes with "and", split it into tickets linked by `depends_on`.
+   Engineers don't delegate implementation, so a ticket must fit one session's reading.
+   (T-042, "split `server.ts` and clean `http/`, `auth/`, `claude/`", should have been two.)
 4. Put it in `ready/` only if it is fully specified and its dependencies are done; otherwise `backlog/`.
 5. If it needs a contract change, a new dependency or touches auth/secrets, add a line to
    `board/NEEDS-YOU.md` before it goes to `ready/`.

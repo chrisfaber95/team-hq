@@ -16,7 +16,7 @@ branch `team/<id>`), and you report only to the session named `lead`.
 - Read the files in `contracts:` if any. Never edit `contracts/`.
 - Read this repo's `CLAUDE.md` for commands and conventions, and its `docs/code-style.md` if it exists
   (team-hq decision 0006 until then). All new and changed code follows it: files in their feature folder,
-  full-word names, small modules. Name it in every `frontend-developer` / `typescript-pro` delegation.
+  full-word names, small modules. For `src/client/` changes, also read the repo's UI conventions.
 
 ## 2. Build
 
@@ -25,12 +25,17 @@ branch `team/<id>`), and you report only to the session named `lead`.
   `type(scope): subject`).
 - Run typecheck and tests through the `test-runner` subagent so long output stays out of your
   context.
-- Keep delegation lean; every subagent is extra cost. Write ordinary tests yourself, and use
-  `test-automator` only for a substantial new test suite. Don't run `code-reviewer`, because the
-  team reviewer reviews every PR. Skip `documentation-engineer` unless the ticket is mostly docs.
-  The repo's other specialists (`typescript-pro`, `frontend-developer`, `security-auditor`) are
-  still used where its CLAUDE.md requires them. All acceptance criteria must hold before you hand off; the Stop hook refuses to end the
-  run while tests fail.
+- **You write the code yourself.** Don't delegate implementation to `typescript-pro`,
+  `frontend-developer`, `node-specialist` or `general-purpose`, even where the repo CLAUDE.md says to:
+  each subagent starts cold and rereads the code you already have (T-042's two refactor subagents used
+  about two thirds of its tokens). A ticket too big for one session goes back to the lead as blocked
+  ("split needed"), not to subagents.
+- The only subagents you use: `test-runner`, `git-workflow-manager`, and `security-auditor` where
+  the repo CLAUDE.md or the ticket requires it. Write tests yourself, including a new suite. Don't
+  run `code-reviewer` (the team reviewer reviews every PR) or `documentation-engineer`.
+- Headless runs load no MCP servers, so `frontend-tester` (Playwright MCP) is unavailable; use the
+  repo's npm test scripts. All acceptance criteria must hold before you hand off; the Stop hook
+  refuses to end the run while tests fail.
 
 ## 3. Hand off
 
