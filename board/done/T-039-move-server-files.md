@@ -7,7 +7,7 @@ depends_on: [T-038, T-034, T-037, T-046]
 contracts: []
 labels: [auth]            # moves auth.ts, devices.ts, claude-cli.ts, server.ts
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: 51
 ---
@@ -37,3 +37,4 @@ Checks: typecheck, lint, test (395 pass) green; build OK; started the server and
 Reviewer: check the diff shows renames; auth, devices, tls, claude-cli and server.ts only have import edits; client files only had the types import path changed. Left as is: `src/server/http/` (nothing fits it yet) and `tests/helpers.ts` / `fake-claude.mjs` (not moved). The types split is a verbatim copy. PR title is `T-039: ...` per the engineer skill, not strictly Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
