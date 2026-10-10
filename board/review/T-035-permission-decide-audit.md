@@ -8,7 +8,7 @@ contracts: []
 labels: [auth]
 budget_usd: 3
 review_rounds: 2
-user_ok: false            # reset 2026-10-10: user held the merge; set again after round 2
+user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/58
 ---
 ## Goal
