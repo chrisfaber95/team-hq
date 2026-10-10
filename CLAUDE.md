@@ -25,8 +25,8 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
 `backlog/` → `ready/` → `in-progress/` → `review/` → `done/`, or `blocked/` from any stage.
 
 - Write tickets with the `write-ticket` skill; format is `board/TEMPLATE.md`.
-- A ticket is `ready` only when it has testable acceptance criteria, a `repo`, and is small
-  enough for 60 turns. Split anything bigger.
+- A ticket is `ready` only when it has testable acceptance criteria, a `repo`, and covers one
+  module and one kind of change (see `write-ticket`). Split anything bigger.
 - Never put two `in-progress` tickets on the same module of one repo.
 - `budgets.json` holds the caps; `scripts/dispatch.sh` enforces them.
 - Engineers and the reviewer move ticket files with plain `mv`; they never commit here.

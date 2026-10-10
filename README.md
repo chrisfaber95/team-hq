@@ -126,7 +126,7 @@ bash scripts/dispatch.sh T-012 claude-dashboard --rework  # after "changes reque
 bash scripts/merge.sh    T-012 42                         # after "approved": gates, then git-workflow-manager merges
 ```
 
-- Caps from `budgets.json` (60 turns / $3 engineer, 2 parallel). On a subscription the dollar cap is a
+- Caps from `budgets.json` (60 turns / $3 / 45 min engineer, 2 parallel). On a subscription the dollar cap is a
   usage proxy, not a bill.
 - Any run that hits a cap or fails moves its ticket to `blocked/` and writes `NEEDS-YOU.md`.
 - Engineers run with `.claude/engineer.settings.json`: deny rules block pushes to `main`,
