@@ -26,6 +26,7 @@ The client shell (`app/`), `shared/` and the largest features (`building`, `cont
 - [ ] `npm run typecheck` and `npm test` pass
 
 ## Notes (lead)
+- From T-040 review: `docs/architecture.md` still says `until()` lives in `util.ts`; it is now `src/client/shared/time.ts`. Fix that line here.
 - Client lane: can run in parallel with T-041/T-042 (server lane). Keep `src/shared/types` field names unchanged.
 
 ## Hand-off (engineer writes, max 300 tokens)
