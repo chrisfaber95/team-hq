@@ -34,9 +34,11 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
   typed store, no router).
 - Hand-off: say whether the copied skills show up in your own skill list after copying (tells the lead whether headless runs load repo skills; T-050 checks again).
 - Clone into a temporary directory outside the worktree and copy the four folders in; don't run anything
-  from the clone.
+  from the clone. Use exactly `git clone https://github.com/vuejs-ai/skills <tmp-dir>` and
+  `git -C <tmp-dir> checkout c9d355ff23f654309dd02006be671859df0a134c`: `engineer.settings.json` allows only these two
+  (user's choice, 2026-10-10). Anything else the classifier blocks: move the ticket to blocked/, don't work around it.
 
-- 2026-10-10 blocked (lead): runs 1 and 2 both stopped at the clone; the classifier denies `git clone` of the source repo. Waiting for the user (NEEDS-YOU).
+- 2026-10-10 blocked (lead): runs 1 and 2 both stopped at the clone; the classifier denies `git clone` of the source repo. User chose to allow the clone in `engineer.settings.json` (run 3).
 
 ## Hand-off (engineer writes, max 300 tokens)
 
