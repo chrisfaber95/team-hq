@@ -25,6 +25,9 @@ like senior code: full-word names, small functions, no file over 300 lines.
 
 ## Notes (lead)
 - Not in scope: `http/`, `auth/`, `claude/` (T-042). The OAuth token rules for `limits.ts` in repo `CLAUDE.md` stay.
+- Rework (lead, 2026-10-10): round 1 approved, but PR #53 conflicts with main after T-043/T-044. Merge `origin/main`
+  into the branch, resolve the conflicts (expect `LEGACY_FILES` and the structure allowlist; keep both sides'
+  removals), re-run typecheck, lint and tests, push. No other changes. Say in the hand-off what conflicted.
 
 ## Hand-off (engineer writes, max 300 tokens)
 PR #53: https://github.com/chrisfaber95/claude-dashboard/pull/53. `src/server/transcripts/*` and `src/server/features/*` renamed to full words, named constants, doc comments, no nested ternaries, functions under 50 lines. `transcripts.ts` split into `transcript-scanner.ts` (git mv), `transcript-aggregates.ts`, `subagent-index.ts`; `transcripts.ts` stays as a thin facade so imports are unchanged. `createPermissionStore` split into helpers. Entries removed from LEGACY_FILES and OVERSIZED_ALLOWLIST. Local: typecheck, lint (0 errors), 395 tests, build all pass. CI `check` was pending at hand-off. Reviewer: check behaviour is unchanged in `limits.ts` (token only read in `pollLive`) and `permissions.ts`; facade re-export is deliberate. Note: `features/permissions` was not named in the ticket but is in the folder and was in LEGACY_FILES, so it is included.

@@ -25,6 +25,8 @@ The client tests and shared test helpers read like the code they test, so the re
 ## Notes (lead)
 Split from T-044 (blocked: `LEGACY_FILES` held 1038 errors, 515 of them in `tests/`). `max-lines-per-function` is
 off for `tests/` (T-046). Server tests are T-048.
+Runs in parallel with T-041 (server), which also edits `LEGACY_FILES`: before handing off, merge `origin/main` and
+resolve any `eslint.config.js` conflict (keep both sides' removals).
 
 ## Hand-off (engineer writes, max 300 tokens)
 
