@@ -8,7 +8,7 @@ contracts: []
 labels: [auth]            # moves auth.ts, devices.ts, claude-cli.ts, server.ts
 budget_usd: 3
 review_rounds: 0
-user_ok: false
+user_ok: true
 pr:
 ---
 ## Goal

@@ -8,7 +8,7 @@ contracts: []
 labels: [deps]            # eslint, @eslint/js, typescript-eslint (devDependencies)
 budget_usd: 3
 review_rounds: 0
-user_ok: false
+user_ok: true
 pr:
 ---
 ## Goal

@@ -8,7 +8,7 @@ contracts: []
 labels: [auth]            # moves login.ts, pair.ts
 budget_usd: 3
 review_rounds: 0
-user_ok: false
+user_ok: true
 pr:
 ---
 ## Goal
