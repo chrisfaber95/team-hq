@@ -8,8 +8,8 @@ contracts: []
 labels: [auth]
 budget_usd: 3
 review_rounds: 0
-user_ok: false
-pr:
+user_ok: true
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/59
 ---
 ## Goal
 The owner sees what a waiting session asks permission for and approves or denies it from the dashboard, and can look
@@ -36,5 +36,13 @@ Follow `docs/code-style.md`: no new `LEGACY_FILES` or allowlist entries. Runs in
 which empties `LEGACY_FILES`: merge `origin/main` before handing off and keep both sides' removals.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #59 (https://github.com/chrisfaber95/claude-dashboard/pull/59), client only, no server/type changes. New
+`src/client/features/permissions/` (logic, view, scss): pending requests (tool + wrapped escaped text) with
+Approve/Deny in the live-sessions block and the needs-you list, via `POST /api/permissions/:id`, fixed error
+messages; on the PC (`manageDevices`) no buttons and the fixed hint; new "Approvals" popup from `GET /api/approvals`.
+Busy/error state is kept outside the DOM so `patchHtml` pushes don't reset it. Typecheck, lint, test (423) and build
+green; security-auditor: no high findings. Look at: not run in a real browser (focus stability, styling, Esc);
+DOM/SCSS untested; buttons stay busy until a state push drops the request. `origin/main` had no new commits, so T-048's
+LEGACY_FILES removals are not merged yet; CI not checked.
 
 ## Review (reviewer writes, one line per round)
