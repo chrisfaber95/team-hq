@@ -61,6 +61,12 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-043 | #54, +1788/-1198 | 1 | $1.72 | 1 ($0.62) | 1 | yes |
 | T-044 | #55, +751/-538 | 2 (1 blocked: scope split) | $2.01 | 1 ($0.21) | 2 | yes; auth, user_ok |
 | T-046 | #50, +1557/-112 | 1 | $0.51 | 1 ($0.17) | 1 | yes; deps, user_ok |
+| T-041 | #53, merged 50d28f5 | 2 (rework: merge main) | $1.66 | 2 ($0.55) | 2 | yes; auth, user_ok |
+| T-047 | #56, +295/-292 | 1 | $0.90 | 1 ($0.14) | 1 | yes |
+| T-042 | #57, +1452/-826 | 1 | $2.27 | 1 ($0.28) | 1 | yes; auth, user_ok |
+| T-035 | #58, +358/-124 | 2 (user held: loopback gap) | $2.31 | 2 ($0.27) | 2 | yes; auth, user_ok after rework |
+| T-036 | #59, +429/-8 | 1 (run hung after hand-off, stopped; cost not logged) | - | 1 ($0.17) | 1 | yes; auth, user_ok |
+| T-048 | #60, +2289/-2209 | 1 | $1.46 | 1 ($0.16) | 1 | yes; relabelled auth, user_ok |
 
 # Same-method comparison (transcript pricing)
 
