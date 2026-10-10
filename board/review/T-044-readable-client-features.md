@@ -8,7 +8,7 @@ contracts: []
 labels: [auth]            # renames login, pairing and devices client code
 budget_usd: 3
 review_rounds: 1
-user_ok: false
+user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/55
 ---
 ## Goal

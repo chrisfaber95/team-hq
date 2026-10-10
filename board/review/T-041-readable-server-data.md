@@ -8,7 +8,7 @@ contracts: []
 labels: [auth]            # touched features/permissions (decision 0005 hook store) beyond the ticket scope
 budget_usd: 3
 review_rounds: 1
-user_ok: false
+user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/53
 ---
 ## Goal
