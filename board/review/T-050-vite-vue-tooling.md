@@ -7,7 +7,7 @@ depends_on: [T-049, T-059, T-060]
 contracts: []
 labels: [deps]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved the Vue/Vite dependencies, 2026-10-10
 pr: 68
 ---
@@ -38,3 +38,4 @@ PR #68 (https://github.com/chrisfaber95/claude-dashboard/pull/68). Vite 8 builds
 Reviewer: no browser run was possible, so no-CSP-violation is by construction (guards.ts untouched). Expected Vite warnings: `/fonts/*` unresolved, `/boot.js` not bundled. Commit trailer names Sonnet 5.5 (session attribution), memory rule prefers plain Claude; PR title uses the T-050 prefix, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met; typecheck and both test runners pass locally in the worktree (CI `check` was still pending when reviewed, merge.sh must see it green); guards.ts untouched, login.js/pair.js are import-free so no hashed chunk sits behind login. Lead decision still open: `<template src>` is not type-checked by vue-tsc (documented). No browser run, so CSP is by construction.

@@ -17,7 +17,7 @@ The limits panel is the first Vue component and the pattern every later panel co
 ## Acceptance
 - [ ] The limits section renders from a `features/limits/` Vue component fed by the T-051 store, with the same markup, classes and live updates as today (no flicker; skins Classic, Co-pilot and Root unchanged)
 - [ ] `limits.view.ts` and its `renderLimits` call in `app.ts` are deleted; `limits.logic.ts` keeps its `node:test` tests
-- [ ] The template is normally indented HTML (a `<template src>` file if T-050 proved it is type-checked, otherwise inside the `.vue` file); no `v-html`, no `any`, `as` (except `as const`) or `!`
+- [ ] The template is normally indented HTML inside the `.vue` file (`vue-tsc` does not check `<template src>`, T-050; user agreed 2026-10-10); no `v-html`, no `any`, `as` (except `as const`) or `!`
 - [ ] `docs/code-style.md` gets a short "Vue panel" section naming this panel as the example
 - [ ] A Vitest + `@vue/test-utils` component test in `tests/client/features/limits/` covers the panel rendering a state and updating on the next push
 - [ ] `npm run typecheck`, `npm run lint` and `npm test` pass; new behavior has a test; new and changed code follows `docs/code-style.md` (decision 0006)
