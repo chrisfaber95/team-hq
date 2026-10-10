@@ -3,7 +3,7 @@ id: T-050
 repo: claude-dashboard
 owner: eng-claude-dashboard
 brief:                    # none: decision 0007
-depends_on: [T-049]
+depends_on: [T-049, T-059]
 contracts: []
 labels: [deps]
 budget_usd: 3

@@ -17,6 +17,9 @@ branch `team/<id>`), and you report only to the session named `lead`.
 - Read this repo's `CLAUDE.md` for commands and conventions, and its `docs/code-style.md` if it exists
   (team-hq decision 0006 until then). All new and changed code follows it: files in their feature folder,
   full-word names, small modules. For `src/client/` changes, also read the repo's UI conventions.
+- For `.vue` files or other Vue work, load the repo's `vue-best-practices` skill yourself (component tests:
+  `vue-testing-best-practices`; a Vue runtime warning: `vue-debug-guides`). It is a skill, not a subagent:
+  it loads into your own context. Where it disagrees with decision 0007 or the repo docs, those win.
 
 ## 2. Build
 
