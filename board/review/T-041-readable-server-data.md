@@ -5,11 +5,11 @@ owner: eng-claude-dashboard-T-041
 brief:                    # none: decision 0006
 depends_on: [T-040]
 contracts: []
-labels: [low-risk]
+labels: [auth]            # touched features/permissions (decision 0005 hook store) beyond the ticket scope
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/53
 ---
 ## Goal
 The server's data side (`transcripts/` and `features/`: alerts, audit-log, team, limits, settings, launch) reads
@@ -27,5 +27,6 @@ like senior code: full-word names, small functions, no file over 300 lines.
 - Not in scope: `http/`, `auth/`, `claude/` (T-042). The OAuth token rules for `limits.ts` in repo `CLAUDE.md` stay.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #53: https://github.com/chrisfaber95/claude-dashboard/pull/53. `src/server/transcripts/*` and `src/server/features/*` renamed to full words, named constants, doc comments, no nested ternaries, functions under 50 lines. `transcripts.ts` split into `transcript-scanner.ts` (git mv), `transcript-aggregates.ts`, `subagent-index.ts`; `transcripts.ts` stays as a thin facade so imports are unchanged. `createPermissionStore` split into helpers. Entries removed from LEGACY_FILES and OVERSIZED_ALLOWLIST. Local: typecheck, lint (0 errors), 395 tests, build all pass. CI `check` was pending at hand-off. Reviewer: check behaviour is unchanged in `limits.ts` (token only read in `pollLive`) and `permissions.ts`; facade re-export is deliberate. Note: `features/permissions` was not named in the ticket but is in the folder and was in LEGACY_FILES, so it is included.
 
 ## Review (reviewer writes, one line per round)
