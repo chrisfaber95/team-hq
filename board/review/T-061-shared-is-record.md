@@ -9,7 +9,7 @@ labels: [auth]            # touches auth/devices-file.ts and limits.ts imports; 
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/69
 ---
 ## Goal
 There is one `isRecord` type guard for parsed JSON, shared by server and client, instead of a copy per module.
@@ -26,5 +26,8 @@ There is one `isRecord` type guard for parsed JSON, shared by server and client,
 - `src/shared/` today holds only `types/`; put the guard in its own file next to it (e.g. `src/shared/guards.ts`) and say in `docs/code-style.md` that JSON guards live there. T-051 (client store) uses it too.
 
 ## Hand-off (engineer writes, max 300 tokens)
+One `isRecord` now lives in `src/shared/guards.ts` with `tests/shared/guards.test.ts`. The copies in `devices-file.ts` and `transcript-line.ts` are gone; `features/json/json-guards.ts` is deleted; alerts, audit-log, limits, settings, subagent-index and transcript-view import the shared one. No fourth copy found by `git grep`; the client has none yet. `docs/code-style.md` and `docs/architecture.md` name the file.
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/69 (CI pending at hand-off). typecheck, lint, test pass (447 node:test, 2 Vitest); build not run.
+Reviewer: check devices-file.ts still narrows correctly with the Record version (it type-checks), and that no test expectation changed.
 
 ## Review (reviewer writes, one line per round)

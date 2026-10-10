@@ -44,3 +44,7 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-10 T-049: merge of PR #62 stopped (CI not green (1 of 2 checks not passing)). Log: logs/T-049.log (lead: CI was still pending, not failing; re-merging after green)
 - [x] 2026-10-10 T-059: work done and checked in `N:\worktrees\claude-dashboard-T-059` (uncommitted), but the classifier refuses the engineer's commit because it stages `.claude/skills/` ("Auto-Mode Bypass"). Commit, push `team/T-059` and open the PR yourself (commands from the lead), then tell the lead the PR number; review and merge go through the usual scripts. (user: committed, PR #65, 2026-10-10)
 - [x] 2026-10-10 T-050: `vue-tsc` does not type-check `<template src="./x.html">` files (the engineer probed it: a type error in the .html passes, the same error inline fails). Per decision 0007 templates therefore stay inside the `.vue` file, still as indented HTML. Telling you before any panel migrates (T-052 is first); say if you want something else. (user: HTML in the .vue file is fine, 2026-10-10)
+- [ ] 2026-10-10 T-053: engineer run stopped (exit 1, success turns=3 cost=$0.10 error). Log: logs/T-053.log
+- [ ] 2026-10-10 T-051: reviewer run for PR #70 stopped (exit 1, success turns=5 cost=$0.06 error). Log: logs/T-051.log
+- [ ] 2026-10-10 T-061: reviewer run for PR #69 stopped (exit 1, success turns=10 cost=$0.11 error). Log: logs/T-061.log
+- [ ] 2026-10-10 T-054: engineer run stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/T-054.log

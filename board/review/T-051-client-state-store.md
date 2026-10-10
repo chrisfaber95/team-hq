@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: 70
 ---
 ## Goal
 Vue components can read the live dashboard state: a typed reactive store in `src/client/app/` is updated by every state push, and a helper mounts a component into an existing page section.
@@ -26,5 +26,12 @@ Vue components can read the live dashboard state: a typed reactive store in `src
 - T-050 merged: Vite 8 + Vitest 5, a sample `.vue` component test shows the setup; templates go inside the `.vue` file (user, 2026-10-10). T-061 (shared `isRecord` in `src/shared/`) runs in parallel: if it has merged when you start, use it.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #70: https://github.com/chrisfaber95/claude-dashboard/pull/70
+
+Added `src/client/app/dashboard-state.ts` (shallowRef store, `isDashboardState` guard, `useDashboardState`, `selectDashboardState` computed), `mount-component.ts` (`mountComponent(component, elementId, props)`), and `state-stream.ts` now checks the push with the guard (replaces the `as DashboardState` cast) and stores it before `onState`; `app.ts` and `render()` untouched.
+
+Tests: Vitest spec feeds fake EventSource pushes, asserts a reading component re-renders, bad pushes keep old state, mount helper. typecheck, lint, node tests (445) and component tests (6) pass; build not run.
+
+Reviewer: the guard checks top-level shape only (nested fields trusted from server); local `isRecord` because T-061 had not landed; nothing reads the store yet (T-052).
 
 ## Review (reviewer writes, one line per round)
