@@ -7,7 +7,7 @@ depends_on: [T-043]
 contracts: []
 labels: [auth]            # renames login, pairing and devices client code
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: false
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/55
 ---
@@ -36,6 +36,7 @@ PR #55: https://github.com/chrisfaber95/claude-dashboard/pull/55
 - Leftover outside the repo: `N:\tmp-t044\` (two scratch .py files); deletion was blocked, please remove.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
 
 ## Blocked
 Acceptance 3 needs `LEGACY_FILES` empty and the structure allowlist empty, but those cover far more than this ticket's client list: with `LEGACY_FILES` emptied, `eslint src tests` reports 1038 errors in 71 files (client 161, server 362, tests 515), and `server/server.ts` and `server/transcripts/transcripts.ts` are still over 300 lines (OVERSIZED_ALLOWLIST). The ticket names only client areas, and the $3 budget cannot cover this. Question: split into client, server and tests tickets (and server.ts/transcripts.ts splits), or raise the scope and budget? Nothing was changed in the worktree.
