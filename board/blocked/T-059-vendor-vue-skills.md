@@ -36,6 +36,8 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
 - Clone into a temporary directory outside the worktree and copy the four folders in; don't run anything
   from the clone.
 
+- 2026-10-10 blocked (lead): runs 1 and 2 both stopped at the clone; the classifier denies `git clone` of the source repo. Waiting for the user (NEEDS-YOU).
+
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
