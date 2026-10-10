@@ -27,3 +27,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-10 T-034: merge of PR #46 stopped (exit 0, PR state OPEN). Log: logs/T-034.log (user: done, 2026-10-10)
 - [ ] 2026-10-10 T-041: the server rename also refactored `features/permissions` (the approve/deny store from T-034), which the ticket did not name; relabelled `auth`. Set `user_ok: true` to let it merge after review (reviewer checks behaviour is unchanged).
 - [ ] 2026-10-10 T-044: last client cleanup also renames the login, pairing and devices client code (behaviour unchanged); relabelled `auth`. Set `user_ok: true` to let it merge after review.
+- [ ] 2026-10-10 T-044: remove the engineer's scratch folder `N:\tmp-t044\` (two .py files, nothing to keep); its own delete was blocked and the lead does not delete it in its place.

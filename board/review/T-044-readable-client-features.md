@@ -9,7 +9,7 @@ labels: [auth]            # renames login, pairing and devices client code
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/55
 ---
 ## Goal
 The remaining client features and skins read like senior code, and the structure test runs with an empty allowlist.
@@ -26,6 +26,14 @@ The remaining client features and skins read like senior code, and the structure
 - Last cleanup ticket; F-005's UI (T-036) builds on this layout afterwards.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #55: https://github.com/chrisfaber95/claude-dashboard/pull/55
+- All client files (chat, devices, audit, alerts, popups, core/mood, team, launch, settings, login, pair, skins) pass the lint rules; every `src/client` entry is gone from `LEGACY_FILES` (the client structure allowlist was already empty). Server and tests entries stay.
+- Behaviour unchanged, no exports renamed. `initDevices` split; QR drawing moved to new `devices/devices-qr.view.ts` (keeps devices.view.ts under 300 lines). New `pickCoreMood` helper.
+- New unit tests for sessions, usage, limits, messages logic. projects and tooltip have no `*.logic.ts`, so nothing to test there.
+- One test edit: `chat.view.test.ts` asserts source text, `p.sessionId` -> `pending.sessionId`.
+- Local: typecheck, lint, test (407 pass), build ok. security-auditor: no findings. CI not checked, no browser check.
+- Review focus: login.view.ts, pair.view.ts, devices.view.ts, devices-qr.view.ts (label auth; the repo has no `auth` GitHub label).
+- Leftover outside the repo: `N:\tmp-t044\` (two scratch .py files); deletion was blocked, please remove.
 
 ## Review (reviewer writes, one line per round)
 
