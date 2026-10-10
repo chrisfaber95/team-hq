@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: false
-pr:
+pr: 54
 ---
 ## Goal
 The client shell (`app/`), `shared/` and the largest features (`building`, `controls`) read like senior code, with
@@ -30,5 +30,7 @@ The client shell (`app/`), `shared/` and the largest features (`building`, `cont
 - Client lane: can run in parallel with T-041/T-042 (server lane). Keep `src/shared/types` field names unchanged.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #54 https://github.com/chrisfaber95/claude-dashboard/pull/54 (commit fa15e12). app.ts is ~100 lines of wiring; projects, sessions, usage, limits, messages, tooltip got feature folders (view+logic); building and controls split into files <300 lines. Renames: fmt->formatTokenCount, tip->tooltip, $->elementById, colorOf->projectColor. Legacy lists shrunk; docs/architecture.md until() line fixed. typecheck, lint, test (395) pass, build ok.
+Reviewer: check markup/classes/ids unchanged and esc()/textContent tooltips intact; not checked in a browser per skin; no new tests for the new logic files.
 
 ## Review (reviewer writes, one line per round)
