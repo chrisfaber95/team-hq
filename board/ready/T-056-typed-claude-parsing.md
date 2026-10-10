@@ -21,6 +21,7 @@ pr:
 - [ ] `npm run typecheck`, `npm run lint` and `npm test` pass; new and changed code follows `docs/code-style.md` (decision 0006)
 
 ## Notes (lead)
+- T-055 merged: `TranscriptLine`, `parseTranscriptLine` and `isRecord` are in `src/server/transcripts/transcript-line.ts`. Import them; don't write another `isRecord` (T-061 merges the copies).
 - `claude-cli.ts` stays the only command runner (`execFile` with an argument array); no other change to how commands run. Run the `security-auditor` agent.
 
 ## Hand-off (engineer writes, max 300 tokens)

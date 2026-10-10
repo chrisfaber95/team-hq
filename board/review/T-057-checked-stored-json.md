@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]            # limits.ts reads the OAuth token
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: 66
 ---
@@ -28,3 +28,4 @@ JSON that `src/server/features/` reads from disk or the network is checked befor
 PR #66 https://github.com/chrisfaber95/claude-dashboard/pull/66. alerts, settings, audit-log and limits now parse to `unknown` and check with a new `isRecord` guard (`src/server/features/json/json-guards.ts`); no `any`, `as` or `!` left in those files. Corrupt or wrong-shaped files act as missing (tests added: new settings.test.ts, extra cases in limits and alerts). OAuth token handling in pollLive() unchanged. Checks: typecheck, lint, npm test (431 pass). security-auditor: no Critical/High/Medium; one Low (empty-string token is sent, fixed 401 message, same as before). Reviewer: look at limits.ts readCache/toWindows and that corrupt-file behaviour matches the old one.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
