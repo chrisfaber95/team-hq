@@ -7,9 +7,9 @@ depends_on: []
 contracts: []
 labels: [deps]            # upgrades typescript 5.9 -> 6.x
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/62
 ---
 ## Goal
 The repo type-checks with TypeScript 6, and VS Code uses the repo's TypeScript, so the editor and CI report the same errors.
@@ -26,5 +26,7 @@ The repo type-checks with TypeScript 6, and VS Code uses the repo's TypeScript, 
 - If `typescript-eslint` has no release that supports TS 6, stop and block the ticket with the versions you found.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #62: typescript ^5.9 -> ^6.0.3 (6.0.3); typescript-eslint 8.71.1 already supports <6.1.0, unchanged. Added .vscode/settings.json (typescript.tsdk). popups.view.ts: sectionHidden is `: boolean` and returns `.hidden === true` (no cast); dropped the redundant audit ternary. typecheck, lint, test (423 node:test, 2 vitest) pass locally; build not run. Reviewer: TS 7 exists on npm but typescript-eslint does not support it, so the range stays ^6.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve (diff meets all criteria; CI `check` was still running at review time, merge.sh must confirm it is green)
