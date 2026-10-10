@@ -9,7 +9,7 @@ labels: [deps]            # eslint, @eslint/js, typescript-eslint (devDependenci
 budget_usd: 3
 review_rounds: 0
 user_ok: true
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/50
 ---
 ## Goal
 `npm run lint` checks the readability rules of `docs/code-style.md` automatically, locally and in CI, so names and
@@ -39,5 +39,7 @@ sizes no longer depend on the reviewer noticing.
   its paths).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #50: https://github.com/chrisfaber95/claude-dashboard/pull/50. Added eslint, @eslint/js, typescript-eslint (no install scripts of their own; only the existing esbuild/@parcel/watcher ones), `eslint.config.js` with the readability rules as errors, `npm run lint`, CI step after typecheck. `LEGACY_FILES` (83 files) turns the rules off for today's offenders and may only shrink; `tests/lint-config.test.ts` shows a new `fmt` file fails. Docs and project-params updated. typecheck, lint, test (395) pass locally; CI not yet checked.
+Reviewer: `js.configs.recommended` is deliberately not enabled (readability only), so @eslint/js is installed but unused; check the LEGACY_FILES list and the naming-convention config; the PR title is not Conventional Commits (ticket-id format).
 
 ## Review (reviewer writes, one line per round)
