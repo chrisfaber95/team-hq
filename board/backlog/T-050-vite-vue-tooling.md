@@ -28,6 +28,7 @@ Vite builds the client (today's vanilla entries, minified and code-split) and th
 - Runtime-only Vue (templates compiled at build), so no `unsafe-eval`. The server serves `public/` as today; keep a `vite build --watch` model for `dev` (no Vite dev server, no proxy).
 - Vite writes hashed file names: the server's static handler must still serve them (T-053 adds caching and gzip, not this ticket).
 - `qrcode-generator` stays a normal import here; the devices panel ticket lazy-loads it.
+- T-060 pinned `vitest` to ^3 because vitest 5 needs vite 8, whose esbuild peer clashed with our `esbuild ^0.25`. Once esbuild is gone, put `vite` and `vitest` on matching current majors (same approved packages, no new ones).
 
 ## Hand-off (engineer writes, max 300 tokens)
 

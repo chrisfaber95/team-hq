@@ -20,8 +20,8 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
       `create-adaptable-composable`, copied unchanged (all files, including `references/` and `reference/`)
       from https://github.com/vuejs-ai/skills at commit `c9d355ff23f654309dd02006be671859df0a134c`; no
       other skills from that repo
-- [ ] `.claude/skills/VENDORED.md` names the source repo, the commit, the four skill folders and how to
-      update them, and the repo's MIT `LICENSE` is copied next to it as `LICENSE-vuejs-ai-skills`
+- [ ] `docs/vendored-skills.md` names the source repo, the commit, the four skill folders and how to
+      update them, and the repo's MIT `LICENSE` is in `.claude/skills/LICENSE-vuejs-ai-skills`
 - [ ] The repo `CLAUDE.md` says: for `.vue` work load `vue-best-practices` (component tests:
       `vue-testing-best-practices`; Vue runtime warnings: `vue-debug-guides`), and where a vendored skill
       disagrees with decision 0007, `docs/code-style.md` or `CLAUDE.md`, the repo docs win (e.g. no Pinia,
@@ -46,7 +46,9 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
 ## Review (reviewer writes, one line per round)
 
 ## Blocked
-**Lead, 2026-10-10, read first:** the copy is now allowed. After run 4 the user added allow rules to `engineer.settings.json` for exactly `cp -r /tmp/vuejs-skills-* .claude/skills/` (the four folders) and `cp /tmp/vuejs-skills-*/LICENSE .claude/skills/LICENSE-vuejs-ai-skills`. Run those two commands (exact form in `## Notes (lead)`, from the worktree root, not chained) with the clone at `/tmp/vuejs-skills-1Pnsud`, then finish the ticket. This is a restart of a blocked ticket, not a review round: there are no review points. Only if the copy is still denied, stop and quote the denial here.
+**Lead, 2026-10-10, read first:** run 6 proved the classifier refuses any write into `.claude/` ("Self-Modification"), allow rule or not; the `cp` rules are removed again. The user copies the four folders and `LICENSE-vuejs-ai-skills` into this worktree's `.claude/skills/` by hand. You then: check they match the source at `c9d355f` (`git diff --no-index` against a fresh clone, read-only), write `docs/vendored-skills.md` (moved out of `.claude/` for this reason), update `CLAUDE.md`, run the checks and hand off. Don't write anything under `.claude/` yourself. If the four folders are not there, stop and say so here.
+
+Run 6 (rework, Review still empty): clone at /tmp/vuejs-skills-1Pnsud verified at c9d355f. Ran exactly `cp -r /tmp/vuejs-skills-1Pnsud/skills/vue-best-practices /tmp/vuejs-skills-1Pnsud/skills/vue-debug-guides /tmp/vuejs-skills-1Pnsud/skills/vue-testing-best-practices /tmp/vuejs-skills-1Pnsud/skills/create-adaptable-composable .claude/skills/`; denied by the auto-mode classifier, reason "[Self-Modification]". Not worked around. The allow rule in `engineer.settings.json` evidently doesn't match the form (absolute source paths vs the `/tmp/vuejs-skills-*` glob) or the classifier overrides it. Needs the user to run the two copies themselves or fix the rule.
 
 Run 5 (rework): the `## Review` section is still empty, so there are no review points to address, and nothing has been copied (`.claude/skills/` has no vue folders; worktree clean). The classifier denial from run 4 stands and no new permission was given in `engineer.settings.json`, so I did not retry the copy. The clone is still at /tmp/vuejs-skills-1Pnsud (commit c9d355f).
 Run 4 (rework, Review section was empty): clone and checkout of c9d355f succeeded in /tmp/vuejs-skills-1Pnsud, but copying the four skill folders and LICENSE into `.claude/skills/` was denied by the auto-mode classifier ("Instruction Poisoning": untrusted skill Markdown written into the instruction folder). May the copy `cp -r <tmp>/skills/{vue-best-practices,vue-debug-guides,vue-testing-best-practices,create-adaptable-composable} .claude/skills/` and `cp <tmp>/LICENSE .claude/skills/LICENSE-vuejs-ai-skills` be allowed in `engineer.settings.json`?

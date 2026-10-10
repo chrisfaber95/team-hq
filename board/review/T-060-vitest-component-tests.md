@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [deps]            # vitest, @vue/test-utils, happy-dom, vue
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved the Vue/Vite dependencies, 2026-10-10 (decision 0007)
 pr: 61
 ---
@@ -41,3 +41,4 @@ PR https://github.com/chrisfaber95/claude-dashboard/pull/61. Added devDeps vites
 Reviewer: I used vitest 3, not 5: vitest 5 pulls vite 8 whose peer esbuild ^0.27/0.28 conflicts with our esbuild ^0.25 (ERESOLVE). Vite 7 brings a nested esbuild 0.28.2 whose postinstall npm flags as not in allowScripts; tests still run. Lockfile diff is large.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
