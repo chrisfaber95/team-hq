@@ -8,7 +8,7 @@ contracts: []
 labels: [auth]            # limits.ts reads the OAuth token
 budget_usd: 3
 review_rounds: 0
-user_ok: false
+user_ok: true             # user approved every ticket for now, 2026-10-10
 pr:
 ---
 ## Goal

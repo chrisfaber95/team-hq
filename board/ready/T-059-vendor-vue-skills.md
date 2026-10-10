@@ -8,7 +8,7 @@ contracts: []
 labels: [low-risk]        # Markdown only, no package dependency; the user approved the source 2026-10-10
 budget_usd: 3
 review_rounds: 0
-user_ok: false
+user_ok: true             # user approved every ticket for now, 2026-10-10
 pr:
 ---
 ## Goal
@@ -32,6 +32,7 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
 - Don't edit the vendored files; differences with our rules go in `CLAUDE.md`, not in the skills.
 - Left out on purpose: Options API, JSX, Pinia and Router skills (0007 uses `<script setup>`, its own
   typed store, no router).
+- Hand-off: say whether the copied skills show up in your own skill list after copying (tells the lead whether headless runs load repo skills; T-050 checks again).
 - Clone into a temporary directory outside the worktree and copy the four folders in; don't run anything
   from the clone.
 

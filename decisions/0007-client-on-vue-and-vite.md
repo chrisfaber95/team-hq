@@ -52,7 +52,9 @@ their return type. ESLint enforces this with a list of today's offending files t
    `escape.ts` are deleted.
 
 Pure logic stays in `<feature>.logic.ts`, tested with `node:test`. A `.vue` file sits next to it in the same feature
-folder; the folder map of 0006 is unchanged.
+folder; the folder map of 0006 is unchanged. Components are tested with Vitest + `@vue/test-utils` (DOM: `happy-dom`),
+the setup the vendored `vue-testing-best-practices` skill assumes; `npm test` runs both runners. Component tests live
+in `tests/client/features/<feature>/` next to the logic tests.
 
 **Later, not now.** A PWA (manifest + service worker) and, if needed, a Capacitor wrapper for app stores and native
 speech recognition. Both need a trusted LAN certificate first (today's is self-signed, `auth/tls.ts`); access away
@@ -69,7 +71,8 @@ the user.
 ## Consequences
 
 - New devDependencies: `vue`, `vite`, `@vitejs/plugin-vue`, `vue-tsc`, `eslint-plugin-vue` (+ `vue-eslint-parser`),
-  approved by the user on 2026-10-10. TypeScript 6 is an upgrade of an existing dependency and waits for its own
+  `vitest`, `@vue/test-utils`, `happy-dom`, approved by the user on 2026-10-10 (sign-off on the Vue dependencies, then
+  on every ticket). T-059 vendors four Vue skills from `vuejs-ai/skills` (Markdown only) before T-050. TypeScript 6 is an upgrade of an existing dependency and waits for its own
   `user_ok`.
 - Server typing runs in parallel: T-055 (transcripts), T-056 (`claude/`, `auth`), T-057 (stored JSON in
   `features/`, `auth` because `limits.ts` reads the OAuth token), T-058 (`auth/devices-file.ts`, `auth`).

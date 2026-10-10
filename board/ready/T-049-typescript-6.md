@@ -8,7 +8,7 @@ contracts: []
 labels: [deps]            # upgrades typescript 5.9 -> 6.x
 budget_usd: 3
 review_rounds: 0
-user_ok: false
+user_ok: true             # user approved every ticket for now, 2026-10-10
 pr:
 ---
 ## Goal
