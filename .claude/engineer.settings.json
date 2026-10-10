@@ -4,7 +4,9 @@
   "permissions": {
     "allow": [
       "Bash(git clone https://github.com/vuejs-ai/skills *)",
-      "Bash(git -C * checkout c9d355ff23f654309dd02006be671859df0a134c)"
+      "Bash(git -C * checkout c9d355ff23f654309dd02006be671859df0a134c)",
+      "Bash(cp -r /tmp/vuejs-skills-* .claude/skills/)",
+      "Bash(cp /tmp/vuejs-skills-*/LICENSE .claude/skills/LICENSE-vuejs-ai-skills)"
     ],
     "deny": [
       "Bash(gh pr merge *)",

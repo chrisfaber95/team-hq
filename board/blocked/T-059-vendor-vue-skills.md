@@ -39,7 +39,7 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
   (user's choice, 2026-10-10). Anything else the classifier blocks: move the ticket to blocked/, don't work around it.
 
 - 2026-10-10 blocked (lead): runs 1 and 2 both stopped at the clone; the classifier denies `git clone` of the source repo. User chose to allow the clone in `engineer.settings.json` (run 3).
-- 2026-10-10 blocked (lead): run 3 cloned fine; the copy into `.claude/skills/` was refused (see ## Blocked). Waiting for the user (NEEDS-YOU).
+- 2026-10-10 blocked (lead): run 3 cloned fine; the copy into `.claude/skills/` was refused (see ## Blocked). User allowed the copy for this run only (they checked the files). Clone into `/tmp/vuejs-skills-<suffix>` (the run-3 clone may still be there) and copy with exactly these two commands, each on its own, not chained: `cp -r /tmp/vuejs-skills-<suffix>/skills/vue-best-practices /tmp/vuejs-skills-<suffix>/skills/vue-debug-guides /tmp/vuejs-skills-<suffix>/skills/vue-testing-best-practices /tmp/vuejs-skills-<suffix>/skills/create-adaptable-composable .claude/skills/` and `cp /tmp/vuejs-skills-<suffix>/LICENSE .claude/skills/LICENSE-vuejs-ai-skills`. Then delete the old `## Blocked` section and carry on.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
