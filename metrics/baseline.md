@@ -44,6 +44,23 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-022 | #36 (26eaf9d), +69/-13 | 20 (headless) | $0.39 | 1 ($0.15) | 1 | yes; merge $0.12 |
 | T-023 | #37 (3d7b7cc), +32/-3 | 6 (headless) | $0.31 | 1 ($0.13) | 1 | yes; merge $0.13; auth, user_ok |
 | T-024 | #38 (20fcd90), +178/-40 | 4 (headless) | $1.03 | 1 ($0.18) | 1 | yes; merge $0.15; auth, user_ok; user verified on a phone |
+| T-025 | #40, +255/-0 | 2 runs (1 hit session limit) | $0.78 | 1 ($0.16) | 1 | yes; CI pending once, re-merged |
+| T-026 | #39, +306/-64 | 1 | $0.77 | 1 ($0.16) | 1 | yes |
+| T-027 | #41, +363/-86 | 2 runs (1 hit session limit) | $0.86 | 1 ($0.18) | 1 | yes |
+| T-028 | #44, +95/-13 | 1 | $0.74 | 1 ($0.13) | 1 | yes |
+| T-029 | #49, +17/-0 | 2 (1 blocked: CPU not lower -> T-037) | $0.68 | 1 ($0.12) | 2 | yes |
+| T-030 | no PR (spike, closed) | 1 (blocked by classifier) | $0.40 | - | 1 | n/a; findings -> decision 0005 |
+| T-031 | #42, +30/-2 | 1 | $0.62 | 1 ($0.14) | 1 | yes; auth, user_ok |
+| T-032 | #43, +147/-14 | 1 | $0.59 | 1 ($0.15) | 1 | yes |
+| T-033 | #45, +167/-91 | 1 | $0.79 | 1 ($0.15) | 1 | yes |
+| T-034 | #46, +535/-8 | 3 (rework for T-038 guard; 1 hit session limit) | $2.25 | 2 ($0.38) | 2 | merge agent refused twice (classifier) until the user's proof; auth, user_ok |
+| T-037 | #48, +93/-18 | 2 | $0.91 | 2 ($0.29) | 2 | yes |
+| T-038 | #47, +177/-2 | 1 | $0.44 | 1 ($0.14) | 1 | yes |
+| T-039 | #51, +462/-454 | 1 | $0.78 | 1 ($0.15) | 1 | yes; auth, user_ok |
+| T-040 | #52, +224/-207 | 2 | $1.05 | 2 ($0.30) | 2 | yes; auth, user_ok |
+| T-043 | #54, +1788/-1198 | 1 | $1.72 | 1 ($0.62) | 1 | yes |
+| T-044 | #55, +751/-538 | 2 (1 blocked: scope split) | $2.01 | 1 ($0.21) | 2 | yes; auth, user_ok |
+| T-046 | #50, +1557/-112 | 1 | $0.51 | 1 ($0.17) | 1 | yes; deps, user_ok |
 
 # Same-method comparison (transcript pricing)
 

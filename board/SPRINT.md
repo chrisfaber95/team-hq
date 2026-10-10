@@ -1,74 +1,75 @@
-# Sprint summary: sprint 5 (2026-10-09, phase 2)
+# Sprint summary: sprint 6 (2026-10-09 to 2026-10-10, phase 2)
 
-First phase-2 sprint: every engineer and reviewer ran headless per ticket (`dispatch.sh` / `review.sh` / `merge.sh`),
-up to 2 engineers in parallel. Finished F-003 (chat recap + model summary), the F-002 end-to-end test, and two bugs
-the user found on a real phone.
+Three designer briefs handed off (F-004, F-005, F-006) and a user-requested code cleanup (decision 0006) started.
+F-004 and F-006 are built; F-005 is half done and now waits behind the server cleanup.
 
 ## Shipped
 
-| Ticket | Title | PR | Review rounds |
+| Ticket | Title | PR | Rounds |
 | --- | --- | --- | --- |
-| T-020 | F-002 end-to-end test (tests only) | #32 (6b8a519) | 1 |
-| T-018 | Session recap for chat `summary` (+ T-017 endpoint-test hardening) | #33 (6422eea) | 1 |
-| T-019 | Model summary setting (`auth`, `user_ok`) | #34 (cdc7c1b) | 1 |
-| T-021 | Model summary cache + cooldown; honest setting when commands are off | #35 (a005b0f) | 1 |
-| T-022 | Summary cache: one in-flight call, no stale answer after a failure | #36 (26eaf9d) | 1 |
-| T-023 | LAN startup prints the localhost URL for this PC (`auth`, user report) | #37 (3d7b7cc) | 1 |
-| T-024 | QR pairing confirm page + POST (`auth`, user report; verified on a phone) | #38 (20fcd90) | 1 |
+| T-025 | CPU measurement script + baseline (F-004) | #40 | 1 |
+| T-026 | In-place live updates (patcher) (F-004) | #39 | 1 |
+| T-027 | Secondary tiles as popups (F-004) | #41 | 1 |
+| T-028 | Full-width cockpit layout (F-004) | #44 | 1 |
+| T-037 | Patch only changed sections, skip closed popups (F-004) | #48 | 2 |
+| T-029 | CPU after F-004: 0.63 -> 0.16 % desktop, 0.62 -> 0.10 % phone | #49 | 1 |
+| T-030 | Permission-answer spike (F-005): closed without PR, findings in decision 0005 | - | - |
+| T-031 | Continue ended terminal sessions (F-005, `auth`) | #42 | 1 |
+| T-034 | Permission hook for dashboard sessions (F-005, `auth`; user ran the proof) | #46 | 2 |
+| T-032 | Launch with goal + notes, `/api/launches` (F-006) | #43 | 1 |
+| T-033 | Launch form + Recent launches (F-006) | #45 | 1 |
+| T-038 | `docs/code-style.md` + structure guard test (cleanup) | #47 | 1 |
+| T-046 | ESLint readability rules (`deps`) | #50 | 1 |
+| T-039 | Move server files into feature folders (`auth`) | #51 | 1 |
+| T-040 | Move client files into feature folders (`auth`) | #52 | 2 |
+| T-043 | Readable client shell | #54 | 1 |
+| T-044 | Readable client features (`auth`; split, client only) | #55 | 1 |
 
 ## Open
 
-Board is empty (no backlog, ready, in-progress, review or blocked tickets).
+| Ticket | Status | Next step |
+| --- | --- | --- |
+| T-041 | review, approved, user_ok | PR #53 conflicts with main: `dispatch.sh T-041 claude-dashboard --rework` (merge main), re-review, merge |
+| T-042 | backlog (after T-041), user_ok | server http/auth/claude renames, `server.ts` split |
+| T-035 | backlog (after T-034, T-042) | answer endpoint + log; must close self-approval + hook-location gaps |
+| T-036 | backlog (after T-035) | approve/deny UI + Approvals popup |
+| T-045 | backlog (after T-036), owner user | user's end-to-end approve/deny check via the buttons |
+| T-047 | backlog (after T-044) | client tests readable |
+| T-048 | backlog (after T-042, T-047) | server tests readable; empties both allowlists |
 
 ## Waiting on the user
 
-Nothing unticked in `NEEDS-YOU.md`. Open questions from the lead:
-- **Persist LAN sessions** in `DATA_DIR` so a server restart (every merge touching `src/server` restarts `dev:lan`)
-  doesn't sign phones out? Changes decision 0003, `auth`. Lead recommends yes.
-- **This PC by its LAN IP** without login? Currently by design not exempt (decision 0003); T-023 only prints localhost.
-- Browser checks: chat recap/model summary and the "Commands are off" note, three skins, 375 px.
-- Remove the empty folder `N:\worktrees\claude-dashboard-T-019` (lead's `rmdir` was denied).
+- Go for the T-041 rework run (the user asked not to start runs yet).
+- Remove the engineer's scratch folder `N:\tmp-t044\` (its own delete was blocked).
+- Until T-035 merges, approve/deny is for the user's own testing only (shared secret, hook in repo).
 
 ## Decisions
 
-- No new decisions. [0003](../decisions/0003-device-tokens.md) and [0004](../decisions/0004-chat-without-a-model.md)
-  still apply; 0003 gets an amendment if the user approves persisted sessions.
+- [0005](../decisions/0005-answer-permission-prompts.md): answer permission prompts via a hook only in dashboard-started sessions (accepted).
+- [0006](../decisions/0006-code-structure-and-naming.md): code grouped by feature, readable names; ESLint added on 2026-10-10.
 
 ## Metrics
 
-Engineer runs are headless now, so cost is logged. Messages: 1 per ticket (engineer -> lead), target 3.
-
-| Ticket | PR size | Rounds | Engineer | Review | Merge |
-| --- | --- | --- | --- | --- | --- |
-| T-020 | +164/-0 | 1 | $0.54 | $0.14 (+$0.08 failed run) | $0.16 |
-| T-018 | +291/-10 | 1 | $1.45 (2 runs) | $0.16 | $0.13 |
-| T-019 | +338/-14 | 1 | $1.88 | $0.22 | $0.15 |
-| T-021 | +121/-4 | 1 | $0.52 | $0.16 | $0.14 |
-| T-022 | +69/-13 | 1 | $0.39 | $0.15 | $0.12 |
-| T-023 | +32/-3 | 1 | $0.31 | $0.13 | $0.13 |
-| T-024 | +178/-40 | 1 | $1.03 | $0.18 | $0.15 |
-
-Total ~$9.2 for 7 tickets. Rows added to `metrics/baseline.md` "Team runs".
+17 tickets closed (16 PRs). Engineer + reviewer cost about $19.4 (T-041 so far $1.83 more); merge cost is not logged.
+Most tickets merged in 1 round; 2 rounds: T-034 (guard rework), T-037, T-040. Messages 1-2 per ticket (target 3).
+Rows added to `metrics/baseline.md` "Team runs".
 
 ## Notes for next sprint
 
-- **Account session limit** stopped T-018's engineer and T-020's reviewer mid-run (12:05, reset 14:00). The scripts
-  escalated correctly; `--rework` resumed T-018 from its uncommitted worktree. A limit-hit run should not count as
-  "blocked twice".
-- **Hung engineer:** T-019's `claude -p` finished at 14:14 but its process lived until 14:32 (Playwright MCP from the
-  repo's MCP config as child; killing that didn't help). Its worktree folder could not be removed. If it repeats,
-  keep the Playwright MCP out of headless engineer runs (`engineer.settings.json`; needs the user's OK).
-- `num_turns` in the JSON is often 1-6 while the work clearly took more (subagents not counted); use cost, not turns.
-- `merge.sh` updates `N:\Projects\Claude-dashboard`, where the user runs `dev:lan`: server merges restart it and drop
-  in-memory sessions; a change to `scripts/dev.mjs` needs a full `dev:lan` restart (T-024's new page wasn't built).
-- T-020's end-to-end test passed while QR sign-in was broken on a real phone (prefetch/SameSite are browser-only).
-  Real-phone checks stay with the user.
-- Reviewers often approve with CI still pending; `merge.sh` checks CI itself, the lead waited for green before merging.
+- **Classifier limits:** engineers may not answer held permission prompts; the merge agent refuses a merge when the
+  approval line carries an unmet condition; the lead's `gh pr merge` is denied by settings. Plan proofs as user steps.
+- **Session limit** stopped 3 runs (T-025, T-027, T-034); `--rework` resumed each without loss.
+- **Board writes from other sessions:** the cleanup session committed tickets, decision 0006 and skill edits directly.
+  Fine when the user drives it, but it re-ordered F-005; check `git log` at sprint start.
+- **Scope check before dispatch:** tickets written outside the lead (T-041, T-044) under-labelled auth work and
+  over-scoped lint cleanup; relabel/split before dispatching.
+- **Parallel branches + lists:** tickets that edit `LEGACY_FILES` / allowlists conflict when merged in parallel
+  (T-041). Merge one, then rebase the other before review.
 
 ## Next sprint
 
-1. Persist LAN sessions across restarts (`auth`, needs the user's yes + decision 0003 amendment).
-2. IPv6 /64 bucketing for rate limit and sign-in alerts (T-014 M1/M2).
-3. LRU session eviction with an alert (T-015 M1).
-4. `merge.sh` warns (NEEDS-YOU or output) when a merge changes `scripts/dev.mjs` or `src/server` while `dev:lan`
-   runs. The checkout now ends on an updated `main` (20fcd90), so the old detached-HEAD note is resolved.
+1. T-041 rework (merge main) -> re-review -> merge.
+2. T-042 (server http/auth renames, `auth`).
+3. T-047 (client tests) in parallel with T-042.
+4. T-035 after T-042, then T-036, then the user's T-045.
+5. T-048 last (empties the allowlists).
