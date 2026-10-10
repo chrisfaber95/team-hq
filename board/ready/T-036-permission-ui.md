@@ -24,9 +24,16 @@ back at past answers.
 - [ ] Updates go through the in-place patcher (an open request never jumps or loses focus); pure logic unit-tested;
       `npm run typecheck` and `npm test` pass
 
+- [ ] On this PC (the `pc` device) the request shows without Approve / Deny and with a fixed hint: answer from a paired
+      phone or tablet, or with `claude attach` here (decision 0005 amendment: the server refuses the PC with 403
+      "answering needs a paired device"; show that message if it ever comes back)
+
 ## Notes (lead)
-Design: `team-hq/decisions/0005-answer-permission-prompts.md`. Popups from T-027 (`src/client/popups.ts`), patcher
-from T-026 (`src/client/patch.ts`), cockpit layout from T-028. Waits for T-033 (same client files).
+Design: `team-hq/decisions/0005-answer-permission-prompts.md` incl. the 2026-10-10 amendment (only paired devices
+answer). Endpoints from T-035: `POST /api/permissions/:id`, `GET /api/approvals`. Popups in
+`src/client/features/popups/`, patcher in `src/client/app/patch.ts`, alerts and sessions in `src/client/features/`.
+Follow `docs/code-style.md`: no new `LEGACY_FILES` or allowlist entries. Runs in parallel with T-048 (server tests),
+which empties `LEGACY_FILES`: merge `origin/main` before handing off and keep both sides' removals.
 
 ## Hand-off (engineer writes, max 300 tokens)
 

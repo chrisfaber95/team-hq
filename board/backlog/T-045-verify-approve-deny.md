@@ -25,7 +25,7 @@ merged without this proof at the user's choice (2026-10-09); this closes that ga
 
 ## Notes (lead)
 Steps: T-034's hand-off (`board/done/T-034-permission-hook.md`, "User proof"), with the dashboard's Approve/Deny
-buttons from T-036 instead of `scripts/answer-permission.mjs` (T-035 removes or locks down that helper). Scratch
+buttons from T-036 on a **paired phone or tablet** (the PC is refused since T-035; `scripts/answer-permission.mjs` is gone). Scratch
 project under `N:\Projects`, harmless command only. Until this passes, use approve/deny only for your own testing.
 
 ## Hand-off (engineer writes, max 300 tokens)
