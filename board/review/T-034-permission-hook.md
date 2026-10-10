@@ -59,3 +59,6 @@ round 2: approve - re-checked after rework (move to `features/permissions/`, imp
 
 ## Lead (rework, 2026-10-09)
 Not a review finding: T-038 merged the folder-map guard (`tests/code-structure.test.ts`). Merge main into the branch and move `src/server/permissions.ts` to `src/server/features/permissions/permissions.ts` (test under the mirrored `tests/` path), imports only, no behaviour change; the guard and all tests must pass. Don't extend the allowlist. Keep the user proof steps in the hand-off valid (update paths if they change).
+
+## Lead (2026-10-10)
+The user deferred the allow/deny proof to T-045 (backlog) on 2026-10-09 and explicitly told the lead to merge PR #46 through the merge agent on 2026-10-10. user_ok: true was set at the user's instruction.
