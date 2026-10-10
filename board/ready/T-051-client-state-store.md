@@ -23,6 +23,7 @@ Vue components can read the live dashboard state: a typed reactive store in `src
 ## Notes (lead)
 - Decision 0007, step 2. Files go in `src/client/app/` (0006 folder map). Use `shallowRef` for the whole state (it is replaced on every push, every 2 s) and `computed` for derived values.
 - `state-stream.ts:14` already parses to `unknown`: reuse that check, don't add a second one.
+- T-050 merged: Vite 8 + Vitest 5, a sample `.vue` component test shows the setup; templates go inside the `.vue` file (user, 2026-10-10). T-061 (shared `isRecord` in `src/shared/`) runs in parallel: if it has merged when you start, use it.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
