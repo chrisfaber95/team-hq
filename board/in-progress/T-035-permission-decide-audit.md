@@ -8,8 +8,8 @@ contracts: []
 labels: [auth]
 budget_usd: 3
 review_rounds: 0
-user_ok: false
-pr:
+user_ok: true
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/58
 ---
 ## Goal
 A signed-in device can approve or deny a pending permission request, and every answer is logged.

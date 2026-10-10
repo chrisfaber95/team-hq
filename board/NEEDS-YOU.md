@@ -29,3 +29,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-10 T-044: last client cleanup also renames the login, pairing and devices client code (behaviour unchanged); relabelled `auth`. Set `user_ok: true` to let it merge after review. (user: user_ok true, 2026-10-10)
 - [ ] 2026-10-10 T-044: remove the engineer's scratch folder `N:\tmp-t044\` (two .py files, nothing to keep); its own delete was blocked and the lead does not delete it in its place.
 - [x] 2026-10-10 T-041: merge of PR #53 stopped (exit 0, PR state OPEN). Log: logs/T-041.log (lead: merge conflict with main after T-043/T-044; needs a rework run (merge main, resolve, re-review round 2); waiting for the user's go since no new runs were wanted) (lead: reworked, round 2 approve, merged 50d28f5, 2026-10-10)
+- [x] 2026-10-10 T-035: approve/deny endpoint + audit (F-005, `auth`) needs `user_ok: true` to merge. (user: user_ok true, 2026-10-10)
