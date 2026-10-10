@@ -39,7 +39,11 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
   (user's choice, 2026-10-10). Anything else the classifier blocks: move the ticket to blocked/, don't work around it.
 
 - 2026-10-10 blocked (lead): runs 1 and 2 both stopped at the clone; the classifier denies `git clone` of the source repo. User chose to allow the clone in `engineer.settings.json` (run 3).
+- 2026-10-10 blocked (lead): run 3 cloned fine; the copy into `.claude/skills/` was refused (see ## Blocked). Waiting for the user (NEEDS-YOU).
 
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+
+## Blocked
+Run 4 (rework, Review section was empty): clone and checkout of c9d355f succeeded in /tmp/vuejs-skills-1Pnsud, but copying the four skill folders and LICENSE into `.claude/skills/` was denied by the auto-mode classifier ("Instruction Poisoning": untrusted skill Markdown written into the instruction folder). May the copy `cp -r <tmp>/skills/{vue-best-practices,vue-debug-guides,vue-testing-best-practices,create-adaptable-composable} .claude/skills/` and `cp <tmp>/LICENSE .claude/skills/LICENSE-vuejs-ai-skills` be allowed in `engineer.settings.json`?

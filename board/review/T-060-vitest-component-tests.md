@@ -9,7 +9,7 @@ labels: [deps]            # vitest, @vue/test-utils, happy-dom, vue
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved the Vue/Vite dependencies, 2026-10-10 (decision 0007)
-pr:
+pr: 61
 ---
 ## Goal
 Vue component tests can be written and run before any Vue code lands: `npm test` runs the existing `node:test`
@@ -37,5 +37,7 @@ suites and Vitest (`@vue/test-utils`, `happy-dom`), locally and in CI. First of 
 - Also changes `package.json` and the lockfile like T-049: the lead does not run the two at the same time.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR https://github.com/chrisfaber95/claude-dashboard/pull/61. Added devDeps vitest ^3, @vue/test-utils, happy-dom, vue; `vitest.config.ts` (happy-dom, includes only `tests/client/**/*.component.spec.ts`); sample spec `tests/client/features/core/click-counter.component.spec.ts` (defineComponent + h(), text, click, new text). `npm test` = `test:node && test:component`; the suffix `.component.spec.ts` keeps `node --test "*.test.ts"` from matching. CI needs no change. Docs updated (CLAUDE.md, code-style, architecture). Checks: typecheck, lint, 423 node tests + 2 Vitest pass; a failing assertion exits 1.
+Reviewer: I used vitest 3, not 5: vitest 5 pulls vite 8 whose peer esbuild ^0.27/0.28 conflicts with our esbuild ^0.25 (ERESOLVE). Vite 7 brings a nested esbuild 0.28.2 whose postinstall npm flags as not in allowScripts; tests still run. Lockfile diff is large.
 
 ## Review (reviewer writes, one line per round)
