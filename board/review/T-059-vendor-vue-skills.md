@@ -9,7 +9,7 @@ labels: [low-risk]        # Markdown only, no package dependency; the user appro
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: 65                    # committed and opened by the user (classifier blocks agents from committing .claude/)
 ---
 ## Goal
 Engineers and reviewers working on the Vue migration (decision 0007) have the community Vue 3 skills in the

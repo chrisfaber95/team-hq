@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: 64
 ---
 ## Goal
 The transcript parsers work on typed lines instead of `any`, so a change in Claude Code's transcript format fails a check instead of silently emptying a panel.
@@ -26,5 +26,10 @@ The transcript parsers work on typed lines instead of `any`, so a change in Clau
 - `src/server/claude/session-summary.ts` also reads lines; it moves to this type in T-056, not here.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/64 (branch team/T-055).
+- New `src/server/transcripts/transcript-line.ts`: `TranscriptLine` type, `isRecord` guard, `parseTranscriptLine(raw)` (parses as `unknown`, wrong-typed fields dropped, non-object lines skipped).
+- scanner, view, aggregates and subagent-index take `TranscriptLine`; no `any`/`as`/`!` left in them.
+- Tests: `tests/server/transcripts/transcript-line.test.ts` (malformed lines, blocks and fields; scanner keeps counting valid lines). typecheck, lint, npm test green locally; CI pending when handed off.
+- Reviewer look at: malformed-input behaviour change (tool_use without string name/id and non-string text blocks are now skipped instead of rendering "undefined"; JSON null/array lines skipped). session-summary.ts untouched (T-056).
 
 ## Review (reviewer writes, one line per round)
