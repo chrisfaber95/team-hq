@@ -9,7 +9,7 @@ labels: [deps]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved the Vue/Vite dependencies, 2026-10-10
-pr:
+pr: 68
 ---
 ## Goal
 Vite builds the client (today's vanilla entries, minified and code-split) and the repo is ready for Vue components: Vue, its type checker and its lint plugin are installed and wired in. No panel is migrated yet.
@@ -31,5 +31,10 @@ Vite builds the client (today's vanilla entries, minified and code-split) and th
 - T-060 pinned `vitest` to ^3 because vitest 5 needs vite 8, whose esbuild peer clashed with our `esbuild ^0.25`. Once esbuild is gone, put `vite` and `vitest` on matching current majors (same approved packages, no new ones).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #68 (https://github.com/chrisfaber95/claude-dashboard/pull/68). Vite 8 builds the client from `vite.config.ts`; `vitest` moved to ^5 to match; esbuild, `copy-html.mjs` and the sass script are gone. `login.js`, `pair.js`, `style.css` keep their names (PUBLIC_PATHS in guards.ts); the app is `assets/index-<hash>.js`; `boot.js` is a separate import-free IIFE build. Fonts moved to `src/client/skins/fonts` so Vite leaves the `/fonts/` URLs alone. `typecheck` = vue-tsc; eslint-plugin-vue lints `.vue` with the readability rules + `no-v-html`; sample `.vue` component test replaces the h() one.
+
+**Lead decides:** vue-tsc does NOT type-check `<template src>` files (probed: error in the .html passes, same error inline fails); docs say so.
+
+Reviewer: no browser run was possible, so no-CSP-violation is by construction (guards.ts untouched). Expected Vite warnings: `/fonts/*` unresolved, `/boot.js` not bundled. Commit trailer names Sonnet 5.5 (session attribution), memory rule prefers plain Claude; PR title uses the T-050 prefix, not Conventional Commits.
 
 ## Review (reviewer writes, one line per round)
