@@ -24,7 +24,7 @@ Vite builds the client (today's vanilla entries, minified and code-split) and th
 
 ## Notes (lead)
 - Decision 0007. New devDependencies (user approved): `vue`, `vite`, `@vitejs/plugin-vue`, `vue-tsc`, `eslint-plugin-vue`, `vue-eslint-parser` (`vitest`, `@vue/test-utils`, `happy-dom` and `vue` already come with T-060). Nothing else without asking.
-- Vue skills from T-059: `vue-best-practices`, `vue-testing-best-practices`. If they are not in your skill list, Read `.claude/skills/<name>/SKILL.md`. Say in the hand-off whether the headless run listed them (open question from T-059).
+- Vue skills from T-059 (merged; see `docs/vendored-skills.md`): load `vue-best-practices` and `vue-testing-best-practices`. T-059 found they are in a headless run's skill list when the folders exist at start; if not, Read `.claude/skills/<name>/SKILL.md`. Never write under `.claude/`: the classifier refuses it.
 - Runtime-only Vue (templates compiled at build), so no `unsafe-eval`. The server serves `public/` as today; keep a `vite build --watch` model for `dev` (no Vite dev server, no proxy).
 - Vite writes hashed file names: the server's static handler must still serve them (T-053 adds caching and gzip, not this ticket).
 - `qrcode-generator` stays a normal import here; the devices panel ticket lazy-loads it.

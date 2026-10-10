@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]        # Markdown only, no package dependency; the user approved the source 2026-10-10
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: 65                    # committed and opened by the user (classifier blocks agents from committing .claude/)
 ---
@@ -44,6 +44,7 @@ repo, so they write `.vue` code against documented Vue practice instead of memor
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - 179 files, only additions plus CLAUDE.md/docs/vendored-skills.md; four folders + MIT LICENSE present, docs and CLAUDE.md Vue section match the criteria. Not verified by me: byte-identity to c9d355f (no clone allowed; engineer reports `git diff --no-index` clean). CI `check` still pending at review time; merge.sh gates on it.
 
 ## Blocked
 **Run 7 (2026-10-10), read first:** the user's manual copy is in place and verified identical to c9d355f (four folders + LICENSE, `git diff --no-index` against the clone). Written, uncommitted in the worktree: `docs/vendored-skills.md`, `CLAUDE.md` ("Vue work" section + reference entry). After `npm ci`: typecheck, lint and `npm test` pass (node:test 423/0, vitest 1 file). Hand-off stopped: the classifier denied delegating commit/push/PR to `git-workflow-manager` ("Auto-Mode Bypass"), probably because the commit stages `.claude/skills/`. Needs the user or lead to commit and push `team/T-059` and open the PR (or allow it). No PR yet. Skill-list question: the copied skills were not in my startup skill list as repo skills at first; vue-* skills do appear in the list this run, since the folders existed at session start.

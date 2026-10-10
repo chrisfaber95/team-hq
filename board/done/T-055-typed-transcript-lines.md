@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: 64
 ---
@@ -33,3 +33,4 @@ PR: https://github.com/chrisfaber95/claude-dashboard/pull/64 (branch team/T-055)
 - Reviewer look at: malformed-input behaviour change (tool_use without string name/id and non-string text blocks are now skipped instead of rendering "undefined"; JSON null/array lines skipped). session-summary.ts untouched (T-056).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
