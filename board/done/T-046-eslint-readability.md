@@ -7,7 +7,7 @@ depends_on: [T-038]
 contracts: []
 labels: [deps]            # eslint, @eslint/js, typescript-eslint (devDependencies)
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/50
 ---
@@ -43,3 +43,4 @@ PR #50: https://github.com/chrisfaber95/claude-dashboard/pull/50. Added eslint, 
 Reviewer: `js.configs.recommended` is deliberately not enabled (readability only), so @eslint/js is installed but unused; check the LEGACY_FILES list and the naming-convention config; the PR title is not Conventional Commits (ticket-id format).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
