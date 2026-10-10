@@ -31,7 +31,9 @@ A signed-in device can approve or deny a pending permission request, and every a
 
 ## Notes (lead)
 Design: `team-hq/decisions/0005-answer-permission-prompts.md`. Pattern: `GET /api/launches` from T-032
-(`src/server/launch.ts`, audit action filter in `audit-log.ts`). Server only; UI is T-036.
+(`src/server/features/launch/launch.ts`, audit action filter in `features/audit-log/audit-log.ts`). Server only; UI
+is T-036. The approve/deny store is `features/permissions/permissions.ts`; routes live in `http/routes-*.ts` and
+guards in `http/guards.ts` since T-042. Follow `docs/code-style.md`: no new `LEGACY_FILES` or allowlist entries.
 
 ## Hand-off (engineer writes, max 300 tokens)
 

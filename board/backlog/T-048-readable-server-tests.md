@@ -26,7 +26,9 @@ allowlists are empty.
 
 ## Notes (lead)
 Split from T-044. Last cleanup ticket: if anything outside `tests/` is still listed (a server or client file a
-previous ticket missed), fix it here when small, or move this ticket to `blocked/` with the list.
+previous ticket missed), fix it here when small, or move this ticket to `blocked/` with the list. Known leftovers:
+`src/server/config.ts` (out of T-042 scope), `tests/measure-cpu.test.ts`, and 3 `eslint-disable id-denylist` on
+`Identity.sid` (T-042; keep them if renaming would change a JSON shape, and say so in the hand-off).
 
 ## Hand-off (engineer writes, max 300 tokens)
 
