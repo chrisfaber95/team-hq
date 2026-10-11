@@ -7,7 +7,7 @@ depends_on: [T-079]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/91
 ---
@@ -32,3 +32,4 @@ Reviewer: scroll stickiness on poll and Load earlier (happy-dom has no layout, s
 User should look at (no browser here): drawer in Classic, Co-pilot, Root, light and dark; Load earlier keeps position; Esc closes drawer before building/popup.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - in transcript-drawer.vue `refreshTranscript` never clears `loadError` after a later successful poll, so a failed first load stays on "error" forever (the old drawer recovered on the next poll); clear `loadError` on success and add a component test for fail-then-recover. Everything else meets the acceptance criteria; CI green.

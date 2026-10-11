@@ -57,3 +57,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-11 T-078: reviewer run for PR #84 stopped (exit 1, success turns=10 cost=$0.15 error). Log: logs/T-078.log (lead: session limit until 15:40; resumed after reset)
 - [x] 2026-10-11 T-072: engineer run stopped (exit 1, success turns=1 cost=$0.44 error). Log: logs/T-072.log (lead: session limit until 15:40; resumed after reset)
 - [x] 2026-10-11 T-086: engineer run stopped (exit 1, success turns=1 cost=$0.14 error). Log: logs/T-086.log (lead: session limit until 15:40; resumed after reset)
+- [x] 2026-10-11 T-088: follow-up from T-076 review: a shown one-time device token survives closing the Devices popup (`auth`). Covered by the user's up-front sprint-10 approval; `user_ok: true`.

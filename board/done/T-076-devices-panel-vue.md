@@ -7,7 +7,7 @@ depends_on: [T-063]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/90
 ---
@@ -34,3 +34,4 @@ PR #90: https://github.com/chrisfaber95/claude-dashboard/pull/90. `features/devi
 Reviewer / user should look at (no browser run): Devices popup on the PC in LAN mode, skins Classic, Co-pilot, Root, light and dark: list rows, add form, token box with Copy and Dismiss, Show QR draws/closes (it lives in static markup in the component), Revoke confirm, status text. Known: the Close button of the popup does not clear a shown token (same as before).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - CI green, mergeable; criteria met, behaviour matches old devices.view.ts, token escaped and cleared on Dismiss/add/hide, tests cover list/add/token/revoke/error. Note: popup Close still doesn't clear a shown token (pre-existing, flagged by engineer; consider a follow-up).

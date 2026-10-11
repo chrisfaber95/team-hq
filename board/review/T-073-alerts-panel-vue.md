@@ -33,3 +33,4 @@ Reviewer/user should look at: badge position in the header and the panel highlig
 
 ## Review (reviewer writes, one line per round)
 round 1: approve - all criteria met, no stale references, tests cover list/dismiss/threshold/badge/toasts; CI was still pending at review time (merge.sh gates on it); visual skin check left to the user.
+- lead: round 1 approved, but PR #89 conflicts with main (T-075, T-076 and others merged). Rework = merge origin/main into team/T-073, resolve (keep both sides), re-run checks, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
