@@ -67,6 +67,19 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-035 | #58, +358/-124 | 2 (user held: loopback gap) | $2.31 | 2 ($0.27) | 2 | yes; auth, user_ok after rework |
 | T-036 | #59, +429/-8 | 1 (run hung after hand-off, stopped; cost not logged) | - | 1 ($0.17) | 1 | yes; auth, user_ok |
 | T-048 | #60, +2289/-2209 | 1 | $1.46 | 1 ($0.16) | 1 | yes; relabelled auth, user_ok |
+| T-060 | #61, +2906/-820 (lockfile) | 4 | $0.38 | 1 ($0.15) | 1 | yes; deps |
+| T-049 | #62, +9/-6 | 4 | $0.24 | 1 ($0.10) | 1 | yes; deps; merge re-run after CI pending |
+| T-058 | #63, +65/-14 | 6 | $0.44 | 1 ($0.12) | 1 | yes; auth, user_ok |
+| T-055 | #64, +370/-84 | 4 | $0.78 | 1 ($0.21) | 1 | yes |
+| T-059 | #65, +28966/-0 (vendored Markdown) | 59 over 6 runs | $0.79 | 1 ($0.16) | 6 | no: user copied files and committed (classifier blocks agents in .claude/) |
+| T-057 | #66, +118/-17 | 1 | $0.64 | 1 ($0.14) | 1 | yes; auth, user_ok |
+| T-056 | #67, +64/-23 | 26 | $0.53 | 1 ($0.13) | 1 | yes; auth, user_ok |
+| T-050 | #68, +1281/-1929 | 4 | $1.02 | 1 ($0.21) | 1 | yes; deps |
+| T-061 | #69, +25/-15 | 4 | $0.33 | 1 ($0.25, 2 runs: session limit) | 1 | yes after one merge re-run (classifier refusal) |
+| T-051 | #70, +183/-8 | 4 | $0.38 | 1 ($0.18, 2 runs: session limit) | 1 | yes |
+| T-054 | #72, +124/-3 | 5 over 2 runs (session limit) | $0.48 | 1 ($0.14) | 1 | yes |
+| T-053 | #71, +207/-7 | 30 over 2 runs (session limit) | $0.73 | 1 ($0.14) | 1 | yes; with T-054 broke lint on main, fixed in T-052 |
+| T-052 | #73, +175/-58 | 4 | $0.49 | 1 ($0.19) | 1 | yes |
 
 # Same-method comparison (transcript pricing)
 

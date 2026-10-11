@@ -1,65 +1,71 @@
-# Sprint summary: sprint 8 (2026-10-10, phase 2)
+# Sprint summary: sprint 9 (2026-10-10..11, phase 2)
 
-A planning sprint, no code merged. The user reviewed the dashboard client and chose Vue 3 + Vite, with an installable
-phone/tablet app and voice control as the later goal (decision 0007). Ten tickets were written (T-049..T-058), and
-another lead session added T-059 (vendor four Vue skills from `vuejs-ai/skills`). The user approved every open
-ticket for now: `user_ok: true` is set on T-049..T-059.
+The Vue plan of decision 0007 went from tickets to a working base: Vitest, TypeScript 6, Vite + Vue, a typed state
+store and the first Vue panel (limits), plus the server typing tickets. The user added T-060 (Vitest first); the lead
+added T-061 (one shared `isRecord`). 13 tickets merged, all in round 1. Board is empty apart from T-045.
 
 ## Shipped
 
-None.
+| Ticket | Title | PR | Rounds |
+| --- | --- | --- | --- |
+| T-060 | Vitest + `@vue/test-utils` + `happy-dom` next to `node:test` | #61 | 1 |
+| T-049 | TypeScript 6, `.vscode` tsdk | #62 | 1 |
+| T-058 | `devices.json` checked field by field (`auth`) | #63 | 1 |
+| T-055 | typed transcript lines | #64 | 1 |
+| T-059 | four vendored Vue skills from `vuejs-ai/skills` @ c9d355f | #65 | 1 |
+| T-057 | stored JSON in `server/features/` checked (`auth`) | #66 | 1 |
+| T-056 | typed `claude/` parsing, `CLAUDE_BIN_ARGS` check (`auth`) | #67 | 1 |
+| T-050 | Vite 8 + Vue + `vue-tsc` + `eslint-plugin-vue`; esbuild/sass/copy-html gone | #68 | 1 |
+| T-061 | one `isRecord` in `src/shared/guards.ts` | #69 | 1 |
+| T-051 | typed reactive store + `mountComponent` in `client/app/` | #70 | 1 |
+| T-054 | lint bans `any`/`as`/`!`; 67-file legacy list that only shrinks | #72 | 1 |
+| T-053 | gzip + `immutable` caching for hashed assets | #71 | 1 |
+| T-052 | limits panel = first Vue component and the pattern to copy | #73 | 1 |
 
 ## Open
 
 | Ticket | Status | Next step |
 | --- | --- | --- |
-| T-059 | ready | dispatch first; vendors the Vue skills that T-050 needs |
-| T-049 | ready | TypeScript 6 + `.vscode` tsdk; fixes `popups.view.ts:43` |
-| T-055 | ready | typed transcript lines (server `transcripts/`) |
-| T-057 | ready | check stored JSON in `server/features/` (`auth`) |
-| T-058 | ready | check `devices.json` (`auth`) |
-| T-050 | backlog, needs T-049 + T-059 | Vite + Vue + Vitest tooling; proves whether `<template src>` is type-checked |
-| T-051 | backlog, needs T-050 | typed reactive store in `client/app/` |
-| T-052 | backlog, needs T-051 | limits panel = pilot Vue component; then the lead writes ~17 panel tickets |
-| T-053 | backlog, needs T-050 | gzip + immutable caching for hashed files |
-| T-054 | backlog, needs T-050 | lint: no `any` / `as` / `!`, shrinking legacy list |
-| T-056 | backlog, needs T-055 | typed `claude/` parsing, `CLAUDE_BIN_ARGS` check (`auth`) |
 | T-045 | backlog, owner user | user's approve/deny check from a paired device |
+| panel tickets | not written | lead writes them from T-052's hand-off ("Next panel should copy") |
 
 ## Waiting on the user
 
+- Browser check after T-050/T-052/T-053: pages load without CSP errors; limits panel in Classic, Co-pilot, Root,
+  light and dark; gzip and fast reload on a phone (NEEDS-YOU 2026-10-11).
 - T-045: approve/deny check (steps in `board/backlog/T-045-verify-approve-deny.md`).
-- Remove the scratch folder `N:\tmp-t044\`.
-- Design session with the designer: phone/tablet app + voice (trusted LAN certificate, access away from home Wi-Fi,
-  voice approval of permission requests).
-- Old leftovers under `N:\worktrees\` from sprint 7 (T-036, `_scratch-T048`, T-019, T-030), if not yet removed.
+- Remove `N:\tmp-t044\` and `N:\tmp-vue-skills\`.
+- Design session: phone/tablet app + voice (trusted LAN certificate, access away from home Wi-Fi, voice approvals).
 
 ## Decisions
 
-- [0007](../decisions/0007-client-on-vue-and-vite.md): client moves to Vue 3 + Vite; typing rules (no `any`, `as`
-  except `as const`, `!`; outside data arrives as `unknown`); migration one panel per ticket; component tests with
-  Vitest + `@vue/test-utils` + `happy-dom`; PWA/Capacitor later.
+No new decisions. Applied from [0007](../decisions/0007-client-on-vue-and-vite.md): `vue-tsc` does not type-check
+`<template src>`, so templates stay inside the `.vue` file as indented HTML (user agreed 2026-10-10).
 
 ## Metrics
 
-No tickets merged; no engineer or reviewer runs (one T-059 run was started by mistake in another session and stopped
-during setup; no worktree, branch or log). No rows added to `metrics/baseline.md`.
+Engineer $7.23 and reviewer $2.12 for 13 PRs (rows in `metrics/baseline.md`). T-059 alone took 6 engineer runs on
+classifier refusals; T-053 and T-054 needed a second run after the account session limit.
 
 ## Notes for next sprint
 
-- **Check claims with the user's tools.** The user's VS Code runs TypeScript 6 and found an error CI (5.9) misses.
-  The lead also had to retract two counts ("no `!`", "458 of 470 typed"). Verify before stating numbers.
-- **Templates:** if T-050 finds `vue-tsc` does not type-check `<template src>` files, tell the user before T-052;
-  they asked for HTML in its own files.
-- **Repo skills in headless runs:** unknown whether `claude -p` lists the worktree's `.claude/skills`. The engineer
-  skill now says to Read `SKILL.md` by path if not; T-059 and T-050 hand-offs report what they saw.
-- **Blanket approval:** the user approved "every ticket for now" (2026-10-10). A ticket whose risk changes later
-  (new `auth` scope, a new residual risk) still gets a fresh `user_ok` question.
-- **Two lead sessions** edited the board this sprint (`team-hq-8a` wrote T-059). Keep one lead per sprint.
+- **Agents can't write `.claude/`.** The classifier refuses copying or committing outside Markdown there, even with an
+  allow rule ("Instruction Poisoning", "Self-Modification"). Vendoring skills is a user step; the user ran it via `!`.
+  The clone allow rules for `vuejs-ai/skills` stay in `engineer.settings.json` (user's choice).
+- **Green PRs can break `main` together.** T-053 (new `as`) and T-054 (bans `as`) each passed CI; merged back to back,
+  `main` failed lint until T-052 fixed it. Merge a ticket that adds lint rules before others, or have the user enable
+  "require branches to be up to date" on `main`.
+- **Merge agent refusals are flaky.** T-061's merge was refused once as "Merge Without Review"; one re-run (user's
+  choice) merged it. The approval lives on the board, not on GitHub.
+- **Rework runs on a blocked ticket** read "the reviewer requested changes" with an empty Review; engineers coped, but
+  a lead note at the top of `## Blocked` is what they actually follow.
+- **Local checkout is stale:** `N:\Projects\Claude-dashboard` is on `64e1fd1` because merge.sh leaves it alone while
+  graphify files are uncommitted; `git pull` it. `git worktree prune` removes the stale T-030 entry.
+- Vitest/Vite are on current majors since T-050 (Vite 8, Vitest 5).
 
 ## Next sprint
 
-1. T-059 and T-049 in parallel (skills/docs vs. TypeScript upgrade).
-2. T-055, then T-057 and T-058 (server typing, independent of the client).
-3. T-050 once T-049 and T-059 are done; then T-051, T-052.
-4. After T-052: write the per-panel tickets from its hand-off.
+1. Lead writes the per-panel tickets from T-052's hand-off, one panel each; user approves them.
+2. Dispatch the smallest read-only panels first (two at a time, different `features/` folders).
+3. After the user's browser check: tickets for anything it finds.
+4. T-045 when the user has run the device check.
