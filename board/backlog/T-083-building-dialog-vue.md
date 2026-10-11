@@ -1,0 +1,31 @@
+---
+id: T-083
+repo: claude-dashboard
+owner: eng-claude-dashboard
+brief:                    # none: decision 0007, step 3
+depends_on: [T-082]
+contracts: []
+labels: [low-risk]
+budget_usd: 3
+review_rounds: 0
+user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
+pr:
+---
+## Goal
+The building dialog (open from a project, title, subtitle, close) is a Vue component with the same behaviour.
+
+## Acceptance
+- [ ] `features/building/building-dialog.vue` replaces `building.view.ts`: opens from the same triggers, title and subtitle, Close, backdrop click, Esc (not while the drawer is open), focus on Close when opened
+- [ ] Clicking a cubicle or subagent still opens its transcript
+- [ ] `building.view.ts` and its `app.ts` wiring deleted; component tests cover open, update, Esc order and close
+- [ ] Template is normally indented HTML inside the `.vue` file; no `v-html`, `any`, `as` (except `as const`) or `!`; deleted files leave `TYPE_SAFETY_LEGACY_FILES` in `eslint.config.js`
+- [ ] `npm run typecheck`, `npm run lint` and `npm test` pass; new behavior has a test; new and changed code follows `docs/code-style.md` (decision 0006)
+
+## Notes (lead)
+- The Esc order with popups and drawer is described in `popups.view.ts`; keep it.
+- Copy the "Vue panel" section of `docs/code-style.md` (limits panel, T-052). Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills.
+- No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
+
+## Hand-off (engineer writes, max 300 tokens)
+
+## Review (reviewer writes, one line per round)

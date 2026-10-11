@@ -1,0 +1,31 @@
+---
+id: T-066
+repo: claude-dashboard
+owner: eng-claude-dashboard
+brief:                    # none: decision 0007, step 3
+depends_on: [T-062, T-063]
+contracts: []
+labels: [low-risk]
+budget_usd: 3
+review_rounds: 0
+user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
+pr:
+---
+## Goal
+The Session messages popup panel (message graph and list) is a Vue component with the same look and behaviour.
+
+## Acceptance
+- [ ] `features/messages/messages-panel.vue` mounted into `#comms`: the SVG graph from `buildMessageGraph()` drawn as template SVG, plus the message list with relative times (T-062)
+- [ ] Derives only while the popup is open (T-063); same markup and classes as `messages.view.ts`
+- [ ] `messages.view.ts` and its `app.ts` steps deleted; component test in `tests/client/features/messages/`
+- [ ] Template is normally indented HTML inside the `.vue` file; no `v-html`, `any`, `as` (except `as const`) or `!`; deleted files leave `TYPE_SAFETY_LEGACY_FILES` in `eslint.config.js`
+- [ ] `npm run typecheck`, `npm run lint` and `npm test` pass; new behavior has a test; new and changed code follows `docs/code-style.md` (decision 0006)
+
+## Notes (lead)
+- `messages.logic.ts` keeps the graph maths and its `node:test` tests.
+- Copy the "Vue panel" section of `docs/code-style.md` (limits panel, T-052). Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills.
+- No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
+
+## Hand-off (engineer writes, max 300 tokens)
+
+## Review (reviewer writes, one line per round)
