@@ -7,9 +7,9 @@ depends_on: [T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: 94
 ---
 ## Goal
 The Token usage (14 days) popup panel is a Vue component with the same chart, legend and interactions.
@@ -28,5 +28,9 @@ The Token usage (14 days) popup panel is a Vue component with the same chart, le
 - First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #94: https://github.com/chrisfaber95/claude-dashboard/pull/94. `features/usage/usage-panel.vue` (mounted into `#usage`) replaces `usage.view.ts`; same chart, legend, tables and classes. Derives only while the usage popup is open (`useOpenPopup`); legend toggles are template @click events, hidden series kept in the component; no document listener. Colours, sizes and legend opacity go through `:style`. `app.ts` render step, drawPopup branch and initUsage removed; entry removed from TYPE_SAFETY_LEGACY_FILES; architecture.md updated. typecheck, lint, test (471 node + 110 component), build green. Security-auditor: no XSS/v-html issues; its note on :style is what the ticket asks for.
+
+Reviewer / user should look at (no browser run): Usage popup in skins Classic, Co-pilot, Root, light and dark: bar colours, legend swatches and dimmed hidden state, tooltips, both tables.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

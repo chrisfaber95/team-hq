@@ -7,7 +7,7 @@ depends_on: [T-076]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/93
 ---
@@ -32,3 +32,4 @@ PR #93: pairing QR is now `features/devices/pairing-qr.vue`; `devices-qr.view.ts
 Reviewer: CI not yet confirmed; code-reviewer pass not run (reviewer does it). No browser in this run: user should check the QR panel in skins Classic, Co-pilot, Root, light and dark (show, address select with several LAN addresses, expiry, Close). Commit trailer is plain "Claude" per memory rule.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve (diff meets all criteria; CI `check` was still pending at review time, merge.sh must see it green; user should eyeball QR panel in Classic/Co-pilot/Root, light and dark)

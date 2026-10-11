@@ -7,7 +7,7 @@ depends_on: [T-079]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 2
+review_rounds: 3
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/91
 ---
@@ -30,8 +30,11 @@ The transcript drawer (`#drawer`) is a Vue component with the same behaviour.
 PR #91: https://github.com/chrisfaber95/claude-dashboard/pull/91. `transcript-drawer.vue` replaces `drawer.view.ts` (deleted, off `TYPE_SAFETY_LEGACY_FILES`). Same `#drawer` DOM/ids, so skins and the building/popup Esc checks are untouched. `openTranscript`/`openSubagentTranscript`/`openLogs` keep signatures (store in `transcript-drawer-selection.ts`, re-exported by `controls.view.ts`). Pure `mergeLiveTail`/`isLiveElsewhere` in `transcript-drawer.logic.ts`. Checks: typecheck, lint, npm test pass (node 476, component 89). 9 component tests + 5 logic tests.
 Reviewer: scroll stickiness on poll and Load earlier (happy-dom has no layout, so tested with stubbed sizes); permission-mode select now keeps its choice across pushes. Branch is 1 commit behind main (not rebased).
 User should look at (no browser here): drawer in Classic, Co-pilot, Root, light and dark; Load earlier keeps position; Esc closes drawer before building/popup.
+Rework (conflict with main): merged origin/main into team/T-080, merge commit 90a94c1, pushed to PR #91 (now MERGEABLE). One conflict, `eslint.config.js` `TYPE_SAFETY_LEGACY_FILES`: dropped both `devices.view.ts` (deleted on main by T-076) and `drawer.view.ts` (deleted here). No other changes. typecheck, lint, npm test pass on the merged tree (node 476, component 115). CI `check` was still pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - in transcript-drawer.vue `refreshTranscript` never clears `loadError` after a later successful poll, so a failed first load stays on "error" forever (the old drawer recovered on the next poll); clear `loadError` on success and add a component test for fail-then-recover. Everything else meets the acceptance criteria; CI green.
 round 1 rework: `refreshTranscript` now clears `loadError` after a successful poll; new component test "recovers from a failed first load on the next poll". Commit 0d294fe pushed to PR #91. typecheck, lint, npm test pass (node 476, component 90).
 round 2: approve - loadError now clears on a successful poll and the recovery test covers it; all acceptance criteria met; typecheck and npm test re-run green on 0d294fe (CI reports only GitGuardian).
+- lead: approved, but PR #91 conflicts with main after other panels merged. Rework = merge origin/main into team/T-080, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
+round 3: approve - re-review of merge commit 90a94c1 (origin/main merged into team/T-080): drawer files unchanged since 0d294fe, #transcript-drawer mount and TranscriptDrawer import intact, drawer.view.ts and devices.view.ts both off TYPE_SAFETY_LEGACY_FILES; typecheck and npm test (component 115) re-run green on 90a94c1; CI `check` was still pending at review time.

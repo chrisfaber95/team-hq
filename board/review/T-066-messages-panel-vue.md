@@ -32,5 +32,8 @@ PR #92: https://github.com/chrisfaber95/claude-dashboard/pull/92. `features/mess
 
 Reviewer / user should look at (no browser run): Session messages popup in skins Classic, Co-pilot, Root, light and dark: node colours, dimmed non-live nodes, edge width and hover tooltips, feed text, relative times ticking. Node fill/stroke now go through `:style` (was an inline style string). Commit trailer is plain `Claude` per the memory rule, not the model name; PR title follows the ticket-id format.
 
+Rework (round 1, lead): merged origin/main into team/T-066 (commit 2ae3ad3, pushed to PR #92). Two conflicts, both kept-both: `eslint.config.js` legacy list (main's list minus `messages.view.ts`; stale drawer/devices entries dropped, already deleted on main) and `app.ts` (our `mountComponent(MessagesPanel, 'comms')` plus main's `initPermissions()`). No other changes. typecheck, lint, test green on the merged tree (476 node + 119 component). PR was MERGEABLE; CI `check` was still pending at push time.
+
 ## Review (reviewer writes, one line per round)
 round 1: approve
+- lead: approved, but PR #92 conflicts with main after other panels merged. Rework = merge origin/main into team/T-066, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
