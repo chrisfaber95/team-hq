@@ -23,7 +23,8 @@ repo_dir=$(cfg "repos['$repo']")
 [ -n "$repo_dir" ] || { echo "ticket $id has unknown repo '$repo'" >&2; exit 64; }
 
 # --- gates ----------------------------------------------------------------------
-verdict=$(sed -n '/^## Review/,/^## /p' "$ticket" | grep -E '^round [0-9]+:' | tail -1 | tr -d '\r')
+# A reviewer sometimes copies the lead's bullet style ("- round 2: approve"); the verdict is the same.
+verdict=$(sed -n '/^## Review/,/^## /p' "$ticket" | sed -E 's/^- (round [0-9]+:)/\1/' | grep -E '^round [0-9]+:' | tail -1 | tr -d '\r')
 [[ "$verdict" =~ ^round\ [0-9]+:\ approve ]] || escalate "last review verdict is '${verdict:-none}', not approve"
 
 labels=$(sed -n 's/^labels: *//p' "$ticket" | head -1 | sed 's/#.*//' | tr -d '\r')
