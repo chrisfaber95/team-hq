@@ -28,6 +28,7 @@ The hover tooltip (`#tip`) is a Vue component with the same behaviour.
 
 ## Hand-off (engineer writes, max 300 tokens)
 PR #77: https://github.com/chrisfaber95/claude-dashboard/pull/77. `features/tooltip/tooltip.vue` replaces `tooltip.view.ts` (deleted, off `TYPE_SAFETY_LEGACY_FILES`). Mounted on a new empty wrapper `#tip-root` in `index.html` via `mountComponent`; the component renders `<div id="tip" class="tip" role="tooltip">` inside it, so skins/CSS are unchanged. Same `[data-tip]` trigger, 14px offset, 8px viewport margin; text via mustache (no v-html); document `mousemove` listener added onMounted, removed onUnmounted. Component spec covers show (text not HTML), move, hide, unmount cleanup. typecheck, lint, test (458 node + 12 component) and build pass.
+Rework: merged origin/main into team/T-069 (commit 323738a, pushed to PR #77). One conflict, `eslint.config.js` `TYPE_SAFETY_LEGACY_FILES` (main had removed `popups.view.ts` and `time.ts`; T-069 removes `tooltip.view.ts`): both stale lines dropped. `app.ts` auto-merged. Typecheck, lint, test pass; CI `check` green on 323738a. GitHub showed mergeable UNKNOWN right after: re-check before merging.
 Reviewer: position is applied one tick after the text render (measured after nextTick), previously synchronous. No browser run: user should hover tips in skins Classic, Co-pilot, Root, light and dark (position near pointer, flips at right edge, multi-line text, hides off tips).
 
 ## Review (reviewer writes, one line per round)

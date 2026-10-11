@@ -25,6 +25,7 @@ The Activity popup panel (audit log with device filter) is a Vue component with 
 - `audit.logic.ts` keeps its tests. `<details id="audit">` may become a plain section if the popup no longer needs it; say so in the hand-off.
 - Copy the "Vue panel" section of `docs/code-style.md` (limits panel, T-052). Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
+- First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
 

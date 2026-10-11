@@ -7,7 +7,7 @@ depends_on: [T-062, T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/79
 ---
@@ -34,3 +34,4 @@ Next popup panel should copy: read `useOpenPopup()` and have the `computed` retu
 Reviewer / user should look at (no browser run): Projects popup in skins Classic, Co-pilot, Root, light and dark: card look, swatch colour, live badge, "not trusted" tooltip, click and Enter on a card opens the building and Esc returns focus to the card. Note: cards leave the DOM while the popup is closed; branch is one commit behind main (T-070), unrelated.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

@@ -26,6 +26,7 @@ The Devices popup panel (list, add, revoke, one-time token) is a Vue component w
 - `auth`: device tokens (F-002, decision 0003). Behaviour must not change.
 - Copy the "Vue panel" section of `docs/code-style.md` (limits panel, T-052). Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
+- First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
 

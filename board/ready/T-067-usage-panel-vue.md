@@ -25,6 +25,7 @@ The Token usage (14 days) popup panel is a Vue component with the same chart, le
 - `usage.logic.ts` keeps its tests. `tokensToday` lives in `popups.logic.ts` (limits uses it); leave it there.
 - Copy the "Vue panel" section of `docs/code-style.md` (limits panel, T-052). Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
+- First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
 
