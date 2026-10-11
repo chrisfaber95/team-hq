@@ -7,9 +7,9 @@ depends_on: [T-082]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/86
 ---
 ## Goal
 The building dialog (open from a project, title, subtitle, close) is a Vue component with the same behaviour.
@@ -27,5 +27,11 @@ The building dialog (open from a project, title, subtitle, close) is a Vue compo
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #86: https://github.com/chrisfaber95/claude-dashboard/pull/86 (main merged in, conflict in app.ts resolved; typecheck, lint, node tests 471 and Vitest 65 pass, build ok; CI not yet observed).
+- New `building-dialog.vue` mounted into `#building-dialog`; it renders `#building` with the `hidden` attribute, so popups.view.ts checks are unchanged. `building.view.ts` and its wiring deleted; static markup removed from index.html.
+- Look at: Esc order (capture listener registered after initPopups; not while drawer open), focus on Close and return to the card, closing when the project vanishes, room/cubicle click and Enter opening the transcript.
+- No browser: please eyeball skins Classic, Co-pilot, Root, light and dark (DOM and classes unchanged, no SCSS change).
+- Left alone: stale mentions in docs/architecture.md (chat.view.ts) and CLAUDE.md (building.view.ts example path).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met by diff reading; CI `check` was still pending at review time (merge.sh must wait for green); user should eyeball skins/themes as listed in hand-off.
