@@ -7,9 +7,9 @@ depends_on: [T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: 88
 ---
 ## Goal
 The Activity popup panel (audit log with device filter) is a Vue component with the same behaviour.
@@ -28,5 +28,9 @@ The Activity popup panel (audit log with device filter) is a Vue component with 
 - First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #88: https://github.com/chrisfaber95/claude-dashboard/pull/88. `features/audit/audit-panel.vue` mounted into `#audit` replaces `audit.view.ts`; loads on popup open (`useOpenPopup`), device change and Refresh, ignores stale responses, shows only the two allow-listed errors. `audit.view.ts`, its app.ts wiring and the popups.view.ts special case are deleted (none was in TYPE_SAFETY_LEGACY_FILES). `<details id="audit">` became a plain `<section>` with an h2 (`.audit__summary` scss lost the cursor/[open] rules). typecheck, lint, test (471 node + 63 component), build green; CI was pending at hand-off.
+
+Reviewer / user should look at (no browser run): Activity popup in Classic, Co-pilot, Root, light and dark: heading spacing, device dropdown keeps its choices after filtering, Refresh disables while loading, prompt tooltip, error text. Test note: panels watch the shared open-popup ref, so component tests must unmount each panel.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve (code meets all criteria; CI `check` was still pending at review time, merge.sh must wait for green)
