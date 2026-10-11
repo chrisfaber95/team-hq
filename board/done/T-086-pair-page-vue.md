@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/82
 ---
@@ -31,10 +31,9 @@ PR #82: https://github.com/chrisfaber95/claude-dashboard/pull/82. Pair page is n
 Reviewer, look at: `pair.html` is now an empty `<main id="pair-app" data-state data-device>` (server substitution unchanged). The server serves only `/pair.js` before login, so `pair.js` is a self-contained IIFE build (`buildClassicScript` in `vite.config.ts`, shared with `boot.js`) loaded as a classic script; a module entry would have loaded a shared chunk from `/assets/` and failed. Branch is 1 commit behind main (T-069), no conflict.
 User should look at (no browser here): /pair?c= in skins Classic, Co-pilot, Root, light and dark; confirm signs in and lands on /; used code shows message and no button.
 Checks: typecheck, lint, npm test (466 + 33), build pass locally; CI pending.
+Rework (round 1 conflict): merged origin/main (T-085, T-082, T-065, T-069) into team/T-086, merge commit e4ed01b, pushed to PR #82. Conflicts only in `vite.config.ts` (`STABLE_ENTRIES` now `['login', 'pair']`, both plugins kept) and `docs/architecture.md` (one combined `vite.config.ts` bullet). Re-ran after the merge: typecheck, lint, npm test (471 node + 51 vitest), build all pass. Nothing else changed.
 
 ## Review (reviewer writes, one line per round)
 round 1: approve
 - lead: round 1 approved, but PR #82 conflicts with main after T-085 (login page) merged. Rework = merge origin/main into team/T-086, resolve (keep both entries), re-run checks, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
-
-## Blocked
-- lead: the rework run stopped on the account session limit, not on the ticket. Do the rework in the last `- lead:` line of `## Review` (merge origin/main, nothing else).
+round 2: approve

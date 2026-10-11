@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 2
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/84
 ---
@@ -30,5 +30,9 @@ The Chat popup panel is a Vue component with the same intents, confirm step and 
 PR #84: https://github.com/chrisfaber95/claude-dashboard/pull/84. Chat popup is now `chat-panel.vue` plus `use-chat.ts` (history/pending refs, intents, the three api calls); `chat.view.ts` deleted and removed from `TYPE_SAFETY_LEGACY_FILES`. The static log/input/confirm markup left `index.html` for a `#chat-panel` mount point; the summary-setting markup stays and is still wired by `settings.view.ts`. Source guard `chat.view.test.ts` now scans both new files. New `chat-panel.component.spec.ts`: send with confirm, cancel, session ended, summary, error, scroll and typed input kept across pushes. typecheck, lint, npm test (463 node + 38 vitest) and build pass.
 Reviewer: confirm the guard still bans /api/commands, /stop, /start. `#chat-confirm` is now v-if instead of hidden.
 User should look at (no browser here): Chat popup in skins Classic, Co-pilot and Root, light and dark: layout of log, confirm box and form, scroll sticking to the bottom, input kept across pushes.
+Rework (round 1): merged origin/main into team/T-078 (merge commit 13c787e, pushed); PR #84 is now MERGEABLE/CLEAN. One conflict, `src/client/app/app.ts`: kept the ChatPanel wiring and dropped main's `updateChat` step and the removed `renderTeam` step (T-065 team panel is a Vue component). No other changes. typecheck, lint, npm test (468 node + 53 vitest) pass. Stale docs not touched: `docs/architecture.md` line 53 (chat.view.ts entry) and `CLAUDE.md` line 91 ("no panel is migrated yet").
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
+- lead: round 1 approved, but PR #84 conflicts with main (T-065, T-082, T-085 merged). Rework = merge origin/main into team/T-078, resolve (keep both sides), re-run checks, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
+round 2: approve
