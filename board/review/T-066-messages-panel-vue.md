@@ -7,9 +7,9 @@ depends_on: [T-062, T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/92
 ---
 ## Goal
 The Session messages popup panel (message graph and list) is a Vue component with the same look and behaviour.
@@ -28,5 +28,9 @@ The Session messages popup panel (message graph and list) is a Vue component wit
 - First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #92: https://github.com/chrisfaber95/claude-dashboard/pull/92. `features/messages/messages-panel.vue` (mounted into `#comms`) replaces `messages.view.ts`; graph is template SVG, feed uses `RelativeTime`, same classes. It derives only while popup `comms` is open. Small pure helpers added to `messages.logic.ts`; render step and `drawPopup` branch removed from `app.ts`; legacy lint entry removed; architecture.md updated. typecheck, lint, test (471 node + 89 component), build green.
+
+Reviewer / user should look at (no browser run): Session messages popup in skins Classic, Co-pilot, Root, light and dark: node colours, dimmed non-live nodes, edge width and hover tooltips, feed text, relative times ticking. Node fill/stroke now go through `:style` (was an inline style string). Commit trailer is plain `Claude` per the memory rule, not the model name; PR title follows the ticket-id format.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

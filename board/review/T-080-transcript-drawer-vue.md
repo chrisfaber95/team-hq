@@ -7,7 +7,7 @@ depends_on: [T-079]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/91
 ---
@@ -33,3 +33,5 @@ User should look at (no browser here): drawer in Classic, Co-pilot, Root, light 
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - in transcript-drawer.vue `refreshTranscript` never clears `loadError` after a later successful poll, so a failed first load stays on "error" forever (the old drawer recovered on the next poll); clear `loadError` on success and add a component test for fail-then-recover. Everything else meets the acceptance criteria; CI green.
+round 1 rework: `refreshTranscript` now clears `loadError` after a successful poll; new component test "recovers from a failed first load on the next poll". Commit 0d294fe pushed to PR #91. typecheck, lint, npm test pass (node 476, component 90).
+round 2: approve - loadError now clears on a successful poll and the recovery test covers it; all acceptance criteria met; typecheck and npm test re-run green on 0d294fe (CI reports only GitGuardian).
