@@ -80,6 +80,33 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-054 | #72, +124/-3 | 5 over 2 runs (session limit) | $0.48 | 1 ($0.14) | 1 | yes |
 | T-053 | #71, +207/-7 | 30 over 2 runs (session limit) | $0.73 | 1 ($0.14) | 1 | yes; with T-054 broke lint on main, fixed in T-052 |
 | T-052 | #73, +175/-58 | 4 | $0.49 | 1 ($0.19) | 1 | yes |
+| T-062 | #74 | 6 over 1 run | $0.38 | 1 ($0.11, 1 runs) | 1-2 | yes |
+| T-063 | #75 | 4 over 1 run | $0.45 | 1 ($0.14, 1 runs) | 1-2 | yes |
+| T-064 | #79 | 4 over 1 run | $0.46 | 1 ($0.17, 1 runs) | 1-2 | yes |
+| T-065 | #83 | 6 over 1 run | $0.38 | 1 ($0.16, 1 runs) | 1-2 | yes |
+| T-066 | #92 | 12 over 2 runs (conflict rework / session limit) | $0.64 | 2 ($0.22, 2 runs) | 1-2 | yes |
+| T-067 | #94 | 7 over 2 runs (conflict rework / session limit) | $0.80 | 2 ($0.34, 2 runs) | 1-2 | yes |
+| T-068 | #76 | 21 over 2 runs (conflict rework / session limit) | $0.71 | 2 ($0.25, 2 runs) | 1-2 | yes |
+| T-069 | #77 | 14 over 3 runs (conflict rework / session limit) | $0.86 | 3 ($0.29, 3 runs) | 1-2 | yes |
+| T-070 | #78 | 20 over 1 run | $0.41 | 1 ($0.14, 1 runs) | 1-2 | yes |
+| T-071 | #95 | 14 over 3 runs (conflict rework / session limit) | $1.07 | 2 ($0.39, 4 runs) | 1-2 | yes |
+| T-072 | #85 | 12 over 3 runs (conflict rework / session limit) | $1.02 | 2 ($0.26, 2 runs) | 1-2 | yes |
+| T-073 | #89 | 32 over 2 runs (conflict rework / session limit) | $1.01 | 2 ($0.37, 2 runs) | 1-2 | yes |
+| T-074 | #98 | 4 over 1 run | $0.44 | 1 ($0.15, 1 runs) | 1-2 | yes |
+| T-075 | #88 | 23 over 1 run | $0.54 | 1 ($0.15, 1 runs) | 1-2 | yes |
+| T-076 | #90 | 4 over 1 run | $1.05 | 1 ($0.20, 1 runs) | 1-2 | yes |
+| T-077 | #93 | 5 over 1 run | $0.45 | 1 ($0.17, 1 runs) | 1-2 | yes |
+| T-078 | #84 | 9 over 2 runs (conflict rework / session limit) | $1.01 | 2 ($0.46, 3 runs) | 1-2 | yes |
+| T-079 | #87 | 27 over 1 run | $0.59 | 1 ($0.15, 1 runs) | 1-2 | yes |
+| T-080 | #91 | 53 over 3 runs (conflict rework / session limit) | $1.26 | 3 ($0.44, 3 runs) | 1-2 | yes |
+| T-081 | #96 | 26 over 3 runs (conflict rework / session limit) | $1.24 | 2 ($0.29, 2 runs) | 1-2 | yes |
+| T-082 | #81 | 4 over 1 run | $1.05 | 1 ($0.21, 1 runs) | 1-2 | yes |
+| T-083 | #86 | 4 over 1 run | $0.57 | 1 ($0.16, 1 runs) | 1-2 | yes |
+| T-084 | #99 | 6 over 1 run | $0.67 | 1 ($0.23, 1 runs) | 1-2 | yes |
+| T-085 | #80 | 4 over 1 run | $0.46 | 1 ($0.13, 1 runs) | 1-2 | yes |
+| T-086 | #82 | 14 over 3 runs (conflict rework / session limit) | $0.93 | 2 ($0.34, 2 runs) | 1-2 | yes |
+| T-087 | #100 | 4 over 1 run | $1.31 | 1 ($0.25, 1 runs) | 1-2 | yes |
+| T-088 | #97 | 1 over 1 run | $0.34 | 1 ($0.11, 1 runs) | 1-2 | yes |
 
 # Same-method comparison (transcript pricing)
 

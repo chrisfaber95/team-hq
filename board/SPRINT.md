@@ -1,71 +1,71 @@
-# Sprint summary: sprint 9 (2026-10-10..11, phase 2)
+# Sprint summary: sprint 10 (2026-10-11, phase 2)
 
-The Vue plan of decision 0007 went from tickets to a working base: Vitest, TypeScript 6, Vite + Vue, a typed state
-store and the first Vue panel (limits), plus the server typing tickets. The user added T-060 (Vitest first); the lead
-added T-061 (one shared `isRecord`). 13 tickets merged, all in round 1. Board is empty apart from T-045.
+Decision 0007 steps 3 and 4 are done: every client panel is a Vue component, one root `App.vue` replaced `app.ts`,
+and `patch.ts`, `dom.ts`, `escape.ts` and `timeSpan` are gone ("no `v-html`" replaces "always `esc()`"). The user
+approved all tickets up front and asked the lead to run the sprint without asking. 27 tickets merged; main CI green.
 
 ## Shipped
 
 | Ticket | Title | PR | Rounds |
 | --- | --- | --- | --- |
-| T-060 | Vitest + `@vue/test-utils` + `happy-dom` next to `node:test` | #61 | 1 |
-| T-049 | TypeScript 6, `.vscode` tsdk | #62 | 1 |
-| T-058 | `devices.json` checked field by field (`auth`) | #63 | 1 |
-| T-055 | typed transcript lines | #64 | 1 |
-| T-059 | four vendored Vue skills from `vuejs-ai/skills` @ c9d355f | #65 | 1 |
-| T-057 | stored JSON in `server/features/` checked (`auth`) | #66 | 1 |
-| T-056 | typed `claude/` parsing, `CLAUDE_BIN_ARGS` check (`auth`) | #67 | 1 |
-| T-050 | Vite 8 + Vue + `vue-tsc` + `eslint-plugin-vue`; esbuild/sass/copy-html gone | #68 | 1 |
-| T-061 | one `isRecord` in `src/shared/guards.ts` | #69 | 1 |
-| T-051 | typed reactive store + `mountComponent` in `client/app/` | #70 | 1 |
-| T-054 | lint bans `any`/`as`/`!`; 67-file legacy list that only shrinks | #72 | 1 |
-| T-053 | gzip + `immutable` caching for hashed assets | #71 | 1 |
-| T-052 | limits panel = first Vue component and the pattern to copy | #73 | 1 |
+| T-062 | shared `relative-time.vue` | #74 | 1 |
+| T-063 | open-popup ref, popup buttons from state | #75 | 1 |
+| T-064 / T-065 / T-066 / T-067 | projects / team / messages / usage popup panels | #79 / #83 / #92 / #94 | 1 / 1 / 2 / 2 |
+| T-068 / T-069 | core strip / tooltip | #76 / #77 | 2 / 3 |
+| T-070 / T-071 | permission requests (`auth`) / approvals log (`auth`) | #78 / #95 | 1 / 2 |
+| T-072 / T-073 | sessions panel / alerts panel | #85 / #89 | 2 / 2 |
+| T-074 / T-075 | summary setting / audit panel | #98 / #88 | 1 / 1 |
+| T-076 / T-077 / T-088 | devices panel / QR via `import()` / token cleared on close (all `auth`) | #90 / #93 / #97 | 1 / 1 / 1 |
+| T-078 / T-079 / T-080 / T-081 | chat / launch form / transcript drawer / session actions | #84 / #87 / #91 / #96 | 2 / 1 / 3 / 2 |
+| T-082 / T-083 | building scene / building dialog | #81 / #86 | 1 / 1 |
+| T-084 | one popup shell from `POPUPS` | #99 | 1 |
+| T-085 / T-086 | login / pair pages (`auth`) | #80 / #82 | 1 / 2 |
+| T-087 | root `App.vue`, `index.html` skeleton, string-HTML helpers deleted | #100 | 1 |
+
+Only one review found a real defect (T-080: drawer stayed on "error" after a failed first load); every other second
+or third round was a re-check after merging `main`.
 
 ## Open
 
 | Ticket | Status | Next step |
 | --- | --- | --- |
 | T-045 | backlog, owner user | user's approve/deny check from a paired device |
-| panel tickets | not written | lead writes them from T-052's hand-off ("Next panel should copy") |
 
 ## Waiting on the user
 
-- Browser check after T-050/T-052/T-053: pages load without CSP errors; limits panel in Classic, Co-pilot, Root,
-  light and dark; gzip and fast reload on a phone (NEEDS-YOU 2026-10-11).
+- **Browser check of the whole Vue client** (NEEDS-YOU 2026-10-11, sprint 10 line); it replaces the T-050/T-052 check.
 - T-045: approve/deny check (steps in `board/backlog/T-045-verify-approve-deny.md`).
-- Remove `N:\tmp-t044\` and `N:\tmp-vue-skills\`.
+- Remove `N:\tmp-t044\` (and `N:\tmp-vue-skills\` if still there).
 - Design session: phone/tablet app + voice (trusted LAN certificate, access away from home Wi-Fi, voice approvals).
 
 ## Decisions
 
-No new decisions. Applied from [0007](../decisions/0007-client-on-vue-and-vite.md): `vue-tsc` does not type-check
-`<template src>`, so templates stay inside the `.vue` file as indented HTML (user agreed 2026-10-10).
+No new decision file. Applied [0007](../decisions/0007-client-on-vue-and-vite.md) steps 3-4 in full.
 
 ## Metrics
 
-Engineer $7.23 and reviewer $2.12 for 13 PRs (rows in `metrics/baseline.md`). T-059 alone took 6 engineer runs on
-classifier refusals; T-053 and T-054 needed a second run after the account session limit.
+Engineer $20.10, reviewer $6.28 for 27 PRs (rows in `metrics/baseline.md`). Bundle after T-087: 158 kB (56.7 kB gzip);
+the QR library is its own chunk (T-077). About $6 of that went to conflict-only rework and re-review runs.
 
 ## Notes for next sprint
 
-- **Agents can't write `.claude/`.** The classifier refuses copying or committing outside Markdown there, even with an
-  allow rule ("Instruction Poisoning", "Self-Modification"). Vendoring skills is a user step; the user ran it via `!`.
-  The clone allow rules for `vuejs-ai/skills` stay in `engineer.settings.json` (user's choice).
-- **Green PRs can break `main` together.** T-053 (new `as`) and T-054 (bans `as`) each passed CI; merged back to back,
-  `main` failed lint until T-052 fixed it. Merge a ticket that adds lint rules before others, or have the user enable
-  "require branches to be up to date" on `main`.
-- **Merge agent refusals are flaky.** T-061's merge was refused once as "Merge Without Review"; one re-run (user's
-  choice) merged it. The approval lives on the board, not on GitHub.
-- **Rework runs on a blocked ticket** read "the reviewer requested changes" with an empty Review; engineers coped, but
-  a lead note at the top of `## Blocked` is what they actually follow.
-- **Local checkout is stale:** `N:\Projects\Claude-dashboard` is on `64e1fd1` because merge.sh leaves it alone while
-  graphify files are uncommitted; `git pull` it. `git worktree prune` removes the stale T-030 entry.
-- Vitest/Vite are on current majors since T-050 (Vite 8, Vitest 5).
+- **Panels conflicted with each other.** Every panel ticket edited `app.ts` (and often `index.html`, `eslint.config.js`
+  legacy list, `docs/architecture.md`), so each merge made the other open PRs conflict: 11 tickets needed a
+  merge-only rework, T-069 and T-080 a 3rd round. With `App.vue` this hotspot is gone; for any future fan-out, build the
+  shared registration point first, or land tickets one at a time.
+- **Review before rework, land serially.** What worked at the end: review the code even if the PR conflicts, then one
+  landing chain per ticket (merge main, quick re-check, merge) with no other merge in between.
+- **Verdict format.** Reviewers copied the lead's bullet notes (`- round 2: approve`), so merge.sh missed the verdict;
+  merge.sh now accepts that form (627294d). Lead notes in `## Review` should stay rare; a rework engineer once wrote a
+  new `## Hand-off (round 3)` heading below `## Review`, which hid the verdict.
+- **Two account session limits (15:40, 20:40) and one low-memory stop** killed runs mid-way; all resumed without loss.
+  Keep to 2 Claude jobs at a time from the lead (engineer + reviewer/merge), not 2 engineers plus reviews.
+- **Git Bash has no `pgrep`**, and `ls a b` fails if one path is missing: two lead wait loops never fired.
+- **Lead must not edit a reviewer's verdict line**; the classifier refuses it ("Merge Without Review"). Re-run the review.
+- T-076 review: popup Close left a shown device token; fixed in T-088.
 
 ## Next sprint
 
-1. Lead writes the per-panel tickets from T-052's hand-off, one panel each; user approves them.
-2. Dispatch the smallest read-only panels first (two at a time, different `features/` folders).
-3. After the user's browser check: tickets for anything it finds.
-4. T-045 when the user has run the device check.
+1. The user's browser check of the Vue client; the lead turns findings into tickets first.
+2. T-045 when the user has run the device check.
+3. Decision 0007 "Later": a designer brief for the PWA / phone app and voice control (needs the design session).
