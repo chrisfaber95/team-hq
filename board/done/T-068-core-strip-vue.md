@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: 76
 ---
@@ -31,8 +31,11 @@ Core strip is now `features/core/core-strip.vue`, mounted into `#core` from app.
 
 Reviewer: the mood class goes on the `#core` host (skins style the section as grid item) and `data-mood` on `<html>`, both from one `watchEffect` over a mood-string computed, so an unchanged push touches nothing. The `.core__seed` div is empty in the template so root-scene.ts artwork survives. Component spec checks same nodes across pushes. typecheck, lint, test (458 node, 11 component) pass; CI not checked; `origin/main` is 1 commit ahead.
 
+Rework round 1: merged origin/main into team/T-068 (merge commit 32dba01, pushed to PR #76). One conflict, in app.ts: kept main's `updatePopups(state)`, left out the `core` render step. No other changes. typecheck, lint, test pass after the merge (461 node, 18 component); CI `check` green; PR mergeable and clean. Reviewer: only the app.ts conflict resolution is new.
+
 User should look at (no browser here): skins Classic, Co-pilot, Root, light and dark: animations keep running across pushes, mood change swaps label/class only, Root seed artwork still shows.
 
 ## Review (reviewer writes, one line per round)
 round 1: approve
 - lead: round 1 approved, but PR #76 conflicts with main after T-062/T-063 merged. Rework = merge origin/main into team/T-068, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes.
+round 2: approve - merge of main (32dba01) resolved cleanly: app.ts keeps `updatePopups`, drops only the `core` step; PR diff is unchanged in scope; CI `check` green, PR mergeable/clean.

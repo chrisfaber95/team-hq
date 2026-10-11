@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/79
 ---
 ## Goal
 The Projects popup panel is a Vue component with the same look and behaviour.
@@ -27,5 +27,10 @@ The Projects popup panel is a Vue component with the same look and behaviour.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #79: https://github.com/chrisfaber95/claude-dashboard/pull/79. `features/projects/projects-panel.vue` (mounted into `#projects`) replaces `projects.view.ts`; same markup and classes, relative times via `RelativeTime`. Pure helpers in `projects.logic.ts`. Render step and `drawPopup` branch removed from `app.ts`; architecture.md updated. typecheck, lint, test (463 node + 20 component), build green.
+
+Next popup panel should copy: read `useOpenPopup()` and have the `computed` return `[]`/null unless its id is open (opening shows current data at once because `setOpenPopup` runs in `show()` before Vue flushes); keep the `<h2 id="h-...">` always rendered (section has `aria-labelledby`); delete its `draws()` step and `drawPopup` branch. Colour through `:style`.
+
+Reviewer / user should look at (no browser run): Projects popup in skins Classic, Co-pilot, Root, light and dark: card look, swatch colour, live badge, "not trusted" tooltip, click and Enter on a card opens the building and Esc returns focus to the card. Note: cards leave the DOM while the popup is closed; branch is one commit behind main (T-070), unrelated.
 
 ## Review (reviewer writes, one line per round)
