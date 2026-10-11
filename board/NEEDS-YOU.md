@@ -53,3 +53,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-11 T-062..T-087: Vue panel migration (decision 0007 steps 3-4). `auth` tickets T-070, T-071, T-076, T-077, T-085, T-086 carry `user_ok: true`: user approved every sprint-10 ticket up front and asked the lead to run the sprint without asking (2026-10-11).
 - [x] 2026-10-11 T-062: merge of PR #74 stopped (CI not green (1 of 2 checks not passing)). Log: logs/T-062.log (lead: CI was still pending, not failing; re-merging after green)
 - [x] 2026-10-11 T-068: merge of PR #76 stopped (exit 0, PR state OPEN). Log: logs/T-068.log (lead: merge conflict with main after T-062/T-063; rework run merges main, then round 2)
+- [x] 2026-10-11 T-069: merge of PR #77 stopped: merge.sh read the round-2 verdict because the round-3 hand-off was written as a new heading below `## Review`. Log: logs/T-069.log (lead: moved it into the Hand-off section; round 3 approved, re-merging)

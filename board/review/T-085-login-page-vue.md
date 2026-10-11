@@ -7,9 +7,9 @@ depends_on: []
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/80
 ---
 ## Goal
 The login page is a small Vue app with the same behaviour under the same CSP.
@@ -27,5 +27,12 @@ The login page is a small Vue app with the same behaviour under the same CSP.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Login page is now `features/login/login-form.vue`, mounted by `login-page.ts` into `<main id="login-app">`; error texts in `login.logic.ts`; `login.view.ts` deleted. Same form, fields, texts, POST /login. No server or CSP change. PR: https://github.com/chrisfaber95/claude-dashboard/pull/80. typecheck, lint, test (463 node + 32 component) and build pass.
+
+Reviewer, look at:
+- `vite.config.ts`: `login.html` is its own second build. login.js is served before login and may not import `assets/` chunks (PUBLIC_PATHS), so Vue is bundled into it (~61 kB) and its CSS is written as `style.css`. Check this is acceptable.
+- The form no longer renders without JavaScript.
+- Not seen in a browser. User should check: Classic, Co-pilot, Root skins, light and dark; wrong token (?e=1), ?e=rate, ?e=pair texts; input autofocus; real LAN sign-in.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
