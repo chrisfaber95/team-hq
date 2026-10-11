@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/90
 ---
 ## Goal
 The Devices popup panel (list, add, revoke, one-time token) is a Vue component with the same behaviour.
@@ -29,5 +29,8 @@ The Devices popup panel (list, add, revoke, one-time token) is a Vue component w
 - First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #90: https://github.com/chrisfaber95/claude-dashboard/pull/90. `features/devices/devices-panel.vue` (mounted into `#devices`) replaces `devices.view.ts`; new `devices-status.ts` is the status ref the QR view (`devices-qr.view.ts`, still imperative until T-077) also writes. Same API calls, KNOWN_ERRORS allowlist, PC-only gate, 30 s refresh throttle, confirm on revoke; token is an escaped ref, cleared on Dismiss, next add, hide and in-flight hide. Merged main (T-075) into the branch, conflicts in app.ts and architecture.md resolved. typecheck, lint, test (471 node + 96 component) and build green; security-auditor: no Critical/High/Medium, its Low fixed. CI state not checked (PR showed UNSTABLE, probably pending).
+
+Reviewer / user should look at (no browser run): Devices popup on the PC in LAN mode, skins Classic, Co-pilot, Root, light and dark: list rows, add form, token box with Copy and Dismiss, Show QR draws/closes (it lives in static markup in the component), Revoke confirm, status text. Known: the Close button of the popup does not clear a shown token (same as before).
 
 ## Review (reviewer writes, one line per round)

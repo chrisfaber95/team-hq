@@ -7,9 +7,9 @@ depends_on: [T-070, T-072]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: 89
 ---
 ## Goal
 The Alerts panel (list, dismiss, threshold setting, badge) is a Vue component, and the last string-built permission markup goes.
@@ -28,5 +28,8 @@ The Alerts panel (list, dismiss, threshold setting, badge) is a Vue component, a
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #89 https://github.com/chrisfaber95/claude-dashboard/pull/89. `alerts-panel.vue` replaces `alerts.view.ts`: list, dismiss, threshold form, count, header badge (Teleport into `#alert-badge`, now an empty `display: contents` slot) and toasts (`alert-toast.ts`). `#alerts` in index.html is an empty host div; the component renders `<section class="panel alerts">` inside it so `has-alerts` toggles. Pending requests use `permission-requests.vue` (context `alerts`). Deleted `permissionItemsHtml`, `pendingCount`, `requestItemHtml`, the document click handler and the `initPermissions` redraw callback; 3 files left TYPE_SAFETY_LEGACY_FILES. typecheck, lint, test (553) and build pass.
+Reviewer/user should look at: badge position in the header and the panel highlight/spacing in skins Classic, Co-pilot, Root, light and dark (no browser here); the extra wrapper div around the panel in the grid.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met, no stale references, tests cover list/dismiss/threshold/badge/toasts; CI was still pending at review time (merge.sh gates on it); visual skin check left to the user.

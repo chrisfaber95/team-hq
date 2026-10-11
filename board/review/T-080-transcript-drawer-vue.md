@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/91
 ---
 ## Goal
 The transcript drawer (`#drawer`) is a Vue component with the same behaviour.
@@ -27,5 +27,8 @@ The transcript drawer (`#drawer`) is a Vue component with the same behaviour.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #91: https://github.com/chrisfaber95/claude-dashboard/pull/91. `transcript-drawer.vue` replaces `drawer.view.ts` (deleted, off `TYPE_SAFETY_LEGACY_FILES`). Same `#drawer` DOM/ids, so skins and the building/popup Esc checks are untouched. `openTranscript`/`openSubagentTranscript`/`openLogs` keep signatures (store in `transcript-drawer-selection.ts`, re-exported by `controls.view.ts`). Pure `mergeLiveTail`/`isLiveElsewhere` in `transcript-drawer.logic.ts`. Checks: typecheck, lint, npm test pass (node 476, component 89). 9 component tests + 5 logic tests.
+Reviewer: scroll stickiness on poll and Load earlier (happy-dom has no layout, so tested with stubbed sizes); permission-mode select now keeps its choice across pushes. Branch is 1 commit behind main (not rebased).
+User should look at (no browser here): drawer in Classic, Co-pilot, Root, light and dark; Load earlier keeps position; Esc closes drawer before building/popup.
 
 ## Review (reviewer writes, one line per round)
