@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/72
 ---
 ## Goal
 Lint stops new `any`, casts and non-null assertions from entering the code, while today's offending files are listed and the list only shrinks.
@@ -25,5 +25,13 @@ Lint stops new `any`, casts and non-null assertions from entering the code, whil
 - Pattern: `LEGACY_FILES` in `eslint.config.js` and `tests/lint-config.test.ts`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #72: https://github.com/chrisfaber95/claude-dashboard/pull/72. No Review points were open on the ticket and there was no earlier PR, so this is the first implementation.
+
+- eslint.config.js: no-explicit-any, no-non-null-assertion, consistent-type-assertions (never; as const allowed), explicit-module-boundary-types for .ts and .vue.
+- TYPE_SAFETY_LEGACY_FILES: 67 files generated from today's lint output, same may-only-shrink rule; eslint.config.d.ts exports it.
+- tests/lint-config.test.ts + tests/lint-fixtures/bad-types.ts: new file with as/any/!/untyped export fails, as const passes, entries must exist.
+- docs/code-style.md names the rules.
+
+Checks: typecheck, lint, npm test all green locally. Reviewer: confirm the list holds only files that fail today; no source files were fixed (per Notes).
 
 ## Review (reviewer writes, one line per round)

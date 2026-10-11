@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/71
 ---
 ## Goal
 Static files reach the browser compressed, and Vite's hashed files are cached by the browser, so phones and tablets load the app quickly.
@@ -25,5 +25,14 @@ Static files reach the browser compressed, and Vite's hashed files are cached by
 - Run the `security-auditor` agent (static file handler, repo `CLAUDE.md`).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Note: the rework run found an empty Review section, review_rounds 0 and no earlier PR or code, so this was built as a first pass.
+
+PR #71: https://github.com/chrisfaber95/claude-dashboard/pull/71 (commit 19e5aea, no merge).
+- `static-files.ts`: `.js/.css/.html/.svg` gzipped via `node:zlib` when Accept-Encoding allows (q=0 respected), `Vary: Accept-Encoding` on those types. Gzip kept in memory (max 64 entries, checked by mtime+size).
+- `/assets/<name>-<8 char hash>.<ext>` gets `Cache-Control: private, max-age=31536000, immutable`; HTML and unhashed files get none.
+- `routes-login.ts` passes Accept-Encoding for `/login`.
+- New `tests/server/http/static-files.test.ts` (9 tests). typecheck, lint, npm test pass.
+- security-auditor ran: no critical/high; cache bound, `private` and backslash regex fixed.
+Reviewer: check `private` vs `public` choice (assets are behind login) and the cache bound.
 
 ## Review (reviewer writes, one line per round)
