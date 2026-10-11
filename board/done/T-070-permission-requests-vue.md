@@ -7,9 +7,9 @@ depends_on: [T-062]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: 78
 ---
 ## Goal
 Pending permission requests (Allow / Deny) are one Vue component that the sessions and alerts panels use, with the same rules as today.
@@ -28,5 +28,11 @@ Pending permission requests (Allow / Deny) are one Vue component that the sessio
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `features/permissions/permission-requests.vue` (prop `context`: `sessions` | `alerts`) and `tests/client/features/permissions/permission-requests.component.spec.ts` (can answer, cannot answer, allow, deny, known error, unknown error). PR: https://github.com/chrisfaber95/claude-dashboard/pull/78
+
+Reviewer: compare against `permissions.view.ts`: same endpoint `/api/permissions/:id`, `{decision}` body, `answerErrorMessage` mapping, `canAnswer`, busy until a push drops the request. The component is not mounted anywhere yet; `permissionItemsHtml` and the click handler stay (T-072/T-073). `TYPE_SAFETY_LEGACY_FILES` unchanged since the old files still exist. Checks: typecheck, lint, test all pass.
+
+User should look at once mounted (no browser in this run): skins Classic, Co-pilot, Root, light and dark: request rows, the PC hint text, disabled buttons while busy, the error line.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - matches permissions.view.ts (endpoint, body, canAnswer, answerErrorMessage, busy until push); tests cover all cases; typecheck+test pass locally in worktree, CI `check` was still pending at review time (merge.sh gates on it). Note for T-072/T-073: the component keeps its own progress map per instance, so with both lists mounted a click in one does not disable the other (old code shared one map); consider hoisting progress to shared state.

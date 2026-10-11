@@ -35,3 +35,4 @@ User should look at (no browser here): skins Classic, Co-pilot, Root, light and 
 
 ## Review (reviewer writes, one line per round)
 round 1: approve
+- lead: round 1 approved, but PR #76 conflicts with main after T-062/T-063 merged. Rework = merge origin/main into team/T-068, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes.

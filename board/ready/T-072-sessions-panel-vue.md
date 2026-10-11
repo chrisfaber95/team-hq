@@ -1,9 +1,9 @@
 ---
-id: T-069
+id: T-072
 repo: claude-dashboard
 owner: eng-claude-dashboard
 brief:                    # none: decision 0007, step 3
-depends_on: []
+depends_on: [T-062, T-070]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
@@ -12,17 +12,19 @@ user_ok: true             # user approved every sprint-10 ticket up front, 2026-
 pr:
 ---
 ## Goal
-The hover tooltip (`#tip`) is a Vue component with the same behaviour.
+The Live sessions panel is a Vue component with the same table, recent sessions and pending requests.
 
 ## Acceptance
-- [ ] `features/tooltip/tooltip.vue` replaces `initTooltip()`: same trigger attributes, position and show/hide as `tooltip.view.ts`; tip text set as text, never HTML
-- [ ] Its document listeners are added on mount and removed on unmount
-- [ ] `tooltip.view.ts` deleted; component test in `tests/client/features/tooltip/` covers show, move and hide
+- [ ] `features/sessions/sessions-panel.vue` mounted into `#sessions`: same table, state dots, background marks, token sums and Recent list as `sessions.view.ts`; times through T-062
+- [ ] Pending requests through `permission-requests.vue` (context `sessions`, T-070)
+- [ ] Session action buttons (stop, open transcript, continue) keep their `data-*` attributes so the controls' document handler works until T-081
+- [ ] `sessions.view.ts` and its `app.ts` steps deleted; component test in `tests/client/features/sessions/`
 - [ ] Template is normally indented HTML inside the `.vue` file; no `v-html`, `any`, `as` (except `as const`) or `!`; deleted files leave `TYPE_SAFETY_LEGACY_FILES` in `eslint.config.js`
 - [ ] `npm run typecheck`, `npm run lint` and `npm test` pass; new behavior has a test; new and changed code follows `docs/code-style.md` (decision 0006)
 
 ## Notes (lead)
-- Not a panel: mount it on the existing `#tip` element or a wrapper; say which in the hand-off.
+- Most visible panel; keep row keys stable so scroll and focus survive pushes.
+- T-070 review: `permission-requests.vue` keeps its answer progress per instance; with the sessions and alerts lists both mounted, a click in one no longer disables the other (old code shared one map). Hoist that progress to shared state here.
 - Copy the "Vue panel" section of `docs/code-style.md` (limits panel, T-052). Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills.
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
