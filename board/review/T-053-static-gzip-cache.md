@@ -7,7 +7,7 @@ depends_on: [T-050]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/71
 ---
@@ -36,3 +36,4 @@ PR #71: https://github.com/chrisfaber95/claude-dashboard/pull/71 (commit 19e5aea
 Reviewer: check `private` vs `public` choice (assets are behind login) and the cache bound.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
