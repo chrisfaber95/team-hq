@@ -32,5 +32,8 @@ PR #94: https://github.com/chrisfaber95/claude-dashboard/pull/94. `features/usag
 
 Reviewer / user should look at (no browser run): Usage popup in skins Classic, Co-pilot, Root, light and dark: bar colours, legend swatches and dimmed hidden state, tooltips, both tables.
 
+Rework (conflict with main): merged origin/main into team/T-067 (merge commit 1a291dd, pushed to PR #94, not merged). Conflicts only in `app.ts` (removed both old usage/messages render steps and drawPopup branches; `UsagePanel` and `MessagesPanel` mounts kept) and `docs/architecture.md` (kept both panel entries, dropped both deleted view files). Merged tree: typecheck, lint, test green (476 node + 129 component). PR is MERGEABLE; CI `check` was pending at push time.
+
 ## Review (reviewer writes, one line per round)
 round 1: approve
+- lead: approved, but PR #94 conflicts with main after other panels merged. Rework = merge origin/main into team/T-067, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
