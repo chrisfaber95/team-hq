@@ -7,7 +7,7 @@ depends_on: [T-062, T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/92
 ---
@@ -36,4 +36,5 @@ Rework (round 1, lead): merged origin/main into team/T-066 (commit 2ae3ad3, push
 
 ## Review (reviewer writes, one line per round)
 round 1: approve
+round 2: approve (re-review after merge of main: diff is the T-066 change only, all acceptance criteria met, no `any`/`as`/`!`/`v-html`; CI `check` was still pending at review time, merge.sh gates on it)
 - lead: approved, but PR #92 conflicts with main after other panels merged. Rework = merge origin/main into team/T-066, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes. Write your note inside the Hand-off section, not under a new heading.

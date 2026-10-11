@@ -58,3 +58,10 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-11 T-072: engineer run stopped (exit 1, success turns=1 cost=$0.44 error). Log: logs/T-072.log (lead: session limit until 15:40; resumed after reset)
 - [x] 2026-10-11 T-086: engineer run stopped (exit 1, success turns=1 cost=$0.14 error). Log: logs/T-086.log (lead: session limit until 15:40; resumed after reset)
 - [x] 2026-10-11 T-088: follow-up from T-076 review: a shown one-time device token survives closing the Devices popup (`auth`). Covered by the user's up-front sprint-10 approval; `user_ok: true`.
+- [x] 2026-10-11 T-081: engineer run stopped (exit 1, success turns=3 cost=$0.10 error). Log: logs/T-081.log (lead: session limit until 20:40; resumed after reset)
+- [x] 2026-10-11 T-066: merge of PR #92 stopped (exit 1, PR state OPEN). Log: logs/T-066.log (lead: session limit until 20:40; resumed after reset)
+- [x] 2026-10-11 T-077: merge of PR #93 stopped (exit 1, PR state OPEN). Log: logs/T-077.log (lead: session limit until 20:40; resumed after reset)
+- [x] 2026-10-11 T-067: merge of PR #94 stopped (exit 1, PR state OPEN). Log: logs/T-067.log (lead: session limit until 20:40; resumed after reset)
+- [x] 2026-10-11 T-071: reviewer run for PR #95 stopped (exit 1, success turns=8 cost=$0.13 error). Log: logs/T-071.log (lead: session limit until 20:40; resumed after reset)
+- [x] 2026-10-11 T-071: reviewer run for PR #95 stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/T-071.log (lead: session limit until 20:40; resumed after reset)
+- [x] 2026-10-11 T-067: engineer run stopped (exit 1, success turns=1 cost=$0.58 error). Log: logs/T-067.log (lead: session limit until 20:40; resumed after reset)

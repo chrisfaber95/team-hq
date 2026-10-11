@@ -29,3 +29,6 @@ pr:
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+
+## Blocked
+- lead: the first run stopped on the account session limit after 3 turns, not on the ticket. Nothing to fix: work the ticket from the start (keep any partial work in the worktree).

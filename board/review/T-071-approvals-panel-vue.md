@@ -9,7 +9,7 @@ labels: [auth]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/95
 ---
 ## Goal
 The Approvals popup panel (approval log with Refresh) is a Vue component with the same behaviour.
@@ -28,5 +28,8 @@ The Approvals popup panel (approval log with Refresh) is a Vue component with th
 - First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #95: https://github.com/chrisfaber95/claude-dashboard/pull/95. `features/permissions/approvals-panel.vue` (mounted into `#approvals`) replaces `permissions.view.ts`; loads `/api/approvals` on popup open and Refresh, renders only while `features.commands` is on, fixed error text, stale responses ignored. Response is checked as `unknown` by `approvalEntriesOf` in `permissions.logic.ts`; HTML builders removed, `permissions.logic.ts` left `TYPE_SAFETY_LEGACY_FILES`. typecheck, lint, test (478 node + 120 component) green; build not run.
+
+Reviewer / user should look at (no browser run): Approvals popup in skins Classic, Co-pilot, Root, light and dark: row layout, outcome colours (allow/deny/expired/unknown), Refresh and status text. The section lost its `hidden` attribute and is empty when commands are off. The PR has two commits (the first holds only the `permissions.view.ts` deletion); squash on merge.
 
 ## Review (reviewer writes, one line per round)
