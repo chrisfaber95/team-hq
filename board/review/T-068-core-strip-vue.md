@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: 76
 ---
 ## Goal
 The live "core" strip (Co-pilot and Root skins) is a Vue component, and the 2 s pushes still never restart its CSS animations.
@@ -27,5 +27,10 @@ The live "core" strip (Co-pilot and Root skins) is a Vue component, and the 2 s 
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Core strip is now `features/core/core-strip.vue`, mounted into `#core` from app.ts; `core.view.ts`, its wiring and T-060's click-counter files are deleted. PR: https://github.com/chrisfaber95/claude-dashboard/pull/76
+
+Reviewer: the mood class goes on the `#core` host (skins style the section as grid item) and `data-mood` on `<html>`, both from one `watchEffect` over a mood-string computed, so an unchanged push touches nothing. The `.core__seed` div is empty in the template so root-scene.ts artwork survives. Component spec checks same nodes across pushes. typecheck, lint, test (458 node, 11 component) pass; CI not checked; `origin/main` is 1 commit ahead.
+
+User should look at (no browser here): skins Classic, Co-pilot, Root, light and dark: animations keep running across pushes, mood change swaps label/class only, Root seed artwork still shows.
 
 ## Review (reviewer writes, one line per round)

@@ -7,9 +7,9 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/75
 ---
 ## Goal
 A Vue panel inside a popup can tell whether its popup is open, and popup buttons show from the state instead of from a section's `hidden` flag, so popup panels can migrate without touching their host section.
@@ -28,5 +28,12 @@ A Vue panel inside a popup can tell whether its popup is open, and popup buttons
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #75: https://github.com/chrisfaber95/claude-dashboard/pull/75
+- New `features/popups/open-popup.ts`: `useOpenPopup()` (read-only shallowRef id) and `setOpenPopup()`, set from the shell's `show()`. Vanilla `draws()` untouched.
+- `visiblePopups({hasTeamBoard, canRunCommands, canManageDevices})` is pure in `popups.logic.ts`; `updatePopups(state)` derives it from `state.team` and `state.features`, not from section `hidden`. Added `isPopupId` guard.
+- `popups.view.ts` lost its `!`/`as` and left `TYPE_SAFETY_LEGACY_FILES`.
+- Tests: node:test for the availability function; Vitest spec (probe component) for re-render on open, switch, close. typecheck, lint, npm test pass (461 node + 11 vitest).
+- Reviewer: no browser run. Look at the popup bar in Classic, Co-pilot, Root, light and dark: with/without team board, commands off (run, approvals hidden), LAN (devices hidden). Commit subject is 73 chars (convention 72). CI was pending.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all criteria met; button rules match today's section conditions (team, commands, manageDevices); CI `check` was still pending at review time, merge.sh must wait for green
