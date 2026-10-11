@@ -7,7 +7,7 @@ depends_on: [T-063, T-070]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/95
 ---
@@ -32,4 +32,8 @@ PR #95: https://github.com/chrisfaber95/claude-dashboard/pull/95. `features/perm
 
 Reviewer / user should look at (no browser run): Approvals popup in skins Classic, Co-pilot, Root, light and dark: row layout, outcome colours (allow/deny/expired/unknown), Refresh and status text. The section lost its `hidden` attribute and is empty when commands are off. The PR has two commits (the first holds only the `permissions.view.ts` deletion); squash on merge.
 
+Rework (merge conflict): merged origin/main into team/T-071 (merge commit 78697c0, pushed). Conflicts only in `eslint.config.js` (kept union of legacy-list removals) and `src/client/app/app.ts` (kept main's MessagesPanel; dropped approvals render step, `drawPopup` and `initPermissions()`; `initPopups` now gets a no-op callback, which the reviewer may want shaped differently). Local on merged tree: typecheck, lint, test (478 node + 134 component), build green. CI `check` was still pending when I handed off.
+
 ## Review (reviewer writes, one line per round)
+- lead: approved, but PR #95 conflicts with main after other panels merged. Rework = merge origin/main into team/T-071, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
+- round 1: approve

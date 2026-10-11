@@ -7,9 +7,9 @@ depends_on: [T-076, T-077]
 contracts: []
 labels: [auth]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: 97
 ---
 ## Goal
 A one-time device token on screen is cleared when the Devices popup closes, not only on Dismiss, so it is never shown again on reopen.
@@ -27,5 +27,9 @@ A one-time device token on screen is cleared when the Devices popup closes, not 
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/97
+`devices-panel.vue` now watches `useOpenPopup() === 'devices'`; when the popup is no longer open (Close, Esc, backdrop, another popup) it clears the token, the pairing QR and the status text, so reopening shows no token. Two new component tests: show token, close, reopen; and another popup opening clears it. The existing `afterEach` now resets the open popup. Typecheck, lint and tests pass locally (476 node, 126 component). CI on the PR not yet checked.
+Reviewer: check the watch in `devices-panel.vue`. No browser in the run: the user should look at the Devices popup in skins Classic, Co-pilot, Root, light and dark (add a device, close the popup, reopen).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

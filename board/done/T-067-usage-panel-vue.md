@@ -7,7 +7,7 @@ depends_on: [T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: 94
 ---
@@ -36,4 +36,5 @@ Rework (conflict with main): merged origin/main into team/T-067 (merge commit 1a
 
 ## Review (reviewer writes, one line per round)
 round 1: approve
+round 2: approve (merge-only rework re-read: diff is the same panel, no listener left, no v-html/any/as/!, legacy list entry removed; CI `check` was still pending when read, merge.sh gates on it)
 - lead: approved, but PR #94 conflicts with main after other panels merged. Rework = merge origin/main into team/T-067, resolve (keep both sides), re-run typecheck/lint/test, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
