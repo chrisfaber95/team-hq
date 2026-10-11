@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
 pr: 76
 ---
@@ -34,3 +34,4 @@ Reviewer: the mood class goes on the `#core` host (skins style the section as gr
 User should look at (no browser here): skins Classic, Co-pilot, Root, light and dark: animations keep running across pushes, mood change swaps label/class only, Root seed artwork still shows.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
