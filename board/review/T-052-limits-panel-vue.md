@@ -7,7 +7,7 @@ depends_on: [T-051]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: 73
 ---
@@ -33,3 +33,4 @@ Next panel should copy: keep the empty `<section id>`, mount once in `app.ts`, d
 Reviewer look at: not checked in a browser or per skin (no browser in this run), so verify the three skins visually; fragment root (no wrapper element) inside `#limits`; bundled a one-line lint fix in `tests/server/http/static-files.test.ts` (T-053 left an `as` assertion that failed lint on main).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
