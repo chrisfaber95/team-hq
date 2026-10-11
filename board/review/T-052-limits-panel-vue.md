@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every ticket for now, 2026-10-10
-pr:
+pr: 73
 ---
 ## Goal
 The limits panel is the first Vue component and the pattern every later panel copies: same look and behaviour, markup in an indented HTML template, no string-built HTML.
@@ -28,5 +28,8 @@ The limits panel is the first Vue component and the pattern every later panel co
 - The lead writes the other panel tickets after this merges, so keep the pattern simple and say in the hand-off what the next panel should copy.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #73 https://github.com/chrisfaber95/claude-dashboard/pull/73: the limits panel is now `features/limits/limits-panel.vue` (inline indented template, reads the T-051 store via `useDashboardState()`, same classes/DOM, time spans keep `data-time`/`data-ms` so `tickTimes()` works). `limits.view.ts` and its render step are gone; `app.ts` calls `mountComponent(LimitsPanel, 'limits')` once. `dashboard-state.ts` uses `isRecord` from `shared/guards.ts`. `docs/code-style.md` has a "Vue panel" section. Component test in `tests/client/features/limits/`. typecheck, lint, test, build pass.
+Next panel should copy: keep the empty `<section id>`, mount once in `app.ts`, derive with `computed` from the store, pure helpers stay in `*.logic.ts`, `:style` for dynamic widths, test = set store, mount, push new state.
+Reviewer look at: not checked in a browser or per skin (no browser in this run), so verify the three skins visually; fragment root (no wrapper element) inside `#limits`; bundled a one-line lint fix in `tests/server/http/static-files.test.ts` (T-053 left an `as` assertion that failed lint on main).
 
 ## Review (reviewer writes, one line per round)
