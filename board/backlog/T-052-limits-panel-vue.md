@@ -24,6 +24,7 @@ The limits panel is the first Vue component and the pattern every later panel co
 
 ## Notes (lead)
 - Decision 0007, step 2. Use the vendored `vue-best-practices` and `vue-testing-best-practices` skills (T-059). Limits is small and read-only, so it is the pilot panel.
+- T-051 merged with a local `isRecord` in `src/client/app/dashboard-state.ts` (T-061 had not landed). Replace it with the import from `src/shared/guards.ts`; that one-line change in `app/` is part of this ticket.
 - The lead writes the other panel tickets after this merges, so keep the pattern simple and say in the hand-off what the next panel should copy.
 
 ## Hand-off (engineer writes, max 300 tokens)

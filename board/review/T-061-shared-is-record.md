@@ -7,7 +7,7 @@ depends_on: [T-056, T-057]
 contracts: []
 labels: [auth]            # touches auth/devices-file.ts and limits.ts imports; behaviour unchanged
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: https://github.com/chrisfaber95/claude-dashboard/pull/69
 ---
@@ -31,3 +31,4 @@ PR: https://github.com/chrisfaber95/claude-dashboard/pull/69 (CI pending at hand
 Reviewer: check devices-file.ts still narrows correctly with the Record version (it type-checks), and that no test expectation changed.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

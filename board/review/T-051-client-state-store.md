@@ -7,7 +7,7 @@ depends_on: [T-050]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every ticket for now, 2026-10-10
 pr: 70
 ---
@@ -35,3 +35,4 @@ Tests: Vitest spec feeds fake EventSource pushes, asserts a reading component re
 Reviewer: the guard checks top-level shape only (nested fields trusted from server); local `isRecord` because T-061 had not landed; nothing reads the store yet (T-052).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
