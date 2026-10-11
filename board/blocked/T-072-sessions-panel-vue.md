@@ -31,3 +31,6 @@ The Live sessions panel is a Vue component with the same table, recent sessions 
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+
+## Blocked
+- lead: the first run stopped on the account session limit after 1 turn, not on the ticket. Nothing to fix: work the ticket from the start (keep any partial work in the worktree).

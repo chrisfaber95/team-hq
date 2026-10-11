@@ -35,3 +35,6 @@ Checks: typecheck, lint, npm test (466 + 33), build pass locally; CI pending.
 ## Review (reviewer writes, one line per round)
 round 1: approve
 - lead: round 1 approved, but PR #82 conflicts with main after T-085 (login page) merged. Rework = merge origin/main into team/T-086, resolve (keep both entries), re-run checks, push. No other changes. Write your note inside the Hand-off section, not under a new heading.
+
+## Blocked
+- lead: the rework run stopped on the account session limit, not on the ticket. Do the rework in the last `- lead:` line of `## Review` (merge origin/main, nothing else).

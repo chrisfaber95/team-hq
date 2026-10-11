@@ -54,3 +54,6 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-11 T-062: merge of PR #74 stopped (CI not green (1 of 2 checks not passing)). Log: logs/T-062.log (lead: CI was still pending, not failing; re-merging after green)
 - [x] 2026-10-11 T-068: merge of PR #76 stopped (exit 0, PR state OPEN). Log: logs/T-068.log (lead: merge conflict with main after T-062/T-063; rework run merges main, then round 2)
 - [x] 2026-10-11 T-069: merge of PR #77 stopped: merge.sh read the round-2 verdict because the round-3 hand-off was written as a new heading below `## Review`. Log: logs/T-069.log (lead: moved it into the Hand-off section; round 3 approved, re-merging)
+- [x] 2026-10-11 T-078: reviewer run for PR #84 stopped (exit 1, success turns=10 cost=$0.15 error). Log: logs/T-078.log (lead: session limit until 15:40; resumed after reset)
+- [x] 2026-10-11 T-072: engineer run stopped (exit 1, success turns=1 cost=$0.44 error). Log: logs/T-072.log (lead: session limit until 15:40; resumed after reset)
+- [x] 2026-10-11 T-086: engineer run stopped (exit 1, success turns=1 cost=$0.14 error). Log: logs/T-086.log (lead: session limit until 15:40; resumed after reset)
