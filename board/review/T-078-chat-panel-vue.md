@@ -9,7 +9,7 @@ labels: [low-risk]
 budget_usd: 3
 review_rounds: 0
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/84
 ---
 ## Goal
 The Chat popup panel is a Vue component with the same intents, confirm step and restrictions.
@@ -27,5 +27,8 @@ The Chat popup panel is a Vue component with the same intents, confirm step and 
 - No browser in the run: list in the hand-off what the user should look at (skins Classic, Co-pilot, Root; light and dark).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #84: https://github.com/chrisfaber95/claude-dashboard/pull/84. Chat popup is now `chat-panel.vue` plus `use-chat.ts` (history/pending refs, intents, the three api calls); `chat.view.ts` deleted and removed from `TYPE_SAFETY_LEGACY_FILES`. The static log/input/confirm markup left `index.html` for a `#chat-panel` mount point; the summary-setting markup stays and is still wired by `settings.view.ts`. Source guard `chat.view.test.ts` now scans both new files. New `chat-panel.component.spec.ts`: send with confirm, cancel, session ended, summary, error, scroll and typed input kept across pushes. typecheck, lint, npm test (463 node + 38 vitest) and build pass.
+Reviewer: confirm the guard still bans /api/commands, /stop, /start. `#chat-confirm` is now v-if instead of hidden.
+User should look at (no browser here): Chat popup in skins Classic, Co-pilot and Root, light and dark: layout of log, confirm box and form, scroll sticking to the bottom, input kept across pushes.
 
 ## Review (reviewer writes, one line per round)

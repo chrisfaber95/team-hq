@@ -7,9 +7,9 @@ depends_on: [T-063]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_ok: true             # user approved every sprint-10 ticket up front, 2026-10-11
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/83
 ---
 ## Goal
 The Team board popup panel is a Vue component with the same look and behaviour.
@@ -28,5 +28,9 @@ The Team board popup panel is a Vue component with the same look and behaviour.
 - First popup panel: copy T-064 (`board/done/T-064-projects-panel-vue.md`, "Next popup panel should copy").
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #83: https://github.com/chrisfaber95/claude-dashboard/pull/83. `features/team/team-panel.vue` (mounted into `#team`) replaces `team.view.ts`; same classes and DOM (tiles, In progress/Review/Blocked lists, Needs you / "Nothing needs you."). Copies T-064: content derived only while the Team popup is open; no board in the state renders nothing, and the popup button hides through `popups.logic.ts` (`hasTeamBoard`). Removed `hidden` from `#team` in `index.html`, the render step and `drawPopup` branch in `app.ts`; architecture.md updated. `team.view.ts` was not in `TYPE_SAFETY_LEGACY_FILES`. typecheck, lint, test (463 node + 34 component), build green; CI pending when handed off.
+
+Reviewer / user should look at (no browser run): Team popup in skins Classic, Co-pilot, Root, light and dark: tiles, lists, "Needs you"; popup button hidden when there is no team-hq board.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
