@@ -11,7 +11,7 @@ the user approves a brief; the lead marks it handed off once its tickets exist.
 - [F-004](briefs/F-004-cockpit-redesign.md) Cockpit redesign (must). Handed off: T-025..T-029, T-037. Built 2026-10-10 (CPU 0.63 -> 0.16 % desktop, 0.62 -> 0.10 % phone); waits for the user's browser check
 - [F-005](briefs/F-005-terminal-free-session-control.md) Terminal-free session control (should). Handed off: T-030 (spike), T-031, T-034..T-036 (wait for decision 0005)
 - [F-006](briefs/F-006-launch-with-context.md) Launch work with context (should). Handed off: T-032, T-033
-- [F-007](briefs/F-007-live-session-communication.md) Live session communication, the city (must). Handed off: T-089..T-093
+- [F-007](briefs/F-007-live-session-communication.md) Live session communication, the city (must). Handed off: T-089..T-093, T-095. Built 2026-10-15 (city popup open: +0.08 pts desktop, +0.09 pts phone over closed); waits for the user's browser check
 
 ## Shipped (before the designer existed)
 
