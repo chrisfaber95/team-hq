@@ -10,9 +10,9 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/109
 ---
 ## Goal
 On desktop the Session communication popup uses the full screen, so the kingdom scene can fill it; other
@@ -34,5 +34,7 @@ popups and the phone layout stay as they are.
 - No CPU measurement in this brief (user, 2026-10-15).
 
 ## Hand-off (engineer writes, max 300 tokens)
+The `comms` popup gets class `popup--full` (`popupFrameClass()` in `popups.logic.ts`, bound in `popup-shell.vue`). `style.scss` makes it fill the viewport and its panel flex-grow, only at `min-width: 801px`; phone is unchanged. Other popups untouched. Test added in `popups.logic.test.ts`. Ran typecheck, lint, `npm test` (662 pass: node 496, Vitest 166). PR: https://github.com/chrisfaber95/claude-dashboard/pull/109 (into epic/F-008). Reviewer: no browser check was done, so look at the desktop layout and that `.panel` scrolls when content overflows.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
