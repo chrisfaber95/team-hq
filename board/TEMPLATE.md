@@ -1,6 +1,9 @@
 ---
 id: T-000
+kind: ticket              # ticket | epic (one per brief, the PR epic -> main; decision 0008)
 repo: claude-dashboard
+base: main                # epic/F-NNN for a brief's tickets; main for epic tickets and tickets without a brief
+branch:                   # epic tickets only: epic/F-NNN
 owner: eng-claude-dashboard
 brief:                    # F-NNN when the ticket comes from a product brief
 depends_on: []

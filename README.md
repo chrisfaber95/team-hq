@@ -7,6 +7,10 @@ and one-line cross-session messages. Design: "Multi-Session Agent Team Setup" do
 
 **Current phase: 2 (headless engineers), since 2026-10-09.** Phase 0 baseline done: ~$2.16 and 32 turns per merged PR (`metrics/baseline.md`). Phase 1 passed its gate with 16 tickets merged (T-001..T-016). Pilot repo: `claude-dashboard` (`N:\Projects\Claude-dashboard`).
 
+**Branches (decision 0008, from the brief after F-007):** a brief's tickets merge into its branch `epic/F-NNN`
+(CI there: typecheck and lint), and the finished feature merges into `main` once, through an epic ticket: full CI,
+a feature review against the brief, and your `user_ok` when you put `user_check: true` in the brief.
+
 In phase 2 only the **lead** (and, when you design, the **designer**) runs in a terminal. Engineers and reviewers are
 headless runs started by `scripts/dispatch.sh` and `scripts/review.sh`: one fresh session per ticket or PR that exits
 when it's done, so there is nothing to `/clear`. The interactive engineer and reviewer commands below are for phase 1 or
@@ -18,6 +22,7 @@ for driving a ticket by hand.
 | `board/` | tickets (`TEMPLATE.md`), `NEEDS-YOU.md` (your inbox), `SPRINT.md` |
 | `budgets.json` | caps, parallelism, repo paths |
 | `scripts/dispatch.sh`, `review.sh`, `merge.sh` | headless engineer / reviewer runs and the gated merge |
+| `scripts/epic.sh` | `open`: a brief's branch `epic/F-NNN`; `pr`: the PR epic → `main` once its tickets are done (decision 0008) |
 | `scripts/baseline.sh` | ordinary non-team session per ticket, for baseline measurements |
 | `.claude/skills/` | `write-ticket`, `engineer`, `review-pr`, `sprint-summary` |
 | `.claude/agents/reviewer.md` | reviewer role (read-only on code) |

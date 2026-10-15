@@ -27,3 +27,20 @@ description: Turn a goal into one or more board tickets in team-hq (backlog or r
 4. Put it in `ready/` only if it is fully specified and its dependencies are done; otherwise `backlog/`.
 5. If it needs a contract change, a new dependency or touches auth/secrets, add a line to
    `board/NEEDS-YOU.md` before it goes to `ready/`.
+
+## Handing off a brief: the epic (decision 0008)
+
+A brief's tickets build on its own branch `epic/F-NNN` and reach `main` together:
+- Every ticket of the brief gets `base: epic/F-NNN`. Its typecheck/test criterion stays as is: the engineer
+  runs the tests locally, even though CI on epic PRs runs only typecheck and lint.
+- Add one **epic ticket** in `backlog/`: `kind: epic`, `base: main`, `branch: epic/F-NNN`, `brief: F-NNN`,
+  `depends_on` all the brief's tickets, `owner: lead`. Goal: the brief's outcome. Acceptance: the brief's
+  acceptance criteria, plus "full CI green on the epic PR". It is never dispatched to an engineer.
+- Run `bash scripts/epic.sh open F-NNN <repo>` before the first ticket of the brief is dispatched.
+- When every other ticket of the brief is in `done/`: `bash scripts/epic.sh pr <epic-id>` opens the PR epic →
+  `main` and moves the epic ticket to `review/`; then `review.sh` and `merge.sh` as for any ticket. If the brief
+  has `user_check: true` (only the user sets it), `merge.sh` waits for the user's `user_ok: true`.
+- A gap found in the epic review becomes a normal ticket with `base: epic/F-NNN`. Its merge updates the open epic
+  PR; then run `review.sh` on the epic ticket again.
+
+Tickets without a brief (fixes, chores, tooling) keep `base: main`.

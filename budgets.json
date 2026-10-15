@@ -3,7 +3,8 @@
   "maxParallel": 2,
   "messagesPerTicket": 3,
   "engineer": { "model": "sonnet", "maxTurns": 60, "maxBudgetUsd": 3, "maxMinutes": 45 },
-  "reviewer": { "model": "sonnet", "maxTurns": 25, "maxBudgetUsd": 1, "maxRounds": 2, "maxMinutes": 15 },
+  "reviewer": { "model": "sonnet", "maxTurns": 25, "maxBudgetUsd": 1, "maxRounds": 2, "maxMinutes": 15,
+    "epic": { "maxTurns": 40, "maxBudgetUsd": 2, "maxMinutes": 25 } },
   "repos": {
     "claude-dashboard": "/n/Projects/Claude-dashboard"
   }

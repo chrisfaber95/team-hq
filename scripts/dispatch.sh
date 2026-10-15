@@ -45,9 +45,17 @@ if [ "$mode" = "--rework" ]; then
 else
   ticket=$(find_ticket ready)
   [ -n "$ticket" ] || { echo "no $id in board/ready/" >&2; exit 66; }
+fi
+# A brief's tickets branch from and merge into its epic branch (decision 0008); the epic ticket itself is the lead's.
+field() { sed -n "s/^$1: *//p" "$ticket" | head -1 | sed 's/#.*//' | tr -d '\r '; }
+[ "$(field kind)" != epic ] || { echo "$id is an epic ticket: use scripts/epic.sh pr, not an engineer" >&2; exit 65; }
+base=$(field base); base=${base:-main}
+if [ "$mode" != "--rework" ]; then
   [ ! -e "$wt" ] || { echo "worktree $wt already exists; use --rework or remove it" >&2; exit 73; }
   git -C "$repo_dir" fetch -q origin
-  git -C "$repo_dir" worktree add -q -b "team/$id" "$wt" origin/main
+  git -C "$repo_dir" rev-parse -q --verify "refs/remotes/origin/$base" >/dev/null \
+    || { echo "no branch $base on origin (run scripts/epic.sh open first)" >&2; exit 66; }
+  git -C "$repo_dir" worktree add -q -b "team/$id" "$wt" "origin/$base"
   if [ -f "$wt/package-lock.json" ]; then
     (cd "$wt" && npm ci --no-audit --no-fund --loglevel=error)
   fi
@@ -57,9 +65,9 @@ mv "$ticket" "$board/in-progress/"
 
 # --- the run -------------------------------------------------------------------
 prompt="$task The ticket is in N:/team-hq/board/in-progress/. Read and follow N:/team-hq/.claude/skills/engineer/SKILL.md. \
-When done: open or update the PR, fill the hand-off, move the ticket to review, send the session named lead one line."
+When done: open or update the PR (base branch: $base), fill the hand-off, move the ticket to review, send the session named lead one line."
 
-echo "== $(date -Is) dispatch $id ($repo${mode:+ $mode}) in $wt" >> "$log"
+echo "== $(date -Is) dispatch $id ($repo${mode:+ $mode}, base $base) in $wt" >> "$log"
 cd "$wt"
 # No MCP servers: the repo's .mcp.json (Playwright) kept a finished run from exiting (T-036).
 # The time cap ends any other hang as a failure instead of an open process.

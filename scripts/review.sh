@@ -17,21 +17,24 @@ ticket=$(find "$board/review" -maxdepth 1 -name "$id-*.md" | head -1)
 repo=$(sed -n 's/^repo: *//p' "$ticket" | head -1 | tr -d '\r ')
 repo_dir=$(cfg "repos['$repo']")
 [ -n "$repo_dir" ] || { echo "ticket $id has unknown repo '$repo'" >&2; exit 64; }
+# An epic PR is the whole feature against its brief (decision 0008), so it gets the larger reviewer.epic caps.
+caps=reviewer; mode=""
+if grep -qE "^kind: *epic" "$ticket"; then caps=reviewer.epic; mode=" This is an epic ticket: use the skill's epic review."; fi
 
-echo "== $(date -Is) review $id PR #$pr" >> "$log"
+echo "== $(date -Is) review $id PR #$pr${mode:+ (epic)}" >> "$log"
 cd "$hq"
 # No MCP servers and a time cap, as in dispatch.sh.
-minutes=$(cfg reviewer.maxMinutes)
+minutes=$(cfg $caps.maxMinutes)
 set +e
-timeout --kill-after=60 "${minutes}m" claude -p "Review ticket $id, PR #$pr in repo $repo. Use the review-pr skill (N:/team-hq/.claude/skills/review-pr/SKILL.md)." \
+timeout --kill-after=60 "${minutes}m" claude -p "Review ticket $id, PR #$pr in repo $repo. Use the review-pr skill (N:/team-hq/.claude/skills/review-pr/SKILL.md).$mode" \
   --agent reviewer \
   --name "reviewer-$id" \
   --model "$(cfg reviewer.model)" \
   --add-dir "$repo_dir" \
   --permission-mode auto \
   --strict-mcp-config \
-  --max-turns "$(cfg reviewer.maxTurns)" \
-  --max-budget-usd "$(cfg reviewer.maxBudgetUsd)" \
+  --max-turns "$(cfg $caps.maxTurns)" \
+  --max-budget-usd "$(cfg $caps.maxBudgetUsd)" \
   --settings '{"crossSessionInbound":"accept"}' \
   --output-format json > "$hq/logs/$id.review.json" 2>> "$log"
 rc=$?

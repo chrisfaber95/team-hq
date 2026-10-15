@@ -29,6 +29,8 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
   module and one kind of change (see `write-ticket`). Split anything bigger.
 - Never put two `in-progress` tickets on the same module of one repo.
 - `budgets.json` holds the caps; `scripts/dispatch.sh` enforces them.
+- A brief's tickets have `base: epic/F-NNN` and merge into that branch; one epic ticket (`kind: epic`) brings
+  the finished feature to `main` (decision 0008, steps in `write-ticket`). Other tickets keep `base: main`.
 - Engineers and the reviewer move ticket files with plain `mv`; they never commit here.
   **Only you commit `team-hq`** (after each dispatch round and in `sprint-summary`).
 
@@ -40,6 +42,8 @@ One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `
 - Merge: when the ticket's last `## Review` line is `round N: approve`, run `bash scripts/merge.sh <id> <pr#>`. The script checks
   the gates itself, has the repo's `git-workflow-manager` agent merge, then moves the ticket to `done/`
   and removes the worktree. You never run `gh pr merge` yourself.
+- Epic: `bash scripts/epic.sh open F-NNN <repo>` before a brief's first dispatch; `bash scripts/epic.sh pr <epic-id>`
+  once its other tickets are done, then `review.sh` and `merge.sh` as above. Never dispatch an epic ticket.
 - On `round N: changes`: run `bash scripts/dispatch.sh <id> <repo> --rework`
   (reuses the ticket's worktree and branch; the engineer addresses the `## Review` lines).
 - A non-zero exit means a cap was hit or the run failed: the script already moved the ticket to
@@ -74,7 +78,9 @@ Target: 3 messages or fewer per ticket.
 
 ## Merge gates
 
-- Every change lands through a PR; CI (typecheck + tests) must be green.
+- Every change lands through a PR; CI must be green (into `epic/*`: typecheck + lint; into `main`: + tests).
+- An epic merges into `main` only after a feature review against the brief, and with `user_ok: true` when the
+  brief has `user_check: true` (only the user sets that).
 - The reviewer approves or requests changes; after 2 rounds the ticket goes to `blocked/` for you.
 - Git work in a repo goes through that repo's `git-workflow-manager` agent (its CLAUDE.md Git
   section): engineers delegate commit, push and opening the PR with the restriction "don't merge".
