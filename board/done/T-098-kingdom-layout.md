@@ -10,9 +10,9 @@ depends_on: [T-097]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:
+pr: 111
 ---
 ## Goal
 A pure, tested isometric layout of the kingdom on the `shared/iso.ts` grid: castle, square, court, districts,
@@ -43,5 +43,9 @@ mailman walks. No rendering (T-099 draws it).
 - No CPU measurement in this brief (user, 2026-10-15).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Pure kingdom layout in `src/client/features/messages/`: `kingdom-layout.logic.ts` (`createKingdomLayoutTracker().arrange(kingdom, 'wide'|'tall')`, `mailmanRoute`), plus types, grid helpers (BFS walk, corners) and a wide and a tall plan. PR: https://github.com/chrisfaber95/claude-dashboard/pull/111
+Look at: stable plots (lowest free plot per district, tracker state); capacities (court 20, district 12, wide 40 districts; extra buildings go to `layout.overflow` for T-099 to show as "+N"); tall has no trees (400-unit width budget, test pins it); wall/towers/trees are plain cell lists.
+Ran locally: typecheck, lint, npm test (512 node + 166 vitest pass), new suite kingdom-layout.logic.test.ts (11 tests).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

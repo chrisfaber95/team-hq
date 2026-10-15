@@ -41,6 +41,8 @@ roofs and labels. Movement comes in T-100; the feed is unchanged.
 - Look: the brief's "The kingdom" section; the user's reference is mood only, drawn with code (no image files,
   no third-party art). Keep it simple; the user judges the look in the browser, not the reviewer.
 - Pick wide/tall with a `ResizeObserver` or `matchMedia` on the scene area, not a timer.
+- T-098 API: `createKingdomLayoutTracker().arrange(kingdom, 'wide' | 'tall')`, `mailmanRoute`; buildings past a
+  court/district's capacity land in `layout.overflow`: show them as a "+N" sign in that area. Tall has no trees.
 - No CPU measurement in this brief (user, 2026-10-15).
 
 ## Hand-off (engineer writes, max 300 tokens)
