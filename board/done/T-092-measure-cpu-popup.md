@@ -7,7 +7,7 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 2
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
 pr: 103
 ---
@@ -38,3 +38,4 @@ PR #103: https://github.com/chrisfaber95/claude-dashboard/pull/103
 
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
