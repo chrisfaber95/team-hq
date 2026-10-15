@@ -10,9 +10,9 @@ depends_on: [T-097, T-098, T-099, T-100, T-101]
 contracts: []
 labels: [low-risk]
 budget_usd: 2
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: true             # user, 2026-10-15: "user_check is oke, you can merge the epic into main when its done"
-pr:
+pr: 114
 ---
 ## Goal
 The Session communication popup is a small isometric kingdom: the user is the king in the castle, the team and
@@ -50,3 +50,4 @@ talks, and whether anyone needs them.
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

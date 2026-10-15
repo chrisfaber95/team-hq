@@ -115,6 +115,12 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-094 | #105 | 4 over 1 run | $0.19 | 1 ($0.10, 1 runs) | 1 | yes |
 | T-095 | #108 | 4 over 1 run | $0.27 | 1 ($0.11, 1 runs) | 1 | yes |
 | T-096 | #107 | 4 over 1 run | $0.28 | 1 ($0.13, 1 runs) | 1 | yes |
+| T-097 | #110 | 5 over 1 run | $0.71 | 1 ($0.13, 1 runs) | 1 | yes |
+| T-098 | #111 | 3 over 1 run (session limit after the PR) | $1.12 | 1 ($0.21, 1 runs) | 0 | yes |
+| T-099 | #112 | 6 over 1 run | $1.17 | 1 ($0.16, 1 runs) | 1 | yes |
+| T-100 | #113 | 4 over 1 run | $1.14 | 1 ($0.14, 1 runs) | 1 | yes |
+| T-101 | #109 | 21 over 1 run | $0.30 | 1 ($0.12, 1 runs) | 1 | yes |
+| T-102 (epic) | #114 | - | - | 1 ($0.15, 1 runs, feature review) | 0 | yes |
 
 # Same-method comparison (transcript pricing)
 
