@@ -7,9 +7,9 @@ depends_on: [T-089]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:                       # engineer fills in, e.g. 88
+pr: 102
 ---
 ## Goal
 A pure, tested model of the F-007 "city": which shops are on screen and in what state, which workers are
@@ -46,5 +46,9 @@ inside them, and which postmen are on the street at a given moment. No rendering
   shops stopped over an hour are gone.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `src/client/features/messages/city.logic.ts`: `createCityTracker().update({sessions, messages, subagents, nowMs})` returns `{shops, postmen}`. Shops: active/idle(idleMs)/stopped, stable slots (column/row), workers capped at 6 plus `moreWorkers`. Postmen: one per new message (out/in pair deduped, 30 s life, hand-backs inside the shop, worker to 'boss'). Tests in `tests/client/features/messages/city.logic.test.ts`. Old graph and panel untouched; typecheck, lint, npm test green.
+PR: https://github.com/chrisfaber95/claude-dashboard/pull/102
+Reviewer: check the pair dedupe (same from/to within 5 s) and that shops are keyed by session name.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve (diff meets all criteria; CI `check` was still pending at review time, merge.sh must wait for green)
