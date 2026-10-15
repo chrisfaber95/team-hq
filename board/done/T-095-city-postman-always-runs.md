@@ -10,9 +10,9 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 1
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:                       # engineer fills in, e.g. 88
+pr: 108
 ---
 ## Goal
 City postmen walk on the user's PC: the postman animation no longer sits behind a `prefers-reduced-motion`
@@ -32,5 +32,7 @@ rule, which the UI conventions forbid (Windows "Animation effects" is off there,
 - Folder: `src/client/features/messages/`; the guard test goes beside the other client tests.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Removed the `prefers-reduced-motion` media query around the postman animation in `src/client/features/messages/_city.scss`; it now always runs. Added `tests/client/animations-always-run.test.ts`, which fails if any `src/client` `.scss` or `.vue` file contains `prefers-reduced-motion`. T-091 behavior untouched (only the CSS rule changed). Checks: typecheck, lint, npm test (488 node, 166 vitest) all pass. PR: https://github.com/chrisfaber95/claude-dashboard/pull/108. Reviewer: confirm no other reduced-motion branch remains; no browser run was done.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

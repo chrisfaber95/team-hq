@@ -10,9 +10,9 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 2
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:                       # engineer fills in, e.g. 88
+pr: 107                  # engineer fills in, e.g. 88
 ---
 ## Goal
 Engineers have a shared isometric (2.5D, old-school SimCity) SVG toolkit and a UI motion guide in the repo
@@ -37,5 +37,7 @@ before any scene or motion work. No visible change in the app: nothing uses the 
 - Don't run CPU measurements (off, user 2026-10-15), even where `docs/motion.md` mentions them.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #107: https://github.com/chrisfaber95/claude-dashboard/pull/107. The six draft files are copied unchanged (no fixes needed). style.scss loads shared/iso and defines the six motion tokens on :root; CLAUDE.md reference list has the line from the draft README (the edit went through). typecheck, lint, test and build pass locally; no CPU measurements run. Reviewer: check the style.scss tokens against docs/motion.md and the CLAUDE.md line. Commit trailer is plain "Claude" per the repo memory rule.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - six files byte-identical to draft, tokens/load-css/CLAUDE.md line match README; base main; CI `check` was still pending at review time, merge.sh gates on it
