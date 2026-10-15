@@ -3,16 +3,16 @@ id: T-099
 kind: ticket
 repo: claude-dashboard
 base: epic/F-008
-branch:
+branch: team/T-099
 owner: eng-claude-dashboard
 brief: F-008
 depends_on: [T-098]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:
+pr: https://github.com/chrisfaber95/claude-dashboard/pull/112
 ---
 ## Goal
 The Session communication popup draws the kingdom from T-097/T-098 instead of the F-007 city: grass, dirt
@@ -46,5 +46,9 @@ roofs and labels. Movement comes in T-100; the feed is unchanged.
 - No CPU measurement in this brief (user, 2026-10-15).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Popup now draws the kingdom (PR #112 into epic/F-008): new kingdom-view.vue, kingdom-scene.logic.ts, kingdom-shapes.logic.ts, use-scene-orientation.ts, _kingdom.scss; messages-panel.vue switched; city files and their test removed. Castle banner only when needsYou; active = lit windows + smoke, idle = unlit + "idle N min", stopped = shutters + barred door; workers in front of their building with "+N more"; overflow "+N" sign per area; wide/tall by ResizeObserver. Mailmen stand at the sender door (movement is T-100).
+Checks run locally: typecheck, lint, build pass; node:test 514 and Vitest 168 pass. New: kingdom-scene.logic.test.ts, panel spec cases (banner both ways, tall layout, mailman).
+Reviewer look at: scene.logic depth order, kingdom-shapes geometry constants, panel tracker lifetime. Not checked in a browser (the user judges the look).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
