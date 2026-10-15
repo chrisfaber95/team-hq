@@ -7,9 +7,9 @@ depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 2
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:                       # engineer fills in, e.g. 88
+pr: 101
 ---
 ## Goal
 A subagent hand-back in the pushed `messages` names the subagent that sent it, so the F-007 city can
@@ -30,5 +30,7 @@ run the postman from that worker to its boss inside the shop.
 - No client change; T-090 uses the field.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Subagent hand-back messages now carry `agentId` (= `senderTaskId`, the same id as `SubagentInfo.agentId`); session messages leave it unset. Changes: optional `agentId` on `MessageInfo` (`src/shared/types/sessions.ts`), set in `recordIncomingPeerMessage` (`transcript-aggregates.ts`). New test in `subagents-feed-and-endpoints.test.ts` matches the message agentId to the built subagent. typecheck, lint, test pass (635). PR: https://github.com/chrisfaber95/claude-dashboard/pull/101 (CI pending at hand-off). Reviewer: check the field is set only for subagent kind with senderTaskId.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
