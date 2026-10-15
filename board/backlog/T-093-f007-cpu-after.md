@@ -16,7 +16,7 @@ Show that the city popup keeps the F-004 CPU gains, measured the F-004 way with 
 
 ## Acceptance
 - [ ] `docs/perf.md` gets an "After F-007" table: main after T-091, `--popup comms`, same PC, browser,
-      method, runs and viewports as T-092's "Before F-007", plus a popup-closed run
+      method, runs and viewports as T-092's "Before F-007" (1 run x 60 s per viewport, popup open and closed)
 - [ ] Popup-closed medians stay at F-004 levels (0.16 % desktop, 0.10 % phone, within run-to-run noise),
       and popup-open medians with no postman moving are at most 0.1 percentage point above popup-closed;
       if not, the ticket goes to `blocked/` with the numbers instead of a PR
