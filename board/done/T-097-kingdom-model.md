@@ -3,16 +3,16 @@ id: T-097
 kind: ticket
 repo: claude-dashboard
 base: epic/F-008
-branch:
+branch: team/T-097
 owner: eng-claude-dashboard
 brief: F-008
 depends_on: []
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:
+pr: 110
 ---
 ## Goal
 A pure, tested model of the F-008 kingdom: the castle (the user) and whether it needs them, the main court
@@ -49,5 +49,7 @@ workers at buildings, and mailmen including those to the castle. No geometry, no
 - No CPU measurement in this brief (user, 2026-10-15).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #110 (https://github.com/chrisfaber95/claude-dashboard/pull/110) into epic/F-008. kingdom.logic.ts (model; shapes in kingdom-types.logic.ts, court/district/kind rules in kingdom-grouping.logic.ts) replaces city.logic.ts; a thin city.logic.ts adapter keeps the old view, layout and panel unchanged until T-099. Castle id `@castle`; castle mailmen come from new `session:<id>` alerts and new pending permissions (none for items present on the first update). Tests: kingdom.logic.test.ts (renamed from city.logic.test.ts, extended). Ran locally: typecheck, lint, npm test (500 node + 166 component) all pass. Look at: slot stability per area, the adapter flattening (old view not area-stable), and that the branch is 1 commit behind epic (T-101, no file overlap, merge clean).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
