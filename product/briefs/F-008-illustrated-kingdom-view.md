@@ -1,7 +1,7 @@
 ---
 id: F-008
 title: Session communication as an isometric kingdom
-status: approved
+status: handed-off
 priority: should
 repos: [claude-dashboard]
 ---
