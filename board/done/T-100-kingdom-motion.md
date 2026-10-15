@@ -10,9 +10,9 @@ depends_on: [T-099]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0          # reviewer increments; max 2
+review_rounds: 1          # reviewer increments; max 2
 user_ok: false            # user sets true to allow merging a ticket labelled auth/deps/contract/migration
-pr:
+pr: 113
 ---
 ## Goal
 The kingdom moves: mailmen walk the paths from sender to receiver (or to the castle), workers arrive at and
@@ -37,5 +37,9 @@ leave their building, active buildings smoke and the castle banner waves while i
 - No CPU measurement in this brief (user, 2026-10-15).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #113 (into epic/F-008): https://github.com/chrisfaber95/claude-dashboard/pull/113
+Mailmen are one element per walk step (keys mailman:<key>:<i>, mailmanRoute + walkSteps, CSS only) then a resting walker at the end cell that shows after the last step and stays until the model drops it; castle mailman ends at the gate, hand-back rests at its building. Workers are keyed items in a TransitionGroup (enter/leave). Smoke only on active buildings, banner wave only while needsYou. Idle scene has no step/smoke/flag/rest elements, no timer, no rAF (component test).
+Reviewer: step delay uses own --step var instead of the 24 iso-step--N classes (long walks); a mailman whose sender and receiver share a door has no steps and just appears. Not viewed in a real browser. Checks: typecheck, lint, npm test (517 node + 169 vitest), build all green.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
