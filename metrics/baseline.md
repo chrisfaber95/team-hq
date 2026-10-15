@@ -107,6 +107,14 @@ Read numbers from `/usage` in the session, or the Claude-dashboard usage view.
 | T-086 | #82 | 14 over 3 runs (conflict rework / session limit) | $0.93 | 2 ($0.34, 2 runs) | 1-2 | yes |
 | T-087 | #100 | 4 over 1 run | $1.31 | 1 ($0.25, 1 runs) | 1-2 | yes |
 | T-088 | #97 | 1 over 1 run | $0.34 | 1 ($0.11, 1 runs) | 1-2 | yes |
+| T-089 | #101 | 19 over 1 run | $0.29 | 1 ($0.13, 1 runs) | 1 | yes; merge re-run (CI pending) |
+| T-090 | #102 | 4 over 1 run | $0.56 | 1 ($0.14, 1 runs) | 1 | yes |
+| T-091 | #104 | 6 over 1 run | $0.68 | 1 ($0.18, 1 runs) | 1 | yes |
+| T-092 | #103 | 5 over 1 run | $0.51 | 1 ($0.12, 1 runs) | 2 | yes |
+| T-093 | #106 | 8 over 1 run | $0.35 | 1 ($0.11, 1 runs) | 2 | yes |
+| T-094 | #105 | 4 over 1 run | $0.19 | 1 ($0.10, 1 runs) | 1 | yes |
+| T-095 | #108 | 4 over 1 run | $0.27 | 1 ($0.11, 1 runs) | 1 | yes |
+| T-096 | #107 | 4 over 1 run | $0.28 | 1 ($0.13, 1 runs) | 1 | yes |
 
 # Same-method comparison (transcript pricing)
 

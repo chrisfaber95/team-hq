@@ -1,71 +1,67 @@
-# Sprint summary: sprint 10 (2026-10-11, phase 2)
+# Sprint summary: sprint 11 (2026-10-15, phase 2)
 
-Decision 0007 steps 3 and 4 are done: every client panel is a Vue component, one root `App.vue` replaced `app.ts`,
-and `patch.ts`, `dom.ts`, `escape.ts` and `timeSpan` are gone ("no `v-html`" replaces "always `esc()`"). The user
-approved all tickets up front and asked the lead to run the sprint without asking. 27 tickets merged; main CI green.
+F-007 (live session communication, "the city") is built and waits for the user's browser check. The team also
+landed light CI for epic branches (decision 0008) and an isometric toolkit + motion guide for the next scene work.
+8 tickets merged, every one approved in round 1; main CI green. The user approved everything this sprint up front.
 
 ## Shipped
 
 | Ticket | Title | PR | Rounds |
 | --- | --- | --- | --- |
-| T-062 | shared `relative-time.vue` | #74 | 1 |
-| T-063 | open-popup ref, popup buttons from state | #75 | 1 |
-| T-064 / T-065 / T-066 / T-067 | projects / team / messages / usage popup panels | #79 / #83 / #92 / #94 | 1 / 1 / 2 / 2 |
-| T-068 / T-069 | core strip / tooltip | #76 / #77 | 2 / 3 |
-| T-070 / T-071 | permission requests (`auth`) / approvals log (`auth`) | #78 / #95 | 1 / 2 |
-| T-072 / T-073 | sessions panel / alerts panel | #85 / #89 | 2 / 2 |
-| T-074 / T-075 | summary setting / audit panel | #98 / #88 | 1 / 1 |
-| T-076 / T-077 / T-088 | devices panel / QR via `import()` / token cleared on close (all `auth`) | #90 / #93 / #97 | 1 / 1 / 1 |
-| T-078 / T-079 / T-080 / T-081 | chat / launch form / transcript drawer / session actions | #84 / #87 / #91 / #96 | 2 / 1 / 3 / 2 |
-| T-082 / T-083 | building scene / building dialog | #81 / #86 | 1 / 1 |
-| T-084 | one popup shell from `POPUPS` | #99 | 1 |
-| T-085 / T-086 | login / pair pages (`auth`) | #80 / #82 | 1 / 2 |
-| T-087 | root `App.vue`, `index.html` skeleton, string-HTML helpers deleted | #100 | 1 |
-
-Only one review found a real defect (T-080: drawer stayed on "error" after a failed first load); every other second
-or third round was a re-check after merging `main`.
+| T-089 | subagent hand-backs carry `agentId` | #101 | 1 |
+| T-090 | city model: shops, workers, postmen (pure, tested) | #102 | 1 |
+| T-091 | city view in the Session communication popup | #104 | 1 |
+| T-092 | `measure-cpu.mjs --popup` + "Before F-007" numbers | #103 | 1 |
+| T-093 | "After F-007" CPU numbers (open vs closed +0.08 desktop, +0.09 phone; limit 0.1) | #106 | 1 |
+| T-094 | CI: tests only on pushes to / PRs into `main`; typecheck + lint always | #105 | 1 |
+| T-095 | postmen always walk (no `prefers-reduced-motion`; guard test) | #108 | 1 |
+| T-096 | isometric SVG toolkit (`shared/iso.ts`) + `docs/isometric.md`, `docs/motion.md` | #107 | 1 |
 
 ## Open
 
-| Ticket | Status | Next step |
+| Item | Status | Next step |
 | --- | --- | --- |
+| F-008 kingdom view | brief approved (designer, 2026-10-15), **no tickets yet** | write tickets; first epic (see Next sprint) |
 | T-045 | backlog, owner user | user's approve/deny check from a paired device |
 
 ## Waiting on the user
 
-- **Browser check of the whole Vue client** (NEEDS-YOU 2026-10-11, sprint 10 line); it replaces the T-050/T-052 check.
-- T-045: approve/deny check (steps in `board/backlog/T-045-verify-approve-deny.md`).
-- Remove `N:\tmp-t044\` (and `N:\tmp-vue-skills\` if still there).
-- Design session: phone/tablet app + voice (trusted LAN certificate, access away from home Wi-Fi, voice approvals).
+- **F-007 browser check** (NEEDS-YOU 2026-10-15): city states, postmen, workers, stable shops, feed, phone.
+- Browser check of the whole Vue client (sprint 10 line) and the older T-050/T-052 check.
+- T-045 approve/deny check; remove `N:\tmp-t044\`.
+- Design session: phone/tablet app + voice (decision 0007 "Later").
+- F-008: consider setting `user_check: true` in the brief so the epic waits for your browser check before `main`.
 
 ## Decisions
 
-No new decision file. Applied [0007](../decisions/0007-client-on-vue-and-vite.md) steps 3-4 in full.
+- [0008](../decisions/0008-epic-branches.md): one epic branch per brief, light CI on ticket PRs. Written by the
+  user's `epic-branch-per-feature` session; committed by the user (c68d030) after the classifier refused the lead.
+- User, 2026-10-15: no CPU measurement runs in tickets from now on (lead memory; F-008 brief says the same).
 
 ## Metrics
 
-Engineer $20.10, reviewer $6.28 for 27 PRs (rows in `metrics/baseline.md`). Bundle after T-087: 158 kB (56.7 kB gzip);
-the QR library is its own chunk (T-077). About $6 of that went to conflict-only rework and re-review runs.
+Engineer $3.13, reviewer $1.02 for 8 PRs (rows in `metrics/baseline.md`). Engineer runs took 4-19 turns; no
+rework, no session-limit stop. Messages: 1 per ticket, 2 for T-092/T-093 (measurement cut, then stopped).
 
 ## Notes for next sprint
 
-- **Panels conflicted with each other.** Every panel ticket edited `app.ts` (and often `index.html`, `eslint.config.js`
-  legacy list, `docs/architecture.md`), so each merge made the other open PRs conflict: 11 tickets needed a
-  merge-only rework, T-069 and T-080 a 3rd round. With `App.vue` this hotspot is gone; for any future fan-out, build the
-  shared registration point first, or land tickets one at a time.
-- **Review before rework, land serially.** What worked at the end: review the code even if the PR conflicts, then one
-  landing chain per ticket (merge main, quick re-check, merge) with no other merge in between.
-- **Verdict format.** Reviewers copied the lead's bullet notes (`- round 2: approve`), so merge.sh missed the verdict;
-  merge.sh now accepts that form (627294d). Lead notes in `## Review` should stay rare; a rework engineer once wrote a
-  new `## Hand-off (round 3)` heading below `## Review`, which hid the verdict.
-- **Two account session limits (15:40, 20:40) and one low-memory stop** killed runs mid-way; all resumed without loss.
-  Keep to 2 Claude jobs at a time from the lead (engineer + reviewer/merge), not 2 engineers plus reviews.
-- **Git Bash has no `pgrep`**, and `ls a b` fails if one path is missing: two lead wait loops never fired.
-- **Lead must not edit a reviewer's verdict line**; the classifier refuses it ("Merge Without Review"). Re-run the review.
-- T-076 review: popup Close left a shown device token; fixed in T-088.
+- **The lead's ticket notes can break repo rules.** T-091's notes asked for `prefers-reduced-motion`, which
+  `docs/architecture.md` "UI conventions" forbids; the reviewer approved it. Check repo conventions before adding
+  a "nice to have" to Notes.
+- **CI "pending" is not "failing".** merge.sh refused T-089 while CI ran; since then the lead waits with
+  `gh pr checks <pr> --watch` before merge.sh. Merges ran one at a time; no conflicts this sprint.
+- **The classifier refuses lead commits of `CLAUDE.md`, `.claude/`, scripts and settings** ("Self-Modification"),
+  even with the user's chat approval. Leave those for the user, with the command to run.
+- T-096 edited the dashboard's `CLAUDE.md` through an engineer without a refusal.
+- `epic.sh open` pushes the epic branch directly, not through `git-workflow-manager` (told the epic session).
+- `write-ticket` step 5 (NEEDS-YOU for contract/deps/auth) sits under the new epic section; the user's session
+  should move it back.
 
 ## Next sprint
 
-1. The user's browser check of the Vue client; the lead turns findings into tickets first.
-2. T-045 when the user has run the device check.
-3. Decision 0007 "Later": a designer brief for the PWA / phone app and voice control (needs the design session).
+1. F-008 (first epic): `scripts/epic.sh open F-008 claude-dashboard`, then the epic ticket + children with
+   `base: epic/F-008`. Draft split: kingdom model (court + districts, castle "needs you", castle mailmen) ->
+   isometric layout (desktop wide, phone vertical) -> scene (castle, buildings, wall, square) -> motion (workers,
+   mailmen on paths); popup full-screen on desktop in parallel. No CPU measurement.
+2. Turn the user's F-007 browser-check findings into tickets first (they may change F-008).
+3. T-045 when the user has run the device check.
