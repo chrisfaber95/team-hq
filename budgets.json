@@ -7,5 +7,9 @@
     "epic": { "maxTurns": 40, "maxBudgetUsd": 2, "maxMinutes": 25 } },
   "repos": {
     "claude-dashboard": "/n/Projects/Claude-dashboard"
+  },
+  "repoSettings": {
+    "claude-dashboard": { "prefix": "T" },
+    "my-game-project": { "prefix": "G" }
   }
 }

@@ -5,8 +5,10 @@ description: Turn a goal into one or more board tickets in team-hq (backlog or r
 
 # Write a ticket
 
-1. Pick the next id: the highest `T-NNN` across all `board/*/` folders, plus one.
-2. Copy `board/TEMPLATE.md` to `board/<folder>/<id>-<short-slug>.md` and fill in:
+1. Pick the next id per repo (decision 0011): the repo's prefix from `budgets.json` `repoSettings`
+   (`T` for claude-dashboard, `G` for my-game-project), then the highest number with that prefix across
+   `board/<repo>/*/`, plus one, three digits (`T-103`, `G-001`).
+2. Copy `board/TEMPLATE.md` to `board/<repo>/<folder>/<id>-<short-slug>.md` and fill in:
    - `repo` (a name from the repos list in `CLAUDE.md`), `owner: eng-<repo>`.
    - `brief: F-NNN` when the ticket comes from an approved product brief; take Goal and Acceptance
      from the brief's outcome and acceptance criteria, split across tickets as needed.
@@ -14,13 +16,20 @@ description: Turn a goal into one or more board tickets in team-hq (backlog or r
    - `labels`: `low-risk` only if it has no migration, contract change, auth, payment, secret or
      new dependency. Add `auth`, `deps`, `contract`, `migration` where they apply.
    - **Goal**: the outcome in one or two sentences.
-   - **Acceptance**: 2-5 checkboxes, each observable and testable. Always include
-     "`npm run typecheck` and `npm test` pass; new behavior has a test" (or the repo's equivalent)
-     and "New and changed code follows `docs/code-style.md`" (decision 0006).
+   - **Acceptance**: 2-5 checkboxes, each observable and testable. Always include the repo's two
+     standard criteria:
+     - claude-dashboard: "`npm run typecheck` and `npm test` pass; new behavior has a test" and
+       "New and changed code follows `docs/code-style.md`" (decision 0006).
+     - my-game-project: "`unreal-editor.sh check` passes (build and Blueprint compile)" and "Only the
+       assets under Assets: change" (decisions 0009 and 0010). A ticket that changes Blueprints or other
+       assets lists each one in Notes (`Assets: /Game/...`) and gets label `assets`; the user leaves those
+       assets alone until it merges, because binary files can't be merged. Set `user_check: true` when the
+       user asks to see the change, and on any ticket that changes Blueprint logic (the reviewer only sees
+       lossy DSL text); `merge.sh` then waits for `user_ok`. Property-only asset changes don't need it.
    - **Notes**: pointers to files or decisions, not a design essay. For a new file, name the folder
-     it belongs in (decision 0006 folder map).
+     it belongs in (dashboard: decision 0006 folder map).
 3. Size check: one ticket is one module (one feature folder, e.g. `src/server/http/` or
-   `src/client/features/chat/`) and one kind of change (a split, a cleanup, a feature). If the Goal
+   `src/client/features/chat/`; in the game, one class or one gameplay system under `Source/`) and one kind of change (a split, a cleanup, a feature). If the Goal
    names two folders or joins two changes with "and", split it into tickets linked by `depends_on`.
    Engineers don't delegate implementation, so a ticket must fit one session's reading.
    (T-042, "split `server.ts` and clean `http/`, `auth/`, `claude/`", should have been two.)

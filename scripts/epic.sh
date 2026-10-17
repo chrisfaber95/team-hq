@@ -12,6 +12,7 @@ cmd=${1:?usage: epic.sh open <brief-id> <repo> | epic.sh pr <epic-ticket-id>}
 hq=$(cd "$(dirname "$0")/.." && pwd)
 board=$hq/board
 cfg() { node -e "const c=require(process.argv[1]); console.log(eval('c.'+process.argv[2]) ?? '')" "$hq/budgets.json" "$1"; }
+. "$hq/scripts/lib/board.sh"
 field() { sed -n "s/^$1: *//p" "$2" | head -1 | sed 's/#.*//' | tr -d '\r '; }
 repo_path() {
   local dir; dir=$(cfg "repos['$1']")
@@ -33,12 +34,10 @@ open_epic() {
 
 open_pr() {
   local id=${1:?usage: epic.sh pr <epic-ticket-id>}
-  local ticket stage log
-  for stage in backlog ready blocked; do
-    ticket=$(find "$board/$stage" -maxdepth 1 -name "$id-*.md" | head -1)
-    [ -n "$ticket" ] && break
-  done
-  [ -n "$ticket" ] || { echo "no $id in board/backlog/, ready/ or blocked/" >&2; exit 66; }
+  local ticket repo_board log
+  ticket=$(find_ticket "$id" backlog ready blocked)
+  [ -n "$ticket" ] || { echo "no $id in board/<repo>/backlog/, ready/ or blocked/" >&2; exit 66; }
+  repo_board=$(ticket_board "$ticket")
   [ "$(field kind "$ticket")" = epic ] || { echo "$id is not an epic ticket (kind: epic)" >&2; exit 65; }
 
   local brief branch repo repo_dir
@@ -48,20 +47,20 @@ open_pr() {
   log=$hq/logs/$id.log
   mkdir -p "$hq/logs" /n/worktrees
   escalate() {
-    local t; t=$(find "$board/backlog" "$board/ready" -maxdepth 1 -name "$id-*.md" | head -1)
-    [ -n "$t" ] && mv "$t" "$board/blocked/"
+    local t; t=$(find "$repo_board/backlog" "$repo_board/ready" -maxdepth 1 -name "$id-*.md" | head -1)
+    [ -n "$t" ] && mv "$t" "$repo_board/blocked/"
     echo "- [ ] $(date +%F) $id: epic PR for $branch stopped ($1). Log: logs/$id.log" >> "$board/NEEDS-YOU.md"
     echo "$id blocked: $1" >&2; exit 1
   }
 
   # --- gate: every other ticket of the brief is merged into the epic ---------------
   local open_children
-  open_children=$(grep -lE "^brief: *$brief\b" "$board"/{backlog,ready,in-progress,review,blocked}/*.md 2>/dev/null \
+  open_children=$(grep -lE "^brief: *$brief\b" "$repo_board"/{backlog,ready,in-progress,review,blocked}/*.md 2>/dev/null \
     | grep -v "/$id-" | xargs -r -n1 basename | sed 's/\.md$//' | tr '\n' ' ' || true)
   [ -z "$open_children" ] || { echo "refusing: $brief tickets not done yet: $open_children" >&2; exit 75; }
 
   local merged
-  merged=$(grep -lE "^brief: *$brief\b" "$board"/done/*.md 2>/dev/null | while read -r t; do
+  merged=$(grep -lE "^brief: *$brief\b" "$repo_board"/done/*.md 2>/dev/null | while read -r t; do
     echo "- $(basename "$t" .md) (PR #$(field pr "$t"))"; done || true)
   [ -n "$merged" ] || { echo "refusing: no $brief tickets in done/" >&2; exit 75; }
 
@@ -108,7 +107,7 @@ Don't merge it. Do nothing else. Report the PR number." \
   git -C "$repo_dir" merge-base --is-ancestor origin/main "origin/$branch" || escalate "PR #$pr is open but $branch is behind main"
 
   sed -i "s/^pr:.*/pr: $pr/" "$ticket"
-  mv "$ticket" "$board/review/"
+  mv "$ticket" "$repo_board/review/"
   echo "$id: PR #$pr ($branch -> main) open, ticket moved to review/; next: bash scripts/review.sh $id $pr"
 }
 

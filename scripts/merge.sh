@@ -5,6 +5,7 @@
 #   - the PR is open, targets the ticket's base: (default main), and every CI check passed
 #   - epic tickets (decision 0008): every other ticket of the brief is done, and user_ok: true
 #     when the brief has user_check: true
+#   - user_ok: true for labels auth/deps/contract/migration, and for a ticket with user_check: true
 # usage: bash scripts/merge.sh T-042 88
 set -euo pipefail
 
@@ -14,12 +15,14 @@ pr=${2:?usage: merge.sh <ticket-id> <pr-number>}
 hq=$(cd "$(dirname "$0")/.." && pwd)
 board=$hq/board
 cfg() { node -e "const c=require(process.argv[1]); console.log(eval('c.'+process.argv[2]) ?? '')" "$hq/budgets.json" "$1"; }
+. "$hq/scripts/lib/board.sh"
 log=$hq/logs/$id.log
 mkdir -p "$hq/logs" /n/worktrees
 escalate() { echo "- [ ] $(date +%F) $id: merge of PR #$pr stopped ($1). Log: logs/$id.log" >> "$board/NEEDS-YOU.md"; echo "$id merge refused: $1" >&2; exit 1; }
 
-ticket=$(find "$board/review" -maxdepth 1 -name "$id-*.md" | head -1)
-[ -n "$ticket" ] || { echo "no $id in board/review/" >&2; exit 66; }
+ticket=$(find_ticket "$id" review)
+[ -n "$ticket" ] || { echo "no $id in board/<repo>/review/" >&2; exit 66; }
+repo_board=$(ticket_board "$ticket")
 field() { sed -n "s/^$1: *//p" "$ticket" | head -1 | sed 's/#.*//' | tr -d '\r '; }
 repo=$(field repo)
 repo_dir=$(cfg "repos['$repo']")
@@ -39,12 +42,17 @@ if printf "%s" "$labels" | grep -qE "auth|deps|contract|migration"; then
   grep -qE "^user_ok: *true" "$ticket" || escalate "high-risk labels $labels: set user_ok: true in the ticket to allow the merge"
   userok=" The user explicitly approved this merge by setting user_ok: true in the ticket (labels: $labels)."
 fi
+# A ticket can ask for the user's look before it merges, e.g. a Blueprint logic change (decision 0010).
+if [ "$(field user_check)" = true ]; then
+  grep -qE "^user_ok: *true" "$ticket" || escalate "the ticket asks for your check: try PR #$pr, then set user_ok: true in the ticket"
+  userok="$userok The user checked the change and set user_ok: true in the ticket."
+fi
 
 # An epic merges the whole feature into main: all of the brief's tickets first, and the user's check if the brief asks for it.
 how="using the repo's merge convention"
 if [ "$kind" = epic ]; then
   brief=$(field brief)
-  open_children=$(grep -lE "^brief: *$brief\b" "$board"/{backlog,ready,in-progress,review,blocked}/*.md 2>/dev/null \
+  open_children=$(grep -lE "^brief: *$brief\b" "$repo_board"/{backlog,ready,in-progress,review,blocked}/*.md 2>/dev/null \
     | grep -v "/$id-" | xargs -r -n1 basename | sed 's/\.md$//' | tr '\n' ' ' || true)
   [ -z "$open_children" ] || escalate "epic $brief still has tickets that are not done: $open_children"
   brief_file=$(find "$hq/product/briefs" -maxdepth 1 -name "$brief-*.md" | head -1)
@@ -93,7 +101,7 @@ state=$(gh pr view "$pr" --repo "$origin" --json state -q .state)
 echo "== $(date -Is) merge exit=$rc PR state=$state" >> "$log"
 [ "$state" = MERGED ] || escalate "exit $rc, PR state $state"
 
-mv "$ticket" "$board/done/"
+mv "$ticket" "$repo_board/done/"
 # The engineer's worktree is no longer needed.
 ewt=/n/worktrees/$repo-$id
 [ -d "$ewt" ] && git -C "$repo_dir" worktree remove --force "$ewt" || true

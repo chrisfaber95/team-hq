@@ -1,5 +1,5 @@
 ---
-id: T-000
+id: T-000                 # <prefix>-NNN, numbered per repo; prefix in budgets.json repoSettings (decision 0011)
 kind: ticket              # ticket | epic (one per brief, the PR epic -> main; decision 0008)
 repo: claude-dashboard
 base: main                # epic/F-NNN for a brief's tickets; main for epic tickets and tickets without a brief

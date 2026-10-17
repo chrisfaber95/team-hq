@@ -8,20 +8,23 @@ set -uo pipefail
 repo=${1:?usage: baseline.sh <repo> <ticket-id>...}; shift
 hq=$(cd "$(dirname "$0")/.." && pwd)
 board=$hq/board
+repo_board=$board/$repo
 repo_dir=$(node -e "console.log(require(process.argv[1]).repos[process.argv[2]] ?? '')" "$hq/budgets.json" "$repo")
 [ -n "$repo_dir" ] || { echo "unknown repo $repo" >&2; exit 64; }
 origin=$(git -C "$repo_dir" remote get-url origin)
 mkdir -p "$hq/logs" /n/worktrees
 
 for id in "$@"; do
-  ticket=$(find "$board/ready" -maxdepth 1 -name "$id-*.md" | head -1)
-  [ -n "$ticket" ] || { echo "$id: not in ready/, skipped"; continue; }
-  mv "$ticket" "$board/in-progress/"; ticket=$board/in-progress/$(basename "$ticket")
+  ticket=$(find "$repo_board/ready" -maxdepth 1 -name "$id-*.md" | head -1)
+  [ -n "$ticket" ] || { echo "$id: not in board/$repo/ready/, skipped"; continue; }
+  mv "$ticket" "$repo_board/in-progress/"; ticket=$repo_board/in-progress/$(basename "$ticket")
 
   wt=/n/worktrees/$repo-baseline-$id
   git -C "$repo_dir" fetch -q origin
   [ -e "$wt" ] || git -C "$repo_dir" worktree add -q --detach "$wt" origin/main
-  (cd "$wt" && npm ci --no-audit --no-fund --loglevel=error >/dev/null)
+  if [ -f "$wt/package-lock.json" ]; then
+    (cd "$wt" && npm ci --no-audit --no-fund --loglevel=error >/dev/null)
+  fi
 
   start=$(date +%s)
   echo "== $(date -Is) baseline $id in $wt" >> "$hq/logs/$id.log"
@@ -57,7 +60,7 @@ PR is open, set pr: in the ticket front matter and write a short '## Hand-off' i
     if(i>=0){L[i]=process.argv[3];fs.writeFileSync(f,L.join('\n'));}
   " "$hq/metrics/baseline.md" "$id" "$row"
 
-  if [[ "$pr" == *OPEN || "$pr" == *MERGED ]]; then mv "$ticket" "$board/review/"; else mv "$ticket" "$board/blocked/"
+  if [[ "$pr" == *OPEN || "$pr" == *MERGED ]]; then mv "$ticket" "$repo_board/review/"; else mv "$ticket" "$repo_board/blocked/"
     echo "- [ ] $(date +%F) $id: baseline run ended without a PR (exit $rc, PR ${pr:-none}). Log: logs/$id.log" >> "$board/NEEDS-YOU.md"; fi
   git -C "$repo_dir" worktree remove --force "$wt" 2>/dev/null || true
 done

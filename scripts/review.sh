@@ -9,11 +9,12 @@ pr=${2:?usage: review.sh <ticket-id> <pr-number>}
 hq=$(cd "$(dirname "$0")/.." && pwd)
 board=$hq/board
 cfg() { node -e "const c=require(process.argv[1]); console.log(eval('c.'+process.argv[2]) ?? '')" "$hq/budgets.json" "$1"; }
+. "$hq/scripts/lib/board.sh"
 log=$hq/logs/$id.log
 mkdir -p "$hq/logs"
 
-ticket=$(find "$board/review" -maxdepth 1 -name "$id-*.md" | head -1)
-[ -n "$ticket" ] || { echo "no $id in board/review/" >&2; exit 66; }
+ticket=$(find_ticket "$id" review)
+[ -n "$ticket" ] || { echo "no $id in board/<repo>/review/" >&2; exit 66; }
 repo=$(sed -n 's/^repo: *//p' "$ticket" | head -1 | tr -d '\r ')
 repo_dir=$(cfg "repos['$repo']")
 [ -n "$repo_dir" ] || { echo "ticket $id has unknown repo '$repo'" >&2; exit 64; }

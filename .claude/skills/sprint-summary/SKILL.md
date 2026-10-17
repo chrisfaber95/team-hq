@@ -5,13 +5,13 @@ description: Close a sprint - write board/SPRINT.md from the board and commit te
 
 # Sprint summary
 
-1. Gather from the board (not from memory of the conversation):
+1. Gather from every repo board `board/<repo>/` (not from memory of the conversation):
    - `done/` tickets merged this sprint (check `gh pr view <pr> --json state,mergedAt`); move any
      merged ticket still in `review/` to `done/`.
    - Open work in `ready/`, `in-progress/`, `review/`, `blocked/`.
    - Unticked items in `NEEDS-YOU.md`.
    - Decisions added to `decisions/` this sprint.
-2. Overwrite `board/SPRINT.md` with, under 80 lines:
+2. Overwrite `board/SPRINT.md` with, under 80 lines (Shipped and Open grouped by repo):
    - **Shipped**: id, title, PR, review rounds.
    - **Open**: id, status, next step.
    - **Waiting on the user**: the unticked NEEDS-YOU items.

@@ -21,8 +21,10 @@ Repos (name → path):
 
 ## Board
 
-One Markdown file per ticket, named `<id>-<slug>.md`, moved between folders in `board/`:
-`backlog/` → `ready/` → `in-progress/` → `review/` → `done/`, or `blocked/` from any stage.
+One board per repo, `board/<repo>/` (decision 0011). One Markdown file per ticket, named `<id>-<slug>.md`,
+moved between that repo's folders: `backlog/` → `ready/` → `in-progress/` → `review/` → `done/`, or `blocked/`
+from any stage. Ids are numbered per repo with its prefix (`budgets.json` `repoSettings`): `T-NNN` for
+claude-dashboard, `G-NNN` for my-game-project. `NEEDS-YOU.md`, `SPRINT.md` and `TEMPLATE.md` stay in `board/`.
 
 - Write tickets with the `write-ticket` skill; format is `board/TEMPLATE.md`.
 - A ticket is `ready` only when it has testable acceptance criteria, a `repo`, and covers one

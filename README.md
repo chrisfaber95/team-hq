@@ -19,7 +19,7 @@ for driving a ticket by hand.
 | Path | What |
 | --- | --- |
 | `CLAUDE.md` | lead rules + message protocol |
-| `board/` | tickets (`TEMPLATE.md`), `NEEDS-YOU.md` (your inbox), `SPRINT.md` |
+| `board/` | one board per repo (`board/<repo>/<stage>/`, ids `T-NNN` dashboard, `G-NNN` game), `TEMPLATE.md`, `NEEDS-YOU.md` (your inbox), `SPRINT.md` |
 | `budgets.json` | caps, parallelism, repo paths |
 | `scripts/dispatch.sh`, `review.sh`, `merge.sh` | headless engineer / reviewer runs and the gated merge |
 | `scripts/epic.sh` | `open`: a brief's branch `epic/F-NNN`; `pr`: the PR epic → `main` once its tickets are done (decision 0008) |

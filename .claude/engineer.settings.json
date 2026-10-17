@@ -4,7 +4,9 @@
   "permissions": {
     "allow": [
       "Bash(git clone https://github.com/vuejs-ai/skills *)",
-      "Bash(git -C * checkout c9d355ff23f654309dd02006be671859df0a134c)"
+      "Bash(git -C * checkout c9d355ff23f654309dd02006be671859df0a134c)",
+      "Bash(bash N:/team-hq/scripts/unreal-editor.sh *)",
+      "mcp__unreal"
     ],
     "deny": [
       "Bash(gh pr merge *)",
@@ -27,7 +29,7 @@
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "bash N:/team-hq/scripts/hooks/stop-tests.sh", "timeout": 600 }
+          { "type": "command", "command": "bash N:/team-hq/scripts/hooks/stop-tests.sh", "timeout": 1200 }
         ]
       }
     ]
