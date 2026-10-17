@@ -18,6 +18,8 @@ Current phase: see `README.md`.
 
 Repos (name → path):
 - `claude-dashboard` → `N:\Projects\Claude-dashboard` (pilot)
+- `my-game-project` → `N:\Projects\MyGameProject` (Unreal Engine 5.8; one engineer at a time, with its own
+  editor and the Unreal MCP on its worktree; decisions 0009, 0010)
 
 ## Board
 
@@ -87,8 +89,10 @@ Target: 3 messages or fewer per ticket.
 - Git work in a repo goes through that repo's `git-workflow-manager` agent (its CLAUDE.md Git
   section): engineers delegate commit, push and opening the PR with the restriction "don't merge".
 - **Merge = reviewer approved + CI green**, enforced by `scripts/merge.sh`, which then delegates the
-  merge to `git-workflow-manager`. Tickets labelled `auth`, `deps`, `contract` or `migration` also
-  need `user_ok: true`, set by the user (merge.sh escalates to `NEEDS-YOU.md` otherwise).
+  merge to `git-workflow-manager`. Tickets labelled `auth`, `deps`, `contract` or `migration`, and tickets
+  with `user_check: true`, also need `user_ok: true`, set by the user (merge.sh escalates to `NEEDS-YOU.md`
+  otherwise). Set `user_check: true` when the user asks to see a change, and on game tickets that change
+  Blueprint logic (decision 0010).
 - Label `low-risk` (no migrations, contract changes, auth, payments, secrets) is recorded in the
   ticket now and used for auto-merge from phase 4 only.
 
@@ -96,7 +100,8 @@ Target: 3 messages or fewer per ticket.
 
 Append one line per item to `board/NEEDS-YOU.md` (`- [ ] <date> <id>: <what you need>`):
 - changes to `contracts/`, database migrations on shared data, new dependencies, anything touching
-  auth, payments or secrets (the pilot dashboard counts its login, LAN mode and `claude-cli.ts` here);
+  auth, payments or secrets (the pilot dashboard counts its login, LAN mode and `claude-cli.ts` here; the game
+  counts a new module in `*.Build.cs` or a new plugin in the `.uproject` as a new dependency);
 - a ticket blocked twice, or a run that hit its turn or budget cap;
 - a reviewer/engineer disagreement that survives two rounds;
 - a high-risk ticket (see Merge gates) that is approved and waits for `user_ok`.

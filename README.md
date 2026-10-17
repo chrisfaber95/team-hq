@@ -5,7 +5,7 @@ Control repo for a small team of Claude Code sessions: one **lead**, one **engin
 and one-line cross-session messages. Design: "Multi-Session Agent Team Setup" doc
 (claude.ai/artifact/NWjLVADvftSEyHRzPoDJju).
 
-**Current phase: 2 (headless engineers), since 2026-10-09.** Phase 0 baseline done: ~$2.16 and 32 turns per merged PR (`metrics/baseline.md`). Phase 1 passed its gate with 16 tickets merged (T-001..T-016). Pilot repo: `claude-dashboard` (`N:\Projects\Claude-dashboard`).
+**Current phase: 3 (second repo), since 2026-10-17.** Phase 2 (headless engineers) started 2026-10-09. Phase 0 baseline done: ~$2.16 and 32 turns per merged PR (`metrics/baseline.md`). Phase 1 passed its gate with 16 tickets merged (T-001..T-016). Repos: `claude-dashboard` (`N:\Projects\Claude-dashboard`, pilot, `T-NNN`) and `my-game-project` (`N:\Projects\MyGameProject`, Unreal Engine 5.8, `G-NNN`, one engineer at a time with its own editor and the Unreal MCP; decisions 0009, 0010).
 
 **Branches (decision 0008, from the brief after F-007):** a brief's tickets merge into its branch `epic/F-NNN`
 (CI there: typecheck and lint), and the finished feature merges into `main` once, through an epic ticket: full CI,

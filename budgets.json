@@ -6,10 +6,24 @@
   "reviewer": { "model": "sonnet", "maxTurns": 25, "maxBudgetUsd": 1, "maxRounds": 2, "maxMinutes": 15,
     "epic": { "maxTurns": 40, "maxBudgetUsd": 2, "maxMinutes": 25 } },
   "repos": {
-    "claude-dashboard": "/n/Projects/Claude-dashboard"
+    "claude-dashboard": "/n/Projects/Claude-dashboard",
+    "my-game-project": "/n/Projects/MyGameProject"
   },
   "repoSettings": {
     "claude-dashboard": { "prefix": "T" },
-    "my-game-project": { "prefix": "G" }
+    "my-game-project": {
+      "prefix": "G",
+      "maxParallel": 1,
+      "engineerMaxMinutes": 75,
+      "check": "bash N:/team-hq/scripts/unreal-editor.sh check",
+      "editor": {
+        "exe": "/n/Epic/UE_5.8/Engine/Binaries/Win64/UnrealEditor.exe",
+        "project": "MyGameProject.uproject",
+        "port": 8001,
+        "args": "-unattended -nosplash -RenderOffscreen",
+        "stopForBuild": true,
+        "compileBlueprints": true
+      }
+    }
   }
 }
