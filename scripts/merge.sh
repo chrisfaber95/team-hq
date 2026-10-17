@@ -55,7 +55,7 @@ if [ "$kind" = epic ]; then
   open_children=$(grep -lE "^brief: *$brief\b" "$repo_board"/{backlog,ready,in-progress,review,blocked}/*.md 2>/dev/null \
     | grep -v "/$id-" | xargs -r -n1 basename | sed 's/\.md$//' | tr '\n' ' ' || true)
   [ -z "$open_children" ] || escalate "epic $brief still has tickets that are not done: $open_children"
-  brief_file=$(find "$hq/product/briefs" -maxdepth 1 -name "$brief-*.md" | head -1)
+  brief_file=$(find "$hq/product" -path "*/briefs/$brief-*.md" | head -1)
   if [ -n "$brief_file" ] && grep -qE "^user_check: *true" "$brief_file"; then
     grep -qE "^user_ok: *true" "$ticket" || escalate "brief $brief asks for your check: try $(field branch), then set user_ok: true in the ticket"
     userok="$userok The user checked the feature and set user_ok: true in the ticket."

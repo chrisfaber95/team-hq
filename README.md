@@ -57,11 +57,11 @@ cd N:\team-hq\product; claude --name designer --model sonnet --add-dir ..\contra
 ```
 
 Say "let's design a feature: ..." (or just "what should we build next?"). It interviews you in
-short multiple-choice rounds, writes a brief in `product/briefs/`, and on your approval tells the
+short multiple-choice rounds, writes a brief in `product/<repo>/briefs/`, and on your approval tells the
 lead. Briefs the lead has questions about (`status: needs-design`) are listed when it starts.
 `/clear` after each brief and close it when you're done; nothing depends on it running. Avoid
 design sessions while headless engineers run, since they share the same usage window. Fill in
-`product/VISION.md` before the first session. Spec: "Add-on: Product Designer Role" doc
+`product/<repo>/VISION.md` before the first session. Spec: "Add-on: Product Designer Role" doc
 (claude.ai/artifact/LhGkfRJrgroo5M9WenPE2E).
 
 ### What to type in each

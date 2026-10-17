@@ -33,7 +33,7 @@ The lead is notified when you go idle and reads your verdict from the ticket.
      a `changes` reason. CI there doesn't compile,
      so the hand-off must name the check the engineer ran; a missing check is a `changes` reason.
    **Epic review** (`kind: epic`, the PR epic → `main`, decision 0008): each ticket in it was already
-   reviewed, so don't re-review line by line. Read the brief (`product/briefs/<brief>-*.md`) and judge
+   reviewed, so don't re-review line by line. Read the brief (`product/<repo>/briefs/<brief>-*.md`) and judge
    the feature as a whole: is every acceptance criterion of the ticket (the brief's goals) met; do the
    tickets' parts fit together (calls, types and data that cross ticket boundaries, nothing left
    half-wired, no leftover TODOs or flags from an earlier ticket); does the full CI on this PR pass.

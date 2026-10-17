@@ -65,7 +65,7 @@ open_pr() {
   [ -n "$merged" ] || { echo "refusing: no $brief tickets in done/" >&2; exit 75; }
 
   local brief_file title
-  brief_file=$(find "$hq/product/briefs" -maxdepth 1 -name "$brief-*.md" | head -1)
+  brief_file=$(find "$hq/product" -path "*/briefs/$brief-*.md" | head -1)
   title=$(sed -n 's/^# *//p' "${brief_file:-/dev/null}" | head -1 | tr -d '\r')
 
   # --- bring main in and open the PR, in a throwaway worktree on the epic branch -----

@@ -55,14 +55,14 @@ claude-dashboard, `G-NNN` for my-game-project. `NEEDS-YOU.md`, `SPRINT.md` and `
 
 ## Product briefs (from the designer)
 
-The designer writes feature briefs in `product/briefs/F-NNN-*.md` with the user; only `status: approved`
+The designer writes feature briefs in `product/<repo>/briefs/F-NNN-*.md` with the user; only `status: approved`
 briefs are yours. It sends you one line per approved brief, but it is usually offline, so also check
-`product/briefs/` for `status: approved` at the start of every sprint.
+`product/*/briefs/` for `status: approved` at the start of every sprint.
 
 - An approved brief becomes tickets; each ticket names its brief (`brief: F-007`) in the front matter.
 - Don't redesign a feature. A product question goes under `## Questions from lead` in the brief, with
   `status: needs-design`, and waits for the designer. Only a technical choice is yours to make.
-- When all tickets for a brief exist, set the brief to `status: handed-off` and mark it in `product/ROADMAP.md`.
+- When all tickets for a brief exist, set the brief to `status: handed-off` and mark it in `product/<repo>/ROADMAP.md`.
 - A brief whose questions block work for more than a sprint goes into `NEEDS-YOU.md`.
 - In a brief you edit only `status` and `## Questions from lead`; the rest is the designer's.
 

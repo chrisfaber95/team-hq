@@ -1,13 +1,13 @@
 ---
 name: write-brief
-description: Write or update a feature brief in briefs/ from an interview, and on the user's approval mark it approved, add it to ROADMAP.md and hand it to the lead. Use after discovery-interview, or to answer the lead's questions in a needs-design brief.
+description: Write or update a feature brief in <repo>/briefs/ from an interview, and on the user's approval mark it approved, add it to <repo>/ROADMAP.md and hand it to the lead. Use after discovery-interview, or to answer the lead's questions in a needs-design brief.
 ---
 
 # Write a brief
 
 ## New brief
 
-1. Id: the highest `F-NNN` in `briefs/`, plus one. File: `briefs/F-NNN-short-kebab-name.md`.
+1. Id: the highest `F-NNN` in any `*/briefs/` (ids are global across repos), plus one. File: `<repo>/briefs/F-NNN-short-kebab-name.md`.
 2. Fill in this template. Keep it to about a page: the lead turns it into tickets, so every
    acceptance criterion must be observable and testable.
 
@@ -46,7 +46,7 @@ What changes for the user; how we'll know it worked.
 
 ## On the user's decision
 
-- **Approve:** set `status: approved`; add a line to `ROADMAP.md` in priority order
+- **Approve:** set `status: approved`; add a line to `<repo>/ROADMAP.md` in priority order
   (`- [F-001](briefs/F-001-short-name.md) Short feature name (must)`); send `lead` one line:
   `F-001 approved: product/briefs/F-001-short-name.md`.
 - **Revise:** change what the user asked for, show it again, ask again.

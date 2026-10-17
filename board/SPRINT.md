@@ -65,4 +65,4 @@ The board has no ready, in-progress, review or blocked tickets. No approved brie
 
 1. Turn the user's F-008 browser-look findings into tickets (fixes go to `main`; the epic is closed).
 2. T-045, once the user has run the device check.
-3. Check `product/briefs/` for newly approved briefs. Each one gets `epic.sh open` before its first dispatch.
+3. Check `product/*/briefs/` for newly approved briefs. Each one gets `epic.sh open` before its first dispatch.
