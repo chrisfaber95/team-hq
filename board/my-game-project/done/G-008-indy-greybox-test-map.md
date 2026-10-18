@@ -12,7 +12,7 @@ labels: [assets]
 budget_usd: 3
 review_rounds: 1
 user_check: true
-user_ok: false
+user_ok: true
 pr: 12
 ---
 ## Goal
