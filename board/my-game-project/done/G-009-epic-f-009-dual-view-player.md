@@ -10,10 +10,10 @@ depends_on: [G-001, G-010, G-002, G-003, G-004, G-005, G-006, G-007, G-008]
 contracts: []
 labels: []
 budget_usd: 0
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 13
 ---
 ## Goal
 F-009 Dual-view player (greybox): in a greybox test map the player moves, jumps, crouches, rolls and looks around, and swaps between first and third person at any time; movement is equally good in both views.
@@ -28,3 +28,4 @@ Epic ticket, never dispatched. `bash scripts/epic.sh open F-009 my-game-project`
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
