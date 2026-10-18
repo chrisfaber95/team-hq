@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 20
 ---
 ## Goal
 The player pushes and pulls blocks along one straight axis.
@@ -32,5 +32,9 @@ The player pushes and pulls blocks along one straight axis.
 - Module: `Source/MyGameProject/Traversal/`. Blocks cannot crush the player (out of scope). F-014 reuses this under water; keep the move code free of ground-only assumptions.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `AIndyPushBlock` (slides by sweep, stops at walls/blocks; `PushSpeed`, `GrabRange`; `OnBlockMoved`/`OnBlockStopped`), `UIndyPushComponent` on the character (Interact grabs the nearest block, held move input along the block axis nearest the approach side pushes or pulls, player stays attached; releasing input stops the block; Interact/jump/crouch/roll lets go), pure `IndyPushAxis` helpers with automation tests, and a new `EIndyTraversalMode::Push`. C++ only, no assets. PR: https://github.com/chrisfaber95/my-game-project/pull/20
+Checks: `unreal-editor.sh check` exit 0 (build ok; CompileAllBlueprints 0 errors, 0 failed to load); clang-format 18.1.8. The new automation tests were not run and there was no PIE test.
+Reviewer: check the pull case (character leads, block follows) in `IndyPushComponent.cpp` TickComponent, and the Interact routing in `IndyCharacter.cpp`.
+
 
 ## Review (reviewer writes, one line per round)
