@@ -10,7 +10,7 @@ depends_on: [G-012]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: https://github.com/chrisfaber95/my-game-project/pull/17
@@ -39,3 +39,4 @@ PR #17 (https://github.com/chrisfaber95/my-game-project/pull/17), into epic/F-01
 - Reviewer: look at exit placement (TopExitDistance), that the ladder volume's local Z is the climb axis (upright volumes assumed), and PIE with a placed volume.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
