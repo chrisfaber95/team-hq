@@ -10,7 +10,7 @@ depends_on: [G-015]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 20
@@ -38,3 +38,5 @@ Reviewer: check the pull case (character leads, block follows) in `IndyPushCompo
 
 
 ## Review (reviewer writes, one line per round)
+
+round 1: approve
