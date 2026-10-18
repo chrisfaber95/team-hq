@@ -10,10 +10,10 @@ depends_on: [G-003]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 8
 ---
 ## Goal
 An over-the-shoulder third-person camera that orbits freely and never shows the inside of geometry.
@@ -31,5 +31,10 @@ An over-the-shoulder third-person camera that orbits freely and never shows the 
 - Module: `Source/MyGameProject/Camera/`. A spring arm gives the pull-in. First person and the toggle come in G-005.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #8 https://github.com/chrisfaber95/my-game-project/pull/8 (base epic/F-009). C++ only, no assets, no new dependency.
+`AIndyCharacter` now has a `USpringArmComponent` boom (collision probe on Camera channel, size 16) with the camera on its socket; the character turns to its move direction (`bOrientRotationToMovement`), Move uses the control-rotation yaw, pitch is clamped via PlayerCameraManager, yaw is free. Tunables in Category "Camera": BoomLength, ShoulderOffset, MinCameraPitch, MaxCameraPitch, TurnRate (re-applied each Tick). No delegates added.
+Checks: `unreal-editor.sh check` exit 0 (CompileAllBlueprints: 0 errors, 0 failed to load); clang-format 18.1.8 clean. No PIE run.
+Reviewer: check pull-in against walls/floor/ceiling relies on level geometry blocking the Camera channel; shoulder offset is included in the probe; CI `check` was pending when the PR opened.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
