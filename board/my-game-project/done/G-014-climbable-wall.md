@@ -10,7 +10,7 @@ depends_on: [G-013]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_check: false
 user_ok: false
 pr: 18
@@ -35,3 +35,4 @@ Rework round 1 (commit 7ebe179, PR #18 https://github.com/chrisfaber95/my-game-p
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - 1) Top exit embeds the character: FindSurface traces from the capsule centre and needs the hit inside the box, so the surface is lost when the centre passes the box top (feet still ~HalfHeight below the edge); the feet-based Top check is then unreachable and Finish(Top) only offsets 60cm back and 2cm up with a non-swept teleport, so the capsule ends inside the platform. Place the feet on the platform (raise by HalfHeight or trace down for ground past the edge). 2) Same centre/feet mismatch at the Bottom exit: make the exit conditions reachable and consistent with the trace.
+round 2: approve
