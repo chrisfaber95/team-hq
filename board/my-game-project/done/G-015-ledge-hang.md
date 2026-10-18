@@ -10,7 +10,7 @@ depends_on: [G-014]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 19
@@ -36,3 +36,4 @@ PR: https://github.com/chrisfaber95/my-game-project/pull/19 (into epic/F-010). C
 Reviewer: look at TryGrab conditions, shimmy direction sign in TickComponent, climb-up placement in Finish.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
