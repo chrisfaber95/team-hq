@@ -6,7 +6,7 @@ base: main
 branch: epic/F-009
 owner: lead
 brief: F-009
-depends_on: [G-001, G-010, G-002, G-003, G-004, G-005, G-006, G-007, G-008]
+depends_on: [G-001, G-010, G-002, G-003, G-004, G-005, G-006, G-007, G-008, G-011]
 contracts: []
 labels: []
 budget_usd: 0
