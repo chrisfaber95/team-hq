@@ -23,6 +23,7 @@ A first-person view that shows the player's own body, and one input that glides 
 - [ ] One bound input toggles first/third person while standing, running, crouching and in mid-air.
 - [ ] The swap is a smooth glide of 0.2-0.4 s (default 0.3 s, tunable); movement keeps working during it and the character never cuts or snaps.
 - [ ] Walk speed, run speed, crouch speed and jump height are identical in both views (an automation test reads the one source).
+- [ ] Every value the ticket adds that Blueprints may tune, and every state change worth reacting to, is exposed with a `Category` (`BlueprintReadWrite` / `BlueprintCallable` / `BlueprintAssignable`), per decision 0013.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] No assets change (C++ only).
 

@@ -23,6 +23,7 @@ A roll: one input moves the player a fixed distance in the current move directio
 - [ ] Roll cannot start in mid-air or while another roll runs.
 - [ ] Roll does not depend on the camera mode and works with keyboard+mouse and gamepad.
 - [ ] The distance and state rules are covered by an automation test.
+- [ ] Every value the ticket adds that Blueprints may tune, and every state change worth reacting to, is exposed with a `Category` (`BlueprintReadWrite` / `BlueprintCallable` / `BlueprintAssignable`), per decision 0013.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] No assets change (C++ only).
 

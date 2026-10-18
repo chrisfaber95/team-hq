@@ -23,6 +23,7 @@ An over-the-shoulder third-person camera that orbits freely and never shows the 
 - [ ] The camera pulls in against walls, floor and ceiling and never shows their inside when the player stands or crouches against them.
 - [ ] In third person the character turns to face its move direction while free-running.
 - [ ] Boom length, shoulder offset and pitch limits are tunable.
+- [ ] Every value the ticket adds that Blueprints may tune, and every state change worth reacting to, is exposed with a `Category` (`BlueprintReadWrite` / `BlueprintCallable` / `BlueprintAssignable`), per decision 0013.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] No assets change (C++ only).
 

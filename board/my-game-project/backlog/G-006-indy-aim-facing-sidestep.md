@@ -23,6 +23,7 @@ A test aim input that sets the aim direction, with the facing rules and sidestep
 - [ ] While aiming the character faces the aim direction; while free-running it faces its move direction.
 - [ ] Sidestep: while aiming, move input strafes around the aim direction; when not aiming, left/right is plain lateral movement with free-run facing.
 - [ ] Crouch, roll and sidestep work in both views.
+- [ ] Every value the ticket adds that Blueprints may tune, and every state change worth reacting to, is exposed with a `Category` (`BlueprintReadWrite` / `BlueprintCallable` / `BlueprintAssignable`), per decision 0013.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] No assets change (C++ only).
 

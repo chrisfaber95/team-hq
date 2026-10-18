@@ -6,7 +6,7 @@ base: epic/F-009
 branch:
 owner: eng-my-game-project
 brief: F-009
-depends_on: [G-001]
+depends_on: [G-010]
 contracts: []
 labels: []
 budget_usd: 3
@@ -22,6 +22,7 @@ The character crouches (held or toggled by one input) and can only pass under a 
 - [ ] One input crouches; a setting chooses hold or toggle; crouch speed is a tunable value.
 - [ ] While crouched the player cannot stand up when the space above is too low, and stands up once it is free.
 - [ ] A low-ceiling gap is passable only crouched (automation test, or a documented PIE check in the PR).
+- [ ] Every value the ticket adds that Blueprints may tune, and every state change worth reacting to, is exposed with a `Category` (`BlueprintReadWrite` / `BlueprintCallable` / `BlueprintAssignable`), per decision 0013.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] No assets change (C++ only).
 

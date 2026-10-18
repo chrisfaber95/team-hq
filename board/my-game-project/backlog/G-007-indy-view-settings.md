@@ -21,6 +21,7 @@ FOV per view and look sensitivity can be changed in-game and apply immediately.
 ## Acceptance
 - [ ] FOV is stored separately for first and third person, and look sensitivity once; each changes in-game through console variables or exec functions (`Indy.Fov1P`, `Indy.Fov3P`, `Indy.LookSensitivity`) and applies at once, also during a glide.
 - [ ] The values live in one settings object that F-013 can later persist and show in a menu.
+- [ ] Every value the ticket adds that Blueprints may tune, and every state change worth reacting to, is exposed with a `Category` (`BlueprintReadWrite` / `BlueprintCallable` / `BlueprintAssignable`), per decision 0013.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] No assets change (C++ only).
 

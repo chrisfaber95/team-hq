@@ -10,10 +10,10 @@ depends_on: []
 contracts: []
 labels: [deps]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: true
-pr:
+pr: https://github.com/chrisfaber95/my-game-project/pull/4
 ---
 ## Goal
 A playable C++ character, `AIndyCharacter`, with an `AIndyGameMode` that spawns it. It walks, runs and jumps with keyboard+mouse and gamepad through Enhanced Input, and feels responsive.
@@ -33,5 +33,8 @@ A playable C++ character, `AIndyCharacter`, with an `AIndyGameMode` that spawns 
 - `Content/FirstPerson` and `Content/Variant_Shooter` are template examples; do not edit them.
 
 ## Hand-off (engineer writes, max 300 tokens)
+AIndyCharacter, AIndyGameMode and pure FIndyJumpTimer (coyote 0.1 s, buffer 0.1 s, both UPROPERTYs) in Source/MyGameProject/Player/; input mapping built in C++ (WASD, mouse, Space, LShift walk; pad: left stick, right stick, A, L3). PR: https://github.com/chrisfaber95/my-game-project/pull/4 (into epic/F-009). No assets changed. Build.cs adds EnhancedInput (ticket-approved) plus PublicIncludePaths.Add(ModuleDirectory) so "Player/..." includes resolve.
+Checked: unreal-editor.sh check passed (build + CompileAllBlueprints); clang-format clean. NOT run: the 2 automation tests (compiled only) and any PIE/gamepad feel check. Reviewer: look at the ModuleDirectory include path, the coyote condition in CanJumpInternal_Implementation, and that the game mode is not yet a project/map default (left to the test-map ticket).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
