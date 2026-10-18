@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 16
 ---
 ## Goal
 A traversal state machine on the character that the climb, hang and swing moves plug into: it takes over movement, keeps free look and camera toggle working, and hands control back cleanly.
@@ -32,5 +32,9 @@ A traversal state machine on the character that the climb, hang and swing moves 
 - Existing pieces to reuse: speed modifiers, view blend and settings in `Source/MyGameProject/Camera/` and `Player/`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #16 (https://github.com/chrisfaber95/my-game-project/pull/16, base epic/F-010). C++ only, no assets.
+New `Source/MyGameProject/Traversal/`: `EIndyTraversalMode`, pure `FIndyTraversalRules` (CanChange: None<->any, Wall<->Ledge direct, else via None; IsTakingOver), `UIndyTraversalComponent` (EnterMode/ExitMode, `OnTraversalModeChanged`, routed `OnTraversalMove/Jump/Crouch/Roll`, console `Indy.Traversal.Force <mode>`). `AIndyCharacter` owns it and routes move/jump/crouch/roll to it while a mode is active; look, view toggle and camera boom untouched. Enter = MOVE_Flying (no gravity), exit = MOVE_Falling; refuses to enter mid-roll.
+Checks: `unreal-editor.sh check` passed (build OK, 338 Blueprints, 0 errors, 0 failed to load); clang-format 18.1.8 clean. Automation tests (`MyGameProject.Traversal.Rules.*`) compile but were not run; no PIE (gamepad, first/third person, console command unverified in play).
+Reviewer: input routing in IndyCharacter.cpp; whether Wall<->Ledge-only handover fits G-013..G-018. Commit trailer says Haiku 5.5, not Sonnet 5.5 (cosmetic).
 
 ## Review (reviewer writes, one line per round)
