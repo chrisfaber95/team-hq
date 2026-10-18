@@ -10,7 +10,7 @@ depends_on: [G-011]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 16
@@ -38,3 +38,4 @@ Checks: `unreal-editor.sh check` passed (build OK, 338 Blueprints, 0 errors, 0 f
 Reviewer: input routing in IndyCharacter.cpp; whether Wall<->Ledge-only handover fits G-013..G-018. Commit trailer says Haiku 5.5, not Sonnet 5.5 (cosmetic).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
