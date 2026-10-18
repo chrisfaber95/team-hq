@@ -1,7 +1,7 @@
 ---
 id: F-010
 title: Traversal - climb, ledge, push blocks, whip swing
-status: approved
+status: handed-off
 priority: must
 repos: [my-game-project]
 ---
