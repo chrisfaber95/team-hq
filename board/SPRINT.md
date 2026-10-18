@@ -1,68 +1,62 @@
-# Sprint summary: sprint 12 (2026-10-16, phase 2)
+# Sprint summary: sprint 13 (2026-10-18, phase 3)
 
-F-008 (Session communication as an isometric kingdom) is built and on `main`. It was the first epic under decision
-0008: five tickets merged into `epic/F-008`, then one feature-reviewed PR (#114) into `main`. The user OK'd the
-merge up front ("user_check is oke"), so it did not wait for a browser check. The user's local `main` is
-fast-forwarded to 8ea754a. Every PR was approved in round 1, and CI was green on every one.
+F-009 (Dual-view player, greybox) is built and on `main` (epic PR #13, `bca83ac`). Ten PRs merged into `epic/F-009`, every
+one approved in round 1. The user OK'd G-001 (new `EnhancedInput` dependency) and G-008 (map play-test). F-010 is ticketed;
+`epic/F-010` is not opened yet, at the user's request. Decision 0013 sets the game code split: C++ core, Blueprints for content.
 
 ## Shipped
 
+### my-game-project
+
 | Ticket | Title | PR | Rounds |
 | --- | --- | --- | --- |
-| T-097 | kingdom model: castle `needsYou`, court + districts, building kinds, castle mailmen | #110 | 1 |
-| T-098 | kingdom layout on the iso grid (wide + tall), stable cells, mailman routes on paths | #111 | 1 |
-| T-099 | kingdom scene: wall, towers, square, castle banner, building states, workers | #112 | 1 |
-| T-100 | kingdom motion: mailmen walk, workers come/go, smoke, banner wave; idle = nothing runs | #113 | 1 |
-| T-101 | Session communication popup full screen on desktop | #109 | 1 |
-| T-102 | epic F-008 -> `main` (feature review against the brief, full CI) | #114 | 1 |
+| G-001 | `AIndyCharacter` + game mode: walk, run, jump, coyote and buffer timers | #4 | 1 |
+| G-010 | Blueprint-facing API: tunables, speed modifiers, jump/land events | #5 | 1 |
+| G-002 | Crouch (hold or toggle, ceiling check) | #6 | 1 |
+| G-003 | Roll | #7 | 1 |
+| G-004 | Third-person camera, orbit, pull-in | #8 | 1 |
+| G-005 | First-person view, 0.3 s toggle glide | #9 | 1 |
+| G-006 | Aim test input, facing, sidestep | #10 | 1 |
+| G-007 | View settings (FOV per view, sensitivity) | #11 | 1 |
+| G-008 | Greybox test map `L_Greybox` | #12 | 1 |
+| G-009 | Epic F-009 to `main` | #13 | 1 |
+
+### claude-dashboard
+
+Nothing this sprint.
 
 ## Open
 
 | Item | Status | Next step |
 | --- | --- | --- |
-| T-045 | backlog, owner user | user's approve/deny check from a paired device |
-
-The board has no ready, in-progress, review or blocked tickets. No approved briefs are waiting.
+| F-010 traversal, G-011..G-020 + epic G-021 | backlog | `epic.sh open F-010 my-game-project` when the user says so, then dispatch G-011 |
+| F-015 animations, F-011, F-014, F-013, F-012 | approved briefs | ticket one epic at a time after the previous is on `main` (order in `ROADMAP.md`) |
+| T-103 (claude-dashboard) | ready | not dispatched this sprint |
+| T-045 | backlog, owner user | approve/deny check from a paired device |
 
 ## Waiting on the user
 
-- **F-008 browser look** (NEEDS-YOU 2026-10-16): castle banner, court and districts, building states, workers,
-  mailmen on the paths, full screen on desktop, vertical scroll on phone.
-- Browser checks: F-007 city (2026-10-15; now replaced by the kingdom, so only the feed and roster still apply),
-  the whole Vue client after sprint 10, and the Vite switch (2026-10-11).
-- T-045 approve/deny check. Remove `N:\tmp-t044\`.
+- Pull `main` in `N:\Projects\MyGameProject` (local checkout has an uncommitted `.claude/settings.json`, so it was not fast-forwarded).
+- Delete the leftover folders `N:\worktrees\my-game-project-G-006` and `-G-008` (`rm -rf` is denied to the lead).
+- Play-test feel in `L_Greybox`: crouch/roll have no animation until F-015; Left Alt as roll may clash with Windows.
+- Dashboard browser checks: F-008 kingdom, F-007 feed/roster, whole Vue client (sprint 10), Vite switch. T-045 check. `N:\tmp-t044\`.
 - Design session: phone/tablet app + voice (decision 0007 "Later").
 
 ## Decisions
 
-- No new decision records. The lead answered the brief's open questions in T-102's notes:
-  - Building kinds: hall (lead), workshop (engineers), guild (reviewer and designer), house (project sessions).
-  - "Needs the user" means an F-001 alert or a pending permission request.
-  - The data has no messages *from* the user, so castle mailmen only arrive, sent when a session starts to need
-    the user.
-- The epic flow from [0008](../decisions/0008-epic-branches.md) worked end to end: `epic.sh open`, then child
-  tickets, then `epic.sh pr`, then a feature review, then `merge.sh`.
+- [0013 game code split: C++ core, Blueprints for content](../decisions/0013-game-code-split-cpp-blueprint.md)
+- Lead calls: G-011 (placeholder crouch/roll visuals) dropped for F-015; events named `OnIndyJumped`/`OnIndyLanded` because `ACharacter::OnJumped` exists (open question whether `OnIndyLanded` duplicates `LandedDelegate`).
 
 ## Metrics
 
-- Engineers: $4.44 for 5 PRs. Reviewers: $0.91 for 6 reviews, including the epic feature review ($0.15).
-  Rows are in `metrics/baseline.md`.
-- Engineer runs took 3-21 turns, with no rework.
-- Messages: 1 per ticket. T-098 sent none: its run hit the account session limit (429) after it had opened the PR
-  and moved the ticket.
-
-## Notes for next sprint
-
-- **A session-limit exit after the PR is not a failure.** `dispatch.sh` blocked T-098 (exit 1), but the ticket
-  was already in `review/` with its hand-off. Check the ticket and the `logs/<id>.json` tail before re-running.
-- T-100 sets the walk-step delay through a `--step` custom property instead of the 24 `iso-step--N` classes, so
-  long walks work. `docs/isometric.md` "Walking" still describes only the classes; update the doc if this is
-  kept.
-- T-098 puts buildings over capacity (court 20, district 12) into `layout.overflow`, shown as "+N". The tall
-  layout has no trees.
+Engineer cost $0.32-0.84 per ticket (about $5.5 for 10 tickets with the G-008 rerun), reviews $0.09-0.20. Rows are in
+`metrics/baseline.md`. Infrastructure trouble, not rework: an editor start failed once (G-001), editors outlived runs
+(G-006, and the user's own on G-008), the engineer was denied `Stop-Process` (G-008), and the first merge call for
+epic #13 exited without merging.
 
 ## Next sprint
 
-1. Turn the user's F-008 browser-look findings into tickets (fixes go to `main`; the epic is closed).
-2. T-045, once the user has run the device check.
-3. Check `product/*/briefs/` for newly approved briefs. Each one gets `epic.sh open` before its first dispatch.
+1. `epic.sh open F-010`, dispatch G-011 (traversal volumes), then G-012..G-018 in order.
+2. G-019 fall damage, G-020 traversal map (needs `user_ok` to merge), epic G-021.
+3. Ticket F-015 (animations) after F-010 is on `main`, then F-011, F-014, F-013, F-012.
+4. Look into why game editors outlive runs, and how `merge.sh` can exit 0 with the PR open.

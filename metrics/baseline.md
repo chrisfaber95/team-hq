@@ -142,3 +142,18 @@ Reading (one team ticket, so not yet a trend):
 - Messages: 4 against a target of 3 (lead->eng, eng->lead, lead->reviewer, reviewer->lead). Every route is in the design, so
   the target of 3 per ticket was too tight; either raise it to 4 or have the lead use an idle notice instead of the reviewer's message.
 - From T-005 the engineer skill skips code-reviewer and documentation-engineer (b992eec), which should cut engineer cost further.
+
+Game repo (my-game-project, sprint 13, 2026-10-18; engineer cost = dispatch, then review):
+
+| Ticket | PR | Engineer turns | Engineer cost | Review rounds | Notes |
+| --- | --- | --- | --- | --- | --- |
+| G-001 | #4 | 32 | $0.70 | 1 ($0.17) | editor start failed once, re-dispatched |
+| G-010 | #5 | 3 | $0.50 | 1 ($0.11) | |
+| G-002 | #6 | 11 | $0.43 | 1 ($0.11) | |
+| G-003 | #7 | 6 | $0.53 | 1 ($0.13) | |
+| G-004 | #8 | 7 | $0.43 | 1 ($0.11) | |
+| G-005 | #9 | 4 | $0.84 | 1 ($0.16) | |
+| G-006 | #10 | 9 | $0.50 | 1 ($0.12) | editor outlived the run |
+| G-007 | #11 | 8 | $0.52 | 1 ($0.14) | |
+| G-008 | #12 | 16 + 9 | $0.32 + $0.29 | 1 ($0.09) | first run blocked: Stop-Process denied, level needs the commandlet |
+| G-009 (epic) | #13 | - | - | 1 ($0.20) | first merge call exited without merging; second merged |
