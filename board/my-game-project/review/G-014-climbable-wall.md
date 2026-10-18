@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 18
 ---
 ## Goal
 The player climbs marked walls in four directions and tops out onto the platform above.
@@ -31,5 +31,6 @@ The player climbs marked walls in four directions and tops out onto the platform
 - Module: `Source/MyGameProject/Traversal/`. Sticking to the wall: trace to the surface inside the volume, no animation needed.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `UIndyWallClimbComponent` (Traversal/) on Wall mode: grab a ClimbWall volume by moving into it, climb 4 ways along the traced surface clamped to the volume, top exit stands on the platform, bottom/jump/crouch/LetGo release. Hooked into `AIndyCharacter::Move`. Tunables and OnWallGrabbed/OnWallReleased exposed with Category. PR: https://github.com/chrisfaber95/my-game-project/pull/18 (into epic/F-010). Checks: `unreal-editor.sh check` passed (build exit 0, 0 BP errors, 0 failed loads); no tests added; no assets changed. Reviewer: PIE check needed, no ClimbWall volume placed in any map yet; look at surface trace/side clamp in TickComponent. Note: the Stop-hook re-run of the check failed with "port 8001 already serving MCP": the G-013 worktree editor (pid 62348) holds it; I did not stop it.|
 
 ## Review (reviewer writes, one line per round)
