@@ -10,10 +10,10 @@ depends_on: [G-005]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 10
 ---
 ## Goal
 A test aim input that sets the aim direction, with the facing rules and sidestep that follow it.
@@ -31,5 +31,10 @@ A test aim input that sets the aim direction, with the facing rules and sidestep
 - Module: `Source/MyGameProject/Player/`. F-011 replaces the test input with the real held aim; keep the aim state in one small struct or component so it can.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added a held test aim input (RMB / left trigger) -> `SetAiming`, with `IsAiming`, `GetAimDirection`, `OnIndyAimChanged` (Category Movement|Aim). Aim state is the small pure struct `FIndyAim` (Player/IndyAim.*) so F-011 can drive it. Aiming faces the camera aim direction and strafes around it; otherwise the character faces its move direction. C++ only, no assets.
+PR: https://github.com/chrisfaber95/my-game-project/pull/10 (into epic/F-009).
+Checks run: `unreal-editor.sh check` OK, Build.bat Succeeded, CompileAllBlueprints 0 errors, automation tests MyGameProject.Player.Aim.State/.Direction pass, clang-format 18.1.8.
+Reviewer: behaviour change vs G-005 - first person no longer always faces the camera; facing now depends only on aim in both views (ticket rule). No PIE check done, so facing/strafe feel in both views is unverified. CI check was still pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
