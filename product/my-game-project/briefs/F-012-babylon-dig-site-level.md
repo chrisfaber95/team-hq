@@ -57,3 +57,5 @@ vehicles, cutscenes and story dialogue, the hint system, final art and audio.
 - The cave "dark room" and spider fights: scorpion and spider numbers (health, damage) tune in this level.
 
 ## Questions from lead
+
+- Answered by the user 2026-10-18: the exit is a plain exit trigger (confirmed). The Indy Quotient score is not on the end screen; treasures and secrets counts only (F-013).

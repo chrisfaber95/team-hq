@@ -40,3 +40,5 @@ localization, achievements, final menu art.
 - Default key bindings for the shell (pause key etc.) are the lead's call; the user checks them in play.
 
 ## Questions from lead
+
+- Answered by the user 2026-10-18: the end screen shows treasure and secret counts only, no Indy Quotient score.
