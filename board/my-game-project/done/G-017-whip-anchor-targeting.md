@@ -10,10 +10,10 @@ depends_on: [G-016]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 21
 ---
 ## Goal
 The player can pick a whip anchor: the best one in range is highlighted, the crosshair can choose another, and with none in range the whip does nothing.
@@ -33,5 +33,11 @@ The player can pick a whip anchor: the best one in range is highlighted, the cro
 - Run 1 stopped after 3 turns with uncommitted work in the worktree (whip anchor, component, selection helper, test, IndyCharacter edits). Continue from it: do not start over; finish, run `unreal-editor.sh check`, open the PR, write the hand-off, move to review/. The `## Review` section is empty; there is nothing to rework.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Review section was empty, so run 1's uncommitted work was finished, not reworked. PR #21 into epic/F-010 (https://github.com/chrisfaber95/my-game-project/pull/21), C++ only, no assets.
+- AIndyWhipAnchor (facing arrow, OnHighlightChanged, debug-sphere marker); UIndyWhipComponent on AIndyCharacter (tick highlight, TryWhip -> OnWhipTargetChosen / OnWhipWhiffed, OnWhipTargetChanged; Range, MinFacingDot, AimTolerance exposed); pure IndyWhipSelection::Pick; one IA_Whip (LMB / gamepad right shoulder), crosshair from the controller view so both views work.
+- Checks: `unreal-editor.sh check my-game-project` passed (build OK, CompileAllBlueprints 0 errors, 0 failed to load); clang-format 18.1.8 applied.
+- Not done: automation test MyGameProject.Traversal.WhipSelection.Pick is compiled but NOT executed; no PIE, keyboard or gamepad check.
+- Reviewer: check Pick against the test cases, the Whip-does-nothing-while-traversing rule, and the input mapping in IndyCharacter.cpp.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
