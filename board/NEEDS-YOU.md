@@ -78,6 +78,6 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [ ] 2026-10-18 G-013: delete the leftover folder `N:\worktrees\my-game-project-G-013` (merge.sh could not remove it: "Invalid argument"); same for the G-006 and G-008 folders.
 - [x] 2026-10-18 G-014: engineer run stopped (the worktree's editor didn't build or start). Log: logs/G-014.log (lead: orphaned editors, see next line)
 - [x] 2026-10-18 G-014: rework is blocked because two orphaned headless editors hold the Unreal MCP port 8001 (PIDs 62348 on the merged G-013 worktree, 60516 on G-014). Stop both (`taskkill /F /PID 62348 /PID 60516`, or type `! taskkill /F /PID 62348 /PID 60516` in the lead session), then tell the lead; it re-runs `dispatch.sh G-014 my-game-project --rework` (round 1 review lines: top/bottom exit placement). The G-013 worktree folder can be deleted once its editor is gone. (user stopped both editors; lead re-ran the rework)
-- [ ] 2026-10-19 G-017: engineer run stopped (run ended without moving the ticket to review/ or blocked/). Log: logs/G-017.log
-- [ ] 2026-10-19 G-017: engineer run stopped (the worktree's editor didn't build or start). Log: logs/G-017.log
-- [ ] 2026-10-19 G-017: re-dispatch stopped again: editor PID 63192 (G-017 worktree, orphan from the failed start) holds port 8001. Run `! taskkill /F /PID 63192`, then tell the lead to re-run `dispatch.sh G-017 my-game-project --rework`.
+- [x] 2026-10-19 G-017: engineer run stopped (run ended without moving the ticket to review/ or blocked/). Log: logs/G-017.log
+- [x] 2026-10-19 G-017: engineer run stopped (the worktree's editor didn't build or start). Log: logs/G-017.log
+- [x] 2026-10-19 G-017: re-dispatch stopped again: editor PID 63192 (G-017 worktree, orphan from the failed start) holds port 8001. Run `! taskkill /F /PID 63192`, then tell the lead to re-run `dispatch.sh G-017 my-game-project --rework`. (lead: G-022 fixed the script, orphan gone; re-dispatching)

@@ -36,10 +36,17 @@ mcp_ready() {
     -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"team-hq","version":"1"}}}' \
     | grep -q '^2'
 }
-running() { [ -f "$pid_file" ] && tasklist //FI "PID eq $(cat "$pid_file")" //NH 2>/dev/null | grep -qi unrealeditor; }
+# Editors are found by the project path in their command line, not by a stored pid: the pid `start` can
+# record belongs to a launcher that exits while the editor lives on, and /n/... and N:/... spellings both occur.
+editor_pids() {
+  UE_PROJECT="$project_win" powershell -NoProfile -Command \
+    'Get-CimInstance Win32_Process | Where-Object { $_.Name -eq "UnrealEditor.exe" -and $_.CommandLine -like ("*" + $env:UE_PROJECT + "*") } | ForEach-Object { $_.ProcessId }' \
+    | tr -d '\r'
+}
+running() { [ -n "$(editor_pids)" ]; }
 
 start() {
-  running && { echo "editor already running (pid $(cat "$pid_file"))"; return 0; }
+  running && { echo "editor already running (pid $(editor_pids | head -1))"; return 0; }
   mcp_ready && { echo "port $port is already serving MCP: another editor holds it" >&2; return 1; }
   # Detached from this shell's stdio, so a Bash tool call that runs `check` doesn't wait on the editor.
   # shellcheck disable=SC2086  # extra_args is a list of flags
@@ -56,7 +63,8 @@ start() {
 }
 
 stop() {
-  if running; then taskkill //PID "$(cat "$pid_file")" //T //F >/dev/null 2>&1 || true; fi
+  local pid
+  for pid in $(editor_pids); do taskkill //PID "$pid" //T //F >/dev/null 2>&1 || true; done
   rm -f "$pid_file"
 }
 

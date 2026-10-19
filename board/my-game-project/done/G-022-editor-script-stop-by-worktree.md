@@ -6,7 +6,7 @@ base: main
 branch:
 owner: lead
 brief:
-depends_on: [G-017]
+depends_on: []
 contracts: []
 labels: []
 budget_usd: 3
@@ -19,10 +19,10 @@ pr:
 `unreal-editor.sh` never leaves an Unreal Editor running after its dispatch ends, so the MCP port 8001 is free for the next run.
 
 ## Acceptance
-- [ ] `stop` kills every `UnrealEditor.exe` whose command line contains the current worktree path, not only the pid in the pid file.
-- [ ] `start` finds an editor on this worktree the same way (not by `mcp_ready` alone), so a second `start` never launches a second editor.
-- [ ] After `start`, `stop`, `start`, `stop` in a worktree, `tasklist` shows no `UnrealEditor.exe` for it.
-- [ ] Paths compare equal whether spelled `/n/worktrees/...` or `N:\worktrees\...`.
+- [x] `stop` kills every `UnrealEditor.exe` whose command line contains the current worktree path, not only the pid in the pid file.
+- [x] `start` finds an editor on this worktree the same way (not by `mcp_ready` alone), so a second `start` never launches a second editor.
+- [x] After `start`, `stop`, `start`, `stop` in a worktree, `tasklist` shows no `UnrealEditor.exe` for it.
+- [x] Paths compare equal whether spelled `/n/worktrees/...` or `N:\worktrees\...`.
 
 ## Notes (lead)
 - Edits `scripts/unreal-editor.sh` in team-hq, outside the game repo: the lead does it between sprints, no engineer dispatch.
