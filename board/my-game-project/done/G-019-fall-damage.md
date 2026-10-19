@@ -10,10 +10,10 @@ depends_on: [G-012]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 23
 ---
 ## Goal
 Falls hurt by height: safe below a limit, rising damage above it, lethal above a maximum.
@@ -30,5 +30,8 @@ Falls hurt by height: safe below a limit, rising damage above it, lethal above a
 - Module: `Source/MyGameProject/Player/`. There is no health yet (F-011): this only produces the damage event; do not add a health system.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Fall damage added in C++ only (PR #23, https://github.com/chrisfaber95/my-game-project/pull/23, commit 5849435). New pure helper `FIndyFallDamage::Evaluate` (Player/IndyFallDamage.*); `AIndyCharacter` stores the capsule-bottom height when it enters Falling from any other mode (ground, hang, swing release) via `OnMovementModeChanged`, and in `Landed` calls `TakeDamage` and broadcasts `OnFallDamage(Damage, bLethal)`. Tunables in `Movement|Fall`: SafeFallHeight 300, MaxDamageFallHeight 800, LethalFallHeight 1200, FallDamagePerCm 0.2, LethalFallDamage 1000. I read the ticket's "three heights" as safe, max-damage plateau and lethal.
+Checks: clang-format 18.1.8; `unreal-editor.sh check` (build + CompileAllBlueprints) exit 0. Automation tests `MyGameProject.Player.FallDamage.*` are compiled but NOT run; no PIE check. Reviewer: check the height measurement on jump (takeoff point, not apex) and the lethal-damage interpretation.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
