@@ -30,6 +30,8 @@ The player can pick a whip anchor: the best one in range is highlighted, the cro
 ## Notes (lead)
 - Module: `Source/MyGameProject/Traversal/`. Targeting only: pressing the button with a valid anchor broadcasts `OnWhipTargetChosen` and stops there; the arc is G-018. F-011 reuses the same button for the whip lash against enemies (3 m); keep the input action reusable.
 
+- Run 1 stopped after 3 turns with uncommitted work in the worktree (whip anchor, component, selection helper, test, IndyCharacter edits). Continue from it: do not start over; finish, run `unreal-editor.sh check`, open the PR, write the hand-off, move to review/. The `## Review` section is empty; there is nothing to rework.
+
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
