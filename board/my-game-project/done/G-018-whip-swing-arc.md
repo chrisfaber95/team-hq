@@ -10,7 +10,7 @@ depends_on: [G-017]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_check: false
 user_ok: false
 pr: 22
@@ -33,7 +33,9 @@ One whip press on a chosen anchor swings the player across a gap of at least 6 m
 - Lead decision for round 1 point 1: hold-to-swing. The player presses and holds the whip button; releasing before landing drops them, holding to the end lands them. A quick tap must not end the swing early or drop the player instantly, so the rule needs a way to tell a tap from a deliberate release (e.g. a short grace time, tunable and exposed). Say in the hand-off which rule you used. Point 2: run the arc test (or say why it cannot run) and report the result.
 
 ## Hand-off (engineer writes, max 300 tokens)
-Added a scripted whip swing (no physics rope). `IndyWhipArc::Evaluate` is a pure arc helper (start/end exact) with automation test `MyGameProject.Traversal.WhipArc.Evaluate`. `UIndySwingComponent` takes Swing mode on `OnWhipTargetChosen`, moves the player to the anchor's new `LandingOffset`/`GetLandingLocation()`, lands with no input; releasing the whip drops (normal fall). `ArcTime`/`ArcHeight` tunable; events and properties have Categories. Character binds whip Completed/Canceled. PR: https://github.com/chrisfaber95/my-game-project/pull/22 (into epic/F-010). Ran: `unreal-editor.sh check` exit 0 (build ok, 0 BP errors). Automation test compiled but not run; no PIE check. Reviewer: the 6 m gap is level placement, not enforced in code; no anchor is placed in a map yet.
+Rework round 1: rule used = hold-to-swing with a grace time. `UIndySwingComponent::ReleaseGraceTime` (default 0.35 s, exposed, Category Traversal|Swing): a whip release in the first 0.35 s of the arc is a tap and ignored; a later release drops the player; holding to the end lands. Arc test `MyGameProject.Traversal.WhipArc.Evaluate` run headless: Result={Success}. `unreal-editor.sh check` exit 0 (0 BP errors). Commit 91f74da on PR #22. No PIE check. Reviewer: check Drop() grace logic. Note: commit trailer says Haiku 5.5, not Sonnet 5.5.
+Original: Added a scripted whip swing (no physics rope). `IndyWhipArc::Evaluate` is a pure arc helper (start/end exact) with automation test `MyGameProject.Traversal.WhipArc.Evaluate`. `UIndySwingComponent` takes Swing mode on `OnWhipTargetChosen`, moves the player to the anchor's new `LandingOffset`/`GetLandingLocation()`, lands with no input; releasing the whip drops (normal fall). `ArcTime`/`ArcHeight` tunable; events and properties have Categories. Character binds whip Completed/Canceled. PR: https://github.com/chrisfaber95/my-game-project/pull/22 (into epic/F-010). Ran: `unreal-editor.sh check` exit 0 (build ok, 0 BP errors). Automation test compiled but not run; no PIE check. Reviewer: the 6 m gap is level placement, not enforced in code; no anchor is placed in a map yet.
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - 1) WhipAction Completed fires when a normal tap is released, so the Drop() in WhipReleased ends the swing within a few frames and the arc never completes; the swing must survive a tap and only drop on a deliberate early release (e.g. hold-to-swing, or a distinct release rule), and the hand-off must say which. 2) The arc test was compiled but never run; run MyGameProject.Traversal.WhipArc.Evaluate (or name why it cannot run) and report the result.
+round 2: approve
