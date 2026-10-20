@@ -10,7 +10,7 @@ depends_on: [G-019]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 2
+review_rounds: 3
 user_check: true
 user_ok: true
 pr: 24
@@ -41,3 +41,4 @@ Checks: `unreal-editor.sh check` exit 0 (incl. CompileAllBlueprints 0 errors), h
 ## Review (reviewer writes, one line per round)
 round 1: approve - base epic/F-010, only L_Traversal.umap changed (matches Assets), no BP/C++ change, check ran and CI green. Passability (ledge 270 vs jump 120, block+wall, whip range) is reasoned, not played: user PIE check in both views is required.
 round 2: approve - rework fixes TryGrab: holds at mesh bounds centre, HoldDistance = face + radius + gap via tested pure helpers, HoldGap exposed; only L_Traversal.umap asset, check + 9 automation tests passed, CI green. Push/pull/wall stop not played: user PIE check in both views still required (user_ok).
+round 3: approve - base epic/F-010, CI green, only L_Traversal.umap asset. PR now also holds the round-2 IndyPush* work (top-grab rejection via IsBesideBlock, FloorClearance slide, world automation tests) that the notes call superseded and the hand-off does not mention; it stays inside the IndyPush* scope exception and is tested, but lead should confirm those tests were run. Push/pull not played: user PIE check in both views still required.
