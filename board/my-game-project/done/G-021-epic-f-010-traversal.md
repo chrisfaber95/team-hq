@@ -10,7 +10,7 @@ depends_on: [G-011, G-012, G-013, G-014, G-015, G-016, G-017, G-018, G-019, G-02
 contracts: []
 labels: []
 budget_usd: 0
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 25
@@ -28,3 +28,4 @@ Epic ticket, never dispatched. `bash scripts/epic.sh open F-010 my-game-project`
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
