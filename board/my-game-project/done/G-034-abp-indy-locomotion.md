@@ -10,7 +10,7 @@ depends_on: [G-033]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_check: false
 user_ok: false
 pr: 29
@@ -47,6 +47,7 @@ PR #29 into epic/F-015 (commit 3a9a5fa): https://github.com/chrisfaber95/my-game
 ## Review (reviewer writes, one line per round)
 round 0 (lead, not a review): first implementation under the "Lead decision" at the bottom; no earlier work exists.
 round 1: changes - PR body has no DSL text for the changed Blueprint ABP_Indy (required for every changed .uasset): add the DSL of its class defaults (parent class and the 4 MoveAnimations rows) and state the graph is an unchanged duplicate of ABP_Unarmed.
+round 2: approve
 
 ## Lead decision (answer to the block)
 Do not author an AnimGraph. Tooling cannot, and `ABP_Unarmed` already has a full-body Slot node (`AnimGraphNode_Slot`). New approach for this and the later animation tickets:
