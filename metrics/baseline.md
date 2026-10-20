@@ -157,3 +157,24 @@ Game repo (my-game-project, sprint 13, 2026-10-18; engineer cost = dispatch, the
 | G-007 | #11 | 8 | $0.52 | 1 ($0.14) | |
 | G-008 | #12 | 16 + 9 | $0.32 + $0.29 | 1 ($0.09) | first run blocked: Stop-Process denied, level needs the commandlet |
 | G-009 (epic) | #13 | - | - | 1 ($0.20) | first merge call exited without merging; second merged |
+
+Game repo (my-game-project, sprint 14, 2026-10-18 to 2026-10-20; engineer cost = runs including reruns, then review):
+
+| Ticket | PR | Engineer cost | Review rounds | Notes |
+| --- | --- | --- | --- | --- |
+| G-011 | #15 | $0.49 | 1 ($0.14) | |
+| G-012 | #16 | $0.54 | 1 ($0.14) | |
+| G-013 | #17 | $0.63 | 1 ($0.13) | |
+| G-014 | #18 | $0.67 + $0.33 | 2 ($0.15, $0.09) | top/bottom exit placement |
+| G-015 | #19 | $0.68 | 1 ($0.13) | |
+| G-016 | #20 | $0.65 | 1 ($0.14) | |
+| G-017 | #21 | $0.57 + $0.37 | 1 ($0.17) | editor start failed, orphan editor |
+| G-018 | #22 | $0.56 + $0.30 | 2 ($0.15, $0.09) | |
+| G-019 | #23 | $0.53 | 1 ($0.12) | |
+| G-020 | #24 | $0.59 + $0.92 | 3 ($0.09, $0.16, $0.11) | user play-test: push block clipped, then stuck on the floor |
+| G-021 (epic) | #25 | - | 1 ($0.22) | |
+| G-023 | #26 | $0.69 | 1 ($0.15) | first run: orphan editor held port 8001 |
+| G-024 | #27 | $0.54 + $0.11 + $1.31 + $0.54 | 1 ($0.12) | too big, split; turn cap once; `--rework` misread |
+| G-033 | #28 | $0.38 | 1 ($0.10) | |
+| G-034 | #29 | $0.34 + $0.90 + $0.29 | 2 ($0.16, $0.10) | blocked: no AnimGraph authoring; approach changed; PR body lacked Blueprint DSL |
+| G-025 | #30 | $0.77 | 1 ($0.14) | |
