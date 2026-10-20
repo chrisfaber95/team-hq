@@ -10,7 +10,7 @@ depends_on: [G-023]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 27
@@ -36,6 +36,8 @@ The animation library's animations can play on the project mannequin: one skelet
 round 0 (lead, not a review): this is the first implementation of the narrowed ticket, not a fix; there is no earlier work to find. Previous run hit the turn cap on the larger scope.
 
 (Hand-off, rework run) Note: the Review section had no reviewer findings, only the lead's round 0 note, so this is the first implementation. Premature Source edits were discarded as the Notes said.
+
+round 1: approve - settings-only change to the one listed skeleton asset, base epic/F-015, CI green, check named. Caveat: animation proven via single-node skeleton check, not an ABP or PIE; G-033 must confirm visually.
 
 ## Hand-off
 Approach: **compatible skeletons**. Library anims are authored on the library demo `SK_Mannequin`; the project `SKM_Manny_Simple` uses the project `SK_Mannequin`. I added the demo skeleton to the project `SK_Mannequin`'s `compatible_skeletons` (Python commandlet, reloaded: persisted). Library animations play unchanged: no retargeted copies, no mesh switch, originals untouched, no new pack. Only `Content/Characters/Mannequins/Meshes/SK_Mannequin.uasset` changed.
