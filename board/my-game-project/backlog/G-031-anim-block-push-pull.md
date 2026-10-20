@@ -1,0 +1,33 @@
+---
+id: G-031
+kind: ticket
+repo: my-game-project
+base: epic/F-015
+branch:
+owner: eng-my-game-project
+brief: F-015
+depends_on: [G-024]
+contracts: []
+labels: [assets, deps]
+budget_usd: 3
+review_rounds: 0
+user_check: true
+user_ok: false
+pr:
+---
+## Goal
+Pushing and pulling a block show push and pull animations with the hands on the block, only while the block moves.
+
+## Acceptance
+- [ ] Pushing and pulling play push and pull animations with the hands on the block, only while the block moves; standing at a block without input shows a ready pose or normal idle.
+- [ ] Letting go (or the block stopping at a wall) returns to normal idle without a visible jump.
+- [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
+- [ ] Only the assets under Assets: change.
+
+## Notes (lead)
+- BLOCKED ON THE USER: the animation library has no push or pull animation (`Interaction` only has button, valve and touch). The brief's next sources are Epic sample content, then a free pack; a pack is a new dependency and needs the user's approval. Stays in backlog until the user decides. The rest of F-015 ships without it (brief decision); if the user defers it, drop it from the epic G-032 `depends_on`.
+- Assets (once unblocked): `/Game/Characters/Mannequins/Anims/ABP_Indy` (push states), driven by the block properties of `UIndyAnimInstance` (G-023).
+
+## Hand-off (engineer writes, max 300 tokens)
+
+## Review (reviewer writes, one line per round)
