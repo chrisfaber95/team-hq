@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 30
 ---
 ## Goal
 The ladder moves show their own animations: mounting, climbing up and down, idle on the rungs and dismounting.
@@ -33,5 +33,11 @@ The ladder moves show their own animations: mounting, climbing up and down, idle
 - Try it on the ladder of `/Game/Maps/Greybox/L_Traversal` (do not change the map).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #30 into epic/F-015: https://github.com/chrisfaber95/my-game-project/pull/30 (commit 1f89be0).
+- C++: 7 ladder values in `EIndyMoveAnimState`; pure helpers in `IndyMoveAnim` (`NextLadderState` etc.); `UIndyAnimInstance` binds the ladder component's mount/dismount events, drives Idle/Up/Down from `SurfaceInput.Y`, and scales the climb play rate by |input| (stops with input).
+- Asset: only `ABP_Indy` class defaults, 7 new `MoveAnimations` rows (no AnimGraph change). Library clips: Ladder Up/Down/Idle, `GrabWall_From_Top` (top mount, rate 2.5), `LedgeClimb_ClimbUp` (top dismount).
+- Reused, no fitting clip: bottom mount and bottom dismount use `anim_Ladder_Idle` once.
+- Checks: `unreal-editor.sh check` exit 0; CompileAllBlueprints after the asset change 0 errors, 0 failed to load; automation `MyGameProject.Animation` 8/8 pass (new `MoveAnimLadder`).
+- Reviewer: PIE check still needed on the `L_Traversal` ladder (hands on rungs, blends without pop, standing pose after dismount). Dismount plays in place after the component has moved the character.
 
 ## Review (reviewer writes, one line per round)
