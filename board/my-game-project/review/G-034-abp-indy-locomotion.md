@@ -10,7 +10,7 @@ depends_on: [G-033]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 29
@@ -41,10 +41,12 @@ PR #29 into epic/F-015 (commit 3a9a5fa): https://github.com/chrisfaber95/my-game
 - C++: `PlayMoveAnimation`/`StopMoveAnimation` (slot `DefaultSlot`), table `MoveAnimations` set in ABP_Indy defaults, pure `IndyMoveAnim::NextState` (None/Jump/Fall/LandLight/LandHeavy; traversal and roll suspend it). Private `Character` renamed `OwnerCharacter` (clashed with a BP variable).
 - Animations: Jump `anim_InPlace_Jump_L`, fall loop `anim_FallLoop_01_L`, heavy landing `anim_LandRoll_R` (library); light landing `MM_Land` (project sample, the library has no light landing).
 - Checks: `unreal-editor.sh check` exit 0 (CompileAllBlueprints 0 errors, 0 failed to load); automation MyGameProject.Animation 7/7 pass; reload script confirmed parent class and rows.
+- Rework round 1: PR body now has the DSL of ABP_Indy's class defaults (parent IndyAnimInstance, 4 MoveAnimations rows) and states the graph is an unchanged ABP_Unarmed duplicate. No code or asset change.
 - Reviewer: PIE check still needed (DefaultSlot on the full body, views, sliding feet); blend spaces unused; BP var GroundSpeed auto-renamed GroundSpeed_0 (warning). CI `check` was pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
 round 0 (lead, not a review): first implementation under the "Lead decision" at the bottom; no earlier work exists.
+round 1: changes - PR body has no DSL text for the changed Blueprint ABP_Indy (required for every changed .uasset): add the DSL of its class defaults (parent class and the 4 MoveAnimations rows) and state the graph is an unchanged duplicate of ABP_Unarmed.
 
 ## Lead decision (answer to the block)
 Do not author an AnimGraph. Tooling cannot, and `ABP_Unarmed` already has a full-body Slot node (`AnimGraphNode_Slot`). New approach for this and the later animation tickets:

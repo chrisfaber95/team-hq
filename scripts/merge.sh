@@ -104,7 +104,8 @@ echo "== $(date -Is) merge exit=$rc PR state=$state" >> "$log"
 mv "$ticket" "$repo_board/done/"
 # The engineer's worktree is no longer needed.
 ewt=/n/worktrees/$repo-$id
-[ -d "$ewt" ] && git -C "$repo_dir" worktree remove --force "$ewt" || true
+# A worktree the user asked to keep (logs/<id>.keep) stays; they delete it themselves.
+if [ -e "$hq/logs/$id.keep" ]; then echo "$id: worktree $ewt kept on request"; else [ -d "$ewt" ] && git -C "$repo_dir" worktree remove --force "$ewt" || true; fi
 
 # Bring the user's checkout up to date: off the merged branch onto main, main fast-forwarded.
 # A branch that is checked out can't be deleted, so this has to happen before the cleanup below.
