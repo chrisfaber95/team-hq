@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 27
 ---
 ## Goal
 The animation library's animations can play on the project mannequin: one skeleton approach, proven on one animation, so the next tickets build the animation Blueprint on it.
@@ -34,3 +34,12 @@ The animation library's animations can play on the project mannequin: one skelet
 
 ## Review (reviewer writes, one line per round)
 round 0 (lead, not a review): this is the first implementation of the narrowed ticket, not a fix; there is no earlier work to find. Previous run hit the turn cap on the larger scope.
+
+(Hand-off, rework run) Note: the Review section had no reviewer findings, only the lead's round 0 note, so this is the first implementation. Premature Source edits were discarded as the Notes said.
+
+## Hand-off
+Approach: **compatible skeletons**. Library anims are authored on the library demo `SK_Mannequin`; the project `SKM_Manny_Simple` uses the project `SK_Mannequin`. I added the demo skeleton to the project `SK_Mannequin`'s `compatible_skeletons` (Python commandlet, reloaded: persisted). Library animations play unchanged: no retargeted copies, no mesh switch, originals untouched, no new pack. Only `Content/Characters/Mannequins/Meshes/SK_Mannequin.uasset` changed.
+
+PR: https://github.com/chrisfaber95/my-game-project/pull/27 (into epic/F-015). `unreal-editor.sh check`: build ok, CompileAllBlueprints 0 errors, 0 failed to load.
+
+Reviewer: acceptance 1 is only partly proven. Headless, `anim_Jog_Loop_Fwd` was accepted as the single-node animation on `SKM_Manny_Simple` (skeleton check passed), but I did not play it through an animation Blueprint or see it in PIE (bone sampling was not possible in Python; ABP is G-033). Bone hierarchies were not diffed. `assets` label does not exist in the repo, so it was not applied.
