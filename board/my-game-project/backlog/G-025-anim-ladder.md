@@ -6,7 +6,7 @@ base: epic/F-015
 branch:
 owner: eng-my-game-project
 brief: F-015
-depends_on: [G-024]
+depends_on: [G-034]
 contracts: []
 labels: [assets]
 budget_usd: 3
