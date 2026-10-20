@@ -27,7 +27,8 @@ The ladder moves show their own animations: mounting, climbing up and down, idle
 - [ ] Only the assets under Assets: change.
 
 ## Notes (lead)
-- Assets: `/Game/Characters/Mannequins/Anims/ABP_Indy` (ladder states).
+- HOW (decision, see G-034): no AnimGraph editing. Fill rows in the `MoveAnimations` table of `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (class defaults) and trigger `PlayMoveAnimation` / `StopMoveAnimation` on `UIndyAnimInstance` from the move's mode change, with blend times and play rate (follow the input speed where the move has one). New C++ stays small and gets a test for pure helpers.
+- Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (ladder states).
 - Library: `Ladder` (Up, Down, Idle), `Climbing_Animations/anim_GrabWall_From_Top`, `LedgeClimb/anim_LedgeClimb_ClimbUp`. A mount or dismount with no fitting animation may reuse the nearest one; list it in the hand-off.
 - Try it on the ladder of `/Game/Maps/Greybox/L_Traversal` (do not change the map).
 

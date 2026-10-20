@@ -27,7 +27,8 @@ Ledge hang shows a grab, a hang pose, shimmying and the pull-up or drop.
 - [ ] Only the assets under Assets: change.
 
 ## Notes (lead)
-- Assets: `/Game/Characters/Mannequins/Anims/ABP_Indy` (ledge states).
+- HOW (decision, see G-034): no AnimGraph editing. Fill rows in the `MoveAnimations` table of `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (class defaults) and trigger `PlayMoveAnimation` / `StopMoveAnimation` on `UIndyAnimInstance` from the move's mode change, with blend times and play rate (follow the input speed where the move has one). New C++ stays small and gets a test for pure helpers.
+- Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (ledge states).
 - Library: `LedgeClimb` (Idle, Left, Right, Up, Down, ClimbUp), `Mantle`, `Vault`.
 
 ## Hand-off (engineer writes, max 300 tokens)

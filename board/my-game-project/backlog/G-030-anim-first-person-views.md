@@ -27,7 +27,7 @@ In 1st person the player sees hands, arms and visible legs doing the ladder, wal
 - [ ] Only the assets under Assets: change (map property tweaks only if needed; list them).
 
 ## Notes (lead)
-- Assets: `/Game/Characters/Mannequins/Anims/ABP_Indy`, and `/Game/FirstPerson/Anims/ABP_FP_Copy` if the first-person arms need it.
+- Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy`, and `/Game/FirstPerson/Anims/ABP_FP_Copy` if the first-person arms need it.
 - Needs every move ticket merged. The block move is G-031 (a placeholder pose is fine until it lands).
 
 ## Hand-off (engineer writes, max 300 tokens)

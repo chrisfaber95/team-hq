@@ -27,7 +27,8 @@ The climbable wall shows climbing in all four directions, an idle hang and a top
 - [ ] Only the assets under Assets: change.
 
 ## Notes (lead)
-- Assets: `/Game/Characters/Mannequins/Anims/ABP_Indy` (wall states).
+- HOW (decision, see G-034): no AnimGraph editing. Fill rows in the `MoveAnimations` table of `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (class defaults) and trigger `PlayMoveAnimation` / `StopMoveAnimation` on `UIndyAnimInstance` from the move's mode change, with blend times and play rate (follow the input speed where the move has one). New C++ stays small and gets a test for pure helpers.
+- Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (wall states).
 - Library: `Climbing_Animations` (Up/Down/Left/Right and diagonals, Idle, ClimbUp_At_Top, Wall_Jump_Out). Use the surface-input property from G-023 for the direction blend.
 
 ## Hand-off (engineer writes, max 300 tokens)

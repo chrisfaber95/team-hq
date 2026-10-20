@@ -27,7 +27,8 @@ Crouch and roll play real animations and replace the placeholder motion from F-0
 - [ ] Only the assets under Assets: change (plus the removed placeholder code, named in the hand-off).
 
 ## Notes (lead)
-- Assets: `/Game/Characters/Mannequins/Anims/ABP_Indy`.
+- HOW (decision, see G-034): no AnimGraph editing. Fill rows in the `MoveAnimations` table of `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (class defaults) and trigger `PlayMoveAnimation` / `StopMoveAnimation` on `UIndyAnimInstance` from the move's mode change, with blend times and play rate (follow the input speed where the move has one). New C++ stays small and gets a test for pure helpers.
+- Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy`.
 - Library: `Crouch` (Idle and eight-way loops), `LandingRoll/anim_LandRoll_R`, `Slide`. If the roll fits poorly, use the nearest and say so in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
