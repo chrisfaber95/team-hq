@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 29
 ---
 ## Goal
 Replace the placeholder `ABP_Unarmed` with `ABP_Indy`, an animation Blueprint on `UIndyAnimInstance` that plays idle, walk, run, jump, fall loop and landing from the library, in both views.
@@ -36,6 +36,12 @@ Replace the placeholder `ABP_Unarmed` with `ABP_Indy`, an animation Blueprint on
 Question: can the lead supply a way to author `ABP_Indy`, or approve building it by hand in an editor? The editor MCP has no animation-graph support: `BlueprintTools.create` with `/Script/Engine.AnimBlueprint` fails ("Unable to create asset ABP_Indy"), and its tools list nothing for AnimGraph state machines, blend space or sequence player nodes. A Python commandlet can't build anim graph nodes either. No files were changed in the worktree.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #29 into epic/F-015 (commit 3a9a5fa): https://github.com/chrisfaber95/my-game-project/pull/29. The Review section held no reviewer findings, only the lead's round-0 note, so this is the first implementation under the Lead decision.
+- New `ABP_Indy` = duplicate of ABP_Unarmed reparented to `UIndyAnimInstance` (idle/walk/run stay on its graph). `AIndyCharacter` FClassFinder now points at it.
+- C++: `PlayMoveAnimation`/`StopMoveAnimation` (slot `DefaultSlot`), table `MoveAnimations` set in ABP_Indy defaults, pure `IndyMoveAnim::NextState` (None/Jump/Fall/LandLight/LandHeavy; traversal and roll suspend it). Private `Character` renamed `OwnerCharacter` (clashed with a BP variable).
+- Animations: Jump `anim_InPlace_Jump_L`, fall loop `anim_FallLoop_01_L`, heavy landing `anim_LandRoll_R` (library); light landing `MM_Land` (project sample, the library has no light landing).
+- Checks: `unreal-editor.sh check` exit 0 (CompileAllBlueprints 0 errors, 0 failed to load); automation MyGameProject.Animation 7/7 pass; reload script confirmed parent class and rows.
+- Reviewer: PIE check still needed (DefaultSlot on the full body, views, sliding feet); blend spaces unused; BP var GroundSpeed auto-renamed GroundSpeed_0 (warning). CI `check` was pending at hand-off.
 
 ## Review (reviewer writes, one line per round)
 round 0 (lead, not a review): first implementation under the "Lead decision" at the bottom; no earlier work exists.
