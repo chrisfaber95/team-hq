@@ -10,7 +10,7 @@ depends_on: [G-034]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 30
@@ -41,3 +41,4 @@ PR #30 into epic/F-015: https://github.com/chrisfaber95/my-game-project/pull/30 
 - Reviewer: PIE check still needed on the `L_Traversal` ladder (hands on rungs, blends without pop, standing pose after dismount). Dismount plays in place after the component has moved the character.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
