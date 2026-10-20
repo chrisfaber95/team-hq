@@ -9,7 +9,7 @@ brief: F-015
 depends_on: [G-023]
 contracts: []
 labels: [assets]
-budget_usd: 3
+budget_usd: 5
 review_rounds: 0
 user_check: false
 user_ok: false
@@ -35,6 +35,7 @@ Replace the placeholder `ABP_Unarmed` with `ABP_Indy`, an animation Blueprint on
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 0 (lead, not a review): this run is the first implementation, not a fix. Do the whole ticket now following "Lead decision" at the bottom; there is no earlier work to find. Budget raised to 5.
 
 ## Blocked
 Needs assets outside "Assets:". The library animations use skeleton `/Game/FreeAnimationLibrary/Demo/Characters/Mannequins/Meshes/SK_Mannequin`, not the project mannequin's, so `ABP_Indy` cannot play them as they are. Fixing that needs new assets:

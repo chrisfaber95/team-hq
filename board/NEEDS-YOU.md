@@ -85,3 +85,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [ ] 2026-10-20 G-020: delete the leftover folder `N:\worktrees\my-game-project-G-020` (merge.sh could not remove it: "Invalid argument"). Also: the new push world tests (IndyPushBlockWorldTest) were never run by the engineer (run cancelled); CI only builds.
 - [ ] 2026-10-20 G-031: no push/pull animation in the Free Animation Library (only button, valve, touch). Needs your decision: a source from Epic sample content or a free pack (new dependency, your approval), or defer the block animation; the rest of F-015 ships without it.
 - [x] 2026-10-20 G-023: engineer run stopped (the worktree's editor didn't build or start). Log: logs/G-023.log (lead: orphan G-020 editor held port 8001, killed; re-dispatching)
+- [ ] 2026-10-20 G-024: engineer run stopped (run ended without moving the ticket to review/ or blocked/). Log: logs/G-024.log
