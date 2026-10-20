@@ -13,7 +13,7 @@ budget_usd: 0
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 25
 ---
 ## Goal
 F-010 Traversal: the player crosses marked obstacles with ladders, climbable walls, ledge hangs, push/pull blocks and the whip swing, in both camera views, in a test map.
