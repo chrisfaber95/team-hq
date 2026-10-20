@@ -81,3 +81,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-19 G-017: engineer run stopped (run ended without moving the ticket to review/ or blocked/). Log: logs/G-017.log
 - [x] 2026-10-19 G-017: engineer run stopped (the worktree's editor didn't build or start). Log: logs/G-017.log
 - [x] 2026-10-19 G-017: re-dispatch stopped again: editor PID 63192 (G-017 worktree, orphan from the failed start) holds port 8001. Run `! taskkill /F /PID 63192`, then tell the lead to re-run `dispatch.sh G-017 my-game-project --rework`. (lead: G-022 fixed the script, orphan gone; re-dispatching)
+- [ ] 2026-10-20 G-020: round 2 approved (PR #24 into epic/F-010), waits for your play-test: push, pull and wall/block stop in both views, whole row passable; then set `user_ok: true` in board/my-game-project/review/G-020-traversal-test-map.md. Pull `team/G-020` to try it.
