@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 28
 ---
 ## Goal
 Walk and run blend spaces (speed by direction) built from the library animations, ready for the animation Blueprint.
@@ -29,5 +29,6 @@ Walk and run blend spaces (speed by direction) built from the library animations
 - Library: `Walk` (Fwd, Bwd, Left, Right loops), `Jog` (Loop_Fwd, Bwd, Left, Right). No animation Blueprint here (G-034).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `BS_Indy_Walk` (speed 0..200 = WalkSpeed) and `BS_Indy_Jog` (0..500 = RunSpeed) under `/Game/Characters/Mannequins/Anims/Indy/`, direction -180..180, on SK_Mannequin, via Python commandlet. Samples (Fwd 0, Right 90, Left -90, Bwd +-180) only at max speed. PR: https://github.com/chrisfaber95/my-game-project/pull/28 (into epic/F-015, not merged). Checks: `unreal-editor.sh check` passed (0 errors, 0 failed to load); headless reload confirmed axes/samples. Reviewer: headless only, so foot sliding and the preview (acceptance 2) are NOT verified visually; single speed row, so the ABP (G-034) must handle idle/slow speeds. No tests; only the two assets changed.
 
 ## Review (reviewer writes, one line per round)
