@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 26
 ---
 ## Goal
 A C++ `UIndyAnimInstance` that exposes the character's movement and traversal state to animation Blueprints, so the later animation tickets only build graphs.
@@ -30,5 +30,6 @@ A C++ `UIndyAnimInstance` that exposes the character's movement and traversal st
 - Brief: `product/my-game-project/briefs/F-015-traversal-animations.md`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #26 (https://github.com/chrisfaber95/my-game-project/pull/26) into epic/F-015: new `UIndyAnimInstance` in `Source/MyGameProject/Animation/` with read-only, categorised properties for all values in the acceptance list. Derived values are pure helpers in `IndyAnimMath` (MoveDirection, PushPullSign, LandingTier, SurfaceInput) with automation tests in `Tests/IndyAnimMathTest.cpp`. Small getters added with no behaviour change: `UIndyTraversalComponent::GetRoutedMoveInput`, `UIndyPushComponent::GetPushDirection/GetLastBlockMove`, `UIndySwingComponent::GetPhase`, `AIndyCharacter::GetLastLandingTier`. Checks run: clang-format 18.1.8 OK; `unreal-editor.sh check` exit 0 (build ok, CompileAllBlueprints 0 errors). The new automation tests compiled but were NOT executed. No assets or Blueprints changed, no new dependencies. Reviewer: check the staleness rule in `GetRoutedMoveInput` (input older than 1 frame counts as released) and that the push/swing getters change no behaviour. No PIE check done.
 
 ## Review (reviewer writes, one line per round)
