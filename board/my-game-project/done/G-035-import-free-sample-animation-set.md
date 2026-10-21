@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 1
 user_check: false
 user_ok: true
-pr: https://github.com/chrisfaber95/my-game-project/pull/32
+pr: 32
 ---
 ## Goal
 The free Fab pack the user added (`Content/FreeSampleAnimationSet/`, untracked in the main checkout `N:\Projects\MyGameProject`) is committed on `epic/F-015` so G-031 can use its push animation.

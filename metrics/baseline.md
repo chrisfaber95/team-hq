@@ -178,3 +178,11 @@ Game repo (my-game-project, sprint 14, 2026-10-18 to 2026-10-20; engineer cost =
 | G-033 | #28 | $0.38 | 1 ($0.10) | |
 | G-034 | #29 | $0.34 + $0.90 + $0.29 | 2 ($0.16, $0.10) | blocked: no AnimGraph authoring; approach changed; PR body lacked Blueprint DSL |
 | G-025 | #30 | $0.77 | 1 ($0.14) | |
+| G-026 | #31 | $0.76 | 1 ($0.16) | |
+| G-035 | #32 | $0.20 + $0.44 | 1 ($0.13) | first run blocked: pack clips on the pack's own skeleton; `--rework` refused from `ready/` once |
+| G-031 | #33 | $0.88 | 1 ($0.12) | merge agent refused (`merge` skill, "Merge Without Review"); user merged by hand, then added `Skill(merge)` |
+| G-027 | #34 | $0.97 + $0.31 | 2 ($0.14, $0.08) | PR body lacked row DSL; test not run |
+| G-028 | #35 | $0.78 | 1 ($0.12) | |
+| G-029 | #36 | $1.18 + $0.23 | 2 ($0.14, $0.07) | new test outside the automation-test `#endif` |
+| G-030 | #37 | $0.54 | 1 ($0.10) | |
+| G-032 | #38 | - (epic) | 1 ($0.13) | user play-test accepted "not perfect" |
