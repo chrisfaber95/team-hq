@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 35
 ---
 ## Goal
 The whip swing shows attach, swing arc, landing at the anchor and early release; falls and landings play fitting animations.
@@ -32,5 +32,8 @@ The whip swing shows attach, swing arc, landing at the anchor and early release;
 - Reviewer expects (from G-027): the DSL text of every new or changed `MoveAnimations` row in the PR body, and the new automation test run headless (`Automation RunTests MyGameProject.Animation`) with its result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added swing states SwingAttach/SwingArc/SwingLand/SwingRelease (pure NextSwingState + IsSwingState; UIndyAnimInstance binds OnSwingStarted/OnSwingEnded) and four MoveAnimations rows in ABP_Indy (Grappel Throw/Jump/Land, FallLoop_02 as release pose); DSL of the rows is in the PR. Jump/Fall/LandLight/LandHeavy rows from G-034 already match the tier criterion, unchanged. PR: https://github.com/chrisfaber95/my-game-project/pull/35 (into epic/F-015).
+Checks: unreal-editor.sh check passed (build, 0 BP errors, 0 failed to load); `Automation RunTests MyGameProject.Animation` 12/12 incl. new MoveAnimSwing; clang-format 18.1.8. Only ABP_Indy asset changed.
+Look at: swing branch order in NativeUpdateAnimation; SwingRelease played at rate 4 (~0.8 s) so a landing right after release is delayed; no PIE check done; no `assets` label exists in the repo (not applied); git agent used Haiku trailer.
 
 ## Review (reviewer writes, one line per round)
