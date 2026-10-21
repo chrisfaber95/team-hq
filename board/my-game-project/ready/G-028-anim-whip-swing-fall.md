@@ -20,7 +20,7 @@ The whip swing shows attach, swing arc, landing at the anchor and early release;
 
 ## Acceptance
 - [ ] Attaching the whip, the swing arc and the landing at the anchor each play a matching animation; releasing early plays a falling pose.
-- [ ] Falling plays a falling animation; the landing animation scales with the fall tier (light below the damage height, heavy from a damaging fall), refining what G-024 set up.
+- [ ] Falling plays a falling animation; the landing animation scales with the fall tier (light below the damage height, heavy from a damaging fall), refining the jump/fall/landing rows from G-034.
 - [ ] Blends show no pop. Animations come from the animation library first, then Epic sample content; no pack is added (new dependency: stop and write it in the ticket).
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] Only the assets under Assets: change.
@@ -29,6 +29,7 @@ The whip swing shows attach, swing arc, landing at the anchor and early release;
 - HOW (decision, see G-034): no AnimGraph editing. Fill rows in the `MoveAnimations` table of `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (class defaults) and trigger `PlayMoveAnimation` / `StopMoveAnimation` on `UIndyAnimInstance` from the move's mode change, with blend times and play rate (follow the input speed where the move has one). New C++ stays small and gets a test for pure helpers.
 - Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (swing and landing states).
 - Library: `Update_2/AS_Grappel_Throw`, `AS_Grappel_Jump`, `AS_Grappel_Land` (anim sequences), `FallLoop`, `LandingRoll`, `Pole`.
+- Reviewer expects (from G-027): the DSL text of every new or changed `MoveAnimations` row in the PR body, and the new automation test run headless (`Automation RunTests MyGameProject.Animation`) with its result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
