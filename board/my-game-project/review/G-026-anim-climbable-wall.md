@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 31
 ---
 ## Goal
 The climbable wall shows climbing in all four directions, an idle hang and a top-out.
@@ -32,5 +32,10 @@ The climbable wall shows climbing in all four directions, an idle hang and a top
 - Library: `Climbing_Animations` (Up/Down/Left/Right and diagonals, Idle, ClimbUp_At_Top, Wall_Jump_Out). Use the surface-input property from G-023 for the direction blend.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #31 into epic/F-015: https://github.com/chrisfaber95/my-game-project/pull/31 (commit a0c8c62).
+- C++: 6 wall values in `EIndyMoveAnimState` (Idle/Up/Down/Left/Right/TopOut); pure helpers in `IndyMoveAnim` (`NextWallState` etc.); `UIndyAnimInstance` follows `SurfaceInput` in Wall mode (stronger axis wins), binds `OnWallReleased` and asks for TopOut on `Top`; climb rate scales with input.
+- Asset: only `ABP_Indy` class defaults, 6 new `MoveAnimations` rows (no AnimGraph change, so no graph DSL). Clips: Climbing_Animations Climb_Idle/Up/Down/Left/Right, `ClimbUp_At_Top` (top-out). Diagonals use the dominant axis; no wall grab clip.
+- Checks: `unreal-editor.sh check` exit 0 (CompileAllBlueprints 0 errors, 0 failed to load); automation `MyGameProject.Animation` 9/9 pass (new `MoveAnimWall`).
+- Reviewer: PIE check still needed on the L_Traversal climb wall (hands on wall, no pops, top-out lands on top). Top-out plays in place after the component already moved the character up. PR label `assets` does not exist in the repo.
 
 ## Review (reviewer writes, one line per round)
