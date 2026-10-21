@@ -12,8 +12,8 @@ labels: []
 budget_usd: 0
 review_rounds: 0
 user_check: false
-user_ok: false
-pr:
+user_ok: true
+pr: 38
 ---
 ## Goal
 F-015 Traversal, whip, fall and crouch/roll animations: every move shows a matching animation in both camera views, in the F-010 test map.
@@ -24,6 +24,7 @@ F-015 Traversal, whip, fall and crouch/roll animations: every move shows a match
 
 ## Notes (lead)
 Epic ticket, never dispatched. `bash scripts/epic.sh open F-015 my-game-project` before G-023 is dispatched; `epic.sh pr G-032` once the others are done.
+- 2026-10-21 user play-tested F-015 in `N:worktreesmy-game-project-F-015` (3750fc4): "its okay, not perfect but i take it for now" (no details given); user_ok set by the lead on that message.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
