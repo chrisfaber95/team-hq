@@ -88,3 +88,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-20 G-023: engineer run stopped (the worktree's editor didn't build or start). Log: logs/G-023.log (lead: orphan G-020 editor held port 8001, killed; re-dispatching)
 - [x] 2026-10-20 G-024: engineer run stopped (run ended without moving the ticket to review/ or blocked/). Log: logs/G-024.log (lead: ticket too big, split into G-024, G-033, G-034)
 - [x] 2026-10-20 G-024: engineer run stopped (exit 1, error_max_turns turns=61 cost=$1.31 error). Log: logs/G-024.log (lead: ticket too big, split into G-024, G-033, G-034)
+- [x] 2026-10-21 G-031: merge of PR #33 stopped (exit 0, PR state OPEN). Log: logs/G-031.log (user merged by hand: merge agent could not load the merge skill; 2026-10-21)
