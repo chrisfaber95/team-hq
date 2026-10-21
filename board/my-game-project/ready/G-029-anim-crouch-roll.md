@@ -30,6 +30,8 @@ Crouch and roll play real animations and replace the placeholder motion from F-0
 - HOW (decision, see G-034): no AnimGraph editing. Fill rows in the `MoveAnimations` table of `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy` (class defaults) and trigger `PlayMoveAnimation` / `StopMoveAnimation` on `UIndyAnimInstance` from the move's mode change, with blend times and play rate (follow the input speed where the move has one). New C++ stays small and gets a test for pure helpers.
 - Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy`.
 - Library: `Crouch` (Idle and eight-way loops), `LandingRoll/anim_LandRoll_R`, `Slide`. If the roll fits poorly, use the nearest and say so in the hand-off.
+- Also in the project since G-035 (not a new pack): `/Game/FreeSampleAnimationSet/Animations/DashDodgeRollSet/Mannequin/RootMotion/Roll/A_Roll_IdleFwd` (baked root motion: use the `bIgnoreRootMotion` row flag from G-031 so the roll distance stays the gameplay value).
+- Reviewer expects (from G-027): the DSL text of every new or changed `MoveAnimations` row in the PR body, and the new automation test run headless (`Automation RunTests MyGameProject.Animation`) with its result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
 

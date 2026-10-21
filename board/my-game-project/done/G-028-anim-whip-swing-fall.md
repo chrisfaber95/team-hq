@@ -10,7 +10,7 @@ depends_on: [G-027]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 35
@@ -37,3 +37,4 @@ Checks: unreal-editor.sh check passed (build, 0 BP errors, 0 failed to load); `A
 Look at: swing branch order in NativeUpdateAnimation; SwingRelease played at rate 4 (~0.8 s) so a landing right after release is delayed; no PIE check done; no `assets` label exists in the repo (not applied); git agent used Haiku trailer.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
