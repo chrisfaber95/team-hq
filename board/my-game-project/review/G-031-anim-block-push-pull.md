@@ -10,8 +10,8 @@ depends_on: [G-024, G-035]
 contracts: []
 labels: [assets, deps]
 budget_usd: 3
-review_rounds: 0
-user_check: true
+review_rounds: 1
+user_check: false
 user_ok: true
 pr: 33
 ---
@@ -36,3 +36,4 @@ Checks: `unreal-editor.sh check` passed (build, CompileAllBlueprints 0 errors); 
 Reviewer: needs a PIE check (hands on block, no actor drift, smooth release). The `assets` label doesn't exist in the repo, so none was set.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
