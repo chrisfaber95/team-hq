@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 37
 ---
 ## Goal
 In 1st person the player sees hands, arms and visible legs doing the ladder, wall, ledge and block moves, and toggling the view mid-move does not glitch any animation.
@@ -34,5 +34,11 @@ In 1st person the player sees hands, arms and visible legs doing the ladder, wal
 - Reviewer expects (from G-027): the DSL text of every new or changed `MoveAnimations` row in the PR body, and the new automation test run headless (`Automation RunTests MyGameProject.Animation`) with its result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #37: https://github.com/chrisfaber95/my-game-project/pull/37 (into epic/F-015).
+Cause: 1st person is the same body mesh and the same ABP_Indy; the cutaway hid the `spine_01` branch, which holds both arms and hands. Fix: `FirstPersonHiddenBone` default `spine_01` -> `neck_01` (head and neck only) in IndyCharacter.h, plus comments. No asset, AnimGraph or MoveAnimations change, so no DSL and no new test.
+Toggle: it only hides/unhides a bone and never touches the anim instance or montage, so no restart. Input device never enters the anim state.
+Checks: `unreal-editor.sh check` build + CompileAllBlueprints 0 errors, 0 load failures; standalone Build.bat Succeeded; headless `Automation RunTests MyGameProject.Animation` 13/13 Success, exit 0. (A Stop-hook run failed once while my own build/check ran in parallel on the same worktree; the build alone passes.)
+Not checked (headless): the look of the arms and torso in 1st person, torso clipping the camera when looking down, and each move in L_Traversal. User play-test needed before the epic merges; bone is editable per instance if `neck_01` needs tuning.
+Reviewer: look at the bone choice and the comments in IndyCharacter.h/.cpp.
 
 ## Review (reviewer writes, one line per round)
