@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 34
 ---
 ## Goal
 Ledge hang shows a grab, a hang pose, shimmying and the pull-up or drop.
@@ -32,5 +32,10 @@ Ledge hang shows a grab, a hang pose, shimmying and the pull-up or drop.
 - Library: `LedgeClimb` (Idle, Left, Right, Up, Down, ClimbUp), `Mantle`, `Vault`.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #34 into epic/F-015: https://github.com/chrisfaber95/my-game-project/pull/34 (commit c9fa846).
+- C++: 6 ledge values in `EIndyMoveAnimState` (Grab/Idle/Left/Right/ClimbUp/Drop); pure helpers `NextLedgeState` etc. in `IndyMoveAnim`; `UIndyAnimInstance` binds `OnLedgeGrabbed`/`OnLedgeReleased`, follows `SurfaceInput.X` on the ledge, shimmy rate scales with input.
+- Asset: only `ABP_Indy` class defaults, 6 new `MoveAnimations` rows (existing 20 unchanged; no AnimGraph change). Clips: LedgeClimb Idle/Left/Right/ClimbUp; no grab or release clip exists, so Grab = Idle non-looping, Drop = LedgeClimbing_Down.
+- Checks: `unreal-editor.sh check` exit 0 (CompileAllBlueprints 0 errors, 0 failed to load). New automation test `MoveAnimLedge` added but NOT run.
+- Reviewer: PIE check needed. Climb-up teleports the actor first while the clip plays in place; Grab/Drop clips are stand-ins; shimmy keeps animating at a ledge end while input is held.
 
 ## Review (reviewer writes, one line per round)
