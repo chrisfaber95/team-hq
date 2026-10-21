@@ -37,6 +37,7 @@ Crouch and roll play real animations and replace the placeholder motion from F-0
 
 PR #36 (https://github.com/chrisfaber95/my-game-project/pull/36) into epic/F-015. New states CrouchIdle, CrouchWalk, Roll in `UIndyAnimInstance`; pure helpers + test `MyGameProject.Animation.MoveAnimCrouchRoll`. Three new `MoveAnimations` rows in ABP_Indy (only asset changed; DSL in PR body): Crouch idle, Crouch_Fwd_Loop (rate follows speed/CrouchSpeed), A_Roll_IdleFwd (root motion ignored, rate fitted to RollDuration). No gameplay values changed. F-009 left no placeholder motion in Source, so nothing was removed.
 Checks: `unreal-editor.sh check` passed (build, CompileAllBlueprints 0 errors); headless `Automation RunTests MyGameProject.Animation` 13/13 pass; reload run shows 32 rows.
+Rework round 1: moved `FIndyMoveAnimCrouchRollTest` inside the `#endif // WITH_DEV_AUTOMATION_TESTS` guard in IndyMoveAnimTest.cpp (commit e946e92, pushed to PR #36); clang-format 18.1.8 applied, Build check Result: Succeeded. The test file is the only change; assets untouched, so the earlier check/automation results stand.
 Reviewer: PIE not done (headless): check feet on the floor when crouching, roll pose ending cleanly. Only the forward crouch loop is used (no eight-way); no stand/crouch transition clips. PR has no `assets` label (repo has none).
 
 
