@@ -10,7 +10,7 @@ depends_on: [G-029]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 37
@@ -42,3 +42,4 @@ Not checked (headless): the look of the arms and torso in 1st person, torso clip
 Reviewer: look at the bone choice and the comments in IndyCharacter.h/.cpp.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - base epic/F-015 ok, CI green, 2-file C++ change (default bone spine_01 -> neck_01) with comments; no assets, Build.cs or .uproject change; check, build and Animation tests 13/13 named in hand-off. Visual result and toggle are unverified headless: user play-test before epic merge (also confirm no BP instance overrides FirstPersonHiddenBone).
