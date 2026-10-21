@@ -10,7 +10,7 @@ depends_on: [G-026]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 34
@@ -39,3 +39,4 @@ PR #34 into epic/F-015: https://github.com/chrisfaber95/my-game-project/pull/34 
 - Reviewer: PIE check needed. Climb-up teleports the actor first while the clip plays in place; Grab/Drop clips are stand-ins; shimmy keeps animating at a ledge end while input is held.
 
 ## Review (reviewer writes, one line per round)
+round 1: changes - (1) ABP_Indy changed but the PR body has no DSL text for it; add the DSL of the 6 new MoveAnimations rows (state, clip, loop, blend, play rate, root motion) to the PR body. (2) Run the new automation test MyGameProject.Animation.MoveAnimLedge and report the result in the hand-off; the C++ logic otherwise looks correct.
