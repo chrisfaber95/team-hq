@@ -3,7 +3,7 @@ id: G-031
 kind: ticket
 repo: my-game-project
 base: epic/F-015
-branch:
+branch: team/G-031
 owner: eng-my-game-project
 brief: F-015
 depends_on: [G-024, G-035]
@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: true
 user_ok: true
-pr:
+pr: 33
 ---
 ## Goal
 Pushing and pulling a block show push and pull animations with the hands on the block, only while the block moves.
@@ -30,5 +30,9 @@ Pushing and pulling a block show push and pull animations with the hands on the 
 - USER DECISION 2026-10-21: the user approves a free pack as the source (new dependency approved in principle; the exact pack is confirmed in NEEDS-YOU before any import). Candidates found by the lead (price not confirmed, check the Fab listing): "Push Set" (fab.com/listings/15f36675-213d-4f55-8ebf-cf481b242876; push-heavy objects, start/loop/stop, blocked case; UE5 Mannequin skeleton, in-place and root-motion) and the "Interaction Animation" pack (fab.com/s/26eba1b1fe30; levers push/pull, not block pushing). Push Set fits best; no pull clip is confirmed. Fab assets download through the user's Epic account/launcher, so the user adds the pack to the project (or tells the lead where it sits); then G-024's skeleton approach applies if it is not on the project's skeleton. UPDATE: both candidates are paid; the user is searching for a free one. CHOSEN PACK: fab.com/listings/5b737d10-b4cd-4294-8f6b-757b9088039d (free per user; push plus other animations; listing not readable by the lead). The user imports it; engineer then checks skeleton compatibility (G-024 approach) and which clips exist. Other clips may feed later F-015 tickets only if the user asks. IMPORT: pack is in the main checkout as Content/FreeSampleAnimationSet (sample set, ~one clip per set; PushSet has a Heavy loop, PullSet is rope only); G-035 commits it. If no block-pull clip exists, pull may reuse push in reverse (decide in the ticket). USER DECISION (pull): for now pull plays the push animation (reversed or the same clip, whichever looks right with the hands on the block); a real pull clip can replace it later.
 
 ## Hand-off (engineer writes, max 300 tokens)
+New move states PushBlock/PullBlock in `IndyMoveAnim` (`NextPushState`), driven by TraversalMode==Push, bBlockMoving and PushPullSign; a block at rest or let go returns to the graph idle (0.3 s blends). ABP_Indy `MoveAnimations` got two rows, both using A_Push_Heavy_01_Loop (pull = push clip, per user decision). The clip has baked root motion, so a new row flag `bIgnoreRootMotion` switches the instance to IgnoreRootMotion while the row plays. Asset edited by Python commandlet; only ABP_Indy changed.
+PR: https://github.com/chrisfaber95/my-game-project/pull/33 (into epic/F-015).
+Checks: `unreal-editor.sh check` passed (build, CompileAllBlueprints 0 errors); reload run shows 19 rows; clang-format 18.1.8 clean. New automation test FIndyMoveAnimPushTest compiles but was not run.
+Reviewer: needs a PIE check (hands on block, no actor drift, smooth release). The `assets` label doesn't exist in the repo, so none was set.
 
 ## Review (reviewer writes, one line per round)
