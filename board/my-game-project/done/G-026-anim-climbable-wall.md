@@ -10,7 +10,7 @@ depends_on: [G-025]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 31
@@ -39,3 +39,4 @@ PR #31 into epic/F-015: https://github.com/chrisfaber95/my-game-project/pull/31 
 - Reviewer: PIE check still needed on the L_Traversal climb wall (hands on wall, no pops, top-out lands on top). Top-out plays in place after the component already moved the character up. PR label `assets` does not exist in the repo.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
