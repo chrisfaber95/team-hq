@@ -3,7 +3,7 @@ id: G-035
 kind: ticket
 repo: my-game-project
 base: epic/F-015
-branch:
+branch: team/G-035
 owner: eng-my-game-project
 brief: F-015
 depends_on: [G-026]
@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: true
-pr:
+pr: https://github.com/chrisfaber95/my-game-project/pull/32
 ---
 ## Goal
 The free Fab pack the user added (`Content/FreeSampleAnimationSet/`, untracked in the main checkout `N:\Projects\MyGameProject`) is committed on `epic/F-015` so G-031 can use its push animation.
@@ -33,11 +33,13 @@ The free Fab pack the user added (`Content/FreeSampleAnimationSet/`, untracked i
 - Assets: `/Game/FreeSampleAnimationSet/Animations/...`; unused sets (Cover, DBNO, Lift, Mining, ...) may be imported with the rest of `Animations/`; do not wire them to anything.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #32 (into epic/F-015): 14 clips under Content/FreeSampleAnimationSet/Animations (LFS) + pack Demo/Mannequins/Meshes/SK_Mannequin only. FemaleLocomotionSet clip skipped (needs SKM_Quinn_Simple_Skeleton). Pack skeleton added to project SK_Mannequin compatible_skeletons (settings only, G-024 way); all 14 clips load on it. unreal-editor.sh check: build ok, CompileAllBlueprints 0 errors/0 failed.
+Clips for G-031 (all baked root motion in RootMotion folders unless noted):
+- Push: PushSet/RootMotion/Heavy/01/A_Push_Heavy_01_Loop (only a loop; no start/stop in the sample)
+- Pull: PullSet/Mannequin/RootMotion/Rope/2H/01/A_Pull_Rope_2H_01_Loop
+- Other: Ladder A_Ladder_Up_Loop, Stairs A_Stairs_WalkFwd_Up_Loop, NarrowPassage, DashDodgeRoll A_Roll_IdleFwd, MaleLocomotion A_RunFwd_Loop, Cover, DBNO, ItemPickup, Mining, StorageUnits, Survival; Lift is InPlace.
+Reviewer: no PIE/ABP check (bone hierarchies not diffed); label assets does not exist.
 
 ## Review (reviewer writes, one line per round)
 round 0 (lead, not a review): the first run blocked on a question, no code or review findings exist; the answer is in Notes and Acceptance. Start from the clean branch.
 
-## Blocked
-All 15 clips under `Animations/` reference the pack's own skeleton, not the project's: 14 use `/Game/FreeSampleAnimationSet/Demo/Mannequins/Meshes/SK_Mannequin` and the FemaleLocomotionSet clip uses `.../Demo/Mannequins/Meshes/SKM_Quinn_Simple_Skeleton` (read from the assets' package references). Both are in `Demo/`, which the acceptance criteria say not to import, and both are different skeletons from the project's (retargeting is out of scope).
-Question: (a) import the `Demo/Mannequins` skeleton assets too, or (b) retarget the clips onto the project skeleton in a separate ticket?
-Nothing was committed; the worktree is clean and the main checkout was not touched. Push clip: PushSet/RootMotion/Heavy/01/A_Push_Heavy_01_Loop; pull clip: PullSet/Mannequin/RootMotion/Rope/2H/01/A_Pull_Rope_2H_01_Loop (both root motion; only the LiftSet sample is InPlace).
