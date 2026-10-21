@@ -77,22 +77,11 @@ wt=/n/worktrees/$repo-$id-merge
 [ -e "$wt" ] || { git -C "$repo_dir" fetch -q origin && git -C "$repo_dir" worktree add -q --detach "$wt" "origin/$base"; }
 
 echo "== $(date -Is) merge $id PR #$pr into $base ($verdict)" >> "$log"
-# The review lives on the board, not on GitHub, and the merge agent's auto mode refuses a merge it can't see a
-# review for ("Merge Without Review", G-031). Put the board's review lines on the PR once, before the agent runs.
-marker="team-hq review: $id $verdict"
-if ! gh pr view "$pr" --repo "$origin" --json comments -q '.comments[].body' | grep -qF "$marker"; then
-  review_lines=$(sed -n '/^## Review/,/^## /p' "$ticket" | sed -E 's/^- (round [0-9]+:)/\1/' | grep -E '^round [0-9]+:' | tr -d '\r')
-  body=$(printf '%s\n\nReviewed by the team reviewer against the ticket acceptance criteria (board: %s):\n\n%s\n\nCI checks: %s of %s passing. Gates checked by team-hq scripts/merge.sh.%s' \
-    "$marker" "board/$repo/review/$(basename "$ticket")" "$(printf '%s\n' "$review_lines" | sed 's/^/    /')" "$total" "$total" "$userok")
-  gh pr comment "$pr" --repo "$origin" --body "$body" >> "$log" 2>&1 \
-    || escalate "could not post the review comment on PR #$pr"
-fi
 cd "$wt"
 # No MCP servers (the repo's Playwright server can keep claude -p from exiting) and a time cap.
 set +e
 timeout --kill-after=60 15m claude -p "Merge PR #$pr (ticket $id) into $base. The team reviewer approved it ('$verdict') and every CI check is green; \
-both gates were verified before this run. The review is recorded on the PR in the comment that starts with \
-'$marker'.$userok Authorized: merge it $how and delete its \
+both gates were verified before this run.$userok Authorized: merge it $how and delete its \
 remote branch. Do nothing else: no new commits, no release. Report the merge commit." \
   --agent git-workflow-manager \
   --name "merge-$id" \
