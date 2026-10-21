@@ -10,7 +10,7 @@ depends_on: [G-028]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_check: false
 user_ok: false
 pr: 36
@@ -43,3 +43,4 @@ Reviewer: PIE not done (headless): check feet on the floor when crouching, roll 
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - 1) IndyMoveAnimTest.cpp: the new FIndyMoveAnimCrouchRollTest is after the closing `#endif // WITH_DEV_AUTOMATION_TESTS` (line 191); move it inside the guard, or builds without dev automation tests fail to compile (class undefined). Rest meets the criteria (row DSL in PR body, asset listed, check run, base epic/F-015).
+round 2: approve

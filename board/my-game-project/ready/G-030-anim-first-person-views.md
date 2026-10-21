@@ -28,7 +28,10 @@ In 1st person the player sees hands, arms and visible legs doing the ladder, wal
 
 ## Notes (lead)
 - Assets: `/Game/Characters/Mannequins/Anims/Indy/ABP_Indy`, and `/Game/FirstPerson/Anims/ABP_FP_Copy` if the first-person arms need it.
-- Needs every move ticket merged. The block move is G-031 (a placeholder pose is fine until it lands).
+- All move tickets are merged (G-025..G-029, G-031 block push/pull with the pack clip).
+- HOW (decision, see G-034): no AnimGraph editing, also not in `ABP_FP_Copy`. If the first-person arms can only be fixed by editing an AnimGraph, stop and write it in the ticket. Prefer driving the 1st-person mesh from the same `UIndyAnimInstance` slot calls (or copy pose from the body) over new clips.
+- Acceptance 4 (playing each move in `L_Traversal`) cannot be seen headless: say in the hand-off what was checked and how; the user play-tests before the epic merges.
+- Reviewer expects (from G-027): the DSL text of every new or changed `MoveAnimations` row in the PR body, and the new automation test run headless (`Automation RunTests MyGameProject.Animation`) with its result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
 
