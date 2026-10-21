@@ -10,7 +10,7 @@ depends_on: [G-023, G-024, G-033, G-034, G-025, G-026, G-027, G-028, G-029, G-03
 contracts: []
 labels: []
 budget_usd: 0
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: true
 pr: 38
@@ -29,3 +29,4 @@ Epic ticket, never dispatched. `bash scripts/epic.sh open F-015 my-game-project`
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 1: approve - all 12 child tickets (G-023..G-031, G-033..G-035) are in the PR; no TODO/FIXME in Source; full CI (check, GitGuardian) green; user play-tested 3750fc4 and accepted (user_ok set). Unverified headless: sliding feet and popping in PIE (user judged "okay, not perfect"); merge with a merge commit.
