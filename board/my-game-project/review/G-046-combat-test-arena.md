@@ -10,9 +10,9 @@ depends_on: [G-041, G-043, G-044, G-045]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: true
-user_ok: false
+user_ok: true
 pr: 49
 ---
 ## Goal
@@ -40,3 +40,4 @@ Placeholders: none.
 NOT DONE: PIE (headless): patrol/notice/chase/shoot/bite, pickups, completion in both views, death restart. User play-test needed; numbers untuned. Reviewer: LFS pointer, only the .umap changed.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
