@@ -31,4 +31,3 @@ PR https://github.com/chrisfaber95/my-game-project/pull/58 (into epic/F-014). `S
 
 ## Review (reviewer writes, one line per round)
 round 1: approve
-round 1: approve
