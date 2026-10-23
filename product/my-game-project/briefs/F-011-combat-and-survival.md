@@ -1,7 +1,7 @@
 ---
 id: F-011
 title: Combat and survival
-status: approved
+status: handed-off
 priority: must
 repos: [my-game-project]
 ---
