@@ -10,10 +10,10 @@ depends_on: [G-036]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 42
 ---
 ## Goal
 A C++ enemy base character that can be hurt, staggered and killed, and that exposes its attacks for the AI to use.
@@ -34,5 +34,9 @@ A C++ enemy base character that can be hurt, staggered and killed, and that expo
 - Reviewer expects (from F-015): the new automation tests run headless (`Automation RunTests MyGameProject.<Area>`) with the result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #42 (https://github.com/chrisfaber95/my-game-project/pull/42) into epic/F-011. Added AIndyEnemyCharacter (AI/): UIndyHealthComponent, death (movement off, capsule ignores Pawn, OnEnemyDied), Stagger (blocks move+attack; UIndyWhipDamageType staggers for WhipStaggerDuration), RangedAttack (hitscan, MissSpreadDegrees) and MeleeAttack with tunable damage/range/cooldown, bHasRangedAttack/bHasMeleeAttack. Pure rules in FIndyEnemyRules. C++ only, no assets, no new deps.
+Checks: unreal-editor.sh check exit 0 on rerun (first run: build and BP compile OK, editor restart failed from host memory pressure); headless MyGameProject.AI: 2/2 pass (Enemy.Stagger, Enemy.Attack); clang-format 18.1.8 clean.
+Reviewer: actor code (stagger timer, death, attacks) has no test and no PIE run, only the pure rules do.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
