@@ -10,10 +10,10 @@ depends_on: [G-036]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 41
 ---
 ## Goal
 The player can fire a pistol where the crosshair points, with a magazine, reserve ammo and reload.
@@ -34,5 +34,13 @@ The player can fire a pistol where the crosshair points, with a magazine, reserv
 - Reviewer expects (from F-015): the new automation tests run headless (`Automation RunTests MyGameProject.<Area>`) with the result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `UIndyPistolComponent` (on `AIndyCharacter`) and pure `FIndyPistolRules` (Combat/). Hitscan from the controller view point (screen centre, both views), `ApplyPointDamage`. While aiming, left mouse (routed via `WhipPressed`; whip unchanged when not aiming) and gamepad right trigger fire. Reload: **R** and gamepad **left shoulder**. Tunables and delegates exposed with Categories. C++ only, no assets.
+
+PR: https://github.com/chrisfaber95/my-game-project/pull/41 (into epic/F-011)
+
+Checks: `unreal-editor.sh check` passes (build, CompileAllBlueprints 0 errors / 0 failed loads); headless `Automation RunTests MyGameProject.Combat` 5/5 success (Pistol.Trigger/Reload/Reserve + Health.*). No PIE check done.
+
+Reviewer: input routing in `AIndyCharacter::WhipPressed/FirePressed`; dry fire is also limited by FireInterval; no ammo pickups or UI yet (G-043).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
