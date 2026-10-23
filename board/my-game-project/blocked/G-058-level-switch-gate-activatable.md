@@ -32,3 +32,6 @@ Design: decisions/0016-f012-babylon-dig-site-level.md. Prerequisites for the who
 What changed, PR link, anything the reviewer must look at.
 
 ## Review (reviewer writes, one line per round)
+
+## Blocked
+IIndySaveable (F-013) is not in epic/F-012, main or any branch (epic/F-012 = c4c780b, F-014 only). The ticket says to implement it. Merge the F-013 epic into epic/F-012 first, or may I define IIndySaveable myself?
