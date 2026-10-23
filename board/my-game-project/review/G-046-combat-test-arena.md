@@ -3,7 +3,7 @@ id: G-046
 kind: ticket
 repo: my-game-project
 base: epic/F-011
-branch: 
+branch: team/G-046
 owner: eng-my-game-project
 brief: F-011
 depends_on: [G-041, G-043, G-044, G-045]
@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: true
 user_ok: false
-pr:
+pr: 49
 ---
 ## Goal
 A greybox test arena where the player can fight the guard and the dog, pick up ammo and medkits, die and try again, in both views.
@@ -32,5 +32,11 @@ A greybox test arena where the player can fight the guard and the dog, pick up a
 - `user_check: true`: the user plays the arena and tunes the numbers (brief open question) before it merges.
 
 ## Hand-off (engineer writes, max 300 tokens)
+New `/Game/Maps/Greybox/L_CombatArena` (only asset changed; Python commandlet). PR #49 (https://github.com/chrisfaber95/my-game-project/pull/49) into epic/F-011, not merged.
+Layout: 4000x4000 cm walled floor, AIndyGameMode, guard with 4 patrol points, dog, cover wall + 2 crates, closed safe room (baffled entrance) with ammo + medkit, 2nd medkit in a far corner, NavMeshBounds + RecastNavMesh over the floor.
+Values (all defaults, nothing tuned): player 100 HP; pistol 25 dmg, 8+16 shots, ammo pickup +12; enemies 100 HP (4 hits each); guard ranged 10 dmg/1.5 s, melee 15/1.0 s; dog melee 12/0.8 s, speed 650; medkit +50.
+Checks: `unreal-editor.sh check` exit 0 (0 errors, 0 failed to load); headless reload confirmed actors, patrol points, nav, game mode.
+Placeholders: none.
+NOT DONE: PIE (headless): patrol/notice/chase/shoot/bite, pickups, completion in both views, death restart. User play-test needed; numbers untuned. Reviewer: LFS pointer, only the .umap changed.
 
 ## Review (reviewer writes, one line per round)
