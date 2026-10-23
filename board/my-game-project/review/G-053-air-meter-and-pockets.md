@@ -9,10 +9,10 @@ depends_on: [G-051]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 56
 ---
 ## Goal
 An air meter drains underwater, refills at the surface or in air pockets, hurts at zero, and is shown in the debug HUD.
@@ -28,5 +28,10 @@ An air meter drains underwater, refills at the surface or in air pockets, hurts 
 Design: `decisions/0015-f014-swimming-and-diving.md`. Module: `UIndyAirComponent`; the three-line IndyDebugHUD change is the meter's only display and stays in this ticket. Damage goes through `TakeDamage` (F-011 health).
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `FIndyAirMeter` (Water/, pure: drain 5/s, refill 50/s, damage 10/s only for the time past empty), `UIndyAirComponent` on `AIndyCharacter` (breathes when the eye is in an AirPocket or outside all Water volumes; damage via `ApplyDamage`, so F-011 death/restart applies), the `Air: n / 100` line in `AIndyDebugHUD`, and `Tests/IndyAirMeterTest.cpp`. No assets, no new dependencies.
+PR: https://github.com/chrisfaber95/my-game-project/pull/56 (into epic/F-014).
+Checks run: clang-format 18.1.8; `unreal-editor.sh check` exit 0 (CompileAllBlueprints 0 errors, 0 failed to load); headless `MyGameProject.Water` automation 5/5 passed.
+Reviewer: the death restart at zero air and the eye-based breathing rule were not exercised in a world/PIE test. Damage is applied every tick in small amounts.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
