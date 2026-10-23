@@ -12,7 +12,7 @@ labels: [deps]
 budget_usd: 3
 review_rounds: 0
 user_check: false
-user_ok: false
+user_ok: true
 pr:
 ---
 ## Goal

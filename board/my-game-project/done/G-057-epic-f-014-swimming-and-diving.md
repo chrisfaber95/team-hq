@@ -10,10 +10,10 @@ depends_on: [G-049, G-050, G-051, G-052, G-053, G-054, G-055, G-056]
 contracts: []
 labels: []
 budget_usd: 0
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 60
 ---
 ## Goal
 In a test pool the player can wade through shallows, swim freely, dive under, hold their breath, run out of air, find air pockets, climb out, fight and pick up treasure, in both camera views.
@@ -30,3 +30,4 @@ In a test pool the player can wade through shallows, swim freely, dive under, ho
 ## Hand-off (engineer writes, max 300 tokens)
 
 ## Review (reviewer writes, one line per round)
+round 1: approve

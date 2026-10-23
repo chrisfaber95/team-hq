@@ -95,7 +95,7 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-23 G-040: engineer run stopped (exit 0, no-json-result). Log: logs/G-040.log (lead: rework run put its check in a background subagent and timed out; the fix is in the worktree; re-run --rework with a foreground-check note)
 - [x] 2026-10-23 F-014: planner run stopped (exit 127, no-json-result). Log: logs/F-014.plan.log (lead: retry succeeded, G-049..G-057 planned)
 - [x] 2026-10-23 G-047: epic PR #51 adds Build.cs modules AIModule, GameplayTasks, NavigationSystem (new dependency); needs your OK before merge. Reviewer round 1: changes (PR body asset list/checks). (user: user_ok true, merged 2026-10-23)
-- [ ] 2026-10-23 G-054: reviewer run for PR #57 stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/G-054.log
-- [ ] 2026-10-23 G-054: reviewer run for PR #57 stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/G-054.log
-- [ ] 2026-10-23 F-012: F-012 (and F-013) need the engine modules `UMG`, `Slate`, `SlateCore` in `MyGameProject.Build.cs` for C++ widget bases (end screen, text card, menus); new dependency, decision 0016. Approve once; whichever ticket adds it first carries the `deps` label and needs `user_ok`.
-- [ ] 2026-10-23 G-056: merge of PR #59 stopped (the ticket asks for your check: try PR #59, then set user_ok: true in the ticket). Log: logs/G-056.log
+- [x] 2026-10-23 G-054: reviewer run for PR #57 stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/G-054.log (lead: usage limit; re-run merged it)
+- [x] 2026-10-23 G-054: reviewer run for PR #57 stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/G-054.log (lead: usage limit; re-run merged it)
+- [x] 2026-10-23 F-012: F-012 (and F-013) need the engine modules `UMG`, `Slate`, `SlateCore` in `MyGameProject.Build.cs` for C++ widget bases (end screen, text card, menus); new dependency, decision 0016. Approve once; whichever ticket adds it first carries the `deps` label and needs `user_ok`. (user: approved, user_ok on G-062)
+- [x] 2026-10-23 G-056: merge of PR #59 stopped (the ticket asks for your check: try PR #59, then set user_ok: true in the ticket). Log: logs/G-056.log (user: approved, merged)
