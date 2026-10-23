@@ -3,17 +3,17 @@ id: G-041
 kind: ticket
 repo: my-game-project
 base: epic/F-011
-branch: 
+branch: team/G-041
 owner: eng-my-game-project
 brief: F-011
 depends_on: [G-039]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 45
 ---
 ## Goal
 The whip lashes an enemy within 3 m in front of the player, staggering it and doing small damage, with no ammo.
@@ -32,5 +32,12 @@ The whip lashes an enemy within 3 m in front of the player, staggering it and do
 - Reviewer expects (from F-015): the new automation tests run headless (`Automation RunTests MyGameProject.<Area>`) with the result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+C++ only, no assets. PR #45 (team/G-041 into epic/F-011): https://github.com/chrisfaber95/my-game-project/pull/45
+- `IndyWhipSelection::PickEnemy`: pure helper, nearest enemy in reach and cone.
+- `UIndyWhipComponent::TryWhip` lashes first (enemy wins over anchor): `ApplyDamage` with `UIndyWhipDamageType` (G-039 staggers), fires `OnWhipLash(Enemy)`. No enemy in reach: anchor/whiff as before. Cooldown with an enemy in reach: returns false, no anchor fallback.
+- Tunables (Category `Traversal|Whip|Lash`): LashReach 300 cm, LashConeAngle 45 deg half, LashDamage 10, LashCooldown 0.6 s. Cone uses the pawn's forward vector.
+Checks run: clang-format 18.1.8 OK; `unreal-editor.sh check` build + CompileAllBlueprints 0 errors; headless `Automation RunTests MyGameProject.Traversal` 13/13 pass (new WhipSelection.PickEnemy, existing Pick, WhipArc).
+Reviewer: cooldown/anchor-fallback behaviour, no line-of-sight check, no PIE check done.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
