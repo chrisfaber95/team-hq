@@ -1,22 +1,24 @@
-# Sprint summary: sprint 15 (2026-10-21, phase 3)
+# Sprint summary: F-011 combat and survival, nearly done (2026-10-23, phase 3)
 
-F-015 (traversal animations) is on `main` (epic PR #38, merge commit). The user play-tested it and accepted it as
-"okay, not perfect", without listing defects. Block push/pull uses a free Fab pack the user picked.
+F-011 tickets G-036..G-045 are merged into `epic/F-011`. G-046 (combat test arena) waits for review and the user's
+play-test, then the epic ticket G-047 brings F-011 to `main`. This sprint also changed how the team runs (decision 0014).
 
 ## Shipped
 
-### my-game-project
+### my-game-project (all into `epic/F-011`)
 
 | Ticket | Title | PR | Rounds |
 | --- | --- | --- | --- |
-| G-026 | Climbable wall animations | #31 | 1 |
-| G-035 | Import Free Sample Animation Set (14 clips + pack skeleton, compatible with the project's) | #32 | 1 |
-| G-031 | Block push/pull animation (pull reuses the push clip, root motion ignored) | #33 | 1 |
-| G-027 | Ledge animations (grab/drop are stand-ins) | #34 | 2 |
-| G-028 | Whip swing and fall animations | #35 | 1 |
-| G-029 | Crouch and roll animations (roll from the pack) | #36 | 2 |
-| G-030 | First person shows arms and hands (hidden bone `spine_01` -> `neck_01`) | #37 | 1 |
-| G-032 | Epic F-015 to `main` | #38 | 1 |
+| G-036 | Health and medkits | #39 | 1 |
+| G-038 | Aim camera | #40 | 1 |
+| G-037 | Pistol weapon | #41 | 1 |
+| G-039 | Enemy base character | #42 | 1 |
+| G-042 | Pickup base | #43 | 1 |
+| G-040 | Enemy AI controller | #44 | 2 |
+| G-041 | Whip lash | #45 | 1 |
+| G-044 | Arena restart on death | #46 | 1 |
+| G-045 | Enemy and pickup Blueprints | #47 | 1 |
+| G-043 | Combat debug HUD | #48 | 1 |
 
 ### claude-dashboard
 
@@ -26,38 +28,38 @@ Nothing this sprint.
 
 | Item | Status | Next step |
 | --- | --- | --- |
-| F-011, F-014, F-013, F-012 | approved briefs | ticket F-011 (combat and survival) next, one epic at a time (order in `ROADMAP.md`) |
-| F-015 polish | not ticketed | user said "not perfect"; ticket only what the user names |
+| G-046 combat test arena | review, PR #49, `user_check: true` | reviewer run, then the user's play-test (PIE was never run headless; numbers untuned) |
+| G-047 epic F-011 to `main` | backlog | after G-046: `epic.sh pr G-047`, review, merge (needs F-011 feature review) |
+| G-048 fix ViewSettings clamp test | ready | dispatch with `run-tickets.sh`; independent of F-011 |
+| F-014, F-013, F-012 | approved briefs | plan with `plan.sh` (one epic at a time, order in `ROADMAP.md`) |
 | T-103 (claude-dashboard) | ready | not dispatched |
 | T-045 | backlog, owner user | approve/deny check from a paired device |
 
 ## Waiting on the user
 
-- Delete leftover worktree folders: `N:\worktrees\my-game-project-F-015` (test worktree, detached), `-G-013`, `-G-016`, `-G-020`, `-G-034` (`logs/G-034.keep`).
-- G-020: the push world tests (`IndyPushBlockWorldTest`) were never run by an engineer; CI only builds.
-- Name the F-015 parts that are "not perfect" if you want them fixed before F-011.
-- Dashboard browser checks and T-045 from earlier sprints; the phone/tablet app design session.
+- Play-test G-046 and set `user_ok: true` (or name defects); numbers are untuned defaults.
+- G-020: delete the leftover folder `N:\worktrees\my-game-project-G-020` (merge.sh could not remove it). The push
+  world tests (`IndyPushBlockWorldTest`) were never run by an engineer; CI only builds.
+- Leftover worktree folders in `N:\worktrees` (F-015, G-034, G-037, G-038, scratch dirs) can be deleted.
+- Start the lead with `claude --model sonnet --strict-mcp-config` from now on (decision 0014).
 
 ## Decisions
 
-- No new decision file. Lead and user calls: (1) new dependency: Fab "Free Sample Animation Set" (user, G-035), only
-  `Animations/` + the pack skeleton imported, made compatible G-024-style; (2) pull plays the push clip for now (user);
-  (3) `user_check` off on G-031 (user); (4) merges are automatic again: the user added `Skill(merge)` to the user
-  settings after the merge agent refused G-031; a lead change to `merge.sh` that self-posted the review on the PR was
-  reverted (it read as a way around the check).
+- [0014](../decisions/0014-small-lead-planner-architect.md): lead on Sonnet and cleared per epic, planner and architect
+  agents, `run-tickets.sh` batch runner, `--disable-slash-commands` for headless runs (about a third fewer prompt
+  tokens per run), engineer skill split into `SKILL.md` + `repo-<repo>.md` (dispatch.sh names both).
 
 ## Metrics
 
-Engineer runs $6.29 for 7 tickets ($0.54-1.41 each incl. rework), reviews $1.19; rows in `metrics/baseline.md`.
-Rework rounds came from two review asks (row DSL in the PR body, test not run on G-027) and a test outside the
-`WITH_DEV_AUTOMATION_TESTS` guard (G-029); the "Reviewer expects" note added to later tickets avoided a repeat.
-Process slips: the lead cut G-032's `depends_on` to two ids (restored); `dispatch.sh --rework` refuses a ticket in
-`ready/`; `merge.sh` skipped the user's checkout while an untracked folder sat on the merged paths.
+Engineer runs about $4.89 for 10 tickets ($0.23-0.90 each; G-040's first run has no JSON result, so only its rework
+$0.23 is counted), reviews $1.42; rows in `metrics/baseline.md`. G-040 needed a second round (two fixes). G-046's
+engineer run was $0.49. These runs are cheaper than F-015's ($0.54-1.41), so the cost lever is now the lead, not the runs.
+Not yet measured: the Sonnet lead, `plan.sh` and `run-tickets.sh` on a real epic.
 
 ## Next sprint
 
-1. Ticket F-011 (combat and survival) with `write-ticket`; `epic.sh open F-011 my-game-project` before the first dispatch.
-2. Add "row DSL in PR body + run the automation tests" to the game ticket template notes (it saved a round each time).
-3. Any F-015 polish the user names.
-4. `dispatch.sh --rework` safe for a first implementation after a block (still open from sprint 14).
-5. T-103 on claude-dashboard when the user wants dashboard work.
+1. Review G-046 (`run-tickets.sh my-game-project G-046` resumes it), then the user's play-test and `user_ok`.
+2. `epic.sh pr G-047`, feature review against F-011, merge to `main`.
+3. G-048 (clamp test), dispatched with `run-tickets.sh`.
+4. `plan.sh F-014 my-game-project` for the next epic (first real planner run: check its tickets).
+5. Watch the first engineer run for the repo notes file (`repo-<repo>.md`) being read.
