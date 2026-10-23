@@ -10,10 +10,10 @@ depends_on: [G-036, G-037, G-038]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 48
 ---
 ## Goal
 Health, magazine/reserve ammo and medkit count show as simple on-screen debug text, with a crosshair while aiming.
@@ -30,5 +30,8 @@ Health, magazine/reserve ammo and medkit count show as simple on-screen debug te
 - No automation test needed beyond the build; say in the hand-off how you checked it (PIE screenshot or log).
 
 ## Hand-off (engineer writes, max 300 tokens)
+AIndyDebugHUD (UI/IndyDebugHUD.h/.cpp, canvas only) draws Health, Medkits and Ammo mag / reserve each frame from the pawn's health and pistol components; crosshair at screen centre while IsAiming(); red EMPTY on the ammo line and beside the crosshair at 0 rounds; nothing for non-AIndyCharacter pawns. AIndyGameMode sets HUDClass. C++ only, no assets. PR: https://github.com/chrisfaber95/my-game-project/pull/48 (into epic/F-011).
+Checks: clang-format 18.1.8 clean; unreal-editor.sh check passed (build OK, CompileAllBlueprints 0 errors, 0 failed to load). No automated tests; no PIE screenshot taken, so the text layout and crosshair still need a visual PIE look. Reviewer: branch is one commit behind epic/F-011 (G-045 #47); a Blueprint game mode overriding HUD Class would win over the C++ default.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
