@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 46
 ---
 ## Goal
 When the player dies the arena restarts: player at the start, all enemies alive, all pickups back.
@@ -31,5 +31,9 @@ When the player dies the arena restarts: player at the start, all enemies alive,
 - A death animation is not required (`Content/Characters/Mannequins/Anims/Death` exists if a pose is cheap).
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #46 (https://github.com/chrisfaber95/my-game-project/pull/46) into epic/F-011. C++ only, no assets, no new dependency.
+`AIndyGameMode` (Player/IndyGameMode) binds the pawn's `UIndyHealthComponent::OnDied` in `SetPlayerDefaults`. On death: move/look input ignored and pawn input disabled, `OnPlayerDied(RestartDelay)` broadcast, timer, then `RestartArena()` reloads the current level (player, enemies, pickups back as placed). `RestartDelay` (default 3 s) is tunable, Category "Restart".
+Checks: `unreal-editor.sh check` exit 0 (module DLL rebuilt; the script printed only "editor ready", so the Blueprint compile is confirmed by exit code only). clang-format 18.1.8 applied. No automated tests; not tried in PIE.
+Reviewer: PIE death/restart (PlayerStart, full health, default ammo/medkits), level-name resolution in `RestartArena`, player index 0 only.
 
 ## Review (reviewer writes, one line per round)
