@@ -10,7 +10,7 @@ depends_on: [G-039]
 contracts: []
 labels: [deps]
 budget_usd: 3
-review_rounds: 1
+review_rounds: 2
 user_check: false
 user_ok: true             # user, 2026-10-23
 pr: 44
@@ -43,6 +43,8 @@ PR: https://github.com/chrisfaber95/my-game-project/pull/44 (into epic/F-011). C
 - Deps added (needs user_ok, given): AIModule, GameplayTasks, NavigationSystem.
 - Ran: `unreal-editor.sh check my-game-project` (build pass, CompileAllBlueprints 0 errors); `Automation RunTests MyGameProject.AI` 4/4 pass; clang-format 18.1.8.
 - Look at: Think()/DoAttack in the controller, OnMoveCompleted patrol advance. No PIE check done. Commit subject is 76 chars (>72); squash-merge with a shorter title.
+- Rework round 1 (commit 6537953, pushed to PR #44): 1) player now resolved lazily via `ResolvePlayer()` (Think and perception handler), no longer cached in OnPossess; 2) unused `StopAndClear` removed. Re-ran in the foreground: `unreal-editor.sh check my-game-project` passed; `Automation RunTests MyGameProject.AI` 4/4 Success; clang-format 18.1.8. CI `check` was queued at hand-off. No PIE check.
 
 ## Review (reviewer writes, one line per round)
 round 1: changes - 1) Player is cached once in OnPossess via GetPlayerPawn(0); placed enemies are possessed during actor init, likely before the player pawn exists, so Player stays null and HandleTargetPerceptionUpdated ignores every stimulus (enemy never notices). Resolve it lazily (in Think and the perception handler when null). 2) Remove unused private StopAndClear (dead code). Everything else meets the criteria; CI green, deps approved (user_ok).
+round 2: approve - both round-1 fixes verified (lazy ResolvePlayer in Think and perception handler, StopAndClear removed). Criteria met, CI green, deps approved (user_ok), no assets.
