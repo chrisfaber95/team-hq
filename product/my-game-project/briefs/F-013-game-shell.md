@@ -1,7 +1,7 @@
 ---
 id: F-013
 title: Game shell - HUD, pause, checkpoints, settings
-status: approved
+status: handed-off
 priority: should
 repos: [my-game-project]
 ---
