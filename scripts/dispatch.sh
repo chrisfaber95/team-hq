@@ -92,7 +92,7 @@ if [ -n "$editor_port" ]; then
 fi
 
 # --- the run -------------------------------------------------------------------
-prompt="$task The ticket is in N:/team-hq/board/$repo/in-progress/. Read and follow N:/team-hq/.claude/skills/engineer/SKILL.md. \
+prompt="$task The ticket is in N:/team-hq/board/$repo/in-progress/. Read and follow N:/team-hq/.claude/skills/engineer/SKILL.md, then read N:/team-hq/.claude/skills/engineer/repo-$repo.md. \
 When done: open or update the PR (base branch: $base), fill the hand-off, move the ticket to review, send the session named lead one line."
 
 echo "== $(date -Is) dispatch $id ($repo${mode:+ $mode}, base $base) in $wt" >> "$log"
