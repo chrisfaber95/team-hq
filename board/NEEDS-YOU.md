@@ -95,3 +95,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-23 G-040: engineer run stopped (exit 0, no-json-result). Log: logs/G-040.log (lead: rework run put its check in a background subagent and timed out; the fix is in the worktree; re-run --rework with a foreground-check note)
 - [x] 2026-10-23 F-014: planner run stopped (exit 127, no-json-result). Log: logs/F-014.plan.log (lead: retry succeeded, G-049..G-057 planned)
 - [x] 2026-10-23 G-047: epic PR #51 adds Build.cs modules AIModule, GameplayTasks, NavigationSystem (new dependency); needs your OK before merge. Reviewer round 1: changes (PR body asset list/checks). (user: user_ok true, merged 2026-10-23)
+- [ ] 2026-10-23 G-054: reviewer run for PR #57 stopped (exit 1, success turns=1 cost=$0.00 error). Log: logs/G-054.log
