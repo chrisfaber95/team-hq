@@ -10,7 +10,7 @@ depends_on: [G-036]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 46
@@ -37,3 +37,4 @@ Checks: `unreal-editor.sh check` exit 0 (module DLL rebuilt; the script printed 
 Reviewer: PIE death/restart (PlayerStart, full health, default ammo/medkits), level-name resolution in `RestartArena`, player index 0 only.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
