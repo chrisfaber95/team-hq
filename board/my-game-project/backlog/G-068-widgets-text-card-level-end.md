@@ -1,0 +1,33 @@
+---
+id: G-068
+kind: ticket
+repo: my-game-project
+base: epic/F-012
+branch:
+owner: eng-my-game-project
+brief: F-012
+depends_on: [G-062, G-063]
+contracts: []
+labels: [assets]
+budget_usd: 3
+review_rounds: 0
+user_check: false
+user_ok: false
+pr:
+---
+## Goal
+Create WBP_TextCard and WBP_LevelEnd (layout only, on the C++ bases).
+
+## Acceptance
+- [ ] Both widgets compile and bind to their C++ base fields
+- [ ] The end widget shows treasure and secret found / total and a Back to menu button
+- [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
+- [ ] Only the assets under Assets: change
+
+## Notes (lead)
+Design: decisions/0016-f012-babylon-dig-site-level.md. Prerequisites for the whole brief: F-014 epic (G-057) and the F-013 epic merged to main before epic/F-012 is cut. Assets: /Game/Babylon/UI/WBP_TextCard, WBP_LevelEnd.
+
+## Hand-off (engineer writes, max 300 tokens)
+What changed, PR link, anything the reviewer must look at.
+
+## Review (reviewer writes, one line per round)
