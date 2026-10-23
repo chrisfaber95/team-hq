@@ -10,10 +10,10 @@ depends_on: []
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 39
 ---
 ## Goal
 The player has fragile health that drops on damage, can carry medkits and use one to heal, and dies at zero health.
@@ -34,5 +34,9 @@ The player has fragile health that drops on damage, can carry medkits and use on
 - Reviewer expects (from F-015): the new automation tests run headless (`Automation RunTests MyGameProject.<Area>`) with the result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+Added `UIndyHealthComponent` + pure `FIndyHealthRules` in `Source/MyGameProject/Combat/`; `AIndyCharacter` owns it, so fall damage (TakeDamage) lowers health. Use Medkit input H / D-pad up. Defaults: max 100, heal 50, cap 3, start 0. PR: https://github.com/chrisfaber95/my-game-project/pull/39 (a254635).
+Checks: `unreal-editor.sh check` passed (first run only failed on a GPU out-of-memory crash restarting the editor; rerun passed). Headless `MyGameProject.Combat` 2/2 and `MyGameProject.Player.FallDamage` 2/2 passed. No assets changed.
+Look at: I lowered `FallDamagePerCm` 0.2 to 0.1 so an 800 cm fall deals 50 of 100, not death (balanced in F-012). The component wiring (OnTakeAnyDamage, OnDied once) has no automated test, and the H key was not tried in PIE. The commit trailer says Haiku 5.5, not Sonnet 5.5.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
