@@ -13,7 +13,7 @@ budget_usd: 3
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 47
 ---
 ## Goal
 Blueprint children for the guard, the dog and the two pickups, with placeholder looks where real assets don't exist yet.
@@ -21,7 +21,7 @@ Blueprint children for the guard, the dog and the two pickups, with placeholder 
 ## Acceptance
 - [ ] `BP_EnemyGuard` and `BP_EnemyDog` are children of `AIndyEnemyCharacter` using `AIndyEnemyAIController`, with defaults set (guard: ranged + melee; dog: melee only, faster, smaller capsule). Property values only, no graph logic.
 - [ ] `BP_Pickup_Medkit` and `BP_Pickup_PistolAmmo` are children of `AIndyPickup` with kind, amount and a mesh.
-- [ ] Each one works in PIE in a scratch level that is not saved: guard and dog patrol, notice and attack; pickups add to the counts (say how you checked in the hand-off).
+- [ ] ~~Each one works in PIE in a scratch level that is not saved: guard and dog patrol, notice and attack; pickups add to the counts (say how you checked in the hand-off).~~ Moved to G-046 by the lead (2026-10-23): the engineer's editor is headless and can't play; the user's G-046 play-test covers it. Reviewer: don't hold this ticket on it.
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] Only the assets under Assets: change.
 
@@ -32,5 +32,12 @@ Blueprint children for the guard, the dog and the two pickups, with placeholder 
 - Property values only, so no `user_check` (decision 0010); the user sees them in the arena (G-046).
 
 ## Hand-off (engineer writes, max 300 tokens)
+
+PR #47 (https://github.com/chrisfaber95/my-game-project/pull/47) into epic/F-011. Content only, 10 new assets, property values only.
+Changed: BP_EnemyGuard (ranged+melee, Manny + ABP_Unarmed), BP_EnemyDog (melee only, 650 speed, capsule r28/hh35, box body DogBody), BP_Pickup_Medkit (Medkit x1), BP_Pickup_PistolAmmo (PistolAmmo x12).
+Checks: `unreal-editor.sh check` exit 0, CompileAllBlueprints 0 errors, 0 failed to load (first run hit an editor out-of-memory crash, rerun passed).
+Placeholders: SM_Dog, SM_Medkit, SM_AmmoBox_Pistol (copies of SM_ChamferCube), MI_Dog, MI_Medkit, MI_AmmoBox_Pistol (M_FlatCol colours).
+NOT DONE: the PIE check (patrol/notice/attack, pickups adding counts). Look at this first; a visual/PIE check is still needed.
+Reviewer: the commit trailer names Haiku 5.5 instead of Sonnet 5.5.
 
 ## Review (reviewer writes, one line per round)

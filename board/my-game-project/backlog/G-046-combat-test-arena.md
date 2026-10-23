@@ -22,6 +22,7 @@ A greybox test arena where the player can fight the guard and the dog, pick up a
 - [ ] New map with `AIndyGameMode`: one patrolling guard (3+ patrol points), one dog, at least one medkit and one ammo pickup, cover that blocks the guard's sight, and a safe spot out of every enemy's sight to reload and heal; the nav mesh covers the floor.
 - [ ] The arena can be completed (both enemies dead) in first and in third person with normal input only; dying restarts it (G-044).
 - [ ] Default numbers make fights tense (ammo in the arena is just enough, a few hits kill); list the values used in the hand-off.
+- [ ] In the arena, the G-045 Blueprints behave: the guard patrols, notices, chases, shoots and strikes; the dog charges and bites; medkit and ammo pickups add to the counts (moved here from G-045; the user's play-test confirms it).
 - [ ] `unreal-editor.sh check` passes (build and Blueprint compile)
 - [ ] Only the assets under Assets: change.
 
