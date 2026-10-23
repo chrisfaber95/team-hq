@@ -10,10 +10,10 @@ depends_on: [G-036, G-037]
 contracts: []
 labels: []
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
-pr:
+pr: 43
 ---
 ## Goal
 Medkit and ammo pickups are collected by walking into them, up to their caps.
@@ -31,5 +31,11 @@ Medkit and ammo pickups are collected by walking into them, up to their caps.
 - Reviewer expects (from F-015): the new automation tests run headless (`Automation RunTests MyGameProject.<Area>`) with the result in the hand-off.
 
 ## Hand-off (engineer writes, max 300 tokens)
+PR #43 (https://github.com/chrisfaber95/my-game-project/pull/43) into epic/F-011. C++ only, no assets, no new deps.
+New: Combat/IndyPickup.h/.cpp (AIndyPickup: sphere trigger + mesh, Kind Medkit/PistolAmmo, Amount, OnPickedUp, TryCollect), Combat/IndyPickupRules.h/.cpp (AmountThatFits), Tests/IndyPickupRulesTest.cpp.
+Gives only what fits under MedkitCap/ReserveCap, keeps the rest; used up -> hidden + no collision; nothing fits -> stays whole, no event.
+Checks: `unreal-editor.sh check` exit 0 (Blueprints 0 errors, 0 warnings; no separate `Result: Succeeded` line logged); headless `Automation RunTests MyGameProject.Combat` 6/6 pass incl. Pickup.AmountThatFits; clang-format 18.1.8 clean. CI does not compile.
+Reviewer: collects on begin-overlap only (player standing inside at cap must step out and in); no PIE check; branch is one commit behind epic/F-011 (G-039, no overlapping files).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
