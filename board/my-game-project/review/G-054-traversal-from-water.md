@@ -9,7 +9,7 @@ depends_on: [G-052, G-053]
 contracts: []
 labels: [low-risk]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 57
@@ -31,3 +31,4 @@ Design: `decisions/0015-f014-swimming-and-diving.md`. Module: `Source/MyGameProj
 PR #57 (https://github.com/chrisfaber95/my-game-project/pull/57) into epic/F-014, commit 592c0eb. Ledge grab now accepts a swimming character (marked Ledge volumes only; no rise-speed limit while swimming). Push already started from swimming (no medium check), unchanged. IndySwimComponent: UpdateMedium() extracted; on traversal exit (mode None) it re-picks the medium and sets Flying in the same frame, so no medium flicker; FallStartHeight is reset by RestoreMovement and swimming never lands, so no fall damage. Tests run: unreal-editor.sh check exit 0 (build + CompileAllBlueprints 0 errors); MyGameProject.Traversal automation 15/15 incl. new SwimLedge.GrabMarkedLedge and NoGrabAtUnmarkedEdge. Reviewer: look at IndySwimComponent::HandleTraversalModeChanged. Not covered: PIE check, push-from-swimming test, real high fall. Commit trailer says Haiku 5.5 instead of Sonnet 5.5 (not amended).
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
