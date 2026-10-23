@@ -20,4 +20,5 @@ description: Close a sprint - write board/SPRINT.md from the board and commit te
      add rows to `metrics/baseline.md` under "Team runs".
    - **Next sprint**: the 3-5 tickets to dispatch first.
 3. Commit everything in `team-hq`: `git add -A && git commit -m "sprint: <date> summary"` and `git push`.
-4. Tell the user: "Sprint summary written; run /clear to start the next sprint."
+4. If an epic merged, add one line to `board/EPICS.md`: `- <date> F-NNN <title>: <n> tickets, PR #<epic pr>, <rounds> review rounds`.
+5. Tell the user: "Summary written; run /clear to start the next epic."

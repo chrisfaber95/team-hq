@@ -5,6 +5,8 @@
   "engineer": { "model": "sonnet", "maxTurns": 60, "maxBudgetUsd": 3, "maxMinutes": 45 },
   "reviewer": { "model": "sonnet", "maxTurns": 25, "maxBudgetUsd": 1, "maxRounds": 2, "maxMinutes": 15,
     "epic": { "maxTurns": 40, "maxBudgetUsd": 2, "maxMinutes": 25 } },
+  "planner": { "model": "sonnet", "maxTurns": 40, "maxBudgetUsd": 2, "maxMinutes": 20 },
+  "architect": { "model": "opus", "_note": "runs as a planner subagent; its cost counts inside planner.maxBudgetUsd" },
   "repos": {
     "claude-dashboard": "/n/Projects/Claude-dashboard",
     "my-game-project": "/n/Projects/MyGameProject"

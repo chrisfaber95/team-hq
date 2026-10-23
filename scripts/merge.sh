@@ -88,6 +88,7 @@ remote branch. Do nothing else: no new commits, no release. Report the merge com
   --model sonnet \
   --permission-mode auto \
   --strict-mcp-config \
+  --disable-slash-commands \
   --max-turns 20 \
   --max-budget-usd 1 \
   --settings "$hq/.claude/merger.settings.json" \

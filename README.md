@@ -25,7 +25,8 @@ for driving a ticket by hand.
 | `scripts/epic.sh` | `open`: a brief's branch `epic/F-NNN`; `pr`: the PR epic → `main` once its tickets are done (decision 0008) |
 | `scripts/baseline.sh` | ordinary non-team session per ticket, for baseline measurements |
 | `.claude/skills/` | `write-ticket`, `engineer`, `review-pr`, `sprint-summary` |
-| `.claude/agents/reviewer.md` | reviewer role (read-only on code) |
+| `scripts/plan.sh`, `run-tickets.sh` | planner run (brief → tickets) and the batch runner (dispatch → review → rework → merge, one wake-up; decision 0014) |
+| `.claude/agents/` | `reviewer` (read-only on code), `planner` (brief → tickets), `architect` (technical design) |
 | `metrics/baseline.md` | phase-0 baseline and per-ticket team metrics |
 | `logs/` | run logs and JSON results (gitignored) |
 

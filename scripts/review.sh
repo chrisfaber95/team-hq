@@ -34,6 +34,7 @@ timeout --kill-after=60 "${minutes}m" claude -p "Review ticket $id, PR #$pr in r
   --add-dir "$repo_dir" \
   --permission-mode auto \
   --strict-mcp-config \
+  --disable-slash-commands \
   --max-turns "$(cfg $caps.maxTurns)" \
   --max-budget-usd "$(cfg $caps.maxBudgetUsd)" \
   --settings '{"crossSessionInbound":"accept"}' \

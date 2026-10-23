@@ -1,8 +1,5 @@
 {
-  "crossSessionInbound": "accept",
-  "isolatePeerMachines": true,
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "Bash(bash scripts/dispatch.sh *)",
       "Bash(bash scripts/review.sh *)",
@@ -11,7 +8,10 @@
       "Bash(gh pr diff *)",
       "Bash(gh pr checks *)",
       "Bash(gh pr list *)",
-      "Bash(bash scripts/baseline.sh *)"
+      "Bash(bash scripts/baseline.sh *)",
+      "Bash(bash scripts/plan.sh *)",
+      "Bash(bash scripts/run-tickets.sh *)",
+      "Bash(bash scripts/epic.sh *)"
     ],
     "deny": [
       "Edit(//n/Projects/**)",
@@ -19,6 +19,9 @@
       "Bash(gh pr merge *)",
       "Bash(git push --force *)",
       "Bash(git push -f *)"
-    ]
-  }
+    ],
+    "defaultMode": "auto"
+  },
+  "isolatePeerMachines": true,
+  "crossSessionInbound": "accept"
 }

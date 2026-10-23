@@ -89,6 +89,7 @@ Don't merge it. Do nothing else. Report the PR number." \
     --model sonnet \
     --permission-mode auto \
     --strict-mcp-config \
+    --disable-slash-commands \
     --max-turns 25 \
     --max-budget-usd 1 \
     --settings "$hq/.claude/epic.settings.json" \

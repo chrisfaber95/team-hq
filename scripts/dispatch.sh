@@ -108,6 +108,7 @@ timeout --kill-after=60 "${minutes}m" claude -p "$prompt" \
   --permission-mode auto \
   "${mcp_args[@]}" \
   --strict-mcp-config \
+  --disable-slash-commands \
   --max-turns "${ENG_MAX_TURNS:-$(cfg engineer.maxTurns)}" \
   --max-budget-usd "$(cfg engineer.maxBudgetUsd)" \
   --settings "$hq/.claude/engineer.settings.json" \
