@@ -10,7 +10,7 @@ depends_on: [G-040, G-042]
 contracts: []
 labels: [assets]
 budget_usd: 3
-review_rounds: 0
+review_rounds: 1
 user_check: false
 user_ok: false
 pr: 47
@@ -41,3 +41,4 @@ NOT DONE: the PIE check (patrol/notice/attack, pickups adding counts). Look at t
 Reviewer: the commit trailer names Haiku 5.5 instead of Sonnet 5.5.
 
 ## Review (reviewer writes, one line per round)
+round 1: approve
