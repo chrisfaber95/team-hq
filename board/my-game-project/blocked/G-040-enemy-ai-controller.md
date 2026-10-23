@@ -34,6 +34,8 @@ Enemies patrol, notice the player by sight, chase and attack, and give up after 
 - No squad AI (brief: out of scope).
 - Reviewer expects (from F-015): the new automation tests run headless (`Automation RunTests MyGameProject.<Area>`) with the result in the hand-off.
 
+- Rework run 1 (2026-10-23) stopped after the 10-minute background wait: it started `unreal-editor.sh check` in a background subagent and ended its turn, so nothing was committed. The fix is already in the worktree, uncommitted (`ResolvePlayer()` replaces the cached player, `StopAndClear` removed); keep it, don't start over. Run `unreal-editor.sh check` and the `MyGameProject.AI` tests in the foreground (no background subagent or `run_in_background`), then clang-format, commit, push to the PR #44 branch, update the hand-off and move the ticket to review/.
+
 ## Hand-off (engineer writes, max 300 tokens)
 PR: https://github.com/chrisfaber95/my-game-project/pull/44 (into epic/F-011). C++ only, no assets.
 - New `AIndyEnemyAIController` (AIPerception sight; tunable radius, lose radius, cone, LoseSightTime, ThinkInterval), pure `FIndyEnemyAIRules::NextState` (Patrol/Chase/Attack/Lost), events OnStateChanged/OnNoticedPlayer/OnLostPlayer.
