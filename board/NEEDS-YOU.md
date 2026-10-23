@@ -93,4 +93,4 @@ The lead (and `scripts/dispatch.sh` / `review.sh`) append one line per item. Tic
 - [x] 2026-10-23 G-040: F-011 enemy AI adds the engine modules `AIModule`, `NavigationSystem` and `GameplayTasks` to `MyGameProject.Build.cs` (a new dependency, `deps`); set `user_ok: true` on G-040 to let it merge after review. (user: user_ok true, 2026-10-23)
 - [x] 2026-10-23 G-040: engineer run stopped (run ended without moving the ticket to review/ or blocked/). Log: logs/G-040.log (lead: false alarm; the round-1 run had finished (PR #44, review: changes) but its wrapper exited only after the --rework run had moved the ticket back to in-progress/; ticket returned to in-progress/ for that rework run)
 - [x] 2026-10-23 G-040: engineer run stopped (exit 0, no-json-result). Log: logs/G-040.log (lead: rework run put its check in a background subagent and timed out; the fix is in the worktree; re-run --rework with a foreground-check note)
-- [ ] 2026-10-23 F-014: planner run stopped (exit 127, no-json-result). Log: logs/F-014.plan.log
+- [x] 2026-10-23 F-014: planner run stopped (exit 127, no-json-result). Log: logs/F-014.plan.log (lead: retry succeeded, G-049..G-057 planned)

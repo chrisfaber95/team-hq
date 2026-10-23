@@ -1,7 +1,7 @@
 ---
 id: F-014
 title: Swimming, diving and wading
-status: approved
+status: handed-off
 priority: must
 repos: [my-game-project]
 depends_on: [F-009, F-010, F-011]

@@ -9,6 +9,6 @@ the user approves a brief; the lead marks it handed off once its tickets exist.
 - [F-010](briefs/F-010-traversal.md) Traversal: climb, ledge, push blocks, whip swing (must) — done, on main (G-011..G-021)
 - [F-015](briefs/F-015-traversal-animations.md) Traversal, whip, fall and crouch/roll animations (must; after F-010, before F-011) — done, on main (G-023..G-031, G-033..G-035; epic G-032, PR #38)
 - [F-011](briefs/F-011-combat-and-survival.md) Combat and survival (must) — handed off: G-036..G-046, epic G-047
-- [F-014](briefs/F-014-swimming-and-diving.md) Swimming, diving and wading (must; before F-012)
+- [F-014](briefs/F-014-swimming-and-diving.md) Swimming, diving and wading (must; before F-012) — handed off: G-049..G-056, epic G-057
 - [F-012](briefs/F-012-babylon-dig-site-level.md) Babylon dig site level, first half (must)
 - [F-013](briefs/F-013-game-shell.md) Game shell: HUD, pause, checkpoints, settings (should)

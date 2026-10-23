@@ -13,7 +13,7 @@ budget_usd: 0
 review_rounds: 0
 user_check: false
 user_ok: false
-pr:
+pr: 51
 ---
 ## Goal
 In a test arena the player can fight two enemy types, be hurt, heal, run out of ammo, die and try again, using both camera views. Fights feel tense like the original: health is fragile and ammo is scarce.
