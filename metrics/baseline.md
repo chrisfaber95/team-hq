@@ -206,3 +206,5 @@ Game repo (my-game-project, sprint 14, 2026-10-18 to 2026-10-20; engineer cost =
 | G-054 | #57 | $0.61 | 1 ($0.11) | review failed twice on the usage limit first |
 | G-055 | #58 | $0.43 | 1 ($0.09) | |
 | G-056 | #59 | $0.61 | 1 ($0.06) | |
+| G-093 | #69 | $0.57 | 1 ($0.15) | optional widget bindings |
+| G-090 | #72 | $0.42 | 1 ($0.09) | main menu map, waits for the user check |
