@@ -6,7 +6,7 @@ base: main
 branch: epic/F-013
 owner: lead
 brief: F-013
-depends_on: [G-081, G-082, G-083, G-084, G-085, G-086, G-087, G-088, G-089, G-090, G-091]
+depends_on: [G-081, G-082, G-083, G-084, G-085, G-086, G-087, G-088, G-089, G-090, G-091, G-093]
 contracts: []
 labels: [assets]
 budget_usd: 3
