@@ -1,7 +1,7 @@
 ---
 id: F-020
 title: Homelab health alerts, one overview, and backups of what the repo can't rebuild
-status: approved         # draft | approved | needs-design | parked | handed-off
+status: needs-design         # draft | approved | needs-design | parked | handed-off
 builder: user + Claude on the box (not the team)
 priority: should
 repos: [homelab]
@@ -62,3 +62,7 @@ F-017, F-018 and F-019 (the push channel).
 - Mounting the USB disk needs root (F-019 keeps disks and mounts out of Claude's reach): a one-off script the user runs.
 
 ## Questions from lead
+- 2026-10-25, storage change (see F-016): the user picks the 2 TB external USB HDD as the backup disk, which answers
+  "Which USB disk and how big". If the HDD also holds other data, that data has no backup, because the backups
+  land on the same disk. Should the brief say that nothing may live only on the HDD, or add "data kept only on the
+  HDD" to Out of scope?

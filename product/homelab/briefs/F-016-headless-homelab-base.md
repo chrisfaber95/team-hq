@@ -1,7 +1,7 @@
 ---
 id: F-016
 title: Headless homelab base - Ubuntu, GPU, private access, Claude Code
-status: approved
+status: needs-design
 builder: user + Claude on the box (not the team)
 priority: must
 repos: [homelab]
@@ -47,3 +47,9 @@ the box can take over the next feature (F-017).
   Answer (user, 2026-10-24): the user and Claude on the box. **Not for the team: the lead does not plan tickets for this brief.**
 
 ## Questions from lead
+- 2026-10-25, storage change: the user plans a 250 GB SSD plus a 2 TB external USB HDD instead of the 500 GB SSD.
+  The criterion "root file system has the whole SSD (about 450 GB usable)" becomes about 230 GB, and the Problem
+  line (and `VISION.md`) still name the 500 GB SSD. Proposal: root, swap, Docker data, project folders and Ollama
+  models stay on the SSD (from an HDD a cold model load takes 40+ s); the HDD is mounted by UUID with `nofail`, so
+  the box still boots and the health check still passes without it. Should mounting the HDD be part of this
+  brief's checklist, or wait for F-020?
